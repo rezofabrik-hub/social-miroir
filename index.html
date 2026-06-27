@@ -287,7 +287,7 @@
             background: white;
             border-radius: 28px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.18), 0 0 0 2.5px rgba(0,0,0,0.22);
         }
         #mirror-wrapper { max-height: 100%; }
         #mirror-container { max-height: 100%; }
@@ -1579,14 +1579,15 @@
             // ── Image miroir ──
             pdf.addImage(imgData, 'JPEG', mX, mY, mW, mH);
 
-            // ── Contour du miroir : bordure visible arrondie ──
-            pdf.setDrawColor(15, 15, 15);
-            pdf.setLineWidth(0.6);
+            // ── Contour du miroir : bordure nette et visible ──
+            // Ombre portée (dessinée en premier, derrière)
+            pdf.setDrawColor(180, 180, 180);
+            pdf.setLineWidth(2.5);
+            pdf.roundedRect(mX + 2, mY + 2, mW, mH, 4, 4, 'S');
+            // Bordure principale épaisse
+            pdf.setDrawColor(30, 30, 30);
+            pdf.setLineWidth(1.2);
             pdf.roundedRect(mX, mY, mW, mH, 4, 4, 'S');
-            // Ombre portée simulée (rect gris décalé dessous)
-            pdf.setDrawColor(200, 200, 200);
-            pdf.setLineWidth(0.3);
-            pdf.roundedRect(mX + 1.5, mY + 1.5, mW, mH, 4, 4, 'S');
 
             // ── Légende sous le miroir ──
             const legendeY = mY + mH + 8;
