@@ -1427,9 +1427,54 @@
         "format-Prestige-led":    "https://buy.stripe.com/bJeaEX5Me3Zz3ymcCHcMM0c"
     };
 
+    // ═══ AIRTABLE ═══
+    const AIRTABLE_TOKEN   = 'pat0kypbvPN5aTeeo.' + '01ee744a39e2a380adbd0c70392dce4bfbb48301b7bf18b445d5745b388c4ac3';
+    const AIRTABLE_BASE_ID = 'appP3oMcKSOcpxj4t';
+    const AIRTABLE_TABLE   = 'tblfVEfDgzdLQfuwR';
+
     async function saveOrder(data) {
-        console.log("📦 Commande (démo):", data);
-        return true;
+        const ref = 'SM-' + Date.now().toString(36).toUpperCase();
+        try {
+            const body = {
+                records: [{
+                    fields: {
+                        'Référence':          ref,
+                        'Date':               new Date().toISOString(),
+                        'Statut':             'Nouvelle',
+                        'Format':             data.format,
+                        'Couleur':            data.couleur,
+                        'LED':                data.led ? 'Oui' : 'Non',
+                        'Total':              data.total,
+                        'Prénom':             data.client.prenom  || '',
+                        'Nom':                data.client.nom     || '',
+                        'Email':              data.client.email   || '',
+                        'Téléphone':          data.client.phone   || '',
+                        'Adresse facturation':[data.client.adresse, data.client.cp, data.client.ville].filter(Boolean).join(', '),
+                        'Cadeau':             data.livraison ? 'Oui' : 'Non',
+                        'Adresse livraison':  data.livraison
+                            ? [data.livraison.prenom, data.livraison.nom, data.livraison.adresse, data.livraison.cp, data.livraison.ville].filter(Boolean).join(', ')
+                            : '',
+                        'Username miroir':    data.textes.nomUtilisateur,
+                        'Légende':            data.textes.legende,
+                        'Hashtags':           data.textes.hashtags,
+                    }
+                }]
+            };
+            await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE}`, {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${AIRTABLE_TOKEN}`, 'Content-Type': 'application/json' },
+                body: JSON.stringify(body)
+            });
+        } catch(e) { console.warn('Airtable:', e); }
+
+        // Historique localStorage
+        try {
+            const hist = JSON.parse(localStorage.getItem('sm_orders') || '[]');
+            hist.unshift({ ref, date: new Date().toLocaleDateString('fr-FR'), format: data.format, total: data.total });
+            localStorage.setItem('sm_orders', JSON.stringify(hist.slice(0, 10)));
+        } catch(e) {}
+
+        return ref;
     }
 
     // ═══════════════ CONFIGURATION PDF ═══════════════
@@ -2021,23 +2066,20 @@
             // Génération des deux PDFs
             btnConfirmBat.innerHTML = `<svg class="animate-spin w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg> Préparation du BAT...`;
             try {
-                // PDF client : screenshot A4 de ce que le client a validé
+                // PDF client : BAT visuel A4 (téléchargement client)
                 const pdfClient = await genererPDFClient(formatId, orderData);
                 if (pdfClient) {
-                    pdfClient.save(`BAT-SocialMiroir-${orderData.format}.pdf`);
+                    pdfClient.save(`BAT-Client-${orderData.format}.pdf`);
                 }
-                // PDF vendeur : format réel pour impression Dibond
+                // PDF vendeur : fichier impression aux vraies dimensions (téléchargement auto)
                 const pdfVendeur = await genererPDFVendeur(formatId, orderData);
-                // Envoi email : BAT vendeur (impression) en pièce jointe
                 if (pdfVendeur) {
-                    await envoyerEmailBAT(orderData, pdfVendeur._base64);
-                } else if (pdfClient) {
-                    await envoyerEmailBAT(orderData, pdfClient._base64);
+                    pdfVendeur.save(`IMPRESSION-${orderData.format}-${orderData.client.nom || 'commande'}.pdf`);
                 }
-                showToast('✓ BAT téléchargé — email envoyé');
+                showToast('✓ 2 PDFs téléchargés — commande enregistrée');
             } catch(e) {
-                console.warn("PDF / Email:", e);
-                showToast('⚠️ Erreur génération BAT');
+                console.warn("PDF:", e);
+                showToast('⚠️ Erreur génération PDF');
             }
 
             // Redirection Stripe
