@@ -1160,6 +1160,19 @@
     </div>
 </section>
 
+<!-- ═══════════════ TEST EMAIL ADMIN ═══════════════ -->
+<section class="bg-gray-50 border-t border-gray-200 py-6">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center gap-4">
+        <div class="text-sm text-ink/50 font-medium">🔧 Zone test (RezoFabrik uniquement)</div>
+        <button id="btn-test-email" onclick="testerEmail()"
+            class="inline-flex items-center gap-2 bg-ink text-white font-bold px-5 py-2.5 rounded-xl text-sm hover:bg-ink/80 transition-all">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            Envoyer un email test à rezofabrik@gmail.com
+        </button>
+        <span id="test-email-result" class="text-sm font-semibold hidden"></span>
+    </div>
+</section>
+
 <!-- ═══════════════ FOOTER ═══════════════ -->
 <footer class="bg-white py-12 border-t border-gray-100">
     <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left">
@@ -2065,6 +2078,54 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCgv(); });
 </script>
 
+<script>
+async function testerEmail() {
+    const btn = document.getElementById('btn-test-email');
+    const result = document.getElementById('test-email-result');
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours…';
+    result.className = 'text-sm font-semibold';
+    result.textContent = '';
+
+    try {
+        await emailjs.send('service_7p37wku', 'template_l86gkzm', {
+            to_email:      'rezofabrik@gmail.com',
+            format:        'TEST - Original 60×100cm',
+            couleur:       'Argent Clair',
+            led:           'Non',
+            total:         '160,00 €',
+            prenom:        'Test',
+            nom:           'Automatique',
+            email:         'rezofabrik@gmail.com',
+            phone:         '07 75 76 92 32',
+            adresse_fact:  '9 rue de la close, 66140 Canet-en-Roussillon',
+            cadeau:        'Non',
+            adresse_liv:   '(identique facturation)',
+            message_cadeau:'',
+            username:      'ici votre titre',
+            legende:       'Test automatique du système — tout fonctionne !',
+            hashtags:      '#test #socialmiroir #rezofabrik',
+            likes:         '1.2K',
+            commentaires:  '456',
+            reposts:       '89',
+            partages:      '34',
+            heure:         '10:39',
+            bat_pdf:       '',
+            bat_filename:  'BAT-TEST.pdf',
+        });
+        result.textContent = '✅ Email envoyé ! Vérifiez rezofabrik@gmail.com';
+        result.classList.add('text-green-600');
+    } catch(err) {
+        result.textContent = '❌ Erreur : ' + (err.text || JSON.stringify(err));
+        result.classList.add('text-red-500');
+        console.error('EmailJS error:', err);
+    }
+
+    result.classList.remove('hidden');
+    btn.disabled = false;
+    btn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg> Envoyer un email test à rezofabrik@gmail.com';
+}
+</script>
 
 </body>
 </html>
