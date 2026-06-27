@@ -2119,16 +2119,23 @@
                 // PDF vendeur : fichier impression aux vraies dimensions
                 const pdfVendeur = await genererPDFVendeur(formatId, orderData);
                 if (pdfVendeur) {
-                    // Envoi automatique sur Discord (RezoFabrik)
-                    envoyerDiscord(orderData, pdfVendeur);
+                    // Stocker dans localStorage — envoi Discord+email après paiement confirmé
+                    try {
+                        const pdfBase64 = pdfVendeur.output('datauristring').split(',')[1];
+                        localStorage.setItem('sm_pending_bat', JSON.stringify({
+                            orderData,
+                            pdfBase64,
+                            ts: Date.now()
+                        }));
+                    } catch(e) { console.warn('localStorage BAT:', e); }
                 }
-                showToast('✓ BAT enregistré — commande transmise');
+                showToast('✓ BAT validé — redirection paiement...');
             } catch(e) {
                 console.warn("PDF:", e);
                 showToast('⚠️ Erreur génération PDF');
             }
 
-            // Redirection Stripe (délai 800ms pour laisser le temps aux PDFs de démarrer)
+            // Redirection Stripe (délai 800ms pour laisser le temps au PDF de se générer)
             await new Promise(r => setTimeout(r, 800));
             const stripeKey = `${formatId}-${ledFinal ? 'led' : 'noled'}`;
             const stripeUrl = stripeLinks[stripeKey];
@@ -2143,6 +2150,55 @@
 
         // ── Init ──
         calcPrice();
+
+        // ── Retour Stripe : paiement confirmé ──
+        if (new URLSearchParams(window.location.search).get('payment') === 'success') {
+            try {
+                const raw = localStorage.getItem('sm_pending_bat');
+                if (raw) {
+                    const { orderData, pdfBase64 } = JSON.parse(raw);
+                    localStorage.removeItem('sm_pending_bat');
+
+                    // Afficher message de succès
+                    const successBanner = document.createElement('div');
+                    successBanner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:#16a34a;color:white;text-align:center;padding:18px 20px;font-size:1.1rem;font-weight:600;box-shadow:0 4px 20px rgba(0,0,0,0.2)';
+                    successBanner.innerHTML = '✅ Paiement confirmé ! Votre commande Social-Miroir est bien enregistrée. Merci !';
+                    document.body.prepend(successBanner);
+                    setTimeout(() => successBanner.remove(), 8000);
+
+                    // Nettoyer l'URL
+                    history.replaceState({}, '', window.location.pathname);
+
+                    // Envoyer Discord + email (seulement maintenant que le paiement est OK)
+                    if (pdfBase64) {
+                        const { jsPDF } = window.jspdf;
+                        const pdfBlob = await fetch(`data:application/pdf;base64,${pdfBase64}`).then(r => r.blob());
+                        const nom = [orderData.client.prenom, orderData.client.nom].filter(Boolean).join(' ') || 'client';
+                        const format = orderData.format || '';
+                        const total = orderData.total ? orderData.total.toFixed(2) + ' €' : '';
+                        const led = orderData.led ? ' + LED' : '';
+                        const fileName = `IMPRESSION-${format}-${nom.replace(/\s+/g,'-')}.pdf`;
+
+                        const form = new FormData();
+                        form.append('content',
+                            `🎉 **COMMANDE PAYÉE — Social-Miroir**\n` +
+                            `📦 ${format}${led} — **${total}**\n` +
+                            `👤 ${nom} — ${orderData.client.email || ''}\n` +
+                            `📞 ${orderData.client.phone || ''}\n` +
+                            `🪞 @${orderData.textes?.nomUtilisateur || ''}`
+                        );
+                        form.append('file', pdfBlob, fileName);
+                        fetch(DISCORD_WEBHOOK, { method: 'POST', body: form })
+                            .catch(e => console.warn('Discord:', e));
+                    }
+
+                    // Email de notification
+                    envoyerEmailBAT(orderData, pdfBase64);
+                }
+            } catch(e) {
+                console.warn('Retour paiement:', e);
+            }
+        }
     });
 </script>
 <script>
