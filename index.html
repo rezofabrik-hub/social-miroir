@@ -1579,15 +1579,10 @@
             // ── Image miroir ──
             pdf.addImage(imgData, 'JPEG', mX, mY, mW, mH);
 
-            // ── Contour du miroir : bordure nette et visible ──
-            // Ombre portée (dessinée en premier, derrière)
-            pdf.setDrawColor(180, 180, 180);
-            pdf.setLineWidth(2.5);
-            pdf.roundedRect(mX + 2, mY + 2, mW, mH, 4, 4, 'S');
-            // Bordure principale épaisse
-            pdf.setDrawColor(30, 30, 30);
-            pdf.setLineWidth(1.2);
-            pdf.roundedRect(mX, mY, mW, mH, 4, 4, 'S');
+            // ── Contour miroir : trait noir fin et propre ──
+            pdf.setDrawColor(0, 0, 0);
+            pdf.setLineWidth(0.5);
+            pdf.roundedRect(mX, mY, mW, mH, 3, 3, 'S');
 
             // ── Légende sous le miroir ──
             const legendeY = mY + mH + 8;
@@ -1973,7 +1968,7 @@
             // Conserver la classe de format pour garder les proportions exactes
             clone.classList.add('mirror-clone');
             clone.removeAttribute('id');
-            clone.style.cssText = 'transform:none;animation:none;box-shadow:none;width:100%;';
+            clone.style.cssText = 'transform:none;animation:none;box-shadow:0 0 0 2px rgba(0,0,0,0.25),0 8px 30px rgba(0,0,0,0.12);width:100%;';
             const cloneSurface = clone.querySelector('.mirror-surface');
             if (cloneSurface) cloneSurface.style.background = mirrorSurface.style.background;
             visContainer.appendChild(clone);
