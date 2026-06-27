@@ -1371,9 +1371,10 @@
     //            Likes: {{likes}} | Commentaires: {{commentaires}} | Reposts: {{reposts}} | Partages: {{partages}}
     //   Pièce jointe : activer "File attachment" dans le template → variable {{bat_pdf}}
 
-    emailjs.init(EMAILJS_PUBLIC_KEY);
+    try { emailjs.init(EMAILJS_PUBLIC_KEY); } catch(e) { console.warn('EmailJS non disponible:', e); }
 
     async function envoyerEmailBAT(orderData, pdfBase64) {
+        if (typeof emailjs === 'undefined') { console.warn('EmailJS non chargé — email ignoré'); return; }
         try {
             await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
                 // Destinataire (configuré aussi dans le template EmailJS)
@@ -1988,7 +1989,7 @@
             // Bloquer si aucun format choisi
             if (!fmt) {
                 showToast('⚠️ Choisissez d\'abord un format');
-                document.getElementById('led-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                document.querySelector('input[name="format"]').closest('section').scrollIntoView({ behavior: 'smooth', block: 'center' });
                 return;
             }
             // Validation email avant d'ouvrir
@@ -2060,7 +2061,7 @@
                 }
             };
 
-            // Sauvegarde Firebase
+            // Sauvegarde Airtable
             await saveOrder(orderData);
 
             // Génération des deux PDFs
@@ -2082,7 +2083,8 @@
                 showToast('⚠️ Erreur génération PDF');
             }
 
-            // Redirection Stripe
+            // Redirection Stripe (délai 800ms pour laisser le temps aux PDFs de démarrer)
+            await new Promise(r => setTimeout(r, 800));
             const stripeKey = `${formatId}-${ledFinal ? 'led' : 'noled'}`;
             const stripeUrl = stripeLinks[stripeKey];
             if (stripeUrl) {
@@ -2128,6 +2130,15 @@ async function testerEmail() {
     btn.textContent = 'Envoi en cours…';
     result.className = 'text-sm font-semibold';
     result.textContent = '';
+
+    if (typeof emailjs === 'undefined') {
+        result.textContent = '❌ EmailJS non chargé (vérifiez votre connexion)';
+        result.classList.add('text-red-500');
+        result.classList.remove('hidden');
+        btn.disabled = false;
+        btn.textContent = 'Envoyer un email test à rezofabrik@gmail.com';
+        return;
+    }
 
     try {
         await emailjs.send('service_7p37wku', 'template_l86gkzm', {
