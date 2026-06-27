@@ -1428,6 +1428,31 @@
         "format-Prestige-led":    "https://buy.stripe.com/bJeaEX5Me3Zz3ymcCHcMM0c"
     };
 
+    // ═══ DISCORD WEBHOOK ═══
+    const DISCORD_WEBHOOK = 'https://discord.com/api/webhooks/1520549106798297281/' + 'lOunIh0YA-OhEiFiGRn83hZ3fadO3cYOo5Bhs19oBYf_NwB4xaTHkxGm-JAumVQ12m3H';
+
+    async function envoyerDiscord(orderData, pdfVendeur) {
+        try {
+            const nom = [orderData.client.prenom, orderData.client.nom].filter(Boolean).join(' ') || 'Inconnu';
+            const format = orderData.format || '';
+            const total = orderData.total ? orderData.total.toFixed(2) + ' €' : '';
+            const led = orderData.led ? ' + LED' : '';
+            const fileName = `IMPRESSION-${format}-${nom.replace(/\s+/g,'-')}.pdf`;
+
+            // Convertir PDF en Blob
+            const pdfBlob = pdfVendeur.output('blob');
+
+            const form = new FormData();
+            form.append('content', `**Nouvelle commande Social-Miroir**\n📦 ${format}${led} — ${total}\n👤 ${nom} — ${orderData.client.email || ''}\n📞 ${orderData.client.phone || ''}`);
+            form.append('file', pdfBlob, fileName);
+
+            const res = await fetch(DISCORD_WEBHOOK, { method: 'POST', body: form });
+            if (!res.ok) console.warn('Discord webhook:', res.status);
+        } catch(e) {
+            console.warn('Discord envoi échoué:', e);
+        }
+    }
+
     // ═══ AIRTABLE ═══
     const AIRTABLE_TOKEN   = 'pat0kypbvPN5aTeeo.' + '01ee744a39e2a380adbd0c70392dce4bfbb48301b7bf18b445d5745b388c4ac3';
     const AIRTABLE_BASE_ID = 'appP3oMcKSOcpxj4t';
@@ -2091,12 +2116,13 @@
                 if (pdfClient) {
                     pdfClient.save(`BAT-Client-${orderData.format}.pdf`);
                 }
-                // PDF vendeur : fichier impression aux vraies dimensions (téléchargement auto)
+                // PDF vendeur : fichier impression aux vraies dimensions
                 const pdfVendeur = await genererPDFVendeur(formatId, orderData);
                 if (pdfVendeur) {
-                    pdfVendeur.save(`IMPRESSION-${orderData.format}-${orderData.client.nom || 'commande'}.pdf`);
+                    // Envoi automatique sur Discord (RezoFabrik)
+                    envoyerDiscord(orderData, pdfVendeur);
                 }
-                showToast('✓ 2 PDFs téléchargés — commande enregistrée');
+                showToast('✓ BAT enregistré — commande transmise');
             } catch(e) {
                 console.warn("PDF:", e);
                 showToast('⚠️ Erreur génération PDF');
