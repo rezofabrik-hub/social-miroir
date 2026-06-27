@@ -1528,11 +1528,12 @@
 
         const { jsPDF } = window.jspdf;
         const PAGE_W = 210, PAGE_H = 297;
-        const HEADER_H = 38, MARGIN = 12;
+        const HEADER_H = 42, MARGIN = 18;
+        // Zone miroir : max 55% de la hauteur utile pour rester aéré
         const areaW = PAGE_W - MARGIN * 2;
-        const areaH = PAGE_H - HEADER_H - MARGIN * 2;
+        const areaH = Math.min(PAGE_H - HEADER_H - MARGIN * 3, (PAGE_H - HEADER_H) * 0.58);
         const ratio = canvas.width / canvas.height;
-        let mW = areaW, mH = mW / ratio;
+        let mW = areaW * 0.72, mH = mW / ratio;
         if (mH > areaH) { mH = areaH; mW = mH * ratio; }
         const mX = (PAGE_W - mW) / 2;
         const mY = HEADER_H + MARGIN;
@@ -1540,7 +1541,7 @@
         const clientName = orderData ? [orderData.client.prenom, orderData.client.nom].filter(Boolean).join(' ') : '';
         const today = new Date().toLocaleDateString('fr-FR');
         const formatLabel = formatId.replace('format-', '');
-        const dimLabel = `${largeurMm/10} × ${hauteurMm/10} cm`;
+        const dimLabel = `${largeurMm/10} x ${hauteurMm/10} cm`;
 
         const LIMITE = 900 * 1024;
         let qualite = 0.90;
@@ -1558,24 +1559,42 @@
             pdf.line(0, HEADER_H - 0.5, PAGE_W, HEADER_H - 0.5);
             // Logo gauche
             pdf.setFontSize(17); pdf.setTextColor(230, 0, 126); pdf.setFont('helvetica', 'bolditalic');
-            pdf.text('Social-Miroir', 10, 14);
+            pdf.text('Social-Miroir', 10, 15);
             pdf.setFontSize(6.5); pdf.setTextColor(160, 160, 160); pdf.setFont('helvetica', 'normal');
-            pdf.text('RezoFabrik · Canet-en-Roussillon', 10, 21);
-            pdf.text('rezofabrik@gmail.com · 07 75 76 92 32', 10, 27);
+            pdf.text('RezoFabrik · Canet-en-Roussillon', 10, 22);
+            pdf.text('rezofabrik@gmail.com · 07 75 76 92 32', 10, 28);
             // Badge centre
             pdf.setFillColor(230, 0, 126);
-            pdf.roundedRect(PAGE_W/2 - 24, 5, 48, 26, 2.5, 2.5, 'F');
+            pdf.roundedRect(PAGE_W/2 - 26, 6, 52, 28, 3, 3, 'F');
             pdf.setFontSize(6.5); pdf.setTextColor(255, 255, 255); pdf.setFont('helvetica', 'bold');
-            pdf.text('BON À TIRER', PAGE_W/2, 14, { align: 'center' });
-            pdf.setFontSize(13); pdf.text('VALIDE ✓', PAGE_W/2, 25, { align: 'center' });
+            pdf.text('BON A TIRER', PAGE_W/2, 15, { align: 'center' });
+            pdf.setFontSize(14); pdf.text('VALIDE  OK', PAGE_W/2, 27, { align: 'center' });
             // Infos droite
             pdf.setFontSize(7); pdf.setTextColor(60, 60, 60); pdf.setFont('helvetica', 'normal');
-            if (clientName) pdf.text(`Client : ${clientName}`, PAGE_W - 10, 12, { align: 'right' });
-            pdf.text(`Format : ${formatLabel}`, PAGE_W - 10, 19, { align: 'right' });
-            pdf.text(`Dim. : ${dimLabel}`, PAGE_W - 10, 26, { align: 'right' });
-            pdf.text(`Date : ${today}`, PAGE_W - 10, 33, { align: 'right' });
+            if (clientName) pdf.text(`Client : ${clientName}`, PAGE_W - 10, 13, { align: 'right' });
+            pdf.text(`Format : ${formatLabel}`, PAGE_W - 10, 20, { align: 'right' });
+            pdf.text(`Dim. : ${dimLabel}`, PAGE_W - 10, 27, { align: 'right' });
+            pdf.text(`Date : ${today}`, PAGE_W - 10, 34, { align: 'right' });
 
+            // ── Image miroir ──
             pdf.addImage(imgData, 'JPEG', mX, mY, mW, mH);
+
+            // ── Contour du miroir : bordure visible arrondie ──
+            pdf.setDrawColor(15, 15, 15);
+            pdf.setLineWidth(0.6);
+            pdf.roundedRect(mX, mY, mW, mH, 4, 4, 'S');
+            // Ombre portée simulée (rect gris décalé dessous)
+            pdf.setDrawColor(200, 200, 200);
+            pdf.setLineWidth(0.3);
+            pdf.roundedRect(mX + 1.5, mY + 1.5, mW, mH, 4, 4, 'S');
+
+            // ── Légende sous le miroir ──
+            const legendeY = mY + mH + 8;
+            pdf.setDrawColor(230, 0, 126);
+            pdf.setLineWidth(0.4);
+            pdf.line(mX, legendeY, mX + mW, legendeY);
+            pdf.setFontSize(7); pdf.setTextColor(100, 100, 100); pdf.setFont('helvetica', 'normal');
+            pdf.text(`Miroir ${formatLabel} · ${dimLabel} · Dibond 3mm · RezoFabrik`, PAGE_W/2, legendeY + 5, { align: 'center' });
 
             base64 = pdf.output('datauristring').split(',')[1];
             taille = base64.length * 0.75;
