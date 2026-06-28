@@ -285,16 +285,16 @@
             #configurator-section {
                 position: relative;
                 display: grid;
-                grid-template-columns: 1fr 2fr;
+                grid-template-columns: 33vw 1fr;
                 gap: 2rem;
+                align-items: start;
             }
             #configurator-section > div:first-child {
                 position: sticky;
                 top: 1rem;
                 align-self: start;
-                height: fit-content;
-                max-height: calc(100vh - 2rem);
-                overflow-y: auto;
+                width: 33vw;
+                height: calc(100vh - 2rem);
                 grid-column: 1;
             }
             #configurator-section > div:last-child {
@@ -340,10 +340,10 @@
 <div id="configurator-section" class="flex flex-col lg:flex-row gap-8 lg:gap-14">
 
         <!-- ── COLONNE GAUCHE : APERÇU MIROIR ── -->
-        <div class="w-full lg:w-5/12 flex flex-col items-center z-10 lg:fixed lg:left-4 lg:top-4 lg:h-[calc(100vh-2rem)] lg:overflow-y-auto">
+        <div class="w-full flex flex-col items-center z-10">
 
             <!-- Cadre de visualisation -->
-            <div class="mirror-frame w-full bg-white rounded-3xl shadow-sm border border-black/[0.06] p-1 lg:p-4 flex items-center justify-center min-h-[300px] lg:min-h-[calc(100vh-6rem)] relative overflow-hidden">
+            <div class="mirror-frame w-full bg-white rounded-3xl shadow-sm border border-black/[0.06] p-1 lg:p-4 flex items-center justify-center min-h-[300px] lg:h-[calc(100vh-2rem)] relative overflow-hidden">
                 <!-- Fond subtil -->
                 <div class="absolute inset-0 bg-gradient-to-br from-pink-50/40 via-transparent to-purple-50/20 pointer-events-none"></div>
                 
