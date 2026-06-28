@@ -340,11 +340,11 @@
 
 <div class="flex flex-col lg:flex-row gap-8 lg:gap-14">
 
-        <!-- ── COLONNE GAUCHE : APERÇU MIROIR (FIXE À GAUCHE) ── -->
-        <div class="w-full lg:w-5/12 flex flex-col items-center z-10 lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto">
+        <!-- ── COLONNE GAUCHE : APERÇU MIROIR ── -->
+        <div class="w-full lg:w-5/12 flex flex-col items-center z-10">
 
-            <!-- Cadre de visualisation -->
-            <div class="w-full bg-white rounded-3xl shadow-sm border border-black/[0.06] p-2 lg:p-6 flex items-center justify-center min-h-[360px] relative overflow-hidden">
+            <!-- Cadre de visualisation (STICKY) -->
+            <div class="w-full bg-white rounded-3xl shadow-sm border border-black/[0.06] p-2 lg:p-6 flex items-center justify-center min-h-[360px] relative overflow-hidden lg:sticky lg:top-6" style="max-height: calc(100vh - 3rem);">
                 <!-- Fond subtil -->
                 <div class="absolute inset-0 bg-gradient-to-br from-pink-50/40 via-transparent to-purple-50/20 pointer-events-none"></div>
                 
