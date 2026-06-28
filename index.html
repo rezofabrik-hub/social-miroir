@@ -644,88 +644,6 @@
                     </div>
                 </section>
 
-                <!-- ─── SECTION 5 : EMAIL ─── -->
-                <section class="bg-white rounded-2xl border border-black/[0.06] overflow-hidden shadow-sm">
-                    <div class="px-6 py-4 border-b border-black/[0.05] flex items-center gap-3">
-                        <span class="step-number">5</span>
-                        <h3 class="font-display text-lg font-bold text-ink">Vos coordonnées</h3>
-                    </div>
-                    <div class="p-6 space-y-4">
-                        <p class="text-xs text-ink/40">Pour recevoir la confirmation et le suivi de votre commande.</p>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-[11px] font-bold text-ink/50 mb-2 uppercase tracking-wider">Prénom</label>
-                                <input type="text" id="input-firstname" placeholder="Marie"
-                                    class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white text-sm transition-all">
-                            </div>
-                            <div>
-                                <label class="block text-[11px] font-bold text-ink/50 mb-2 uppercase tracking-wider">Nom</label>
-                                <input type="text" id="input-lastname" placeholder="Dupont"
-                                    class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white text-sm transition-all">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-[11px] font-bold text-ink/50 mb-2 uppercase tracking-wider">Email <span class="text-brand">*</span></label>
-                            <input type="email" id="input-email" placeholder="marie@monemail.fr"
-                                class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white text-sm transition-all">
-                            <p id="email-error" class="text-[11px] text-red-500 mt-1 hidden">Veuillez entrer un email valide.</p>
-                        </div>
-                        <div>
-                            <label class="block text-[11px] font-bold text-ink/50 mb-2 uppercase tracking-wider">Téléphone (optionnel)</label>
-                            <input type="tel" id="input-phone" placeholder="06 12 34 56 78"
-                                class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white text-sm transition-all">
-                        </div>
-
-                        <!-- Adresse de facturation -->
-                        <div class="pt-2 border-t border-black/[0.05]">
-                            <label class="block text-[11px] font-bold text-ink/50 mb-2 uppercase tracking-wider">Adresse de facturation</label>
-                            <input type="text" id="input-adresse" placeholder="12 rue des Lilas"
-                                class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white text-sm transition-all mb-3">
-                            <div class="flex flex-col sm:flex-row gap-3">
-                                <input type="text" id="input-cp" placeholder="Code postal"
-                                    class="w-full sm:w-2/5 px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white text-sm transition-all">
-                                <input type="text" id="input-ville" placeholder="Ville"
-                                    class="w-full sm:flex-1 px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white text-sm transition-all">
-                            </div>
-                        </div>
-
-                        <!-- Toggle adresse de livraison différente (cadeau) -->
-                        <label class="flex items-center gap-3 cursor-pointer select-none group mt-1">
-                            <div class="relative">
-                                <input type="checkbox" id="toggle-livraison-diff" class="sr-only">
-                                <div class="w-10 h-5 bg-gray-200 rounded-full transition-colors peer-checked:bg-brand" id="toggle-livraison-track" style="transition:background .2s"></div>
-                                <div class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform" id="toggle-livraison-thumb"></div>
-                            </div>
-                            <span class="text-sm text-ink/60 group-hover:text-ink transition-colors">🎁 C'est un cadeau — livrer à une autre adresse</span>
-                        </label>
-
-                        <!-- Adresse de livraison (masquée par défaut) -->
-                        <div id="livraison-diff-block" class="hidden space-y-3 bg-brand/5 border border-brand/15 rounded-xl p-4">
-                            <p class="text-[11px] font-bold text-brand uppercase tracking-wider">Adresse de livraison</p>
-                            <div class="grid grid-cols-2 gap-3">
-                                <div>
-                                    <input type="text" id="input-liv-prenom" placeholder="Prénom destinataire"
-                                        class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-sm transition-all">
-                                </div>
-                                <div>
-                                    <input type="text" id="input-liv-nom" placeholder="Nom destinataire"
-                                        class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-sm transition-all">
-                                </div>
-                            </div>
-                            <input type="text" id="input-liv-adresse" placeholder="Adresse de livraison"
-                                class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-sm transition-all">
-                            <div class="flex flex-col sm:flex-row gap-3">
-                                <input type="text" id="input-liv-cp" placeholder="Code postal"
-                                    class="w-full sm:w-2/5 px-4 py-3 rounded-xl border border-gray-200 bg-white text-sm transition-all">
-                                <input type="text" id="input-liv-ville" placeholder="Ville"
-                                    class="w-full sm:flex-1 px-4 py-3 rounded-xl border border-gray-200 bg-white text-sm transition-all">
-                            </div>
-                            <input type="text" id="input-liv-message" placeholder="Message cadeau (optionnel)"
-                                class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-sm transition-all">
-                        </div>
-
-                    </div>
-                </section>
 
             </div><!-- /space-y-8 -->
         </div>
@@ -978,6 +896,62 @@
                 <div class="flex items-center gap-2 mt-4 pt-4 border-t border-gray-100 text-xs text-green-600 font-semibold">
                     <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>
                     Livraison estimée sous ~7 jours ouvrés
+                </div>
+            </div>
+
+            <!-- Coordonnées dans la modale -->
+            <div class="bg-gray-50 rounded-2xl p-4 mb-4 border border-gray-100">
+                <h4 class="font-bold text-ink text-sm mb-3 uppercase tracking-wider">Vos coordonnées</h4>
+                <div class="space-y-3">
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-[11px] font-bold text-ink/50 mb-1 uppercase tracking-wider">Prénom *</label>
+                            <input type="text" id="input-firstname" placeholder="Marie" class="w-full px-3 py-2.5 rounded-xl border border-gray-200 bg-white text-sm transition-all focus:outline-none focus:border-brand">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-ink/50 mb-1 uppercase tracking-wider">Nom *</label>
+                            <input type="text" id="input-lastname" placeholder="Dupont" class="w-full px-3 py-2.5 rounded-xl border border-gray-200 bg-white text-sm transition-all focus:outline-none focus:border-brand">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-ink/50 mb-1 uppercase tracking-wider">Email *</label>
+                        <input type="email" id="input-email" placeholder="marie@monemail.fr" class="w-full px-3 py-2.5 rounded-xl border border-gray-200 bg-white text-sm transition-all focus:outline-none focus:border-brand">
+                        <p id="email-error" class="text-[11px] text-red-500 mt-1 hidden">Email invalide.</p>
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-ink/50 mb-1 uppercase tracking-wider">Téléphone *</label>
+                        <input type="tel" id="input-phone" placeholder="06 12 34 56 78" class="w-full px-3 py-2.5 rounded-xl border border-gray-200 bg-white text-sm transition-all focus:outline-none focus:border-brand">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-ink/50 mb-1 uppercase tracking-wider">Adresse *</label>
+                        <input type="text" id="input-adresse" placeholder="12 rue des Lilas" class="w-full px-3 py-2.5 rounded-xl border border-gray-200 bg-white text-sm transition-all focus:outline-none focus:border-brand mb-2">
+                        <div class="flex gap-2">
+                            <input type="text" id="input-cp" placeholder="Code postal" class="w-2/5 px-3 py-2.5 rounded-xl border border-gray-200 bg-white text-sm transition-all focus:outline-none focus:border-brand">
+                            <input type="text" id="input-ville" placeholder="Ville" class="flex-1 px-3 py-2.5 rounded-xl border border-gray-200 bg-white text-sm transition-all focus:outline-none focus:border-brand">
+                        </div>
+                    </div>
+                    <!-- Toggle adresse livraison -->
+                    <label class="flex items-center gap-3 cursor-pointer select-none group">
+                        <div class="relative">
+                            <input type="checkbox" id="toggle-livraison-diff" class="sr-only">
+                            <div class="w-10 h-5 bg-gray-200 rounded-full" id="toggle-livraison-track" style="transition:background .2s"></div>
+                            <div class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform" id="toggle-livraison-thumb"></div>
+                        </div>
+                        <span class="text-sm text-ink/60 group-hover:text-ink transition-colors">🎁 Livrer à une autre adresse</span>
+                    </label>
+                    <div id="livraison-diff-block" class="hidden space-y-2 bg-brand/5 border border-brand/15 rounded-xl p-3">
+                        <p class="text-[11px] font-bold text-brand uppercase tracking-wider">Adresse de livraison</p>
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="text" id="input-liv-prenom" placeholder="Prénom" class="w-full px-3 py-2 rounded-xl border border-gray-200 bg-white text-sm focus:outline-none focus:border-brand">
+                            <input type="text" id="input-liv-nom" placeholder="Nom" class="w-full px-3 py-2 rounded-xl border border-gray-200 bg-white text-sm focus:outline-none focus:border-brand">
+                        </div>
+                        <input type="text" id="input-liv-adresse" placeholder="Adresse" class="w-full px-3 py-2 rounded-xl border border-gray-200 bg-white text-sm focus:outline-none focus:border-brand">
+                        <div class="flex gap-2">
+                            <input type="text" id="input-liv-cp" placeholder="CP" class="w-2/5 px-3 py-2 rounded-xl border border-gray-200 bg-white text-sm focus:outline-none focus:border-brand">
+                            <input type="text" id="input-liv-ville" placeholder="Ville" class="flex-1 px-3 py-2 rounded-xl border border-gray-200 bg-white text-sm focus:outline-none focus:border-brand">
+                        </div>
+                        <input type="text" id="input-liv-message" placeholder="Message cadeau (optionnel)" class="w-full px-3 py-2 rounded-xl border border-gray-200 bg-white text-sm focus:outline-none focus:border-brand">
+                    </div>
                 </div>
             </div>
 
@@ -2076,29 +2050,6 @@
                 document.querySelector('input[name="format"]').closest('section').scrollIntoView({ behavior: 'smooth', block: 'center' });
                 return;
             }
-            // Bloquer si coordonnées incomplètes
-            const missingFields = [];
-            if (!inputs.firstname.value.trim()) missingFields.push('Prénom');
-            if (!inputs.lastname.value.trim())  missingFields.push('Nom');
-            if (!inputs.email.value.trim())     missingFields.push('Email');
-            if (!inputs.phone.value.trim())     missingFields.push('Téléphone');
-            if (!inputs.adresse.value.trim())   missingFields.push('Adresse');
-            if (missingFields.length > 0) {
-                showToast('⚠️ Renseignez : ' + missingFields.join(', '));
-                inputs.firstname.closest('section').scrollIntoView({ behavior: 'smooth', block: 'center' });
-                [inputs.firstname, inputs.lastname, inputs.email, inputs.phone, inputs.adresse].forEach(el => {
-                    if (el && !el.value.trim()) el.style.borderColor = '#ef4444';
-                });
-                return;
-            }
-            // Validation format email
-            if (!validateEmail(inputs.email.value)) {
-                $('email-error').classList.remove('hidden');
-                inputs.email.style.borderColor = '#ef4444';
-                inputs.email.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                showToast('⚠️ Vérifiez votre email');
-                return;
-            }
             cartCount.textContent = '1';
             openModal();
         });
@@ -2114,6 +2065,27 @@
 
         // ── Confirm → Stripe ──
         btnConfirmBat.addEventListener('click', async () => {
+            // Validation coordonnées
+            const missingFields = [];
+            if (!inputs.firstname.value.trim()) missingFields.push('Prénom');
+            if (!inputs.lastname.value.trim())  missingFields.push('Nom');
+            if (!inputs.email.value.trim())     missingFields.push('Email');
+            if (!inputs.phone.value.trim())     missingFields.push('Téléphone');
+            if (!inputs.adresse.value.trim())   missingFields.push('Adresse');
+            if (missingFields.length > 0) {
+                showToast('⚠️ Renseignez : ' + missingFields.join(', '));
+                [inputs.firstname, inputs.lastname, inputs.email, inputs.phone, inputs.adresse].forEach(el => {
+                    if (el && !el.value.trim()) el.style.borderColor = '#ef4444';
+                });
+                return;
+            }
+            if (!validateEmail(inputs.email.value)) {
+                $('email-error').classList.remove('hidden');
+                inputs.email.style.borderColor = '#ef4444';
+                showToast('⚠️ Vérifiez votre email');
+                return;
+            }
+
             const fmt   = document.querySelector('input[name="format"]:checked');
             const color = document.querySelector('input[name="color"]:checked');
             const formatId = fmt?.value || 'format-Original';
