@@ -133,33 +133,32 @@
             100% { box-shadow: 0 0 35px 5px rgba(255,0,0,0.35), 0 0 70px 10px rgba(255,0,0,0.15); }
         }
 
-        /* Animation bannière configurable */
-        @keyframes slideInDown {
-            0% { opacity: 0; transform: translateY(-20px); }
+        /* Animation feature cards */
+        @keyframes featureFadeIn {
+            0% { opacity: 0; transform: translateY(12px); }
             100% { opacity: 1; transform: translateY(0); }
         }
-        @keyframes fadeInUp {
-            0% { opacity: 0; transform: translateY(8px); }
-            100% { opacity: 1; transform: translateY(0); }
+        .feature-card {
+            animation: featureFadeIn 0.5s ease-out backwards;
+            padding: 1.25rem;
+            background: linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(249,250,251,0.8) 100%);
+            border: 1px solid rgba(230,0,126,0.1);
+            border-radius: 0.875rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
         }
-        .configurable-banner {
-            animation: slideInDown 0.6s ease-out;
+        .feature-card:hover {
+            border-color: rgba(230,0,126,0.3);
+            background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(249,250,251,1) 100%);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(230,0,126,0.15);
         }
-        .configurable-banner span {
-            animation: fadeInUp 0.8s ease-out backwards;
-        }
-        .configurable-banner span:nth-child(1) { animation-delay: 0.1s; }
-        .configurable-banner span:nth-child(2) { animation-delay: 0.15s; }
-        .configurable-banner span:nth-child(3) { animation-delay: 0.2s; }
-        .configurable-banner span:nth-child(4) { animation-delay: 0.25s; }
-        .configurable-banner span:nth-child(5) { animation-delay: 0.3s; }
-        .configurable-banner span:nth-child(6) { animation-delay: 0.35s; }
-        .configurable-banner span:nth-child(7) { animation-delay: 0.4s; }
-        .configurable-banner span:nth-child(8) { animation-delay: 0.45s; }
-        .configurable-banner span:nth-child(9) { animation-delay: 0.5s; }
-        .configurable-banner span:nth-child(10) { animation-delay: 0.55s; }
-        .configurable-banner span:nth-child(11) { animation-delay: 0.6s; }
-        .configurable-banner span:nth-child(12) { animation-delay: 0.65s; }
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.15s; }
+        .feature-card:nth-child(3) { animation-delay: 0.2s; }
+        .feature-card:nth-child(4) { animation-delay: 0.25s; }
+        .feature-card:nth-child(5) { animation-delay: 0.3s; }
+        .feature-card:nth-child(6) { animation-delay: 0.35s; }
 
         /* === RADIO/CHECKBOX CARDS === */
         .hide-radio input[type="radio"], .hide-radio input[type="checkbox"] { position: absolute; opacity: 0; width: 0; height: 0; }
@@ -365,24 +364,49 @@
         <p class="text-ink/50 mt-2 text-sm">Modifiez et visualisez en temps réel</p>
     </div>
 
-    <!-- Bannière "Tout est configurable" -->
-    <div class="configurable-banner mb-8 bg-gradient-to-r from-brand/10 via-brand/5 to-transparent border-l-4 border-brand rounded-lg p-4 flex gap-3">
-        <div class="text-brand text-lg font-bold shrink-0">✨</div>
-        <div>
-            <p class="font-bold text-ink text-sm mb-2">Tout est configurable :</p>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 text-[11px] text-ink/60 font-medium">
-                <span>• Logo / Photo</span>
-                <span>• Nom d'utilisateur</span>
-                <span>• Légende</span>
-                <span>• Hashtags</span>
-                <span>• Likes & Commentaires</span>
-                <span>• Partages & Reposts</span>
-                <span>• Batterie & Réseau</span>
-                <span>• Heure</span>
-                <span>• Couleur du verre</span>
-                <span>• Rétroéclairage LED</span>
-                <span>• Format & Taille</span>
-                <span>• Et plus...</span>
+    <!-- Section Features Premium -->
+    <div class="mb-12">
+        <div class="text-center mb-8">
+            <p class="text-xs font-bold uppercase tracking-widest text-brand mb-2">Flexibilité totale</p>
+            <h2 class="font-display text-2xl md:text-3xl font-bold text-ink mb-3">Personnalisez chaque détail</h2>
+            <p class="text-ink/50 max-w-2xl mx-auto">Contrôlez l'intégralité du visuel de votre miroir. Chaque élément est éditable en temps réel.</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+            <div class="feature-card group">
+                <div class="w-10 h-10 bg-brand/10 rounded-lg flex items-center justify-center mb-2 group-hover:bg-brand/20 transition-colors">
+                    <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                </div>
+                <p class="text-[12px] font-semibold text-ink">Logo</p>
+            </div>
+            <div class="feature-card group">
+                <div class="w-10 h-10 bg-brand/10 rounded-lg flex items-center justify-center mb-2 group-hover:bg-brand/20 transition-colors">
+                    <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <p class="text-[12px] font-semibold text-ink">Infos</p>
+            </div>
+            <div class="feature-card group">
+                <div class="w-10 h-10 bg-brand/10 rounded-lg flex items-center justify-center mb-2 group-hover:bg-brand/20 transition-colors">
+                    <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C6.5 6.253 2 10.998 2 17s4.5 10.747 10 10.747c5.5 0 10-4.998 10-10.747 0-6.002-4.5-10.747-10-10.747z"/></svg>
+                </div>
+                <p class="text-[12px] font-semibold text-ink">Stats</p>
+            </div>
+            <div class="feature-card group">
+                <div class="w-10 h-10 bg-brand/10 rounded-lg flex items-center justify-center mb-2 group-hover:bg-brand/20 transition-colors">
+                    <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+                </div>
+                <p class="text-[12px] font-semibold text-ink">Textes</p>
+            </div>
+            <div class="feature-card group">
+                <div class="w-10 h-10 bg-brand/10 rounded-lg flex items-center justify-center mb-2 group-hover:bg-brand/20 transition-colors">
+                    <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                </div>
+                <p class="text-[12px] font-semibold text-ink">Format</p>
+            </div>
+            <div class="feature-card group">
+                <div class="w-10 h-10 bg-brand/10 rounded-lg flex items-center justify-center mb-2 group-hover:bg-brand/20 transition-colors">
+                    <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5h.01"/></svg>
+                </div>
+                <p class="text-[12px] font-semibold text-ink">LED</p>
             </div>
         </div>
     </div>
