@@ -177,6 +177,7 @@
         .format-Mini .mirror-stat-val { font-size: 6.5px !important; }
         .format-Mini .mirror-caption-text { font-size: 6.5px !important; line-height: 1.2 !important; }
         .format-Mini .mirror-hashtags-text { font-size: 5.5px !important; }
+        .format-Mini .mirror-brand-tag { font-size: 4.5px !important; }
         .format-Mini .mirror-surface { min-height: 30px !important; }
 
         /* === INPUT FOCUS === */
@@ -287,7 +288,8 @@
             background: white;
             border-radius: 28px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.18), 0 0 0 2.5px rgba(0,0,0,0.22);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+            border: 1.5px solid #111;
         }
         #mirror-wrapper { max-height: 100%; }
         #mirror-container { max-height: 100%; }
@@ -419,6 +421,7 @@
                             </div>
                             <p class="mirror-caption-text text-[10px] leading-tight text-gray-800 mb-0.5"><span class="font-bold text-black mr-1" id="preview-username-bottom">ici votre titre</span><span id="preview-caption">Venez découvrir votre nouvel espace beauté et bien-être.</span></p>
                             <p class="mirror-hashtags-text text-[9px] text-blue-900 font-semibold leading-tight" id="preview-hashtags">#salondecoiffure #coiffeurparis #hairtransformation #coloriste #beaute</p>
+                            <p class="mirror-brand-tag text-[7px] text-ink/25 font-semibold mt-1.5 tracking-wider text-right">social-miroir.fr</p>
                         </div>
                     </div>
                 </div>
@@ -1599,9 +1602,9 @@
             pdf.text(`Date : ${today}`, PAGE_W - 10, 34, { align: 'right' });
 
             // ── Contour miroir (dessiné AVANT l'image pour ne pas être recouvert) ──
-            pdf.setDrawColor(40, 40, 40);
-            pdf.setLineWidth(0.6);
-            pdf.roundedRect(mX - 0.5, mY - 0.5, mW + 1, mH + 1, 3.5, 3.5, 'S');
+            pdf.setDrawColor(17, 17, 17);
+            pdf.setLineWidth(0.3);
+            pdf.roundedRect(mX - 0.3, mY - 0.3, mW + 0.6, mH + 0.6, 3.5, 3.5, 'S');
 
             // ── Image miroir ──
             pdf.addImage(imgData, 'JPEG', mX, mY, mW, mH);
@@ -2012,7 +2015,7 @@
 
             // Wrapper avec bordure visible
             const cloneWrapper = document.createElement('div');
-            cloneWrapper.style.cssText = 'display:inline-block;border:2px solid rgba(0,0,0,0.30);border-radius:30px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.15);width:100%;';
+            cloneWrapper.style.cssText = 'display:inline-block;border:1.5px solid #111;border-radius:30px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.15);width:100%;';
             cloneWrapper.appendChild(clone);
             visContainer.appendChild(cloneWrapper);
 
