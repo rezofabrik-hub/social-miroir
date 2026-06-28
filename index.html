@@ -337,6 +337,28 @@
         <p class="text-ink/50 mt-2 text-sm">Modifiez et visualisez en temps réel</p>
     </div>
 
+    <!-- Bannière "Tout est configurable" -->
+    <div class="mb-8 bg-gradient-to-r from-brand/10 via-brand/5 to-transparent border-l-4 border-brand rounded-lg p-4 flex gap-3">
+        <div class="text-brand text-lg font-bold shrink-0">✨</div>
+        <div>
+            <p class="font-bold text-ink text-sm mb-2">Tout est configurable :</p>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 text-[11px] text-ink/60 font-medium">
+                <span>• Logo / Photo</span>
+                <span>• Nom d'utilisateur</span>
+                <span>• Légende</span>
+                <span>• Hashtags</span>
+                <span>• Likes & Commentaires</span>
+                <span>• Partages & Reposts</span>
+                <span>• Batterie & Réseau</span>
+                <span>• Heure</span>
+                <span>• Couleur du verre</span>
+                <span>• Rétroéclairage LED</span>
+                <span>• Format & Taille</span>
+                <span>• Et plus...</span>
+            </div>
+        </div>
+    </div>
+
     <div class="flex flex-col lg:flex-row gap-8 lg:gap-14 items-start">
 
         <!-- ── COLONNE GAUCHE : APERÇU MIROIR ── -->
@@ -1780,6 +1802,7 @@
         };
 
         const mirrorContainer = $('mirror-container');
+        const mirrorWrapper = $('mirror-wrapper');
         const mirrorSurface   = $('mirror-surface');
         const ledOption       = $('option-led');
         const priceDisplay    = $('price-display');
@@ -1892,12 +1915,24 @@
             }
         }
 
+        // Hauteurs fixes pour chaque format (pour voir le miroir complet)
+        const mirrorHeights = {
+            'format-Mini': '350px',
+            'format-Studio': '440px',
+            'format-Original': '483px',
+            'format-Signature': '550px',
+            'format-Prestige': '616px'
+        };
+
         formatRadios.forEach(r => r.addEventListener('change', e => {
             if (!e.target.checked) return;
             const fmt = e.target.value;
             formats.forEach(f => mirrorContainer.classList.remove(f));
             mirrorContainer.classList.add(fmt);
             mirrorContainer.style.transform = 'none';
+            // Fixer la hauteur pour voir le miroir complet
+            mirrorContainer.style.height = mirrorHeights[fmt] || 'auto';
+            mirrorWrapper.style.height = mirrorHeights[fmt] || 'auto';
             applyMiniRules();
             calcPrice();
         }));
