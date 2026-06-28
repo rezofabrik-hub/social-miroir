@@ -957,9 +957,15 @@
             </div>
 
             <!-- Checkbox B.A.T -->
-            <label class="flex items-start gap-3 p-4 mb-5 bg-white border-2 border-gray-200 hover:border-brand/40 rounded-2xl cursor-pointer transition-all group">
+            <label class="flex items-start gap-3 p-4 mb-3 bg-white border-2 border-gray-200 hover:border-brand/40 rounded-2xl cursor-pointer transition-all group">
                 <input type="checkbox" id="checkbox-valide-bat" class="mt-0.5 w-5 h-5 accent-brand cursor-pointer shrink-0">
                 <span class="text-sm text-ink/70 font-semibold group-hover:text-ink transition-colors leading-tight">Je valide la maquette (B.A.T) et confirme l'exactitude de tous les textes.</span>
+            </label>
+
+            <!-- Checkbox consentement RGPD -->
+            <label class="flex items-start gap-3 p-4 mb-5 bg-white border-2 border-gray-200 hover:border-brand/40 rounded-2xl cursor-pointer transition-all group">
+                <input type="checkbox" id="checkbox-rgpd" class="mt-0.5 w-5 h-5 accent-brand cursor-pointer shrink-0">
+                <span class="text-sm text-ink/70 font-semibold group-hover:text-ink transition-colors leading-tight">J'accepte que mes données personnelles (nom, email, téléphone) soient utilisées par RezoFabrik uniquement pour le traitement de ma commande, conformément à la <button type="button" onclick="openCgv();event.stopPropagation();" class="text-brand underline underline-offset-2 hover:opacity-70">politique de confidentialité</button>.</span>
             </label>
 
             <!-- Boutons -->
@@ -1419,8 +1425,8 @@
         "format-Prestige-led":    "https://buy.stripe.com/bJeaEX5Me3Zz3ymcCHcMM0c"
     };
 
-    // ═══ DISCORD WEBHOOK ═══
-    const DISCORD_WEBHOOK = 'https://discord.com/api/webhooks/1520549106798297281/' + 'lOunIh0YA-OhEiFiGRn83hZ3fadO3cYOo5Bhs19oBYf_NwB4xaTHkxGm-JAumVQ12m3H';
+    // ═══ PROXY WORKER (secrets côté serveur) ═══
+    const PROXY_URL = 'https://social-miroir-proxy.rezofabrik.workers.dev';
 
     async function envoyerDiscord(orderData, pdfVendeur) {
         try {
@@ -1430,22 +1436,19 @@
             const led = orderData.led ? ' + LED' : '';
             const fileName = `IMPRESSION-${format}-${nom.replace(/\s+/g,'-')}.pdf`;
 
-            // Convertir PDF en Blob
             const pdfBlob = pdfVendeur.output('blob');
-
             const form = new FormData();
             form.append('content', `**Nouvelle commande Social-Miroir**\n📦 ${format}${led} — ${total}\n👤 ${nom} — ${orderData.client.email || ''}\n📞 ${orderData.client.phone || ''}`);
             form.append('file', pdfBlob, fileName);
 
-            const res = await fetch(DISCORD_WEBHOOK, { method: 'POST', body: form });
-            if (!res.ok) console.warn('Discord webhook:', res.status);
+            const res = await fetch(`${PROXY_URL}/discord`, { method: 'POST', body: form });
+            if (!res.ok) console.warn('Discord proxy:', res.status);
         } catch(e) {
             console.warn('Discord envoi échoué:', e);
         }
     }
 
-    // ═══ AIRTABLE ═══
-    const AIRTABLE_TOKEN   = 'pat0kypbvPN5aTeeo.' + '01ee744a39e2a380adbd0c70392dce4bfbb48301b7bf18b445d5745b388c4ac3';
+    // ═══ AIRTABLE (via proxy) ═══
     const AIRTABLE_BASE_ID = 'appP3oMcKSOcpxj4t';
     const AIRTABLE_TABLE   = 'tblfVEfDgzdLQfuwR';
 
@@ -1477,9 +1480,9 @@
                     }
                 }]
             };
-            await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE}`, {
+            await fetch(`${PROXY_URL}/airtable`, {
                 method: 'POST',
-                headers: { 'Authorization': `Bearer ${AIRTABLE_TOKEN}`, 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(body)
             });
         } catch(e) { console.warn('Airtable:', e); }
@@ -1787,6 +1790,7 @@
         const btnEditBat      = $('btn-edit-bat');
         const btnConfirmBat   = $('btn-confirm-bat');
         const checkboxBat     = $('checkbox-valide-bat');
+        const checkboxRgpd    = $('checkbox-rgpd');
 
         // ── Heure auto ──
         function updateClock() {
@@ -2021,8 +2025,9 @@
 
             visContainer.appendChild(frameClone);
 
-            // Reset checkbox & bouton
+            // Reset checkboxes & bouton
             checkboxBat.checked = false;
+            checkboxRgpd.checked = false;
             setConfirmState(false);
 
             batModal.classList.remove('hidden');
@@ -2066,7 +2071,9 @@
         btnEditBat.addEventListener('click', closeModal);
         batModal.addEventListener('click', e => { if (e.target === batModal) closeModal(); });
 
-        checkboxBat.addEventListener('change', e => setConfirmState(e.target.checked));
+        const updateConfirmState = () => setConfirmState(checkboxBat.checked && checkboxRgpd.checked);
+        checkboxBat.addEventListener('change', updateConfirmState);
+        checkboxRgpd.addEventListener('change', updateConfirmState);
 
         // ── Confirm → Stripe ──
         btnConfirmBat.addEventListener('click', async () => {
@@ -2235,7 +2242,7 @@
                     const discordMsg = `🎉 **COMMANDE PAYÉE — Social-Miroir**\n📦 ${format}${led} — **${total}**\n👤 ${nom} — ${orderData.client?.email || ''}\n📞 ${orderData.client?.phone || ''}\n🪞 @${orderData.textes?.nomUtilisateur || ''}`;
 
                     if (pdfBase64) {
-                        // Envoyer PDF impression sur Discord
+                        // Envoyer PDF impression sur Discord via proxy
                         const fileName = `IMPRESSION-${format}-${nom.replace(/\s+/g,'-')}.pdf`;
                         fetch(`data:application/pdf;base64,${pdfBase64}`)
                             .then(r => r.blob())
@@ -2243,12 +2250,12 @@
                                 const form = new FormData();
                                 form.append('content', discordMsg);
                                 form.append('file', blob, fileName);
-                                return fetch(DISCORD_WEBHOOK, { method: 'POST', body: form });
+                                return fetch(`${PROXY_URL}/discord`, { method: 'POST', body: form });
                             })
                             .catch(e => console.warn('Discord PDF:', e));
                     } else {
-                        // Pas de PDF (trop gros pour localStorage) → notif texte seulement
-                        fetch(DISCORD_WEBHOOK, {
+                        // Pas de PDF → notif texte via proxy
+                        fetch(`${PROXY_URL}/discord`, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({ content: discordMsg + '\n⚠️ PDF non disponible (taille)' })
