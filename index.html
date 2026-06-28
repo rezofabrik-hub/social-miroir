@@ -356,7 +356,7 @@
         <div class="w-full lg:w-5/12 flex flex-col items-center z-10">
 
             <!-- Cadre de visualisation -->
-            <div class="mirror-frame w-full bg-white rounded-3xl shadow-sm border border-black/[0.06] p-2 lg:p-6 flex items-center justify-center min-h-[360px] relative overflow-hidden">
+            <div class="mirror-frame w-full bg-white rounded-3xl shadow-sm border border-black/[0.06] p-1 lg:p-4 flex items-center justify-center min-h-[360px] relative overflow-hidden">
                 <!-- Fond subtil -->
                 <div class="absolute inset-0 bg-gradient-to-br from-pink-50/40 via-transparent to-purple-50/20 pointer-events-none"></div>
                 
@@ -1908,11 +1908,11 @@
 
         // Hauteurs fixes pour chaque format (pour voir le miroir complet + batterie)
         const mirrorHeights = {
-            'format-Mini': '380px',
-            'format-Studio': '480px',
-            'format-Original': '530px',
-            'format-Signature': '680px',
-            'format-Prestige': '760px'
+            'format-Mini': '400px',
+            'format-Studio': '500px',
+            'format-Original': '550px',
+            'format-Signature': '700px',
+            'format-Prestige': '780px'
         };
 
         formatRadios.forEach(r => r.addEventListener('change', e => {
