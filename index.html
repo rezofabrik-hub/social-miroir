@@ -843,11 +843,11 @@
 </section>
 
 <!-- ═══════════════ MODALE B.A.T ═══════════════ -->
-<div id="bat-modal" class="fixed inset-0 modal-backdrop z-[100] flex hidden opacity-0 transition-opacity duration-300">
-    <div id="bat-modal-content" class="bg-white w-full h-full transform scale-95 transition-all duration-300 flex flex-col md:flex-row overflow-hidden">
+<div id="bat-modal" class="fixed inset-0 modal-backdrop z-[100] flex hidden opacity-0 transition-opacity duration-300 overflow-y-auto">
+    <div id="bat-modal-content" class="bg-white w-full min-h-full md:h-full transform scale-95 transition-all duration-300 flex flex-col md:flex-row">
 
         <!-- Colonne gauche : miroir identique page accueil -->
-        <div class="w-full md:w-2/5 flex flex-col p-6 border-b md:border-b-0 md:border-r border-gray-100 h-full overflow-y-auto">
+        <div class="w-full md:w-2/5 flex flex-col p-6 border-b md:border-b-0 md:border-r border-gray-100 md:h-full md:overflow-y-auto">
             <p class="font-display font-bold text-ink text-sm mb-4 text-center tracking-wide uppercase">Votre Bon À Tirer</p>
             <div id="bat-visual-container" class="w-full pointer-events-none overflow-visible">
                 <!-- Injecté dynamiquement -->
@@ -855,7 +855,7 @@
         </div>
 
         <!-- Colonne droite : Récap + form (3/5) -->
-        <div class="w-full md:w-3/5 p-6 md:p-10 flex flex-col overflow-y-auto h-full">
+        <div class="w-full md:w-3/5 p-6 md:p-10 flex flex-col md:h-full md:overflow-y-auto">
             <div class="flex justify-between items-start mb-6">
                 <div>
                     <h3 class="font-display text-2xl font-bold text-ink">Votre Commande</h3>
