@@ -2081,12 +2081,13 @@
             if (!inputs.firstname.value.trim()) missingFields.push('Prénom');
             if (!inputs.lastname.value.trim())  missingFields.push('Nom');
             if (!inputs.email.value.trim())     missingFields.push('Email');
+            if (!inputs.phone.value.trim())     missingFields.push('Téléphone');
+            if (!inputs.adresse.value.trim())   missingFields.push('Adresse');
             if (missingFields.length > 0) {
                 showToast('⚠️ Renseignez : ' + missingFields.join(', '));
                 inputs.firstname.closest('section').scrollIntoView({ behavior: 'smooth', block: 'center' });
-                // Surligner les champs vides
-                [inputs.firstname, inputs.lastname, inputs.email].forEach(el => {
-                    if (!el.value.trim()) el.style.borderColor = '#ef4444';
+                [inputs.firstname, inputs.lastname, inputs.email, inputs.phone, inputs.adresse].forEach(el => {
+                    if (el && !el.value.trim()) el.style.borderColor = '#ef4444';
                 });
                 return;
             }
