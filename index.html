@@ -299,12 +299,12 @@
         .format-Prestige  { height: auto; }
 
         @media (min-width: 1024px) {
-            main#module-commande { padding-top: 1rem !important; padding-bottom: 1rem !important; }
+            main#module-commande { padding-top: 1rem !important; padding-bottom: 1rem !important; padding-left: 0.5rem !important; padding-right: 0.5rem !important; }
             #configurator-section {
                 position: relative;
                 display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 2rem !important;
+                grid-template-columns: 300px 1fr;
+                gap: 1rem !important;
             }
             #configurator-section > div:first-child {
                 position: sticky;
@@ -315,7 +315,7 @@
                 overflow-y: auto;
                 grid-column: 1;
             }
-            #configurator-section > div:first-child .mirror-frame { min-h-[280px] !important; }
+            #configurator-section > div:first-child .mirror-frame { min-h-[250px] !important; }
             #configurator-section > div:last-child {
                 grid-column: 2;
                 padding-bottom: 2rem !important;
