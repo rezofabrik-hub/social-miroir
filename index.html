@@ -2153,51 +2153,59 @@
 
         // ── Retour Stripe : paiement confirmé ──
         if (new URLSearchParams(window.location.search).get('payment') === 'success') {
-            try {
-                const raw = localStorage.getItem('sm_pending_bat');
-                if (raw) {
+            (async () => {
+                try {
+                    const raw = localStorage.getItem('sm_pending_bat');
+                    if (!raw) return;
+
                     const { orderData, pdfBase64 } = JSON.parse(raw);
                     localStorage.removeItem('sm_pending_bat');
-
-                    // Afficher message de succès
-                    const successBanner = document.createElement('div');
-                    successBanner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:#16a34a;color:white;text-align:center;padding:18px 20px;font-size:1.1rem;font-weight:600;box-shadow:0 4px 20px rgba(0,0,0,0.2)';
-                    successBanner.innerHTML = '✅ Paiement confirmé ! Votre commande Social-Miroir est bien enregistrée. Merci !';
-                    document.body.prepend(successBanner);
-                    setTimeout(() => successBanner.remove(), 8000);
 
                     // Nettoyer l'URL
                     history.replaceState({}, '', window.location.pathname);
 
-                    // Envoyer Discord + email (seulement maintenant que le paiement est OK)
-                    if (pdfBase64) {
-                        const { jsPDF } = window.jspdf;
-                        const pdfBlob = await fetch(`data:application/pdf;base64,${pdfBase64}`).then(r => r.blob());
-                        const nom = [orderData.client.prenom, orderData.client.nom].filter(Boolean).join(' ') || 'client';
-                        const format = orderData.format || '';
-                        const total = orderData.total ? orderData.total.toFixed(2) + ' €' : '';
-                        const led = orderData.led ? ' + LED' : '';
-                        const fileName = `IMPRESSION-${format}-${nom.replace(/\s+/g,'-')}.pdf`;
+                    // Afficher bandeau succès
+                    const banner = document.createElement('div');
+                    banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:#16a34a;color:white;text-align:center;padding:18px 20px;font-size:1.1rem;font-weight:600;box-shadow:0 4px 20px rgba(0,0,0,0.2)';
+                    banner.innerHTML = '✅ Paiement confirmé ! Votre commande Social-Miroir est bien enregistrée. Merci !';
+                    document.body.prepend(banner);
+                    setTimeout(() => banner.remove(), 10000);
 
-                        const form = new FormData();
-                        form.append('content',
-                            `🎉 **COMMANDE PAYÉE — Social-Miroir**\n` +
-                            `📦 ${format}${led} — **${total}**\n` +
-                            `👤 ${nom} — ${orderData.client.email || ''}\n` +
-                            `📞 ${orderData.client.phone || ''}\n` +
-                            `🪞 @${orderData.textes?.nomUtilisateur || ''}`
-                        );
-                        form.append('file', pdfBlob, fileName);
-                        fetch(DISCORD_WEBHOOK, { method: 'POST', body: form })
-                            .catch(e => console.warn('Discord:', e));
+                    // Message Discord
+                    const nom = [orderData.client?.prenom, orderData.client?.nom].filter(Boolean).join(' ') || 'client';
+                    const format = (orderData.format || '').replace('format-', '');
+                    const total = orderData.total ? Number(orderData.total).toFixed(2) + ' €' : '';
+                    const led = orderData.led ? ' + LED' : '';
+                    const discordMsg = `🎉 **COMMANDE PAYÉE — Social-Miroir**\n📦 ${format}${led} — **${total}**\n👤 ${nom} — ${orderData.client?.email || ''}\n📞 ${orderData.client?.phone || ''}\n🪞 @${orderData.textes?.nomUtilisateur || ''}`;
+
+                    if (pdfBase64) {
+                        // Envoyer PDF impression sur Discord
+                        const fileName = `IMPRESSION-${format}-${nom.replace(/\s+/g,'-')}.pdf`;
+                        fetch(`data:application/pdf;base64,${pdfBase64}`)
+                            .then(r => r.blob())
+                            .then(blob => {
+                                const form = new FormData();
+                                form.append('content', discordMsg);
+                                form.append('file', blob, fileName);
+                                return fetch(DISCORD_WEBHOOK, { method: 'POST', body: form });
+                            })
+                            .catch(e => console.warn('Discord PDF:', e));
+                    } else {
+                        // Pas de PDF (trop gros pour localStorage) → notif texte seulement
+                        fetch(DISCORD_WEBHOOK, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ content: discordMsg + '\n⚠️ PDF non disponible (taille)' })
+                        }).catch(e => console.warn('Discord notif:', e));
                     }
 
                     // Email de notification
                     envoyerEmailBAT(orderData, pdfBase64);
+
+                } catch(e) {
+                    console.warn('Retour paiement:', e);
                 }
-            } catch(e) {
-                console.warn('Retour paiement:', e);
-            }
+            })();
         }
     });
 </script>
