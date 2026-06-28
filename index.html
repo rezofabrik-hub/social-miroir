@@ -1509,14 +1509,16 @@
         if (!window.jspdf || !window.html2canvas) return null;
         const [largeurMm, hauteurMm] = dimensionsReelles[formatId] || [600, 1000];
 
-        // Capturer le miroir live tel qu'il s'affiche dans le configurateur
-        const mirror = document.getElementById('mirror-container');
+        // Capturer le visuel BAT validé (identique à ce que le client a vu)
+        const batContainer = document.getElementById('bat-visual-container');
+        const mirror = batContainer || document.getElementById('mirror-container');
         if (!mirror) return null;
 
         // Override temporaire pour lever overflow:hidden et max-height
         const styleOverride = document.createElement('style');
         styleOverride.id = 'pdf-client-override';
         styleOverride.textContent = `
+            #bat-visual-container, #bat-visual-container *,
             #mirror-container, #mirror-container * {
                 max-height: none !important;
                 overflow: visible !important;
@@ -1524,7 +1526,7 @@
         `;
         document.head.appendChild(styleOverride);
 
-        await new Promise(r => setTimeout(r, 80));
+        await new Promise(r => setTimeout(r, 100));
 
         const rect = mirror.getBoundingClientRect();
         const canvas = await html2canvas(mirror, {
