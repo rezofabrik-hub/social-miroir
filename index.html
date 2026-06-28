@@ -299,23 +299,32 @@
         .format-Prestige  { height: auto; }
 
         @media (min-width: 1024px) {
+            main#module-commande { padding-top: 1rem !important; padding-bottom: 1rem !important; }
             #configurator-section {
                 position: relative;
                 display: grid;
                 grid-template-columns: 1fr 1fr;
+                gap: 2rem !important;
             }
             #configurator-section > div:first-child {
                 position: sticky;
-                top: 1rem;
+                top: 5.5rem;
                 align-self: start;
                 height: fit-content;
-                max-height: calc(100vh - 2rem);
+                max-height: calc(100vh - 6rem);
                 overflow-y: auto;
                 grid-column: 1;
             }
+            #configurator-section > div:first-child .mirror-frame { min-h-[280px] !important; }
             #configurator-section > div:last-child {
                 grid-column: 2;
+                padding-bottom: 2rem !important;
             }
+            #configurator-section .space-y-8 { gap: 1rem !important; }
+            #configurator-section section { margin-bottom: 0.5rem !important; }
+            #configurator-section .hidden.lg\:block { margin-bottom: 1.5rem !important; }
+            #configurator-section h1 { font-size: 1.875rem !important; margin-bottom: 0.5rem !important; }
+            #configurator-section .trust-grid { display: none; }
         }
     </style>
 </head>
@@ -453,7 +462,7 @@
         </div>
 
         <!-- ── COLONNE DROITE : CONFIGURATEUR ── -->
-        <div class="w-full lg:w-7/12 flex flex-col pb-36 lg:pb-32 lg:ml-[calc(41.666%+2rem)]">
+        <div class="w-full lg:w-7/12 flex flex-col pb-36 lg:pb-8">
 
             <!-- Titre desktop -->
             <div class="hidden lg:block mb-10">
@@ -462,15 +471,15 @@
                 <p class="text-ink/50 text-lg">Chaque détail se met à jour instantanément sur l'aperçu.</p>
             </div>
 
-            <div class="space-y-8">
+            <div class="space-y-3">
 
                 <!-- ─── SECTION 1 : PROFIL ─── -->
                 <section class="bg-white rounded-2xl border border-black/[0.06] overflow-hidden shadow-sm">
-                    <div class="px-6 py-4 border-b border-black/[0.05] flex items-center gap-3">
+                    <div class="px-4 py-2.5 border-b border-black/[0.05] flex items-center gap-2">
                         <span class="step-number">1</span>
-                        <h3 class="font-display text-lg font-bold text-ink">Informations du Profil</h3>
+                        <h3 class="font-display text-sm font-bold text-ink">Informations du Profil</h3>
                     </div>
-                    <div class="p-6 space-y-5">
+                    <div class="p-4 space-y-3">
 
                         <!-- Logo + Username -->
                         <div class="grid grid-cols-2 gap-4">
