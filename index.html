@@ -847,7 +847,7 @@
     <div id="bat-modal-content" class="bg-white w-full h-full transform scale-95 transition-all duration-300 flex flex-col md:flex-row overflow-hidden">
 
         <!-- Colonne gauche : miroir entier (1/3) -->
-        <div class="w-full md:w-1/3 bg-gradient-to-br from-gray-50 to-pink-50/30 p-10 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-gray-100 h-full">
+        <div class="w-full md:w-2/5 bg-gradient-to-br from-gray-50 to-pink-50/30 p-8 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-gray-100 h-full">
             <p class="font-display font-bold text-ink text-sm mb-6 text-center tracking-wide uppercase">Votre Bon À Tirer</p>
             <div id="bat-visual-container" class="w-full pointer-events-none overflow-visible mx-auto flex items-center justify-center">
                 <!-- Injecté dynamiquement -->
@@ -855,8 +855,8 @@
             <p class="text-[11px] text-ink/30 mt-6 text-center leading-relaxed">Validez votre miroir avant de commander.</p>
         </div>
 
-        <!-- Colonne droite : Récap + form (2/3) -->
-        <div class="w-full md:w-2/3 p-6 md:p-10 flex flex-col overflow-y-auto h-full">
+        <!-- Colonne droite : Récap + form (3/5) -->
+        <div class="w-full md:w-3/5 p-6 md:p-10 flex flex-col overflow-y-auto h-full">
             <div class="flex justify-between items-start mb-6">
                 <div>
                     <h3 class="font-display text-2xl font-bold text-ink">Votre Commande</h3>
@@ -1999,7 +1999,7 @@
             clone.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
             clone.removeAttribute('id');
             clone.classList.add('mirror-clone');
-            clone.style.cssText = 'transform:none;animation:none;width:100%;';
+            clone.style.cssText = 'transform:none;animation:none;width:100%;height:auto;overflow:visible;';
 
             // Synchroniser la couleur de surface
             const cloneSurface = clone.querySelector('.mirror-surface');
@@ -2020,7 +2020,7 @@
 
             // Wrapper avec bordure visible
             const cloneWrapper = document.createElement('div');
-            cloneWrapper.style.cssText = 'display:block;width:70%;margin:0 auto;';
+            cloneWrapper.style.cssText = 'display:block;width:90%;margin:0 auto;overflow:visible;';
             cloneWrapper.appendChild(clone);
             visContainer.appendChild(cloneWrapper);
 
