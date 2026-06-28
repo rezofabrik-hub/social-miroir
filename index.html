@@ -843,16 +843,16 @@
 </section>
 
 <!-- ═══════════════ MODALE B.A.T ═══════════════ -->
-<div id="bat-modal" class="fixed inset-0 modal-backdrop z-[100] flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300 overflow-y-auto">
-    <div id="bat-modal-content" class="bg-white rounded-3xl w-full max-w-5xl shadow-2xl transform scale-95 transition-all duration-300 my-4 flex flex-col md:flex-row overflow-hidden">
+<div id="bat-modal" class="fixed inset-0 modal-backdrop z-[100] flex items-start justify-center p-4 hidden opacity-0 transition-opacity duration-300 overflow-y-auto">
+    <div id="bat-modal-content" class="bg-white rounded-3xl w-full max-w-6xl shadow-2xl transform scale-95 transition-all duration-300 my-4 flex flex-col md:flex-row overflow-hidden">
 
-        <!-- Colonne gauche : BAT -->
-        <div class="w-full md:w-5/12 bg-gradient-to-br from-gray-50 to-pink-50/30 p-4 md:p-6 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-gray-100 min-h-[200px] md:min-h-[350px]">
-            <p class="font-display font-bold text-ink text-sm mb-3 text-center tracking-wide uppercase">Votre Bon À Tirer</p>
-            <div id="bat-visual-container" class="w-full max-w-[220px] pointer-events-none overflow-visible mx-auto py-4 px-2">
+        <!-- Colonne gauche : BAT miroir entier -->
+        <div class="w-full md:w-1/2 bg-gradient-to-br from-gray-50 to-pink-50/30 p-6 md:p-10 flex flex-col items-center justify-start border-b md:border-b-0 md:border-r border-gray-100">
+            <p class="font-display font-bold text-ink text-sm mb-6 text-center tracking-wide uppercase">Votre Bon À Tirer</p>
+            <div id="bat-visual-container" class="w-full pointer-events-none overflow-visible mx-auto flex items-center justify-center">
                 <!-- Injecté dynamiquement -->
             </div>
-            <p class="text-[11px] text-ink/30 mt-3 text-center leading-relaxed">Aperçu aux proportions réelles de votre miroir final.</p>
+            <p class="text-[11px] text-ink/30 mt-6 text-center leading-relaxed">Aperçu aux proportions réelles de votre miroir final.</p>
         </div>
 
         <!-- Colonne droite : Récap + form -->
@@ -2020,7 +2020,7 @@
 
             // Wrapper avec bordure visible
             const cloneWrapper = document.createElement('div');
-            cloneWrapper.style.cssText = 'display:inline-block;border:1.5px solid #111;border-radius:30px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.15);width:100%;';
+            cloneWrapper.style.cssText = 'display:block;border:1.5px solid #111;border-radius:30px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.15);width:100%;max-width:380px;margin:0 auto;';
             cloneWrapper.appendChild(clone);
             visContainer.appendChild(cloneWrapper);
 
