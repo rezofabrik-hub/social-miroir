@@ -299,8 +299,9 @@
                 left: 1rem !important;
                 width: calc(41.666% - 2rem) !important;
                 height: calc(100vh - 2rem) !important;
-                max-height: calc(100vh - 2rem) !important;
+                max-height: none !important;
                 z-index: 10 !important;
+                overflow-y: auto !important;
             }
         }
         #mirror-wrapper { max-height: 100%; }
@@ -1905,13 +1906,13 @@
             }
         }
 
-        // Hauteurs fixes pour chaque format (pour voir le miroir complet)
+        // Hauteurs fixes pour chaque format (pour voir le miroir complet + batterie)
         const mirrorHeights = {
-            'format-Mini': '360px',
-            'format-Studio': '450px',
-            'format-Original': '495px',
-            'format-Signature': '630px',
-            'format-Prestige': '700px'
+            'format-Mini': '380px',
+            'format-Studio': '480px',
+            'format-Original': '530px',
+            'format-Signature': '680px',
+            'format-Prestige': '760px'
         };
 
         formatRadios.forEach(r => r.addEventListener('change', e => {
