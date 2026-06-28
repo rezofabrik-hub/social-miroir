@@ -1356,11 +1356,51 @@
 
     try { emailjs.init(EMAILJS_PUBLIC_KEY); } catch(e) { console.warn('EmailJS non disponible:', e); }
 
+    async function envoyerEmailConfirmationClient(orderData) {
+        if (typeof emailjs === 'undefined') return;
+        if (!orderData.client?.email) return;
+        try {
+            const format = orderData.format || '';
+            const total = orderData.total ? Number(orderData.total).toFixed(2) + ' €' : '';
+            const led = orderData.led ? ' + LED' : '';
+            await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+                to_email:      orderData.client.email,
+                format:        format + led,
+                couleur:       orderData.couleur || '—',
+                led:           orderData.led ? 'Oui (+29,90€)' : 'Non',
+                total:         total,
+                prenom:        orderData.client.prenom || '—',
+                nom:           orderData.client.nom || '—',
+                email:         orderData.client.email || '—',
+                phone:         orderData.client.phone || '—',
+                adresse_fact:  [orderData.client.adresse, orderData.client.cp, orderData.client.ville].filter(Boolean).join(', ') || '—',
+                cadeau:        orderData.livraison ? 'Oui' : 'Non',
+                adresse_liv:   orderData.livraison
+                    ? [orderData.livraison.prenom, orderData.livraison.nom, orderData.livraison.adresse, orderData.livraison.cp, orderData.livraison.ville].filter(Boolean).join(', ')
+                    : '(identique facturation)',
+                message_cadeau: orderData.livraison?.message || '',
+                username:      orderData.textes?.nomUtilisateur || '',
+                legende:       orderData.textes?.legende || '',
+                hashtags:      orderData.textes?.hashtags || '',
+                likes:         orderData.textes?.likes || '',
+                commentaires:  orderData.textes?.commentaires || '',
+                reposts:       orderData.textes?.reposts || '',
+                partages:      orderData.textes?.partages || '',
+                heure:         orderData.textes?.heure || '',
+                bat_pdf:       '',
+                bat_filename:  '',
+            });
+            console.log('✅ Email confirmation envoyé au client:', orderData.client.email);
+        } catch(err) {
+            console.warn('Email client:', err);
+        }
+    }
+
     async function envoyerEmailBAT(orderData, pdfBase64) {
         if (typeof emailjs === 'undefined') { console.warn('EmailJS non chargé — email ignoré'); return; }
         try {
             await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-                // Destinataire (configuré aussi dans le template EmailJS)
+                // Destinataire RezoFabrik
                 to_email: 'rezofabrik@gmail.com',
                 // Infos commande
                 format:        orderData.format,
@@ -1968,18 +2008,35 @@
             if (ledActive) total += 29.90;
             $('cart-total-price').textContent = formatPrice(total);
 
-            // Clone miroir dans la modale (sans IDs dupliqués, format class conservée)
+            // Clone miroir dans la modale — synchronisation complète
             const visContainer = $('bat-visual-container');
             visContainer.innerHTML = '';
             const clone = mirrorContainer.cloneNode(true);
+
+            // Supprimer les IDs dupliqués
             clone.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
-            // Conserver la classe de format pour garder les proportions exactes
-            clone.classList.add('mirror-clone');
             clone.removeAttribute('id');
+            clone.classList.add('mirror-clone');
             clone.style.cssText = 'transform:none;animation:none;width:100%;';
+
+            // Synchroniser la couleur de surface
             const cloneSurface = clone.querySelector('.mirror-surface');
-            if (cloneSurface) cloneSurface.style.background = mirrorSurface.style.background;
-            // Wrapper avec bordure visible autour du miroir
+            if (cloneSurface && mirrorSurface) cloneSurface.style.background = mirrorSurface.style.background;
+
+            // Synchroniser l'image de fond (photo uploadée)
+            const origBg = mirrorSurface?.querySelector('.mirror-photo');
+            const cloneBg = cloneSurface?.querySelector('.mirror-photo');
+            if (origBg && cloneBg) cloneBg.style.cssText = origBg.style.cssText;
+
+            // Synchroniser LED
+            const origChrome = mirrorContainer.querySelector('.mirror-chrome');
+            const cloneChrome = clone.querySelector('.mirror-chrome');
+            if (origChrome && cloneChrome) {
+                cloneChrome.className = origChrome.className;
+                cloneChrome.style.cssText = origChrome.style.cssText;
+            }
+
+            // Wrapper avec bordure visible
             const cloneWrapper = document.createElement('div');
             cloneWrapper.style.cssText = 'display:inline-block;border:2px solid rgba(0,0,0,0.30);border-radius:30px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.15);width:100%;';
             cloneWrapper.appendChild(clone);
@@ -2019,9 +2076,24 @@
                 document.querySelector('input[name="format"]').closest('section').scrollIntoView({ behavior: 'smooth', block: 'center' });
                 return;
             }
-            // Validation email avant d'ouvrir
-            if (inputs.email.value && !validateEmail(inputs.email.value)) {
+            // Bloquer si coordonnées incomplètes
+            const missingFields = [];
+            if (!inputs.firstname.value.trim()) missingFields.push('Prénom');
+            if (!inputs.lastname.value.trim())  missingFields.push('Nom');
+            if (!inputs.email.value.trim())     missingFields.push('Email');
+            if (missingFields.length > 0) {
+                showToast('⚠️ Renseignez : ' + missingFields.join(', '));
+                inputs.firstname.closest('section').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // Surligner les champs vides
+                [inputs.firstname, inputs.lastname, inputs.email].forEach(el => {
+                    if (!el.value.trim()) el.style.borderColor = '#ef4444';
+                });
+                return;
+            }
+            // Validation format email
+            if (!validateEmail(inputs.email.value)) {
                 $('email-error').classList.remove('hidden');
+                inputs.email.style.borderColor = '#ef4444';
                 inputs.email.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 showToast('⚠️ Vérifiez votre email');
                 return;
@@ -2182,8 +2254,10 @@
                         }).catch(e => console.warn('Discord notif:', e));
                     }
 
-                    // Email de notification
+                    // Email vendeur (RezoFabrik)
                     envoyerEmailBAT(orderData, pdfBase64);
+                    // Email confirmation client
+                    envoyerEmailConfirmationClient(orderData);
 
                 } catch(e) {
                     console.warn('Retour paiement:', e);
