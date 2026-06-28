@@ -292,27 +292,30 @@
             box-shadow: 0 20px 60px rgba(0,0,0,0.18);
             border: 1.5px solid #111;
         }
+        .format-Mini      { height: auto; }
+        .format-Studio    { height: auto; }
+        .format-Original  { height: auto; }
+        .format-Signature { height: auto; }
+        .format-Prestige  { height: auto; }
+
         @media (min-width: 1024px) {
-            .mirror-frame {
-                position: fixed !important;
-                top: 1rem !important;
-                left: 1rem !important;
-                width: calc(41.666% - 2rem) !important;
-                height: calc(100vh - 2rem) !important;
-                max-height: none !important;
-                z-index: 10 !important;
-                overflow-y: auto !important;
+            #configurator-section {
+                position: relative;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
             }
-        }
-        #mirror-wrapper { max-height: 100%; }
-        #mirror-container { max-height: 100%; }
-        @media (min-width: 1024px) {
-            .format-Mini      { max-height: min(100%, 350px); }
-            .format-Studio    { max-height: min(100%, 440px); }
-            .format-Original  { max-height: min(100%, calc(100vh - 12rem)); }
-            .format-Signature { max-height: min(100%, calc(100vh - 11rem)); }
-            .format-Prestige  { max-height: min(100%, calc(100vh - 11rem)); }
-            #mirror-container { width: auto; }
+            #configurator-section > div:first-child {
+                position: sticky;
+                top: 1rem;
+                align-self: start;
+                height: fit-content;
+                max-height: calc(100vh - 2rem);
+                overflow-y: auto;
+                grid-column: 1;
+            }
+            #configurator-section > div:last-child {
+                grid-column: 2;
+            }
         }
     </style>
 </head>
@@ -350,10 +353,10 @@
         <p class="text-ink/50 mt-2 text-sm">Modifiez et visualisez en temps réel</p>
     </div>
 
-<div class="flex flex-col lg:flex-row gap-8 lg:gap-14">
+<div id="configurator-section" class="flex flex-col lg:flex-row gap-8 lg:gap-14">
 
         <!-- ── COLONNE GAUCHE : APERÇU MIROIR ── -->
-        <div class="w-full lg:w-5/12 flex flex-col items-center z-10">
+        <div class="w-full lg:w-5/12 flex flex-col items-center z-10 lg:fixed lg:left-4 lg:top-4 lg:h-[calc(100vh-2rem)] lg:overflow-y-auto">
 
             <!-- Cadre de visualisation -->
             <div class="mirror-frame w-full bg-white rounded-3xl shadow-sm border border-black/[0.06] p-1 lg:p-4 flex items-center justify-center min-h-[360px] relative overflow-hidden">
@@ -450,7 +453,7 @@
         </div>
 
         <!-- ── COLONNE DROITE : CONFIGURATEUR ── -->
-        <div class="w-full lg:w-7/12 flex flex-col pb-36 lg:pb-32 lg:ml-auto">
+        <div class="w-full lg:w-7/12 flex flex-col pb-36 lg:pb-32 lg:ml-[calc(41.666%+2rem)]">
 
             <!-- Titre desktop -->
             <div class="hidden lg:block mb-10">
