@@ -466,6 +466,13 @@
         .led-card { width:100%; }
         body, main, #configurator-section { overflow-x:hidden !important; }
         .price-bar { padding: 12px 16px; }
+        /* Miroir : éléments internes proportionnels */
+        .v2-av { width:18px !important; height:18px !important; }
+        .v2-uname { font-size:8px !important; }
+        .v2-profile { padding:5px 7px !important; gap:5px !important; }
+        .v2-dots { font-size:10px !important; }
+        /* Header : bouton panier icône seul sur mobile */
+        #btn-header-cart .cart-label { display:none; }
     }
     @media(max-width:640px){
         .format-Mini,.format-Studio,.format-Original,.format-Signature,.format-Prestige { width:52% !important; max-width:220px !important; }
@@ -513,7 +520,7 @@
             <a href="#portfolio" class="text-sm font-semibold text-ink/70 hover:text-brand transition-colors hidden sm:inline">Galerie</a>
             <button id="btn-header-cart" class="flex items-center gap-2 bg-ink text-white px-4 py-2 rounded-full text-sm font-bold hover:bg-ink/80 transition-all">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-                Panier <span id="cart-count" class="bg-brand text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-black">0</span>
+                <span class="cart-label">Panier</span> <span id="cart-count" class="bg-brand text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-black">0</span>
             </button>
         </div>
     </div>
