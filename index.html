@@ -457,29 +457,20 @@
 
     /* ── MOBILE ── */
     @media(max-width:1023px){
-        /* Miroir centré et plus grand sur mobile */
         #col-mirror { width:100% !important; }
         #mirror-wrapper { min-height: 0 !important; }
-        .format-Mini,.format-Studio,.format-Original,.format-Signature,.format-Prestige { width:72% !important; }
+        .format-Mini,.format-Studio,.format-Original,.format-Signature,.format-Prestige { width:55% !important; max-width:260px !important; }
         .mirror-frame { min-height: 0 !important; padding: 16px !important; }
-        /* Cards format 2 colonnes sur tablette */
         .fgrid { grid-template-columns:1fr 1fr; }
-        /* Cards couleur 2 colonnes */
         .cgrid { grid-template-columns:1fr 1fr; }
-        /* LED card pleine largeur */
         .led-card { width:100%; }
-        /* Pas de débordement horizontal */
         body, main, #configurator-section { overflow-x:hidden !important; }
-        /* Prix sticky bien visible */
         .price-bar { padding: 12px 16px; }
     }
     @media(max-width:640px){
-        /* Miroir encore plus grand sur petit écran */
-        .format-Mini,.format-Studio,.format-Original,.format-Signature,.format-Prestige { width:82% !important; }
-        /* Format cards 1 colonne sur très petit écran */
+        .format-Mini,.format-Studio,.format-Original,.format-Signature,.format-Prestige { width:52% !important; max-width:220px !important; }
         .fgrid { grid-template-columns:1fr; }
         .fcard.full { grid-column:span 1; }
-        /* Ticker plus petit */
         #configurator-section { gap:1.5rem; }
     }
     </style>
@@ -1231,7 +1222,7 @@
         <!-- 4 emplacements photos — remplacer les src par vos vraies photos -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
             <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-gray-100 relative group">
-                <img src="photo1.jpg" alt="Social-Miroir en salon de coiffure" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" style="object-position: center top;">
+                <img src="photo1.jpg" alt="Social-Miroir en salon de coiffure" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity">
                     <p class="text-white text-xs font-semibold">Salon de coiffure</p>
                     <p class="text-white/60 text-[10px]">Format Original</p>
