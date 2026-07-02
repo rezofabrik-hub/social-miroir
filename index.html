@@ -251,12 +251,12 @@
         }
         .hide-radio input[type="checkbox"]:checked + .option-card .checkmark-box svg { opacity: 1; }
 
-        /* === MIRROR FORMAT RATIOS === */
-        .format-Mini     { aspect-ratio: 10/20; width: 50%; max-width: 50%; }
-        .format-Studio   { aspect-ratio: 30/55; width: 50%; max-width: 50%; }
-        .format-Original { aspect-ratio: 60/100; width: 50%; max-width: 50%; }
-        .format-Signature{ aspect-ratio: 65/120; width: 50%; max-width: 50%; }
-        .format-Prestige { aspect-ratio: 85/150; width: 50%; max-width: 50%; }
+        /* === MIRROR FORMAT RATIOS — contrôle la largeur du miroir === */
+        .format-Mini     { width: 44%; }
+        .format-Studio   { width: 52%; }
+        .format-Original { width: 62%; }
+        .format-Signature{ width: 72%; }
+        .format-Prestige { width: 85%; }
 
         /* Mini format same as others */
 
@@ -398,23 +398,30 @@
         .format-Signature { height: auto; }
         .format-Prestige  { height: auto; }
 
+        /* Layout horizontal v2 */
+        #configurator-section {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
         @media (min-width: 1024px) {
             #configurator-section {
-                position: relative;
-                display: grid;
-                grid-template-columns: 33vw 1fr;
-                gap: 2rem;
-                align-items: start;
+                flex-direction: row;
+                gap: 44px;
+                align-items: flex-start;
             }
-            #configurator-section > div:first-child {
+            #col-mirror {
+                width: 300px;
+                flex-shrink: 0;
                 position: sticky;
                 top: 5rem;
-                align-self: start;
-                width: 33vw;
-                grid-column: 1;
+                align-self: flex-start;
             }
-            #configurator-section > div:last-child {
-                grid-column: 2;
+            #col-config {
+                flex: 1;
+                min-width: 0;
             }
         }
     </style>
@@ -511,7 +518,7 @@
 <div id="configurator-section" class="flex flex-col lg:flex-row gap-8 lg:gap-14">
 
         <!-- ── COLONNE GAUCHE : APERÇU MIROIR ── -->
-        <div class="w-full flex flex-col items-center z-10">
+        <div id="col-mirror" class="flex flex-col items-center z-10">
 
             <!-- Cadre de visualisation -->
             <div class="mirror-frame w-full bg-white rounded-3xl shadow-sm border border-black/[0.06] p-1 lg:p-4 flex items-center justify-center min-h-[300px] relative overflow-visible">
@@ -573,7 +580,7 @@
         </div>
 
         <!-- ── COLONNE DROITE : CONFIGURATEUR ── -->
-        <div class="w-full lg:w-7/12 flex flex-col pb-36 lg:pb-32 lg:ml-[calc(41.666%+2rem)]">
+        <div id="col-config" class="flex flex-col pb-36 lg:pb-32">
 
             <!-- Titre desktop -->
             <div class="hidden lg:block mb-10">
