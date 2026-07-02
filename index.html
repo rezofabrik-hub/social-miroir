@@ -397,6 +397,41 @@
             }
         }
     </style>
+    <style>
+    /* ── FORMAT CARDS ── */
+    .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .fcard{border:2px solid #e5e7eb;border-radius:11px;padding:12px 8px;text-align:center;cursor:pointer;transition:all 0.2s;position:relative}
+    .fcard:hover{border-color:var(--brand);transform:translateY(-1px)}
+    .fcard.sel{border-color:var(--brand);background:rgba(230,0,126,0.03)}
+    .fcard.full{grid-column:span 2}
+    .fn{font-size:12px;font-weight:800;display:block}
+    .fs{font-size:9px;color:#bbb;display:block;margin-top:1px}
+    .fp{font-size:15px;font-weight:800;display:block;margin-top:5px;color:var(--brand)}
+    .fbadge{display:inline-block;font-size:8px;font-weight:700;padding:2px 7px;border-radius:50px;margin-bottom:4px}
+    .fb-brand{background:rgba(230,0,126,0.1);color:var(--brand)}
+    .fb-dark{background:#111;color:white}
+    .fb-gray{background:#f0f0f0;color:#777}
+    /* ── COLOR CARDS ── */
+    .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .ccard{border:2px solid #e5e7eb;border-radius:11px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer;transition:all 0.2s}
+    .ccard:hover{border-color:var(--brand)}
+    .ccard.sel{border-color:var(--brand);background:rgba(230,0,126,0.02)}
+    .cswatch{width:32px;height:32px;border-radius:50%;box-shadow:inset 0 2px 4px rgba(0,0,0,0.1)}
+    .cname{font-size:12px;font-weight:700}
+    /* ── LED CARD ── */
+    .led-card{border:2px solid #e5e7eb;border-radius:11px;padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all 0.2s}
+    .led-card:hover{border-color:var(--brand)}
+    .led-card.sel{border-color:var(--brand);background:rgba(230,0,126,0.02)}
+    .led-chk{width:20px;height:20px;border-radius:5px;border:2px solid #ddd;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s}
+    .led-card.sel .led-chk{background:var(--brand);border-color:var(--brand)}
+    .led-chk svg{width:11px;height:11px;color:white;opacity:0;transition:opacity 0.2s}
+    .led-card.sel .led-chk svg{opacity:1}
+    .led-info{flex:1}
+    .led-t{font-size:12px;font-weight:700}
+    .led-s{font-size:10px;color:#aaa;margin-top:1px}
+    .led-p{font-size:13px;font-weight:800;color:var(--brand);white-space:nowrap}
+    @media(max-width:480px){.fgrid{grid-template-columns:1fr}.fcard.full{grid-column:span 1}}
+    </style>
 </head>
 <body>
 
@@ -664,51 +699,12 @@
                         <h3 class="font-display text-lg font-bold text-ink">Format du Miroir</h3>
                     </div>
                     <div class="p-6">
-                        <div class="grid grid-cols-2 gap-3">
-                            <label class="hide-radio">
-                                <input type="radio" name="format" value="format-Mini" data-price="29.90" data-name="Mini">
-                                <div class="option-card p-4 flex flex-col items-center text-center h-full justify-center relative overflow-hidden">
-                                    <span class="badge badge-brand mb-2">Nouveau</span>
-                                    <span class="font-display font-bold text-ink text-sm uppercase tracking-wide">Mini</span>
-                                    <span class="text-[11px] text-ink/40 mt-0.5">10 × 20 cm</span>
-                                    <span class="font-bold text-brand mt-2 text-lg">29,90 €</span>
-                                    <span class="text-[10px] text-ink/30 mt-0.5">Bureau</span>
-                                </div>
-                            </label>
-                            <label class="hide-radio">
-                                <input type="radio" name="format" value="format-Studio" data-price="70.00" data-name="Studio">
-                                <div class="option-card p-4 flex flex-col items-center text-center h-full justify-center relative overflow-hidden">
-                                    <span class="font-display font-bold text-ink text-sm uppercase tracking-wide">Studio</span>
-                                    <span class="text-[11px] text-ink/40 mt-0.5">30 × 60 cm</span>
-                                    <span class="font-bold text-brand mt-2 text-lg">70,00 €</span>
-                                </div>
-                            </label>
-                            <label class="hide-radio">
-                                <input type="radio" name="format" value="format-Original" data-price="160.00" data-name="Original">
-                                <div class="option-card p-4 flex flex-col items-center text-center h-full justify-center relative overflow-hidden">
-                                    <span class="badge badge-dark mb-2">⭐ Best-seller</span>
-                                    <span class="font-display font-bold text-ink text-sm uppercase tracking-wide">Original</span>
-                                    <span class="text-[11px] text-ink/40 mt-0.5">60 × 100 cm</span>
-                                    <span class="font-bold text-brand mt-2 text-lg">160,00 €</span>
-                                </div>
-                            </label>
-                            <label class="hide-radio">
-                                <input type="radio" name="format" value="format-Signature" data-price="199.00" data-name="Signature">
-                                <div class="option-card p-4 flex flex-col items-center text-center h-full justify-center relative overflow-hidden">
-                                    <span class="font-display font-bold text-ink text-sm uppercase tracking-wide">Signature</span>
-                                    <span class="text-[11px] text-ink/40 mt-0.5">65 × 120 cm</span>
-                                    <span class="font-bold text-brand mt-2 text-lg">199,00 €</span>
-                                </div>
-                            </label>
-                            <label class="hide-radio col-span-2">
-                                <input type="radio" name="format" value="format-Prestige" data-price="260.00" data-name="Prestige">
-                                <div class="option-card p-4 flex flex-col items-center text-center h-full justify-center relative overflow-hidden">
-                                    <span class="badge badge-gray mb-2">Premium · Événementiel</span>
-                                    <span class="font-display font-bold text-ink text-sm uppercase tracking-wide">Prestige</span>
-                                    <span class="text-[11px] text-ink/40 mt-0.5">85 × 150 cm</span>
-                                    <span class="font-bold text-brand mt-2 text-lg">260,00 €</span>
-                                </div>
-                            </label>
+                        <div class="fgrid">
+                            <div class="fcard" data-p="29.90" data-f="Mini" onclick="selFmt(this)"><span class="fbadge fb-brand">Nouveau</span><span class="fn">Mini</span><span class="fs">10 × 20 cm</span><span class="fp">29,90 €</span><span style="font-size:9px;color:#ccc;display:block;margin-top:2px">Bureau</span></div>
+                            <div class="fcard" data-p="70.00" data-f="Studio" onclick="selFmt(this)"><span class="fn">Studio</span><span class="fs">30 × 60 cm</span><span class="fp">70,00 €</span></div>
+                            <div class="fcard sel" data-p="160.00" data-f="Original" onclick="selFmt(this)"><span class="fbadge fb-dark">⭐ Best-seller</span><span class="fn">Original</span><span class="fs">60 × 100 cm</span><span class="fp">160,00 €</span></div>
+                            <div class="fcard" data-p="199.00" data-f="Signature" onclick="selFmt(this)"><span class="fn">Signature</span><span class="fs">65 × 120 cm</span><span class="fp">199,00 €</span></div>
+                            <div class="fcard full" data-p="260.00" data-f="Prestige" onclick="selFmt(this)"><span class="fbadge fb-gray">Premium · Événementiel</span><span class="fn">Prestige</span><span class="fs">85 × 150 cm</span><span class="fp">260,00 €</span></div>
                         </div>
                     </div>
                 </section>
@@ -720,21 +716,9 @@
                         <h3 class="font-display text-lg font-bold text-ink">Couleur du verre</h3>
                     </div>
                     <div class="p-6">
-                        <div class="grid grid-cols-2 gap-3">
-                            <label class="hide-radio">
-                                <input type="radio" name="color" value="argent" data-name="Argent Clair" checked>
-                                <div class="option-card p-4 flex flex-col items-center gap-3">
-                                    <div class="w-10 h-10 rounded-full ring-1 ring-black/10 shadow-inner" style="background: linear-gradient(135deg, #ffffff 0%, #c8d3de 100%);"></div>
-                                    <span class="font-bold text-sm text-ink">Argent Clair</span>
-                                </div>
-                            </label>
-                            <label class="hide-radio">
-                                <input type="radio" name="color" value="or" data-name="Or Clair">
-                                <div class="option-card p-4 flex flex-col items-center gap-3">
-                                    <div class="w-10 h-10 rounded-full ring-1 ring-black/10 shadow-inner" style="background: linear-gradient(135deg, #fffbeb 0%, #f5c842 100%);"></div>
-                                    <span class="font-bold text-sm text-ink">Or Clair</span>
-                                </div>
-                            </label>
+                        <div class="cgrid">
+                            <div class="ccard sel" data-c="argent" onclick="selColor(this)"><div class="cswatch" style="background:linear-gradient(135deg,#fff 0%,#c8d3de 100%)"></div><span class="cname">Argent Clair</span></div>
+                            <div class="ccard" data-c="or" onclick="selColor(this)"><div class="cswatch" style="background:linear-gradient(135deg,#fffbeb 0%,#f5c842 100%)"></div><span class="cname">Or Clair</span></div>
                         </div>
                     </div>
                 </section>
@@ -746,23 +730,11 @@
                         <h3 class="font-display text-lg font-bold text-ink">Option d'éclairage</h3>
                     </div>
                     <div class="p-6">
-                        <label class="hide-radio block">
-                            <input type="checkbox" id="option-led" value="29.90">
-                            <div class="option-card p-4 flex items-center gap-4">
-                                <div class="w-6 h-6 rounded-lg border-2 border-gray-300 flex items-center justify-center shrink-0 checkmark-box transition-all">
-                                    <svg class="w-3.5 h-3.5 text-white opacity-0 transition-opacity" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                                </div>
-                                <div class="flex-grow">
-                                    <div class="flex justify-between items-start">
-                                        <div>
-                                            <h4 class="font-bold text-ink text-sm">Rétroéclairage LED RGB <span id="led-unavailable" class="hidden text-[10px] font-bold text-red-500 ml-1">— Indisponible pour Mini</span></h4>
-                                            <p class="text-[11px] text-ink/40 mt-0.5">Halo lumineux RGB animé derrière le miroir. <strong>Non compatible avec le format Mini.</strong></p>
-                                        </div>
-                                        <span class="font-bold text-brand whitespace-nowrap ml-3 text-sm">+ 29,90 €</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </label>
+                        <div class="led-card" id="led-card" onclick="togLed()">
+                            <div class="led-chk" id="led-chk"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg></div>
+                            <div class="led-info"><div class="led-t">Rétroéclairage LED RGB <span id="led-na" style="display:none;font-size:9px;color:#ef4444">— Indisponible Mini</span></div><div class="led-s">Halo lumineux animé derrière le miroir. Non compatible avec le format Mini.</div></div>
+                            <div class="led-p">+ 29,90 €</div>
+                        </div>
                     </div>
                 </section>
 
@@ -1834,6 +1806,72 @@
         return true;
     }
 
+    // ── Global state for click-based format/color/LED ──
+    let fmtId = 'format-Original', fmtPrice = 160.00, fmtName = 'Original', led = false, selColor_val = 'argent';
+    let mirrorContainerEl = null;
+
+    const FORMAT_CLASSES = ['format-Mini','format-Studio','format-Original','format-Signature','format-Prestige'];
+
+    function selFmt(el) {
+        document.querySelectorAll('.fcard').forEach(c => c.classList.remove('sel'));
+        el.classList.add('sel');
+        fmtPrice = parseFloat(el.dataset.p);
+        fmtName  = el.dataset.f;
+        fmtId    = 'format-' + el.dataset.f;
+        if (mirrorContainerEl) {
+            FORMAT_CLASSES.forEach(f => mirrorContainerEl.classList.remove(f));
+            mirrorContainerEl.classList.add(fmtId);
+        }
+        const isMini = el.dataset.f === 'Mini';
+        if (isMini && led) {
+            led = false;
+            const lc = document.getElementById('led-card');
+            if (lc) lc.classList.remove('sel');
+            const lk = document.getElementById('led-chk');
+            if (lk) lk.querySelector('svg').style.opacity = '0';
+            if (mirrorContainerEl) mirrorContainerEl.classList.remove('led-active');
+        }
+        const ledNa = document.getElementById('led-na');
+        if (ledNa) ledNa.style.display = isMini ? 'inline' : 'none';
+        updPrice();
+    }
+
+    function selColor(el) {
+        document.querySelectorAll('.ccard').forEach(c => c.classList.remove('sel'));
+        el.classList.add('sel');
+        selColor_val = el.dataset.c;
+        applyMirrorColorBg();
+    }
+
+    function togLed() {
+        if (fmtId === 'format-Mini') return;
+        led = !led;
+        const lc = document.getElementById('led-card');
+        if (lc) lc.classList.toggle('sel', led);
+        const lk = document.getElementById('led-chk');
+        if (lk) lk.querySelector('svg').style.opacity = led ? '1' : '0';
+        if (mirrorContainerEl) {
+            if (led) mirrorContainerEl.classList.add('led-active');
+            else mirrorContainerEl.classList.remove('led-active');
+        }
+        updPrice();
+    }
+
+    function updPrice() {
+        const total = formatPrice((fmtPrice || 0) + (led && fmtId !== 'format-Mini' ? 29.90 : 0));
+        const pd = document.getElementById('price-display'); if (pd) pd.textContent = total;
+        const pb = document.getElementById('price-in-btn'); if (pb) pb.textContent = total;
+        const ct = document.getElementById('cart-total-price'); if (ct) ct.textContent = total;
+    }
+
+    function applyMirrorColorBg() {
+        const ms = document.getElementById('mirror-surface');
+        if (!ms) return;
+        ms.style.background = selColor_val === 'or'
+            ? 'linear-gradient(135deg, #fffbeb 0%, #f5c842 100%)'
+            : 'linear-gradient(135deg, #ffffff 0%, #c8d3de 100%)';
+    }
+
     function showToast(msg) {
         const t = document.getElementById('toast');
         t.textContent = msg;
@@ -1908,9 +1946,9 @@
         };
 
         const mirrorContainer = $('mirror-container');
+        mirrorContainerEl = mirrorContainer;
         const mirrorWrapper = $('mirror-wrapper');
         const mirrorSurface   = $('mirror-surface');
-        const ledOption       = $('option-led');
         const priceDisplay    = $('price-display');
         const priceInBtn      = $('price-in-btn');
         const cartCount       = $('cart-count');
@@ -2016,106 +2054,6 @@
             reader.readAsDataURL(file);
         });
 
-        // ── Format ──
-        const formatRadios = document.querySelectorAll('input[name="format"]');
-        const formats = ['format-Mini','format-Studio','format-Original','format-Signature','format-Prestige'];
-
-        function applyMiniRules() {
-            const fmt = document.querySelector('input[name="format"]:checked')?.value;
-            const ledSection = $('led-section');
-            const ledBadge = $('led-unavailable');
-            const ledLabel = ledOption.closest('label');
-
-            if (fmt === 'format-Mini') {
-                ledOption.checked = false;
-                ledOption.disabled = true;
-                ledSection.classList.add('opacity-40', 'pointer-events-none');
-                if (ledLabel) ledLabel.style.pointerEvents = 'none';
-                if (ledBadge) ledBadge.classList.remove('hidden');
-                mirrorContainer.classList.remove('led-active');
-            } else {
-                ledOption.disabled = false;
-                ledSection.classList.remove('opacity-40', 'pointer-events-none');
-                if (ledLabel) ledLabel.style.pointerEvents = '';
-                if (ledBadge) ledBadge.classList.add('hidden');
-                if (ledOption.checked) mirrorContainer.classList.add('led-active');
-                else mirrorContainer.classList.remove('led-active');
-            }
-        }
-
-        // Hauteurs fixes pour chaque format (pour voir le miroir complet)
-        const mirrorHeights = {
-            'format-Mini': 'auto',
-            'format-Studio': 'auto',
-            'format-Original': 'auto',
-            'format-Signature': 'auto',
-            'format-Prestige': 'auto'
-        };
-
-        formatRadios.forEach(r => r.addEventListener('change', e => {
-            if (!e.target.checked) return;
-            const fmt = e.target.value;
-            formats.forEach(f => mirrorContainer.classList.remove(f));
-            mirrorContainer.classList.add(fmt);
-            mirrorContainer.style.transform = 'none';
-            // Fixer la hauteur pour voir le miroir complet
-            mirrorContainer.style.height = mirrorHeights[fmt] || 'auto';
-            mirrorWrapper.style.height = mirrorHeights[fmt] || 'auto';
-            applyMiniRules();
-            calcPrice();
-        }));
-
-        // ── Couleur ──
-        document.querySelectorAll('input[name="color"]').forEach(r => {
-            r.addEventListener('change', e => {
-                if (!e.target.checked) return;
-                const bg = e.target.value === 'or'
-                    ? 'linear-gradient(135deg, #fffbeb 0%, #f5c842 100%)'
-                    : 'linear-gradient(135deg, #ffffff 0%, #c8d3de 100%)';
-                mirrorSurface.style.background = bg;
-            });
-        });
-
-        // ── LED ──
-        ledOption.addEventListener('change', e => {
-            const fmt = document.querySelector('input[name="format"]:checked')?.value;
-            // Sécurité : si Mini, on force le décochage immédiatement
-            if (fmt === 'format-Mini') {
-                e.target.checked = false;
-                mirrorContainer.classList.remove('led-active');
-                calcPrice();
-                return;
-            }
-            if (e.target.checked) mirrorContainer.classList.add('led-active');
-            else mirrorContainer.classList.remove('led-active');
-            calcPrice();
-        });
-
-        // ── Prix ──
-        function calcPrice() {
-            const fmt = document.querySelector('input[name="format"]:checked');
-            let total = fmt ? parseFloat(fmt.dataset.price) : 0;
-            if (fmt && ledOption.checked && fmt.value !== 'format-Mini') total += 29.90;
-            const str = formatPrice(total);
-            priceDisplay.textContent = str;
-            priceInBtn.textContent = str;
-            if ($('cart-total-price')) $('cart-total-price').textContent = str;
-            // Activer/désactiver le bouton Commander selon qu'un format est choisi
-            updateOrderButton(!!fmt);
-        }
-
-        function updateOrderButton(hasFormat) {
-            if (hasFormat) {
-                btnOpenBat.disabled = false;
-                btnOpenBat.style.opacity = '1';
-                btnOpenBat.style.cursor = 'pointer';
-            } else {
-                btnOpenBat.disabled = true;
-                btnOpenBat.style.opacity = '0.5';
-                btnOpenBat.style.cursor = 'not-allowed';
-            }
-        }
-
         // ── Email validation ──
         inputs.email.addEventListener('blur', () => {
             const err = $('email-error');
@@ -2131,21 +2069,16 @@
 
         // ── Modal open ──
         function openModal() {
-            const fmt   = document.querySelector('input[name="format"]:checked');
-            const color = document.querySelector('input[name="color"]:checked');
-
-            $('cart-format-name').textContent  = fmt?.dataset.name  || 'Original';
-            $('cart-format-price').textContent = fmt ? formatPrice(parseFloat(fmt.dataset.price)) : '160,00 €';
-            $('cart-color-name').textContent   = color?.dataset.name || 'Argent Clair';
+            $('cart-format-name').textContent  = fmtName || 'Original';
+            $('cart-format-price').textContent = formatPrice(fmtPrice || 160);
+            $('cart-color-name').textContent   = selColor_val === 'or' ? 'Or Clair' : 'Argent Clair';
 
             const ledRow = $('cart-led-row');
-            const isMini = fmt?.value === 'format-Mini';
-            const ledActive = ledOption.checked && !isMini;
+            const isMini = fmtId === 'format-Mini';
+            const ledActive = led && !isMini;
             ledActive ? ledRow.classList.remove('hidden') : ledRow.classList.add('hidden');
 
-            // Recalculer le total proprement
-            let total = fmt ? parseFloat(fmt.dataset.price) : 160;
-            if (ledActive) total += 29.90;
+            let total = (fmtPrice || 160) + (ledActive ? 29.90 : 0);
             $('cart-total-price').textContent = formatPrice(total);
 
             // Clone le mirror-frame entier (identique à la page d'accueil)
@@ -2163,17 +2096,10 @@
             const cloneSurface = frameClone.querySelector('.mirror-surface');
             if (cloneSurface && mirrorSurface) cloneSurface.style.background = mirrorSurface.style.background;
 
-            // Synchroniser l'image de fond (photo uploadée)
-            const origBg = mirrorSurface?.querySelector('.mirror-photo');
-            const cloneBg = cloneSurface?.querySelector('.mirror-photo');
-            if (origBg && cloneBg) cloneBg.style.cssText = origBg.style.cssText;
-
-            // Synchroniser LED
-            const origChrome = mirrorContainer.querySelector('.mirror-chrome');
+            // Synchroniser LED (mirrorContainerEl IS .mirror-chrome — chercher dans le clone)
             const cloneChrome = frameClone.querySelector('.mirror-chrome');
-            if (origChrome && cloneChrome) {
-                cloneChrome.className = origChrome.className;
-                cloneChrome.style.cssText = origChrome.style.cssText;
+            if (cloneChrome && mirrorContainerEl) {
+                cloneChrome.className = mirrorContainerEl.className;
             }
 
             visContainer.appendChild(frameClone);
@@ -2206,13 +2132,6 @@
         }
 
         btnOpenBat.addEventListener('click', () => {
-            const fmt = document.querySelector('input[name="format"]:checked');
-            // Bloquer si aucun format choisi
-            if (!fmt) {
-                showToast('⚠️ Choisissez d\'abord un format');
-                document.querySelector('input[name="format"]').closest('section').scrollIntoView({ behavior: 'smooth', block: 'center' });
-                return;
-            }
             cartCount.textContent = '1';
             openModal();
         });
@@ -2274,10 +2193,7 @@
             });
             if (!confirmed) return;
 
-            const fmt   = document.querySelector('input[name="format"]:checked');
-            const color = document.querySelector('input[name="color"]:checked');
-            const formatId = fmt?.value || 'format-Original';
-            const ledId = ledOption.checked && formatId !== 'format-Mini' ? '-led' : '-noled';
+            const formatId = fmtId || 'format-Original';
 
             // Spinner
             const orig = btnConfirmBat.innerHTML;
@@ -2285,11 +2201,11 @@
             btnConfirmBat.disabled = true;
 
             // LED jamais possible sur Mini
-            const ledFinal = ledOption.checked && formatId !== 'format-Mini';
+            const ledFinal = led && formatId !== 'format-Mini';
 
             const orderData = {
-                format:    formatId.replace('format-', ''),
-                couleur:   color?.value || 'argent',
+                format:    fmtName || formatId.replace('format-', ''),
+                couleur:   selColor_val || 'argent',
                 led:       ledFinal,
                 total:     priceDisplay.textContent,
                 client: {
@@ -2365,7 +2281,8 @@
         });
 
         // ── Init ──
-        calcPrice();
+        updPrice();
+        applyMirrorColorBg();
 
         // ── Retour Stripe : paiement confirmé ──
         if (new URLSearchParams(window.location.search).get('payment') === 'success') {
