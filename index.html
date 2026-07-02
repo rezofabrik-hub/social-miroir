@@ -366,11 +366,32 @@
 
         .mirror-chrome {
             background: white;
-            border-radius: 28px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.18);
-            border: 1.5px solid #111;
+            box-shadow: 0 16px 50px rgba(0,0,0,0.18);
+            border: 2.5px solid #111;
         }
+        /* v2 mirror sub-elements */
+        .v2-status{background:white;padding:5px 12px;display:flex;align-items:center;justify-content:space-between;font-size:9.5px;font-weight:700;color:#111;position:relative;}
+        .v2-notch{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:46px;height:11px;background:#111;border-radius:8px;}
+        .v2-icons{display:flex;align-items:center;gap:3px;}
+        .v2-profile{padding:7px 10px;display:flex;align-items:center;gap:7px;border-bottom:1px solid #f0f0f0;}
+        .v2-av{width:26px;height:26px;border-radius:50%;overflow:hidden;flex-shrink:0;outline:2px solid rgba(225,48,108,0.25);outline-offset:1px;}
+        .v2-av img{width:100%;height:100%;object-fit:cover;}
+        .v2-uname{font-size:10.5px;font-weight:800;color:#111;flex:1;}
+        .v2-dots{display:flex;gap:2px;margin-left:auto;}
+        .v2-dot{width:3px;height:3px;border-radius:50%;background:rgba(0,0,0,0.5);}
+        .v2-surface{aspect-ratio:3/4;position:relative;overflow:hidden;transition:background 0.5s;}
+        .v2-surface .mirror-glare{position:absolute;top:0;left:-150%;width:45%;height:100%;background:linear-gradient(to right,transparent,rgba(255,255,255,0.85) 50%,transparent);transform:skewX(-20deg);animation:glare 7s ease-in-out infinite;pointer-events:none;z-index:5;}
+        .v2-reflet{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;letter-spacing:0.3em;text-transform:uppercase;opacity:0.07;color:#111;z-index:1;text-align:center;padding:10px;}
+        .v2-statsbar{background:white;padding:8px 10px;}
+        .v2-srow{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;}
+        .v2-sicons{display:flex;align-items:center;gap:6px;}
+        .v2-stat{display:flex;align-items:center;gap:2px;font-size:9px;font-weight:700;color:#111;}
+        .v2-stat svg{width:11px;height:11px;}
+        .v2-cap{font-size:9px;color:#444;line-height:1.4;margin-bottom:2px;}
+        .v2-hash{font-size:8px;font-weight:600;color:#1d4ed8;line-height:1.4;}
+        .v2-brand{font-size:4px;color:#ccc;text-align:center;margin-top:3px;letter-spacing:3px;}
         .format-Mini      { height: auto; }
         .format-Studio    { height: auto; }
         .format-Original  { height: auto; }
@@ -503,75 +524,47 @@
                     <span class="text-[10px] font-bold text-ink/40 uppercase tracking-wider">Aperçu live</span>
                 </div>
 
-                <!-- Miroir -->
+                <!-- Miroir v2 Instagram -->
                 <div id="mirror-wrapper" class="flex items-center justify-center w-full h-full">
-                    <div id="mirror-container" class="format-Original mirror-chrome flex flex-col relative" style="transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);">
-                        
+                    <div id="mirror-container" class="format-Original mirror-chrome mirror-surface" style="transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); background:white;">
+
                         <!-- Barre statut -->
-                        <div class="mirror-status-bar bg-white px-4 py-1.5 flex items-center justify-between text-[0.65rem] font-bold text-black relative z-10 shrink-0">
-                            <span id="preview-time" class="preview-time-el">10:39</span>
-                            <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-3.5 bg-black rounded-full"></div>
-                            <div class="flex items-center gap-1">
-                                <svg id="preview-network" class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zm6-4a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zm6-3a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>
-                                <svg class="w-4 h-4 text-ink" viewBox="0 0 24 24" fill="none">
-                                    <rect x="2" y="7" width="16" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
-                                    <path d="M20 10V14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                                    <rect id="battery-level" x="4" y="9" width="12" height="6" rx="1" fill="#22c55e"/>
-                                </svg>
+                        <div class="v2-status">
+                            <span id="preview-time">10:39</span>
+                            <div class="v2-notch"></div>
+                            <div class="v2-icons">
+                                <svg id="preview-network" width="11" height="11" fill="currentColor" viewBox="0 0 20 20"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zm6-4a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zm6-3a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>
+                                <svg width="18" height="9" viewBox="0 0 22 10"><rect x="1" y="1" width="17" height="8" rx="2" stroke="#333" stroke-width="1.5" fill="none"/><path d="M19 3.5V6.5" stroke="#333" stroke-width="1.5" stroke-linecap="round"/><rect id="battery-level" x="2.5" y="2.5" width="12" height="5" rx="1" fill="#22c55e"/></svg>
                             </div>
                         </div>
 
                         <!-- Profil -->
-                        <div class="mirror-profile-bar bg-white px-3 py-2.5 flex items-center gap-2.5 z-10 shrink-0">
-                            <div class="mirror-avatar w-8 h-8 rounded-full bg-gray-100 overflow-hidden shrink-0 flex items-center justify-center ring-2 ring-brand/20">
-                                <img id="preview-logo" src="https://placehold.co/100x100/fce7f3/e6007e?text=★" class="w-full h-full object-cover" alt="Logo profil">
-                            </div>
-                            <div class="mirror-profile-username font-bold text-[0.75rem] tracking-tight text-black truncate" id="preview-username">ici votre titre</div>
-                            <div class="mirror-dots-wrap ml-auto flex gap-1">
-                                <div class="mirror-dot w-1 h-1 rounded-full bg-black/60"></div>
-                                <div class="mirror-dot w-1 h-1 rounded-full bg-black/60"></div>
-                                <div class="mirror-dot w-1 h-1 rounded-full bg-black/60"></div>
-                            </div>
+                        <div class="v2-profile">
+                            <div class="v2-av"><img id="preview-logo" src="https://placehold.co/60x60/fce7f3/e6007e?text=★" alt="Logo"></div>
+                            <div class="v2-uname" id="preview-username">votre_compte</div>
+                            <div class="v2-dots"><div class="v2-dot"></div><div class="v2-dot"></div><div class="v2-dot"></div></div>
                         </div>
 
                         <!-- Surface miroir -->
-                        <div id="mirror-surface" class="flex-grow mirror-surface relative min-h-[80px]">
+                        <div id="mirror-surface" class="v2-surface" style="background:linear-gradient(160deg,#e0d8d0,#c8c0b8);">
                             <div class="mirror-glare"></div>
-                            <div class="absolute inset-0 flex items-center justify-center opacity-[0.06] pointer-events-none">
-                                <span class="font-display font-black text-xl uppercase tracking-[0.3em] text-center px-2">VOTRE REFLET</span>
-                            </div>
+                            <div class="v2-reflet">VOTRE REFLET</div>
                         </div>
 
                         <!-- Stats + légende -->
-                        <div class="mirror-stats-bar bg-white px-3 py-2.5 z-10 text-black shrink-0">
-                            <div class="flex justify-between items-center mb-1.5">
-                                <div class="flex gap-3 items-center">
-                                    <!-- Like -->
-                                    <div class="flex items-center gap-0.5">
-                                        <svg id="heart-svg" class="w-4 h-4" fill="#e1306c" stroke="#e1306c" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-                                        <span id="preview-likes" class="mirror-stat-val text-[10px] font-bold">3.4M</span>
-                                    </div>
-                                    <!-- Comment -->
-                                    <div class="flex items-center gap-0.5">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-                                        <span id="preview-comments" class="mirror-stat-val text-[10px] font-bold">1.4M</span>
-                                    </div>
-                                    <!-- Repost -->
-                                    <div class="flex items-center gap-0.5">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-                                        <span id="preview-reposts" class="mirror-stat-val text-[10px] font-bold">2.3M</span>
-                                    </div>
-                                    <!-- Share -->
-                                    <div class="flex items-center gap-0.5">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
-                                        <span id="preview-shares" class="mirror-stat-val text-[10px] font-bold">1.6M</span>
-                                    </div>
+                        <div class="v2-statsbar">
+                            <div class="v2-srow">
+                                <div class="v2-sicons">
+                                    <div class="v2-stat"><svg id="heart-svg" fill="#e1306c" stroke="#e1306c" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg><span id="preview-likes">3.4M</span></div>
+                                    <div class="v2-stat"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg><span id="preview-comments">1.4M</span></div>
+                                    <div class="v2-stat"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg><span id="preview-reposts">2.3M</span></div>
+                                    <div class="v2-stat"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg><span id="preview-shares">1.6M</span></div>
                                 </div>
-                                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
+                                <svg class="v2-stat" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
                             </div>
-                            <p class="mirror-caption-text text-[10px] leading-tight text-gray-800 mb-0.5"><span class="font-bold text-black mr-1" id="preview-username-bottom">ici votre titre</span><span id="preview-caption">Venez découvrir votre nouvel espace beauté et bien-être.</span></p>
-                            <p class="mirror-hashtags-text text-[9px] text-blue-900 font-semibold leading-tight" id="preview-hashtags">#salondecoiffure #coiffeurparis #hairtransformation #coloriste #beaute</p>
-                            <p class="mirror-brand-tag text-[4px] text-ink/35 font-normal mt-0.5 tracking-widest text-center">social-miroir.fr</p>
+                            <p class="v2-cap"><strong id="preview-username-bottom" style="color:#111;">votre_compte</strong> <span id="preview-caption">Votre espace beauté.</span></p>
+                            <p class="v2-hash" id="preview-hashtags">#salondecoiffure #beaute</p>
+                            <p class="v2-brand">social-miroir.fr</p>
                         </div>
                     </div>
                 </div>
@@ -1868,8 +1861,8 @@
         const ms = document.getElementById('mirror-surface');
         if (!ms) return;
         ms.style.background = selColor_val === 'or'
-            ? 'linear-gradient(135deg, #fffbeb 0%, #f5c842 100%)'
-            : 'linear-gradient(135deg, #ffffff 0%, #c8d3de 100%)';
+            ? 'linear-gradient(160deg,#f5e6c8,#d4a843)'
+            : 'linear-gradient(160deg,#e0d8d0,#c8c0b8)';
     }
 
     function showToast(msg) {
@@ -2096,8 +2089,8 @@
             const cloneSurface = frameClone.querySelector('.mirror-surface');
             if (cloneSurface && mirrorSurface) cloneSurface.style.background = mirrorSurface.style.background;
 
-            // Synchroniser LED (mirrorContainerEl IS .mirror-chrome — chercher dans le clone)
-            const cloneChrome = frameClone.querySelector('.mirror-chrome');
+            // Synchroniser LED sur le container cloné
+            const cloneChrome = frameClone.querySelector('#mirror-container') || frameClone.querySelector('.mirror-chrome');
             if (cloneChrome && mirrorContainerEl) {
                 cloneChrome.className = mirrorContainerEl.className;
             }
