@@ -989,6 +989,10 @@
             <div id="bat-visual-container" class="w-full pointer-events-none overflow-visible">
                 <!-- Injecté dynamiquement -->
             </div>
+            <button onclick="generateBatPDF()" id="btn-bat-pdf" style="margin-top:16px;display:flex;align-items:center;justify-content:center;gap:8px;background:#0f0f0f;color:white;border:none;border-radius:10px;padding:11px 16px;font-size:12px;font-weight:700;cursor:pointer;width:100%;letter-spacing:0.03em;transition:opacity 0.15s;" onmouseover="this.style.opacity=0.8" onmouseout="this.style.opacity=1">
+                <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17v3a2 2 0 002 2h14a2 2 0 002-2v-3"/></svg>
+                Télécharger BAT PDF
+            </button>
         </div>
 
         <!-- Colonne droite : Récap + form (3/5) -->
@@ -2153,6 +2157,77 @@
             batModal.classList.add('opacity-0');
             batModalContent.classList.add('scale-95');
             setTimeout(() => batModal.classList.add('hidden'), 300);
+        }
+
+        async function generateBatPDF() {
+            const btn = document.getElementById('btn-bat-pdf');
+            const orig = btn.innerHTML;
+            btn.innerHTML = '⏳ Génération...';
+            btn.disabled = true;
+
+            // Récupère les éléments live du miroir
+            const mirrorEl = document.querySelector('.mirror-frame');
+            const topBand  = mirrorEl.querySelector('.v2-status, .v2-profile') ? mirrorEl : null;
+
+            // Crée un conteneur temporaire hors-écran avec les 2 bandes
+            const wrap = document.createElement('div');
+            wrap.style.cssText = 'position:fixed;left:-9999px;top:0;background:white;width:480px;padding:0;';
+
+            // Bande haute : status + profile
+            const topClone = document.createElement('div');
+            topClone.style.cssText = 'background:white;border-bottom:1px solid #eee;';
+            const statusEl  = mirrorEl.querySelector('.v2-status');
+            const profileEl = mirrorEl.querySelector('.v2-profile');
+            if (statusEl)  topClone.appendChild(statusEl.cloneNode(true));
+            if (profileEl) topClone.appendChild(profileEl.cloneNode(true));
+
+            // Séparateur
+            const sep = document.createElement('div');
+            sep.style.cssText = 'height:28px;background:#f5f5f5;display:flex;align-items:center;justify-content:center;font-size:9px;color:#aaa;letter-spacing:0.12em;text-transform:uppercase;';
+            sep.textContent = '— surface réfléchissante —';
+
+            // Bande basse : statsbar
+            const statsEl = mirrorEl.querySelector('.v2-statsbar');
+            const botClone = statsEl ? statsEl.cloneNode(true) : document.createElement('div');
+            botClone.style.cssText += 'background:white;';
+
+            wrap.appendChild(topClone);
+            wrap.appendChild(sep);
+            wrap.appendChild(botClone);
+            document.body.appendChild(wrap);
+
+            try {
+                const canvas = await html2canvas(wrap, { scale: 4, backgroundColor: '#ffffff', useCORS: true, logging: false });
+                const imgData = canvas.toDataURL('image/png');
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+
+                const pdfW = pdf.internal.pageSize.getWidth();
+                const pdfH = (canvas.height * pdfW) / canvas.width;
+
+                // En-tête
+                pdf.setFontSize(9);
+                pdf.setTextColor(150);
+                pdf.text('Social-Miroir · Bon À Tirer', 10, 10);
+                const date = new Date().toLocaleDateString('fr-FR');
+                pdf.text(`Date : ${date}`, pdfW - 10, 10, { align: 'right' });
+
+                // Bandes
+                pdf.addImage(imgData, 'PNG', 10, 16, pdfW - 20, pdfH - 20);
+
+                // Pied de page
+                pdf.setFontSize(7);
+                pdf.setTextColor(180);
+                pdf.text('Ce BAT représente les bandes décorative haute et basse du miroir. La surface réfléchissante est entre les deux.', 10, 287, { maxWidth: pdfW - 20 });
+
+                pdf.save(`BAT_Social-Miroir_${date.replace(/\//g,'-')}.pdf`);
+            } catch(e) {
+                alert('Erreur génération PDF. Réessayez.');
+            }
+
+            document.body.removeChild(wrap);
+            btn.innerHTML = orig;
+            btn.disabled = false;
         }
 
         function setConfirmState(enabled) {
