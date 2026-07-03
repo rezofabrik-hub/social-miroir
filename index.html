@@ -458,8 +458,8 @@
     /* ── MOBILE ── */
     @media(max-width:1023px){
         #col-mirror { width:100% !important; }
-        #mirror-wrapper { min-height: 0 !important; }
-        .format-Mini,.format-Studio,.format-Original,.format-Signature,.format-Prestige { width:82% !important; max-width:360px !important; }
+        #mirror-wrapper { min-height: 0 !important; max-width:260px !important; margin-left:auto !important; margin-right:auto !important; }
+        .format-Mini,.format-Studio,.format-Original,.format-Signature,.format-Prestige { width:82% !important; }
         .mirror-frame { min-height: 0 !important; padding: 16px !important; }
         .fgrid { grid-template-columns:1fr 1fr; }
         .cgrid { grid-template-columns:1fr 1fr; }
@@ -470,7 +470,8 @@
         #btn-header-cart .cart-label { display:none; }
     }
     @media(max-width:640px){
-        .format-Mini,.format-Studio,.format-Original,.format-Signature,.format-Prestige { width:82% !important; max-width:360px !important; }
+        #mirror-wrapper { max-width:240px !important; }
+        .format-Mini,.format-Studio,.format-Original,.format-Signature,.format-Prestige { width:82% !important; }
         .fgrid { grid-template-columns:1fr; }
         .fcard.full { grid-column:span 1; }
         #configurator-section { gap:1.5rem; }
