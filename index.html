@@ -2165,63 +2165,73 @@
             btn.innerHTML = '⏳ Génération...';
             btn.disabled = true;
 
-            // Récupère les éléments live du miroir
-            const mirrorEl = document.querySelector('.mirror-frame');
-            const topBand  = mirrorEl.querySelector('.v2-status, .v2-profile') ? mirrorEl : null;
+            // Dimensions réelles des formats (largeur × hauteur en mm)
+            const formatDims = {
+                'Mini':      [100,  200],
+                'Studio':    [300,  600],
+                'Original':  [600, 1000],
+                'Signature': [650, 1200],
+                'Prestige':  [850, 1500]
+            };
+            const fmt = fmtName || 'Original';
+            const [mirW, mirH] = formatDims[fmt] || [600, 1000];
 
             // Crée un conteneur temporaire hors-écran avec les 2 bandes
             const wrap = document.createElement('div');
-            wrap.style.cssText = 'position:fixed;left:-9999px;top:0;background:white;width:480px;padding:0;';
+            wrap.style.cssText = 'position:fixed;left:-9999px;top:0;background:white;width:600px;padding:0;';
+
+            const mirrorEl = document.querySelector('.mirror-frame');
 
             // Bande haute : status + profile
             const topClone = document.createElement('div');
-            topClone.style.cssText = 'background:white;border-bottom:1px solid #eee;';
+            topClone.style.cssText = 'background:white;';
             const statusEl  = mirrorEl.querySelector('.v2-status');
             const profileEl = mirrorEl.querySelector('.v2-profile');
             if (statusEl)  topClone.appendChild(statusEl.cloneNode(true));
             if (profileEl) topClone.appendChild(profileEl.cloneNode(true));
 
-            // Séparateur
-            const sep = document.createElement('div');
-            sep.style.cssText = 'height:28px;background:#f5f5f5;display:flex;align-items:center;justify-content:center;font-size:9px;color:#aaa;letter-spacing:0.12em;text-transform:uppercase;';
-            sep.textContent = '— surface réfléchissante —';
-
             // Bande basse : statsbar
-            const statsEl = mirrorEl.querySelector('.v2-statsbar');
+            const statsEl  = mirrorEl.querySelector('.v2-statsbar');
             const botClone = statsEl ? statsEl.cloneNode(true) : document.createElement('div');
             botClone.style.cssText += 'background:white;';
 
             wrap.appendChild(topClone);
-            wrap.appendChild(sep);
-            wrap.appendChild(botClone);
             document.body.appendChild(wrap);
 
             try {
-                const canvas = await html2canvas(wrap, { scale: 4, backgroundColor: '#ffffff', useCORS: true, logging: false });
-                const imgData = canvas.toDataURL('image/png');
                 const { jsPDF } = window.jspdf;
-                const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-
-                const pdfW = pdf.internal.pageSize.getWidth();
-                const pdfH = (canvas.height * pdfW) / canvas.width;
-
-                // En-tête
-                pdf.setFontSize(9);
-                pdf.setTextColor(150);
-                pdf.text('Social-Miroir · Bon À Tirer', 10, 10);
                 const date = new Date().toLocaleDateString('fr-FR');
-                pdf.text(`Date : ${date}`, pdfW - 10, 10, { align: 'right' });
+                const margin = 0; // pas de marge : bandes pleine largeur
 
-                // Bandes
-                pdf.addImage(imgData, 'PNG', 10, 16, pdfW - 20, pdfH - 20);
+                // ── Page 1 : bande haute ──
+                const canvasTop = await html2canvas(topClone, { scale: 6, backgroundColor: '#ffffff', useCORS: true, logging: false });
+                const topImgData = canvasTop.toDataURL('image/png');
+                // Hauteur réelle de la bande haute en mm (proportionnelle)
+                const topH = (canvasTop.height * mirW) / canvasTop.width;
 
-                // Pied de page
-                pdf.setFontSize(7);
-                pdf.setTextColor(180);
-                pdf.text('Ce BAT représente les bandes décorative haute et basse du miroir. La surface réfléchissante est entre les deux.', 10, 287, { maxWidth: pdfW - 20 });
+                const pdf = new jsPDF({ orientation: 'landscape', unit: 'mm', format: [mirW, topH + 18] });
+                // En-tête
+                pdf.setFontSize(Math.max(4, mirW * 0.015));
+                pdf.setTextColor(160);
+                pdf.text(`Social-Miroir · BAT · Format ${fmt} (${mirW/10}×${mirH/10} cm) · ${date}`, mirW / 2, 5, { align: 'center' });
+                pdf.addImage(topImgData, 'PNG', 0, 10, mirW, topH);
 
-                pdf.save(`BAT_Social-Miroir_${date.replace(/\//g,'-')}.pdf`);
+                // ── Page 2 : bande basse ──
+                wrap.innerHTML = '';
+                wrap.appendChild(botClone);
+                const canvasBot = await html2canvas(botClone, { scale: 6, backgroundColor: '#ffffff', useCORS: true, logging: false });
+                const botImgData = canvasBot.toDataURL('image/png');
+                const botH = (canvasBot.height * mirW) / canvasBot.width;
+
+                pdf.addPage([mirW, botH + 18], 'landscape');
+                pdf.setFontSize(Math.max(4, mirW * 0.015));
+                pdf.setTextColor(160);
+                pdf.text(`Social-Miroir · BAT · Bande basse · Format ${fmt} · ${date}`, mirW / 2, 5, { align: 'center' });
+                pdf.addImage(botImgData, 'PNG', 0, 10, mirW, botH);
+
+                pdf.save(`BAT_${fmt}_${date.replace(/\//g,'-')}.pdf`);
             } catch(e) {
+                console.error(e);
                 alert('Erreur génération PDF. Réessayez.');
             }
 
