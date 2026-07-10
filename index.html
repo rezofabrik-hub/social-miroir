@@ -2165,7 +2165,6 @@
             btn.innerHTML = '⏳ Génération...';
             btn.disabled = true;
 
-            // Dimensions réelles des formats (largeur × hauteur en mm)
             const formatDims = {
                 'Mini':      [100,  200],
                 'Studio':    [300,  600],
@@ -2176,58 +2175,71 @@
             const fmt = fmtName || 'Original';
             const [mirW, mirH] = formatDims[fmt] || [600, 1000];
 
-            // Crée un conteneur temporaire hors-écran avec les 2 bandes
-            const wrap = document.createElement('div');
-            wrap.style.cssText = 'position:fixed;left:-9999px;top:0;background:white;width:600px;padding:0;';
-
-            const mirrorEl = document.querySelector('.mirror-frame');
-
-            // Bande haute : status + profile
-            const topClone = document.createElement('div');
-            topClone.style.cssText = 'background:white;';
-            const statusEl  = mirrorEl.querySelector('.v2-status');
-            const profileEl = mirrorEl.querySelector('.v2-profile');
-            if (statusEl)  topClone.appendChild(statusEl.cloneNode(true));
-            if (profileEl) topClone.appendChild(profileEl.cloneNode(true));
-
-            // Bande basse : statsbar
-            const statsEl  = mirrorEl.querySelector('.v2-statsbar');
-            const botClone = statsEl ? statsEl.cloneNode(true) : document.createElement('div');
-            botClone.style.cssText += 'background:white;';
-
-            wrap.appendChild(topClone);
-            document.body.appendChild(wrap);
+            // Capture le miroir LIVE directement (garantit rendu identique au configurateur)
+            const mirrorEl = document.getElementById('mirror-container');
 
             try {
                 const { jsPDF } = window.jspdf;
                 const date = new Date().toLocaleDateString('fr-FR');
-                const margin = 0; // pas de marge : bandes pleine largeur
 
-                // ── Page 1 : bande haute ──
-                const canvasTop = await html2canvas(topClone, { scale: 6, backgroundColor: '#ffffff', useCORS: true, logging: false });
-                const topImgData = canvasTop.toDataURL('image/png');
-                // Hauteur réelle de la bande haute en mm (proportionnelle)
-                const topH = (canvasTop.height * mirW) / canvasTop.width;
+                // Capture haute résolution du miroir live entier
+                const canvasFull = await html2canvas(mirrorEl, {
+                    scale: 6,
+                    backgroundColor: '#ffffff',
+                    useCORS: true,
+                    logging: false,
+                    allowTaint: true
+                });
 
-                const pdf = new jsPDF({ orientation: 'landscape', unit: 'mm', format: [mirW, topH + 18] });
-                // En-tête
-                pdf.setFontSize(Math.max(4, mirW * 0.015));
-                pdf.setTextColor(160);
-                pdf.text(`Social-Miroir · BAT · Format ${fmt} (${mirW/10}×${mirH/10} cm) · ${date}`, mirW / 2, 5, { align: 'center' });
-                pdf.addImage(topImgData, 'PNG', 0, 10, mirW, topH);
+                // Calcule les zones des bandes dans le canvas
+                const statusEl  = mirrorEl.querySelector('.v2-status');
+                const profileEl = mirrorEl.querySelector('.v2-profile');
+                const statsEl   = mirrorEl.querySelector('.v2-statsbar');
+                const mirRect   = mirrorEl.getBoundingClientRect();
+                const scale6    = canvasFull.width / mirRect.width;
 
-                // ── Page 2 : bande basse ──
-                wrap.innerHTML = '';
-                wrap.appendChild(botClone);
-                const canvasBot = await html2canvas(botClone, { scale: 6, backgroundColor: '#ffffff', useCORS: true, logging: false });
-                const botImgData = canvasBot.toDataURL('image/png');
-                const botH = (canvasBot.height * mirW) / canvasBot.width;
+                function cropBand(el) {
+                    if (!el) return null;
+                    const r = el.getBoundingClientRect();
+                    const x = (r.left - mirRect.left) * scale6;
+                    const y = (r.top  - mirRect.top)  * scale6;
+                    const w = r.width  * scale6;
+                    const h = r.height * scale6;
+                    const c = document.createElement('canvas');
+                    c.width = w; c.height = h;
+                    c.getContext('2d').drawImage(canvasFull, x, y, w, h, 0, 0, w, h);
+                    return c;
+                }
 
-                pdf.addPage([mirW, botH + 18], 'landscape');
-                pdf.setFontSize(Math.max(4, mirW * 0.015));
-                pdf.setTextColor(160);
-                pdf.text(`Social-Miroir · BAT · Bande basse · Format ${fmt} · ${date}`, mirW / 2, 5, { align: 'center' });
-                pdf.addImage(botImgData, 'PNG', 0, 10, mirW, botH);
+                // Bande haute = status + profile réunis
+                const topY  = (statusEl.getBoundingClientRect().top  - mirRect.top) * scale6;
+                const botY2 = (profileEl.getBoundingClientRect().bottom - mirRect.top) * scale6;
+                const topW  = canvasFull.width;
+                const topH2 = botY2 - topY;
+                const cTop  = document.createElement('canvas');
+                cTop.width = topW; cTop.height = topH2;
+                cTop.getContext('2d').drawImage(canvasFull, 0, topY, topW, topH2, 0, 0, topW, topH2);
+
+                // Bande basse = statsbar
+                const cBot = cropBand(statsEl);
+
+                // Calcule hauteurs en mm selon largeur réelle du miroir
+                const topHmm = (cTop.height * mirW) / cTop.width;
+                const botHmm = cBot ? (cBot.height * mirW) / cBot.width : 20;
+
+                const pdf = new jsPDF({ orientation: 'landscape', unit: 'mm', format: [mirW, topHmm + 14] });
+                pdf.setFontSize(Math.max(3, mirW * 0.012));
+                pdf.setTextColor(150);
+                pdf.text(`SOCIAL-MIROIR · BAT · ${fmt} ${mirW/10}×${mirH/10} cm · ${date}`, mirW / 2, 4.5, { align: 'center' });
+                pdf.addImage(cTop.toDataURL('image/png'), 'PNG', 0, 8, mirW, topHmm);
+
+                if (cBot) {
+                    pdf.addPage([mirW, botHmm + 14], 'landscape');
+                    pdf.setFontSize(Math.max(3, mirW * 0.012));
+                    pdf.setTextColor(150);
+                    pdf.text(`SOCIAL-MIROIR · BAT · Bande basse · ${fmt} · ${date}`, mirW / 2, 4.5, { align: 'center' });
+                    pdf.addImage(cBot.toDataURL('image/png'), 'PNG', 0, 8, mirW, botHmm);
+                }
 
                 pdf.save(`BAT_${fmt}_${date.replace(/\//g,'-')}.pdf`);
             } catch(e) {
@@ -2235,7 +2247,6 @@
                 alert('Erreur génération PDF. Réessayez.');
             }
 
-            document.body.removeChild(wrap);
             btn.innerHTML = orig;
             btn.disabled = false;
         }
