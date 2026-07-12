@@ -2275,142 +2275,93 @@
             const fmt = fmtName || 'Original';
             const [mirW, mirH] = formatDims[fmt] || [600, 1000];
 
-            // Lit les valeurs live du configurateur
-            const liveUser     = (document.getElementById('preview-username')?.textContent || 'votre_compte').trim();
-            const liveTime     = (document.getElementById('preview-time')?.textContent || '10:39').trim();
-            const liveLikes    = (document.getElementById('preview-likes')?.textContent || '3.4M').trim();
-            const liveComments = (document.getElementById('preview-comments')?.textContent || '1.4M').trim();
-            const liveReposts  = (document.getElementById('preview-reposts')?.textContent || '2.3M').trim();
-            const liveShares   = (document.getElementById('preview-shares')?.textContent || '1.6M').trim();
-            const liveCaption  = (document.getElementById('preview-caption')?.textContent || '').trim();
-            const liveHashtags = (document.getElementById('preview-hashtags')?.textContent || '').trim();
-            const liveAvatarSrc = document.getElementById('preview-logo')?.src || '';
-            const heartFilled  = document.getElementById('heart-svg')?.getAttribute('fill') === '#e1306c';
-            const heartColor   = heartFilled ? '#e1306c' : 'none';
-            const surfaceBg    = document.getElementById('mirror-surface')?.style.background || 'linear-gradient(160deg,#e0d8d0,#c8c0b8)';
-
-            // S=5 → miroir 2400px large (identique CSS×5)
-            // Les classes CSS du miroir utilisent des px fixes : on les multiplie par S
-            const S = 5;
-            const W = 480 * S; // 2400px
-            // v2-surface a aspect-ratio:3/4 donc hauteur = largeur × 4/3
-            const surfH = Math.round(W * 4 / 3);
-
-            const avatarInner = liveAvatarSrc && !liveAvatarSrc.includes('placehold')
-                ? `<img src="${liveAvatarSrc}" style="width:100%;height:100%;object-fit:cover;" crossorigin="anonymous">`
-                : `<div style="width:100%;height:100%;background:#fce7f3;display:flex;align-items:center;justify-content:center;font-size:${11*S}px;color:#e1306c;">★</div>`;
-
-            // Reconstruit le miroir identique au CSS du site (inline styles = S× les valeurs CSS)
-            const mirrorDiv = document.createElement('div');
-            mirrorDiv.style.cssText = `
-                width:${W}px;
-                background:white;
-                border-radius:${20*S}px;
-                overflow:hidden;
-                border:${2.5*S}px solid #111;
-                box-shadow:0 ${16*S}px ${50*S}px rgba(0,0,0,0.18);
-                font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
-            `;
-            mirrorDiv.innerHTML = `
-              <!-- v2-status -->
-              <div style="background:white;padding:${5*S}px ${12*S}px;display:flex;align-items:center;justify-content:space-between;font-size:${9.5*S}px;font-weight:700;color:#111;position:relative;">
-                <span>${liveTime}</span>
-                <!-- v2-notch -->
-                <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:${46*S}px;height:${11*S}px;background:#111;border-radius:${8*S}px;"></div>
-                <!-- v2-icons -->
-                <div style="display:flex;align-items:center;gap:${3*S}px;">
-                  <svg width="${11*S}" height="${11*S}" fill="#111" viewBox="0 0 20 20"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zm6-4a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zm6-3a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>
-                  <svg width="${18*S}" height="${9*S}" viewBox="0 0 22 10"><rect x="1" y="1" width="17" height="8" rx="2" stroke="#333" stroke-width="1.5" fill="none"/><path d="M19 3.5V6.5" stroke="#333" stroke-width="1.5" stroke-linecap="round"/><rect x="2.5" y="2.5" width="12" height="5" rx="1" fill="#22c55e"/></svg>
-                </div>
-              </div>
-              <!-- v2-profile -->
-              <div style="padding:${7*S}px ${10*S}px;display:flex;align-items:center;gap:${7*S}px;border-bottom:${1*S}px solid #f0f0f0;">
-                <!-- v2-av -->
-                <div style="width:${26*S}px;height:${26*S}px;border-radius:50%;overflow:hidden;flex-shrink:0;outline:${2*S}px solid rgba(225,48,108,0.25);outline-offset:${1*S}px;">
-                  ${avatarInner}
-                </div>
-                <!-- v2-uname -->
-                <div style="font-size:${10.5*S}px;font-weight:800;color:#111;flex:1;">${liveUser}</div>
-                <!-- v2-dots -->
-                <div style="display:flex;gap:${2*S}px;margin-left:auto;">
-                  <div style="width:${3*S}px;height:${3*S}px;border-radius:50%;background:rgba(0,0,0,0.5);"></div>
-                  <div style="width:${3*S}px;height:${3*S}px;border-radius:50%;background:rgba(0,0,0,0.5);"></div>
-                  <div style="width:${3*S}px;height:${3*S}px;border-radius:50%;background:rgba(0,0,0,0.5);"></div>
-                </div>
-              </div>
-              <!-- v2-surface (aspect-ratio 3/4) -->
-              <div style="width:${W}px;height:${surfH}px;background:${surfaceBg};position:relative;overflow:hidden;">
-                <!-- reflet text (opacity 0.07 comme le CSS) -->
-                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:${12*S}px;font-weight:900;letter-spacing:${0.3*S}em;text-transform:uppercase;opacity:0.07;color:#111;text-align:center;padding:${10*S}px;">VOTRE REFLET</div>
-              </div>
-              <!-- v2-statsbar -->
-              <div style="background:white;padding:${8*S}px ${10*S}px;">
-                <!-- v2-srow -->
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:${4*S}px;">
-                  <!-- v2-sicons -->
-                  <div style="display:flex;align-items:center;gap:${6*S}px;">
-                    <div style="display:flex;align-items:center;gap:${2*S}px;font-size:${9*S}px;font-weight:700;color:#111;">
-                      <svg fill="${heartColor}" stroke="#e1306c" viewBox="0 0 24 24" stroke-width="2" width="${11*S}" height="${11*S}"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-                      <span>${liveLikes}</span>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:${2*S}px;font-size:${9*S}px;font-weight:700;color:#111;">
-                      <svg fill="none" stroke="#111" viewBox="0 0 24 24" stroke-width="2" width="${11*S}" height="${11*S}"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-                      <span>${liveComments}</span>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:${2*S}px;font-size:${9*S}px;font-weight:700;color:#111;">
-                      <svg fill="none" stroke="#111" viewBox="0 0 24 24" stroke-width="2" width="${11*S}" height="${11*S}"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-                      <span>${liveReposts}</span>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:${2*S}px;font-size:${9*S}px;font-weight:700;color:#111;">
-                      <svg fill="none" stroke="#111" viewBox="0 0 24 24" stroke-width="2" width="${11*S}" height="${11*S}"><path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-                      <span>${liveShares}</span>
-                    </div>
-                  </div>
-                  <svg fill="none" stroke="#111" viewBox="0 0 24 24" stroke-width="2" style="width:${11*S}px;height:${11*S}px;flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
-                </div>
-                <!-- v2-cap -->
-                <p style="font-size:${9*S}px;color:#444;line-height:1.4;margin-bottom:${2*S}px;"><strong style="color:#111;">${liveUser}</strong> ${liveCaption}</p>
-                <!-- v2-hash -->
-                <p style="font-size:${8*S}px;font-weight:600;color:#1d4ed8;line-height:1.4;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">${liveHashtags}</p>
-                <!-- v2-brand -->
-                <p style="font-size:${4*S}px;color:#ccc;text-align:center;margin-top:${3*S}px;letter-spacing:${3*S}px;">social-miroir.fr</p>
-              </div>`;
-
-            const wrap = document.createElement('div');
-            wrap.style.cssText = 'position:fixed;left:-9999px;top:0;z-index:-999;pointer-events:none;';
-            wrap.appendChild(mirrorDiv);
-            document.body.appendChild(wrap);
-
             try {
                 const { jsPDF } = window.jspdf;
                 const date = new Date().toLocaleDateString('fr-FR');
 
-                // Capture à scale:2 → 4800px large (>300dpi pour Original 600mm)
-                const canvas = await html2canvas(mirrorDiv, {
-                    scale: 2,
+                // ── Capture directe de bat-mirror-container (déjà rendu dans la modal) ──
+                const el = document.getElementById('bat-mirror-container');
+
+                // Récupère la hauteur réelle de la surface (aspect-ratio calculé par le navigateur)
+                const origSurf = el.querySelector('.v2-surface');
+                const surfH = origSurf ? origSurf.getBoundingClientRect().height : 0;
+
+                const rawCanvas = await html2canvas(el, {
+                    scale: 5,
                     backgroundColor: '#ffffff',
                     useCORS: true,
                     allowTaint: false,
-                    logging: false
+                    logging: false,
+                    onclone: (_doc, clone) => {
+                        // 1. aspect-ratio → hauteur explicite (html2canvas ne supporte pas aspect-ratio)
+                        const surf = clone.querySelector('.v2-surface');
+                        if (surf && surfH > 0) {
+                            surf.style.height = surfH + 'px';
+                            surf.style.aspectRatio = 'unset';
+                        }
+                        // 2. Supprime l'animation glare (position aléatoire à la capture)
+                        const glare = clone.querySelector('.mirror-glare');
+                        if (glare) glare.remove();
+                        // 3. gap → margin-right (gap flex non fiable dans html2canvas)
+                        clone.querySelectorAll('.v2-sicons').forEach(row => {
+                            row.style.gap = '0';
+                            Array.from(row.children).forEach((c, i, a) => {
+                                c.style.marginRight = i < a.length - 1 ? '6px' : '0';
+                            });
+                        });
+                        clone.querySelectorAll('.v2-stat').forEach(stat => {
+                            stat.style.gap = '0';
+                            const svg = stat.querySelector('svg');
+                            if (svg) { svg.style.marginRight = '2px'; svg.style.display = 'inline-block'; svg.style.verticalAlign = 'middle'; }
+                        });
+                        // 4. currentColor → #111 (Tailwind reset bloque currentColor sur SVG)
+                        clone.querySelectorAll('svg').forEach(svg => {
+                            if (svg.getAttribute('stroke') === 'currentColor') svg.setAttribute('stroke', '#111');
+                            if (svg.getAttribute('fill') === 'currentColor') svg.setAttribute('fill', '#111');
+                        });
+                        // 5. -webkit-line-clamp → non supporté par html2canvas
+                        const hash = clone.querySelector('.v2-hash');
+                        if (hash) { hash.style.display = 'block'; hash.style.webkitLineClamp = 'unset'; hash.style.overflow = 'visible'; }
+                        // 6. Enlève box-shadow / border-radius / border (post-traités manuellement)
+                        clone.style.boxShadow = 'none';
+                        clone.style.borderRadius = '0';
+                        clone.style.overflow = 'visible';
+                        clone.style.border = 'none';
+                    }
                 });
 
-                // PDF aux dimensions réelles du miroir
+                // ── Post-traitement : coins arrondis + bordure noire via Canvas API ──
+                const radius = 20 * 5;  // même rayon que .mirror-chrome (20px × scale 5)
+                const border = Math.round(2.5 * 5);
+                const canvas = document.createElement('canvas');
+                canvas.width  = rawCanvas.width  + border * 2;
+                canvas.height = rawCanvas.height + border * 2;
+                const ctx = canvas.getContext('2d');
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.save();
+                ctx.beginPath();
+                ctx.roundRect(border, border, rawCanvas.width, rawCanvas.height, radius);
+                ctx.clip();
+                ctx.drawImage(rawCanvas, border, border);
+                ctx.restore();
+                ctx.strokeStyle = '#111111';
+                ctx.lineWidth = border;
+                ctx.beginPath();
+                ctx.roundRect(border / 2, border / 2, rawCanvas.width + border, rawCanvas.height + border, radius + border / 2);
+                ctx.stroke();
+
+                // ── PDF aux dimensions réelles du miroir ──
                 const marginX = 20;
                 const headerH = 24;
                 const imgHmm = (canvas.height / canvas.width) * mirW;
                 const pdfW = mirW + marginX * 2;
                 const pdfH = imgHmm + headerH + 14;
 
-                const pdf = new jsPDF({
-                    orientation: 'portrait',
-                    unit: 'mm',
-                    format: [pdfW, pdfH]
-                });
-
+                const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: [pdfW, pdfH] });
                 const cx = pdfW / 2;
                 const fs = Math.max(4, Math.min(14, mirW * 0.014));
 
-                // En-tête
                 pdf.setFontSize(fs);
                 pdf.setTextColor(230, 0, 126);
                 pdf.setFont('helvetica', 'bold');
@@ -2420,11 +2371,8 @@
                 pdf.setFont('helvetica', 'normal');
                 pdf.text(`Format ${fmt}  ·  ${mirW/10}×${mirH/10} cm  ·  ${date}`, cx, 17, { align: 'center' });
 
-                // Image miroir (sans déformation : ratio conservé)
                 pdf.addImage(canvas.toDataURL('image/jpeg', 0.95), 'JPEG', marginX, headerH, mirW, imgHmm);
 
-
-                // Footer
                 pdf.setFontSize(fs * 0.6);
                 pdf.setTextColor(190, 190, 190);
                 pdf.text('social-miroir.fr — Référence d\'impression', cx, pdfH - 3, { align: 'center' });
@@ -2435,7 +2383,6 @@
                 alert('Erreur PDF : ' + e.message);
             }
 
-            document.body.removeChild(wrap);
             btn.innerHTML = orig;
             btn.disabled = false;
         }
