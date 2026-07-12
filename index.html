@@ -1687,41 +1687,18 @@
         if (!window.jspdf || !window.html2canvas) return null;
         const [largeurMm, hauteurMm] = dimensionsReelles[formatId] || [600, 1000];
 
-        // Capturer uniquement le miroir BAT (sans ombre ni wrapper)
-        const mirror = document.getElementById('bat-mirror-container');
+        // Capture exacte de ce que le client voit dans la modal BAT
+        const mirror = document.getElementById('bat-visual-container');
         if (!mirror) return null;
 
-        // Override temporaire : supprimer box-shadow (qui crée des traits noirs autour)
-        const styleOverride = document.createElement('style');
-        styleOverride.id = 'pdf-client-override';
-        styleOverride.textContent = `
-            #bat-mirror-container {
-                box-shadow: none !important;
-                max-height: none !important;
-            }
-            #bat-mirror-container * {
-                max-height: none !important;
-            }
-        `;
-        document.head.appendChild(styleOverride);
+        await new Promise(r => setTimeout(r, 80));
 
-        await new Promise(r => setTimeout(r, 100));
-
-        const rect = mirror.getBoundingClientRect();
         const canvas = await html2canvas(mirror, {
-            scale: 3,
+            scale: 4,
             backgroundColor: '#ffffff',
             useCORS: true,
             logging: false,
-            width: rect.width,
-            height: mirror.scrollHeight,
-            windowWidth: window.innerWidth,
-            windowHeight: window.innerHeight,
-            scrollX: -window.scrollX,
-            scrollY: -window.scrollY,
         });
-
-        document.head.removeChild(styleOverride);
 
         const { jsPDF } = window.jspdf;
         const PAGE_W = 210, PAGE_H = 297;
