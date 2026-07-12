@@ -997,7 +997,7 @@
                         </div>
                     </div>
                     <div class="v2-profile">
-                        <div class="v2-av"><img id="bat-preview-logo" src="https://placehold.co/60x60/fce7f3/e6007e?text=★" alt="Logo"></div>
+                        <div class="v2-av"><img id="bat-preview-logo" src="https://placehold.co/60x60/fce7f3/e6007e?text=★" alt="Logo" crossorigin="anonymous"></div>
                         <div class="v2-uname" id="bat-preview-username">votre_compte</div>
                         <div class="v2-dots"><div class="v2-dot"></div><div class="v2-dot"></div><div class="v2-dot"></div></div>
                     </div>
@@ -1693,13 +1693,32 @@
         const mirror = document.getElementById('bat-preview-zone');
         if (!mirror) return null;
 
-        await new Promise(r => setTimeout(r, 80));
+        // Attendre que les images soient chargées
+        await new Promise(r => setTimeout(r, 300));
 
         const canvas = await html2canvas(mirror, {
             scale: 4,
             backgroundColor: '#ffffff',
             useCORS: true,
+            allowTaint: true,
             logging: false,
+            imageTimeout: 5000,
+            onclone: (doc) => {
+                // Dans le clone, forcer aspect-ratio en hauteur explicite
+                const surf = doc.getElementById('bat-mirror-surface');
+                if (surf) {
+                    const w = surf.parentElement?.offsetWidth || 186;
+                    surf.style.height = Math.round(w * 4 / 3) + 'px';
+                    surf.style.aspectRatio = 'unset';
+                }
+                // Forcer affichage des hashtags (webkit-line-clamp pas supporté)
+                const hash = doc.getElementById('bat-preview-hashtags');
+                if (hash) {
+                    hash.style.display = 'block';
+                    hash.style.overflow = 'hidden';
+                    hash.style.webkitLineClamp = 'unset';
+                }
+            }
         });
 
         const { jsPDF } = window.jspdf;
