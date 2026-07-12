@@ -1725,8 +1725,7 @@
         const areaW = PAGE_W - MARGIN * 2;
         const areaH = PAGE_H - HEADER_H - MARGIN * 2 - 10;
         const ratio = canvas.width / canvas.height;
-        // Ajuster pour tenir dans la zone utile (largeur max 70mm)
-        let mW = Math.min(70, areaW), mH = mW / ratio;
+        let mW = 55, mH = mW / ratio;
         if (mH > areaH) { mH = areaH; mW = mH * ratio; }
         const mX = (PAGE_W - mW) / 2;
         const mY = HEADER_H + MARGIN;
