@@ -2360,20 +2360,14 @@
                 const fs = Math.max(4, Math.min(14, mirW * 0.014));
 
                 // En-tête
-                pdf.setDrawColor(230, 0, 126);
-                pdf.setLineWidth(0.8);
-                pdf.line(marginX, 7, pdfW - marginX, 7);
                 pdf.setFontSize(fs);
                 pdf.setTextColor(230, 0, 126);
                 pdf.setFont('helvetica', 'bold');
-                pdf.text('BON À TIRER — SOCIAL-MIROIR.FR', cx, 13, { align: 'center' });
+                pdf.text('BON À TIRER — SOCIAL-MIROIR.FR', cx, 10, { align: 'center' });
                 pdf.setFontSize(fs * 0.75);
                 pdf.setTextColor(100, 100, 100);
                 pdf.setFont('helvetica', 'normal');
-                pdf.text(`Format ${fmt}  ·  ${mirW/10}×${mirH/10} cm  ·  ${date}`, cx, 19, { align: 'center' });
-                pdf.setDrawColor(230, 230, 230);
-                pdf.setLineWidth(0.3);
-                pdf.line(marginX, 22, pdfW - marginX, 22);
+                pdf.text(`Format ${fmt}  ·  ${mirW/10}×${mirH/10} cm  ·  ${date}`, cx, 17, { align: 'center' });
 
                 // Image miroir (sans déformation : ratio conservé)
                 pdf.addImage(canvas.toDataURL('image/jpeg', 0.95), 'JPEG', marginX, headerH, mirW, imgHmm);
