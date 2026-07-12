@@ -989,9 +989,12 @@
             <div id="bat-visual-container" class="w-full pointer-events-none overflow-visible">
                 <!-- Injecté dynamiquement -->
             </div>
-            <button onclick="generateBatPDF()" id="btn-bat-pdf" style="margin-top:16px;display:flex;align-items:center;justify-content:center;gap:8px;background:#0f0f0f;color:white;border:none;border-radius:10px;padding:11px 16px;font-size:12px;font-weight:700;cursor:pointer;width:100%;letter-spacing:0.03em;transition:opacity 0.15s;" onmouseover="this.style.opacity=0.8" onmouseout="this.style.opacity=1">
-                <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17v3a2 2 0 002 2h14a2 2 0 002-2v-3"/></svg>
-                Télécharger BAT PDF
+            <div style="margin-top:16px;background:#fef3c7;border:1.5px solid #f59e0b;border-radius:10px;padding:9px 12px;font-size:11px;color:#92400e;font-weight:600;text-align:center;line-height:1.4;">
+                📥 Téléchargez votre BAT avant de payer
+            </div>
+            <button onclick="generateBatPDF()" id="btn-bat-pdf" style="margin-top:8px;display:flex;align-items:center;justify-content:center;gap:8px;background:#e6007e;color:white;border:none;border-radius:10px;padding:12px 16px;font-size:13px;font-weight:700;cursor:pointer;width:100%;letter-spacing:0.03em;transition:opacity 0.15s;" onmouseover="this.style.opacity=0.85" onmouseout="this.style.opacity=1">
+                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17v3a2 2 0 002 2h14a2 2 0 002-2v-3"/></svg>
+                Télécharger mon BAT PDF
             </button>
         </div>
 
@@ -1543,9 +1546,8 @@
                 reposts:       orderData.textes.reposts,
                 partages:      orderData.textes.partages,
                 heure:         orderData.textes.heure,
-                // BAT PDF en base64 (pièce jointe)
-                bat_pdf:       pdfBase64 ? `data:application/pdf;base64,${pdfBase64}` : '',
-                bat_filename:  `BAT-SocialMiroir-${orderData.format}.pdf`,
+                bat_pdf:       '',
+                bat_filename:  '',
             });
             console.log('✅ Email BAT envoyé à rezofabrik@gmail.com');
         } catch (err) {
