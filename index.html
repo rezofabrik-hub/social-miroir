@@ -1772,21 +1772,13 @@
             pdf.text(`Dim. : ${dimLabel}`, PAGE_W - 10, 27, { align: 'right' });
             pdf.text(`Date : ${today}`, PAGE_W - 10, 34, { align: 'right' });
 
-            // ── Contour miroir (dessiné AVANT l'image pour ne pas être recouvert) ──
-            pdf.setDrawColor(17, 17, 17);
-            pdf.setLineWidth(0.3);
-            pdf.roundedRect(mX - 0.3, mY - 0.3, mW + 0.6, mH + 0.6, 3.5, 3.5, 'S');
-
             // ── Image miroir ──
             pdf.addImage(imgData, 'JPEG', mX, mY, mW, mH);
 
             // ── Légende sous le miroir ──
-            const legendeY = mY + mH + 8;
-            pdf.setDrawColor(230, 0, 126);
-            pdf.setLineWidth(0.4);
-            pdf.line(mX, legendeY, mX + mW, legendeY);
+            const legendeY = mY + mH + 6;
             pdf.setFontSize(7); pdf.setTextColor(100, 100, 100); pdf.setFont('helvetica', 'normal');
-            pdf.text(`Miroir ${formatLabel} · ${dimLabel} · Dibond 3mm · RezoFabrik`, PAGE_W/2, legendeY + 5, { align: 'center' });
+            pdf.text(`Miroir ${formatLabel} · ${dimLabel} · Dibond 3mm · RezoFabrik`, PAGE_W/2, legendeY, { align: 'center' });
 
             base64 = pdf.output('datauristring').split(',')[1];
             taille = base64.length * 0.75;
@@ -2351,7 +2343,7 @@
                 const pdfH = imgHmm + headerH + 14;
 
                 const pdf = new jsPDF({
-                    orientation: pdfW > pdfH ? 'landscape' : 'portrait',
+                    orientation: 'portrait',
                     unit: 'mm',
                     format: [pdfW, pdfH]
                 });
