@@ -1727,35 +1727,33 @@
                     hash.style.overflow = 'visible';
                 }
 
-                // Stats : inline-flex + vertical-align + margin au lieu de gap
-                el.querySelectorAll('.v2-stat').forEach(stat => {
-                    stat.style.display = 'inline-flex';
-                    stat.style.alignItems = 'center';
-                    stat.style.verticalAlign = 'middle';
-                    const svg = stat.querySelector('svg');
-                    if (svg) {
-                        svg.style.display = 'inline-block';
-                        svg.style.verticalAlign = 'middle';
-                        svg.style.marginRight = '2px';
-                        svg.style.flexShrink = '0';
-                        svg.style.width = '11px';
-                        svg.style.height = '11px';
-                    }
-                    const span = stat.querySelector('span');
-                    if (span) { span.style.display = 'inline-block'; span.style.verticalAlign = 'middle'; }
+                // Stats : corriger l'alignement icône + chiffre
+                // Tailwind reset force svg{display:block} → override en inline-block
+                // currentColor non résolu par html2canvas → remplacer par #111
+                el.querySelectorAll('.v2-srow').forEach(row => {
+                    row.style.cssText += 'display:flex!important;align-items:center!important;justify-content:space-between!important;';
                 });
                 el.querySelectorAll('.v2-sicons').forEach(sicons => {
-                    sicons.style.display = 'flex';
-                    sicons.style.alignItems = 'center';
-                    sicons.style.gap = '0';
+                    sicons.style.cssText += 'display:flex!important;align-items:center!important;gap:0!important;';
                     Array.from(sicons.children).forEach((c, i, arr) => {
-                        if (i < arr.length - 1) c.style.marginRight = '6px';
+                        c.style.marginRight = i < arr.length - 1 ? '6px' : '0';
                     });
                 });
-                el.querySelectorAll('.v2-srow').forEach(row => {
-                    row.style.display = 'flex';
-                    row.style.alignItems = 'center';
-                    row.style.justifyContent = 'space-between';
+                el.querySelectorAll('.v2-stat').forEach(stat => {
+                    stat.style.cssText += 'display:flex!important;align-items:center!important;gap:0!important;font-size:9px!important;font-weight:700!important;color:#111!important;line-height:1!important;';
+                    // Tous les SVG dans stat : forcer inline-block + taille fixe + résoudre currentColor
+                    stat.querySelectorAll('svg').forEach(svg => {
+                        svg.style.cssText += 'display:inline-block!important;width:11px!important;height:11px!important;flex-shrink:0!important;margin-right:2px!important;vertical-align:middle!important;';
+                        if (svg.getAttribute('stroke') === 'currentColor') svg.setAttribute('stroke', '#111');
+                        if (svg.getAttribute('fill') === 'currentColor') svg.setAttribute('fill', '#111');
+                    });
+                    const span = stat.querySelector('span');
+                    if (span) span.style.cssText += 'display:inline-block!important;vertical-align:middle!important;line-height:1!important;';
+                });
+                // Icône bookmark (svg direct dans v2-srow)
+                el.querySelectorAll('.v2-srow > svg').forEach(svg => {
+                    svg.style.cssText += 'display:inline-block!important;flex-shrink:0!important;';
+                    if (svg.getAttribute('stroke') === 'currentColor') svg.setAttribute('stroke', '#111');
                 });
             }
         });
