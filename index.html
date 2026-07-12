@@ -356,8 +356,10 @@
         #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
         /* Mirror clone in modal - pas de contrainte de hauteur */
-        #bat-visual-container .mirror-clone {
-            overflow: visible;
+        /* Dans la modal BAT, le miroir cloné prend toute la largeur disponible */
+        #bat-visual-container > .mirror-chrome,
+        #bat-visual-container > [class*="format-"] {
+            width: 100% !important;
         }
 
         .mirror-chrome {
@@ -2120,28 +2122,23 @@
             let total = (fmtPrice || 160) + (ledActive ? 29.90 : 0);
             $('cart-total-price').textContent = formatPrice(total);
 
-            // Clone le mirror-frame entier (identique à la page d'accueil)
+            // Clone uniquement #mirror-container (le miroir lui-même, sans le cadre ni le label)
             const visContainer = $('bat-visual-container');
             visContainer.innerHTML = '';
-            const mirrorFrame = document.querySelector('.mirror-frame');
-            const frameClone = mirrorFrame.cloneNode(true);
 
-            // Supprimer les IDs dupliqués
-            frameClone.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
-            frameClone.classList.add('mirror-clone');
-            frameClone.style.cssText = 'width:100%;min-height:unset;height:auto;overflow:visible;position:relative;';
+            const mirrorSrc = document.getElementById('mirror-container');
+            const mirrorClone = mirrorSrc.cloneNode(true);
 
-            // Synchroniser la couleur de surface
-            const cloneSurface = frameClone.querySelector('.mirror-surface');
-            if (cloneSurface && mirrorSurface) cloneSurface.style.background = mirrorSurface.style.background;
+            // Retirer l'ID pour éviter les doublons, conserver toutes les classes
+            mirrorClone.removeAttribute('id');
+            mirrorClone.style.cssText = 'width:100%;transition:none;';
 
-            // Synchroniser LED sur le container cloné
-            const cloneChrome = frameClone.querySelector('#mirror-container') || frameClone.querySelector('.mirror-chrome');
-            if (cloneChrome && mirrorContainerEl) {
-                cloneChrome.className = mirrorContainerEl.className;
-            }
+            // Synchroniser le fond de la surface réfléchissante (v2-surface)
+            const liveSurf = document.getElementById('mirror-surface');
+            const cloneSurf = mirrorClone.querySelector('.v2-surface');
+            if (liveSurf && cloneSurf) cloneSurf.style.background = liveSurf.style.background;
 
-            visContainer.appendChild(frameClone);
+            visContainer.appendChild(mirrorClone);
 
             // Reset checkboxes & bouton
             checkboxBat.checked = false;
