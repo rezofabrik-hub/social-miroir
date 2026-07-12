@@ -1695,20 +1695,21 @@
 
         await new Promise(r => setTimeout(r, 150));
 
-        const canvas = await html2canvas(batMirror, {
+        const rawCanvas = await html2canvas(batMirror, {
             scale: 4,
-            backgroundColor: null,
+            backgroundColor: '#ffffff',
             useCORS: true,
             allowTaint: true,
             logging: false,
             imageTimeout: 8000,
             onclone: (doc, el) => {
-                // Supprimer box-shadow (halo noir) mais garder border + border-radius arrondis
+                // Supprimer box-shadow et border (on les redessinera sur le canvas)
                 el.style.boxShadow = 'none';
-                el.style.borderRadius = '20px';
-                el.style.overflow = 'hidden';
+                el.style.border = 'none';
+                el.style.borderRadius = '0';
+                el.style.overflow = 'visible';
 
-                // aspect-ratio → hauteur explicite (non supporté par html2canvas)
+                // aspect-ratio → hauteur explicite
                 const surf = doc.getElementById('bat-mirror-surface') || el.querySelector('.v2-surface');
                 if (surf) {
                     const w = el.offsetWidth || 186;
@@ -1726,12 +1727,22 @@
                     hash.style.overflow = 'visible';
                 }
 
-                // Stats : forcer flex + convertir gap en margin (gap mal supporté par html2canvas)
+                // Stats : inline-flex + vertical-align + margin au lieu de gap
                 el.querySelectorAll('.v2-stat').forEach(stat => {
-                    stat.style.display = 'flex';
+                    stat.style.display = 'inline-flex';
                     stat.style.alignItems = 'center';
+                    stat.style.verticalAlign = 'middle';
                     const svg = stat.querySelector('svg');
-                    if (svg) { svg.style.marginRight = '2px'; svg.style.flexShrink = '0'; }
+                    if (svg) {
+                        svg.style.display = 'inline-block';
+                        svg.style.verticalAlign = 'middle';
+                        svg.style.marginRight = '2px';
+                        svg.style.flexShrink = '0';
+                        svg.style.width = '11px';
+                        svg.style.height = '11px';
+                    }
+                    const span = stat.querySelector('span');
+                    if (span) { span.style.display = 'inline-block'; span.style.verticalAlign = 'middle'; }
                 });
                 el.querySelectorAll('.v2-sicons').forEach(sicons => {
                     sicons.style.display = 'flex';
@@ -1748,6 +1759,30 @@
                 });
             }
         });
+
+        // Appliquer les coins arrondis + bordure noire sur le canvas final
+        const S4 = 4; // scale utilisé
+        const radius = 20 * S4;
+        const border = Math.round(2.5 * S4);
+        const canvas = document.createElement('canvas');
+        canvas.width  = rawCanvas.width  + border * 2;
+        canvas.height = rawCanvas.height + border * 2;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // Clip arrondi puis dessiner le contenu
+        ctx.save();
+        ctx.beginPath();
+        ctx.roundRect(border, border, rawCanvas.width, rawCanvas.height, radius);
+        ctx.clip();
+        ctx.drawImage(rawCanvas, border, border);
+        ctx.restore();
+        // Bordure noire arrondie par dessus
+        ctx.strokeStyle = '#111111';
+        ctx.lineWidth = border;
+        ctx.beginPath();
+        ctx.roundRect(border / 2, border / 2, rawCanvas.width + border, rawCanvas.height + border, radius + border / 2);
+        ctx.stroke();
 
         const { jsPDF } = window.jspdf;
         const PAGE_W = 210, PAGE_H = 297;
