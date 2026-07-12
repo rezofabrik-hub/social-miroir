@@ -1689,35 +1689,101 @@
         if (!window.jspdf || !window.html2canvas) return null;
         const [largeurMm, hauteurMm] = dimensionsReelles[formatId] || [600, 1000];
 
-        // Screenshot direct de bat-preview-zone = copie exacte de ce que voit le client
-        const batZone = document.getElementById('bat-preview-zone');
-        if (!batZone) return null;
+        // Même lecture de données que generateBatPDF (preview-* = source fiable)
+        const liveUser     = (document.getElementById('preview-username')?.textContent || 'votre_compte').trim();
+        const liveTime     = (document.getElementById('preview-time')?.textContent || '10:39').trim();
+        const liveLikes    = (document.getElementById('preview-likes')?.textContent || '3.4M').trim();
+        const liveComments = (document.getElementById('preview-comments')?.textContent || '1.4M').trim();
+        const liveReposts  = (document.getElementById('preview-reposts')?.textContent || '2.3M').trim();
+        const liveShares   = (document.getElementById('preview-shares')?.textContent || '1.6M').trim();
+        const liveCaption  = (document.getElementById('preview-caption')?.textContent || '').trim();
+        const liveHashtags = (document.getElementById('preview-hashtags')?.textContent || '').trim();
+        const liveAvatarSrc = document.getElementById('preview-logo')?.src || '';
+        const heartFilled  = document.getElementById('heart-svg')?.getAttribute('fill') === '#e1306c';
+        const heartColor   = heartFilled ? '#e1306c' : 'none';
+        const surfaceBg    = document.getElementById('mirror-surface')?.style.background || 'linear-gradient(160deg,#e0d8d0,#c8c0b8)';
 
+        // Même construction S=5 que generateBatPDF — rendu pixel-parfait garanti
+        const S = 5;
+        const W = 480 * S;
+        const surfH = Math.round(W * 4 / 3);
+        const avatarInner = liveAvatarSrc && !liveAvatarSrc.includes('placehold')
+            ? `<img src="${liveAvatarSrc}" style="width:100%;height:100%;object-fit:cover;" crossorigin="anonymous">`
+            : `<div style="width:100%;height:100%;background:#fce7f3;display:flex;align-items:center;justify-content:center;font-size:${11*S}px;color:#e1306c;">★</div>`;
+
+        const mirrorDiv = document.createElement('div');
+        mirrorDiv.style.cssText = `width:${W}px;background:white;border-radius:${20*S}px;overflow:hidden;border:${2.5*S}px solid #111;box-shadow:0 ${16*S}px ${50*S}px rgba(0,0,0,0.18);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;`;
+        mirrorDiv.innerHTML = `
+          <div style="background:white;padding:${5*S}px ${12*S}px;display:flex;align-items:center;justify-content:space-between;font-size:${9.5*S}px;font-weight:700;color:#111;position:relative;">
+            <span>${liveTime}</span>
+            <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:${46*S}px;height:${11*S}px;background:#111;border-radius:${8*S}px;"></div>
+            <div style="display:flex;align-items:center;gap:${3*S}px;">
+              <svg width="${11*S}" height="${11*S}" fill="#111" viewBox="0 0 20 20"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zm6-4a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zm6-3a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>
+              <svg width="${18*S}" height="${9*S}" viewBox="0 0 22 10"><rect x="1" y="1" width="17" height="8" rx="2" stroke="#333" stroke-width="1.5" fill="none"/><path d="M19 3.5V6.5" stroke="#333" stroke-width="1.5" stroke-linecap="round"/><rect x="2.5" y="2.5" width="12" height="5" rx="1" fill="#22c55e"/></svg>
+            </div>
+          </div>
+          <div style="padding:${7*S}px ${10*S}px;display:flex;align-items:center;gap:${7*S}px;border-bottom:${1*S}px solid #f0f0f0;">
+            <div style="width:${26*S}px;height:${26*S}px;border-radius:50%;overflow:hidden;flex-shrink:0;outline:${2*S}px solid rgba(225,48,108,0.25);outline-offset:${1*S}px;">${avatarInner}</div>
+            <div style="font-size:${10.5*S}px;font-weight:800;color:#111;flex:1;">${liveUser}</div>
+            <div style="display:flex;gap:${2*S}px;margin-left:auto;">
+              <div style="width:${3*S}px;height:${3*S}px;border-radius:50%;background:rgba(0,0,0,0.5);"></div>
+              <div style="width:${3*S}px;height:${3*S}px;border-radius:50%;background:rgba(0,0,0,0.5);"></div>
+              <div style="width:${3*S}px;height:${3*S}px;border-radius:50%;background:rgba(0,0,0,0.5);"></div>
+            </div>
+          </div>
+          <div style="width:${W}px;height:${surfH}px;background:${surfaceBg};position:relative;overflow:hidden;">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:${12*S}px;font-weight:900;letter-spacing:${0.3*S}em;text-transform:uppercase;opacity:0.07;color:#111;text-align:center;padding:${10*S}px;">VOTRE REFLET</div>
+          </div>
+          <div style="background:white;padding:${8*S}px ${10*S}px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:${4*S}px;">
+              <div style="display:flex;align-items:center;gap:${6*S}px;">
+                <div style="display:flex;align-items:center;gap:${2*S}px;font-size:${9*S}px;font-weight:700;color:#111;">
+                  <svg fill="${heartColor}" stroke="#e1306c" viewBox="0 0 24 24" stroke-width="2" width="${11*S}" height="${11*S}"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                  <span>${liveLikes}</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:${2*S}px;font-size:${9*S}px;font-weight:700;color:#111;">
+                  <svg fill="none" stroke="#111" viewBox="0 0 24 24" stroke-width="2" width="${11*S}" height="${11*S}"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                  <span>${liveComments}</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:${2*S}px;font-size:${9*S}px;font-weight:700;color:#111;">
+                  <svg fill="none" stroke="#111" viewBox="0 0 24 24" stroke-width="2" width="${11*S}" height="${11*S}"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                  <span>${liveReposts}</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:${2*S}px;font-size:${9*S}px;font-weight:700;color:#111;">
+                  <svg fill="none" stroke="#111" viewBox="0 0 24 24" stroke-width="2" width="${11*S}" height="${11*S}"><path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                  <span>${liveShares}</span>
+                </div>
+              </div>
+              <svg fill="none" stroke="#111" viewBox="0 0 24 24" stroke-width="2" style="width:${11*S}px;height:${11*S}px;flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
+            </div>
+            <p style="font-size:${9*S}px;color:#444;line-height:1.4;margin-bottom:${2*S}px;"><strong style="color:#111;">${liveUser}</strong> ${liveCaption}</p>
+            <p style="font-size:${8*S}px;font-weight:600;color:#1d4ed8;line-height:1.4;">${liveHashtags}</p>
+            <p style="font-size:${4*S}px;color:#ccc;text-align:center;margin-top:${3*S}px;letter-spacing:${3*S}px;">social-miroir.fr</p>
+          </div>`;
+
+        const wrap = document.createElement('div');
+        wrap.style.cssText = 'position:fixed;left:-9999px;top:0;z-index:-999;pointer-events:none;';
+        wrap.appendChild(mirrorDiv);
+        document.body.appendChild(wrap);
         await new Promise(r => setTimeout(r, 200));
 
-        // Seule correction nécessaire : aspect-ratio non supporté par html2canvas
-        const canvas = await html2canvas(batZone, {
-            scale: 4,
-            backgroundColor: '#ffffff',
-            useCORS: true,
-            allowTaint: true,
-            logging: false,
-            imageTimeout: 8000,
-            onclone: (doc) => {
-                const surf = doc.getElementById('bat-mirror-surface');
-                if (surf) {
-                    const mirror = doc.getElementById('bat-mirror-container');
-                    const w = mirror ? mirror.offsetWidth : 186;
-                    surf.style.height = Math.round(w * 4 / 3) + 'px';
-                    surf.style.aspectRatio = 'unset';
-                    surf.style.minHeight = 'unset';
-                    surf.style.maxHeight = 'unset';
-                }
-                // Lever le line-clamp hashtags
-                const hash = doc.getElementById('bat-preview-hashtags');
-                if (hash) { hash.style.webkitLineClamp = 'unset'; hash.style.overflow = 'visible'; hash.style.display = 'block'; }
-            }
-        });
+        let rawCanvas;
+        try {
+            rawCanvas = await html2canvas(mirrorDiv, { scale: 2, backgroundColor: '#ffffff', useCORS: true, allowTaint: false, logging: false });
+        } finally {
+            document.body.removeChild(wrap);
+        }
+
+        // Coins arrondis + bordure noire sur canvas
+        const radius = 20 * 2, border = Math.round(2.5 * 2);
+        const canvas = document.createElement('canvas');
+        canvas.width  = rawCanvas.width  + border * 2;
+        canvas.height = rawCanvas.height + border * 2;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.save(); ctx.beginPath(); ctx.roundRect(border, border, rawCanvas.width, rawCanvas.height, radius); ctx.clip(); ctx.drawImage(rawCanvas, border, border); ctx.restore();
+        ctx.strokeStyle = '#111111'; ctx.lineWidth = border;
+        ctx.beginPath(); ctx.roundRect(border/2, border/2, rawCanvas.width + border, rawCanvas.height + border, radius + border/2); ctx.stroke();
 
         const { jsPDF } = window.jspdf;
         const PAGE_W = 210, PAGE_H = 297;
