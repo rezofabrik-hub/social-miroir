@@ -1791,7 +1791,7 @@
         const areaW = PAGE_W - MARGIN * 2;
         const areaH = PAGE_H - HEADER_H - MARGIN * 2 - 10;
         const ratio = canvas.width / canvas.height;
-        let mW = areaW * 0.90, mH = mW / ratio;
+        let mW = areaW * 0.50, mH = mW / ratio;
         if (mH > areaH) { mH = areaH; mW = mH * ratio; }
         const mX = (PAGE_W - mW) / 2;
         const mY = HEADER_H + MARGIN;
