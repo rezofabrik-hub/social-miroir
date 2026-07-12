@@ -984,7 +984,8 @@
         <div class="w-full md:w-2/5 flex flex-col p-6 border-b md:border-b-0 md:border-r border-gray-100 md:h-full md:overflow-y-auto">
             <p class="font-display font-bold text-ink text-sm mb-4 text-center tracking-wide uppercase">Votre Bon À Tirer</p>
             <div id="bat-visual-container" class="w-full pointer-events-none flex items-center justify-center">
-                <!-- Miroir BAT identique au configurateur -->
+                <!-- Wrapper 300px = même que #col-mirror dans le configurateur -->
+                <div style="width:300px;display:flex;align-items:center;justify-content:center;">
                 <div id="bat-mirror-container" class="format-Original mirror-chrome mirror-surface" style="transition:none;background:white;">
                     <div class="v2-status">
                         <span id="bat-preview-time">10:39</span>
@@ -1018,6 +1019,7 @@
                         <p class="v2-brand">social-miroir.fr</p>
                     </div>
                 </div>
+                </div><!-- fin wrapper 300px -->
             </div>
             <div style="margin-top:16px;background:#fef3c7;border:1.5px solid #f59e0b;border-radius:10px;padding:9px 12px;font-size:11px;color:#92400e;font-weight:600;text-align:center;line-height:1.4;">
                 📥 Téléchargez votre BAT avant de payer
