@@ -1703,9 +1703,12 @@
             logging: false,
             imageTimeout: 8000,
             onclone: (doc, el) => {
-                // Supprimer box-shadow (crée des halo noirs autour du miroir)
+                // Supprimer box-shadow (halo noir) mais garder border + border-radius arrondis
                 el.style.boxShadow = 'none';
-                // Convertir aspect-ratio en hauteur explicite (html2canvas ne supporte pas aspect-ratio)
+                el.style.borderRadius = '20px';
+                el.style.overflow = 'hidden';
+
+                // aspect-ratio → hauteur explicite (non supporté par html2canvas)
                 const surf = doc.getElementById('bat-mirror-surface') || el.querySelector('.v2-surface');
                 if (surf) {
                     const w = el.offsetWidth || 186;
@@ -1714,13 +1717,35 @@
                     surf.style.minHeight = 'unset';
                     surf.style.maxHeight = 'unset';
                 }
-                // Afficher tous les hashtags (webkit-line-clamp non supporté)
+
+                // Hashtags : lever le line-clamp
                 const hash = doc.getElementById('bat-preview-hashtags') || el.querySelector('.v2-hash');
                 if (hash) {
                     hash.style.webkitLineClamp = 'unset';
                     hash.style.display = 'block';
                     hash.style.overflow = 'visible';
                 }
+
+                // Stats : forcer flex + convertir gap en margin (gap mal supporté par html2canvas)
+                el.querySelectorAll('.v2-stat').forEach(stat => {
+                    stat.style.display = 'flex';
+                    stat.style.alignItems = 'center';
+                    const svg = stat.querySelector('svg');
+                    if (svg) { svg.style.marginRight = '2px'; svg.style.flexShrink = '0'; }
+                });
+                el.querySelectorAll('.v2-sicons').forEach(sicons => {
+                    sicons.style.display = 'flex';
+                    sicons.style.alignItems = 'center';
+                    sicons.style.gap = '0';
+                    Array.from(sicons.children).forEach((c, i, arr) => {
+                        if (i < arr.length - 1) c.style.marginRight = '6px';
+                    });
+                });
+                el.querySelectorAll('.v2-srow').forEach(row => {
+                    row.style.display = 'flex';
+                    row.style.alignItems = 'center';
+                    row.style.justifyContent = 'space-between';
+                });
             }
         });
 
