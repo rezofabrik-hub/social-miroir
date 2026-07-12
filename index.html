@@ -1689,100 +1689,44 @@
         if (!window.jspdf || !window.html2canvas) return null;
         const [largeurMm, hauteurMm] = dimensionsReelles[formatId] || [600, 1000];
 
-        // Capture directe du miroir BAT affiché dans la modale (= exactement ce que voit le client)
-        const batMirror = document.getElementById('bat-mirror-container');
-        if (!batMirror) return null;
+        // Screenshot direct de bat-preview-zone = copie exacte de ce que voit le client
+        const batZone = document.getElementById('bat-preview-zone');
+        if (!batZone) return null;
 
-        await new Promise(r => setTimeout(r, 150));
+        await new Promise(r => setTimeout(r, 200));
 
-        const rawCanvas = await html2canvas(batMirror, {
+        // Seule correction nécessaire : aspect-ratio non supporté par html2canvas
+        const canvas = await html2canvas(batZone, {
             scale: 4,
             backgroundColor: '#ffffff',
             useCORS: true,
             allowTaint: true,
             logging: false,
             imageTimeout: 8000,
-            onclone: (doc, el) => {
-                // Supprimer box-shadow et border (on les redessinera sur le canvas)
-                el.style.boxShadow = 'none';
-                el.style.border = 'none';
-                el.style.borderRadius = '0';
-                el.style.overflow = 'visible';
-
-                // aspect-ratio → hauteur explicite
-                const surf = doc.getElementById('bat-mirror-surface') || el.querySelector('.v2-surface');
+            onclone: (doc) => {
+                const surf = doc.getElementById('bat-mirror-surface');
                 if (surf) {
-                    const w = el.offsetWidth || 186;
+                    const mirror = doc.getElementById('bat-mirror-container');
+                    const w = mirror ? mirror.offsetWidth : 186;
                     surf.style.height = Math.round(w * 4 / 3) + 'px';
                     surf.style.aspectRatio = 'unset';
                     surf.style.minHeight = 'unset';
                     surf.style.maxHeight = 'unset';
                 }
-
-                // Hashtags : lever le line-clamp
-                const hash = doc.getElementById('bat-preview-hashtags') || el.querySelector('.v2-hash');
-                if (hash) {
-                    hash.style.webkitLineClamp = 'unset';
-                    hash.style.display = 'block';
-                    hash.style.overflow = 'visible';
-                }
-
-                // Stats : remplacer toute la v2-srow par un layout inline-block
-                // (flex + svg + gap = trop complexe pour html2canvas)
-                const srow = el.querySelector('.v2-srow');
-                if (srow) {
-                    const likes    = el.querySelector('#bat-preview-likes')?.textContent    || '3.4M';
-                    const comments = el.querySelector('#bat-preview-comments')?.textContent || '1.4M';
-                    const reposts  = el.querySelector('#bat-preview-reposts')?.textContent  || '2.3M';
-                    const shares   = el.querySelector('#bat-preview-shares')?.textContent   || '1.6M';
-                    const heartFill = el.querySelector('#bat-heart-svg')?.getAttribute('fill') || '#e1306c';
-                    const heartStr  = el.querySelector('#bat-heart-svg')?.getAttribute('stroke') || '#e1306c';
-                    const ST = 'display:inline-block;vertical-align:middle;font-size:9px;font-weight:700;color:#111;white-space:nowrap;margin-right:6px;';
-                    const SV = 'display:inline-block!important;vertical-align:middle;width:11px;height:11px;margin-right:2px;';
-                    srow.innerHTML = `
-                      <div style="display:block;white-space:nowrap;line-height:14px;">
-                        <span style="${ST}"><svg style="${SV}" fill="${heartFill}" stroke="${heartStr}" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>${likes}</span>
-                        <span style="${ST}"><svg style="${SV}" fill="none" stroke="#111" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>${comments}</span>
-                        <span style="${ST}"><svg style="${SV}" fill="none" stroke="#111" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>${reposts}</span>
-                        <span style="${ST}"><svg style="${SV}" fill="none" stroke="#111" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>${shares}</span>
-                        <svg style="display:inline-block!important;vertical-align:middle;width:11px;height:11px;float:right;" fill="none" stroke="#111" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
-                      </div>
-                    `;
-                }
+                // Lever le line-clamp hashtags
+                const hash = doc.getElementById('bat-preview-hashtags');
+                if (hash) { hash.style.webkitLineClamp = 'unset'; hash.style.overflow = 'visible'; hash.style.display = 'block'; }
             }
         });
 
-        // Appliquer les coins arrondis + bordure noire sur le canvas final
-        const S4 = 4; // scale utilisé
-        const radius = 20 * S4;
-        const border = Math.round(2.5 * S4);
-        const canvas = document.createElement('canvas');
-        canvas.width  = rawCanvas.width  + border * 2;
-        canvas.height = rawCanvas.height + border * 2;
-        const ctx = canvas.getContext('2d');
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        // Clip arrondi puis dessiner le contenu
-        ctx.save();
-        ctx.beginPath();
-        ctx.roundRect(border, border, rawCanvas.width, rawCanvas.height, radius);
-        ctx.clip();
-        ctx.drawImage(rawCanvas, border, border);
-        ctx.restore();
-        // Bordure noire arrondie par dessus
-        ctx.strokeStyle = '#111111';
-        ctx.lineWidth = border;
-        ctx.beginPath();
-        ctx.roundRect(border / 2, border / 2, rawCanvas.width + border, rawCanvas.height + border, radius + border / 2);
-        ctx.stroke();
-
         const { jsPDF } = window.jspdf;
         const PAGE_W = 210, PAGE_H = 297;
-        const HEADER_H = 42, MARGIN = 14;
-        const areaH = PAGE_H - HEADER_H - MARGIN * 2 - 12;
+        const HEADER_H = 42, MARGIN = 12;
+        const areaW = PAGE_W - MARGIN * 2;
+        const areaH = PAGE_H - HEADER_H - MARGIN * 2 - 10;
         const ratio = canvas.width / canvas.height;
-        // Miroir taille réduite : max 55mm de large, centré
-        let mW = 55, mH = mW / ratio;
+        // Ajuster pour tenir dans la zone utile (largeur max 70mm)
+        let mW = Math.min(70, areaW), mH = mW / ratio;
         if (mH > areaH) { mH = areaH; mW = mH * ratio; }
         const mX = (PAGE_W - mW) / 2;
         const mY = HEADER_H + MARGIN;
