@@ -1727,34 +1727,28 @@
                     hash.style.overflow = 'visible';
                 }
 
-                // Stats : corriger l'alignement icône + chiffre
-                // Tailwind reset force svg{display:block} → override en inline-block
-                // currentColor non résolu par html2canvas → remplacer par #111
-                el.querySelectorAll('.v2-srow').forEach(row => {
-                    row.style.cssText += 'display:flex!important;align-items:center!important;justify-content:space-between!important;';
-                });
-                el.querySelectorAll('.v2-sicons').forEach(sicons => {
-                    sicons.style.cssText += 'display:flex!important;align-items:center!important;gap:0!important;';
-                    Array.from(sicons.children).forEach((c, i, arr) => {
-                        c.style.marginRight = i < arr.length - 1 ? '6px' : '0';
-                    });
-                });
-                el.querySelectorAll('.v2-stat').forEach(stat => {
-                    stat.style.cssText += 'display:flex!important;align-items:center!important;gap:0!important;font-size:9px!important;font-weight:700!important;color:#111!important;line-height:1!important;';
-                    // Tous les SVG dans stat : forcer inline-block + taille fixe + résoudre currentColor
-                    stat.querySelectorAll('svg').forEach(svg => {
-                        svg.style.cssText += 'display:inline-block!important;width:11px!important;height:11px!important;flex-shrink:0!important;margin-right:2px!important;vertical-align:middle!important;';
-                        if (svg.getAttribute('stroke') === 'currentColor') svg.setAttribute('stroke', '#111');
-                        if (svg.getAttribute('fill') === 'currentColor') svg.setAttribute('fill', '#111');
-                    });
-                    const span = stat.querySelector('span');
-                    if (span) span.style.cssText += 'display:inline-block!important;vertical-align:middle!important;line-height:1!important;';
-                });
-                // Icône bookmark (svg direct dans v2-srow)
-                el.querySelectorAll('.v2-srow > svg').forEach(svg => {
-                    svg.style.cssText += 'display:inline-block!important;flex-shrink:0!important;';
-                    if (svg.getAttribute('stroke') === 'currentColor') svg.setAttribute('stroke', '#111');
-                });
+                // Stats : remplacer toute la v2-srow par un layout inline-block
+                // (flex + svg + gap = trop complexe pour html2canvas)
+                const srow = el.querySelector('.v2-srow');
+                if (srow) {
+                    const likes    = el.querySelector('#bat-preview-likes')?.textContent    || '3.4M';
+                    const comments = el.querySelector('#bat-preview-comments')?.textContent || '1.4M';
+                    const reposts  = el.querySelector('#bat-preview-reposts')?.textContent  || '2.3M';
+                    const shares   = el.querySelector('#bat-preview-shares')?.textContent   || '1.6M';
+                    const heartFill = el.querySelector('#bat-heart-svg')?.getAttribute('fill') || '#e1306c';
+                    const heartStr  = el.querySelector('#bat-heart-svg')?.getAttribute('stroke') || '#e1306c';
+                    const ST = 'display:inline-block;vertical-align:middle;font-size:9px;font-weight:700;color:#111;white-space:nowrap;margin-right:6px;';
+                    const SV = 'display:inline-block!important;vertical-align:middle;width:11px;height:11px;margin-right:2px;';
+                    srow.innerHTML = `
+                      <div style="display:block;white-space:nowrap;line-height:14px;">
+                        <span style="${ST}"><svg style="${SV}" fill="${heartFill}" stroke="${heartStr}" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>${likes}</span>
+                        <span style="${ST}"><svg style="${SV}" fill="none" stroke="#111" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>${comments}</span>
+                        <span style="${ST}"><svg style="${SV}" fill="none" stroke="#111" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>${reposts}</span>
+                        <span style="${ST}"><svg style="${SV}" fill="none" stroke="#111" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>${shares}</span>
+                        <svg style="display:inline-block!important;vertical-align:middle;width:11px;height:11px;float:right;" fill="none" stroke="#111" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
+                      </div>
+                    `;
+                }
             }
         });
 
