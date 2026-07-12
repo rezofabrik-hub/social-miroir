@@ -2189,8 +2189,9 @@
             const heartColor   = heartFilled ? '#e1306c' : 'none';
             const surfaceBg    = $('mirror-surface')?.style.background || 'linear-gradient(160deg,#e0d8d0,#c8c0b8)';
 
-            // Construit un rendu hors-écran avec styles 100% inline
-            const W = 480; // largeur de rendu en px (sera mis à l'échelle en mm dans le PDF)
+            // Rendu haute résolution : 5× la taille écran = ~300dpi à l'impression
+            const S = 5; // facteur d'échelle
+            const W = 480 * S;
 
             const wrap = document.createElement('div');
             wrap.style.cssText = `position:fixed;left:-9999px;top:0;width:${W}px;background:white;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;`;
@@ -2198,50 +2199,50 @@
             // ── BANDE HAUTE ──
             const topDiv = document.createElement('div');
             topDiv.innerHTML = `
-              <div style="background:white;padding:5px 12px;display:flex;align-items:center;justify-content:space-between;font-size:9.5px;font-weight:700;color:#111;">
+              <div style="background:white;padding:${5*S}px ${12*S}px;display:flex;align-items:center;justify-content:space-between;font-size:${9.5*S}px;font-weight:700;color:#111;">
                 <span>${liveTime}</span>
-                <div style="display:flex;align-items:center;gap:4px;">
-                  <svg width="15" height="11" viewBox="0 0 15 11" fill="#111"><rect x="0" y="6" width="3" height="5" rx=".5"/><rect x="4" y="4" width="3" height="7" rx=".5"/><rect x="8" y="2" width="3" height="9" rx=".5"/><rect x="12" y="0" width="3" height="11" rx=".5"/></svg>
-                  <svg width="13" height="10" viewBox="0 0 24 18" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round"><path d="M1 6C5.5 1.5 18.5 1.5 23 6"/><path d="M4 10C7 7 17 7 20 10"/><path d="M8 14C10 12 14 12 16 14"/><circle cx="12" cy="17" r="1.2" fill="#111" stroke="none"/></svg>
-                  <svg viewBox="0 0 22 10" width="22" height="10" fill="none" stroke="#111" stroke-width="1.2"><rect x=".6" y=".6" width="18.8" height="8.8" rx="2"/><rect x="19.8" y="3" width="1.5" height="4" rx=".75" fill="#111" stroke="none"/><rect x="2" y="2" width="12" height="6" rx="1" fill="#22c55e" stroke="none"/></svg>
+                <div style="display:flex;align-items:center;gap:${4*S}px;">
+                  <svg width="${15*S}" height="${11*S}" viewBox="0 0 15 11" fill="#111"><rect x="0" y="6" width="3" height="5" rx=".5"/><rect x="4" y="4" width="3" height="7" rx=".5"/><rect x="8" y="2" width="3" height="9" rx=".5"/><rect x="12" y="0" width="3" height="11" rx=".5"/></svg>
+                  <svg width="${13*S}" height="${10*S}" viewBox="0 0 24 18" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round"><path d="M1 6C5.5 1.5 18.5 1.5 23 6"/><path d="M4 10C7 7 17 7 20 10"/><path d="M8 14C10 12 14 12 16 14"/><circle cx="12" cy="17" r="1.2" fill="#111" stroke="none"/></svg>
+                  <svg viewBox="0 0 22 10" width="${22*S}" height="${10*S}" fill="none" stroke="#111" stroke-width="1.2"><rect x=".6" y=".6" width="18.8" height="8.8" rx="2"/><rect x="19.8" y="3" width="1.5" height="4" rx=".75" fill="#111" stroke="none"/><rect x="2" y="2" width="12" height="6" rx="1" fill="#22c55e" stroke="none"/></svg>
                 </div>
               </div>
-              <div style="padding:7px 10px;display:flex;align-items:center;gap:7px;border-bottom:1px solid #f0f0f0;background:white;">
-                <div style="width:26px;height:26px;border-radius:50%;overflow:hidden;flex-shrink:0;outline:2px solid rgba(225,48,108,0.25);outline-offset:1px;background:#fce7f3;">
-                  ${liveAvatarSrc && !liveAvatarSrc.includes('placehold') ? `<img src="${liveAvatarSrc}" style="width:100%;height:100%;object-fit:cover;" crossorigin="anonymous">` : '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;">★</div>'}
+              <div style="padding:${7*S}px ${10*S}px;display:flex;align-items:center;gap:${7*S}px;border-bottom:${1*S}px solid #f0f0f0;background:white;">
+                <div style="width:${26*S}px;height:${26*S}px;border-radius:50%;overflow:hidden;flex-shrink:0;outline:${2*S}px solid rgba(225,48,108,0.25);outline-offset:${1*S}px;background:#fce7f3;">
+                  ${liveAvatarSrc && !liveAvatarSrc.includes('placehold') ? `<img src="${liveAvatarSrc}" style="width:100%;height:100%;object-fit:cover;" crossorigin="anonymous">` : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:${11*S}px;">★</div>`}
                 </div>
-                <div style="font-size:10.5px;font-weight:800;color:#111;flex:1;">${liveUser}</div>
-                <div style="font-size:14px;color:#444;letter-spacing:1px;">···</div>
+                <div style="font-size:${10.5*S}px;font-weight:800;color:#111;flex:1;">${liveUser}</div>
+                <div style="font-size:${14*S}px;color:#444;letter-spacing:${1*S}px;">···</div>
               </div>`;
 
             // ── BANDE BASSE ──
             const botDiv = document.createElement('div');
             botDiv.innerHTML = `
-              <div style="background:white;padding:8px 10px;">
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
-                  <div style="display:flex;align-items:center;gap:6px;">
-                    <div style="display:flex;align-items:center;gap:2px;font-size:9px;font-weight:700;color:#111;">
-                      <svg fill="${heartColor}" stroke="#e1306c" viewBox="0 0 24 24" stroke-width="2" width="11" height="11"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+              <div style="background:white;padding:${8*S}px ${10*S}px;">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:${4*S}px;">
+                  <div style="display:flex;align-items:center;gap:${6*S}px;">
+                    <div style="display:flex;align-items:center;gap:${2*S}px;font-size:${9*S}px;font-weight:700;color:#111;">
+                      <svg fill="${heartColor}" stroke="#e1306c" viewBox="0 0 24 24" stroke-width="2" width="${11*S}" height="${11*S}"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
                       ${liveLikes}
                     </div>
-                    <div style="display:flex;align-items:center;gap:2px;font-size:9px;font-weight:700;color:#111;">
-                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" width="11" height="11"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                    <div style="display:flex;align-items:center;gap:${2*S}px;font-size:${9*S}px;font-weight:700;color:#111;">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" width="${11*S}" height="${11*S}"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
                       ${liveComments}
                     </div>
-                    <div style="display:flex;align-items:center;gap:2px;font-size:9px;font-weight:700;color:#111;">
-                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" width="11" height="11"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                    <div style="display:flex;align-items:center;gap:${2*S}px;font-size:${9*S}px;font-weight:700;color:#111;">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" width="${11*S}" height="${11*S}"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
                       ${liveReposts}
                     </div>
-                    <div style="display:flex;align-items:center;gap:2px;font-size:9px;font-weight:700;color:#111;">
-                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" width="11" height="11"><path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                    <div style="display:flex;align-items:center;gap:${2*S}px;font-size:${9*S}px;font-weight:700;color:#111;">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" width="${11*S}" height="${11*S}"><path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
                       ${liveShares}
                     </div>
                   </div>
-                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" style="width:11px;height:11px;flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" style="width:${11*S}px;height:${11*S}px;flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
                 </div>
-                <p style="font-size:8.5px;color:#111;line-height:1.4;margin-bottom:2px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;"><strong>${liveUser}</strong> ${liveCaption}</p>
-                <p style="font-size:8px;font-weight:600;color:#1d4ed8;line-height:1.4;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">${liveHashtags}</p>
-                <p style="font-size:7px;color:#bbb;margin-top:4px;letter-spacing:0.04em;text-align:right;">social-miroir.fr</p>
+                <p style="font-size:${8.5*S}px;color:#111;line-height:1.4;margin-bottom:${2*S}px;"><strong>${liveUser}</strong> ${liveCaption}</p>
+                <p style="font-size:${8*S}px;font-weight:600;color:#1d4ed8;line-height:1.4;">${liveHashtags}</p>
+                <p style="font-size:${7*S}px;color:#bbb;margin-top:${4*S}px;letter-spacing:0.04em;text-align:right;">social-miroir.fr</p>
               </div>`;
 
             wrap.appendChild(topDiv);
@@ -2252,12 +2253,12 @@
                 const date = new Date().toLocaleDateString('fr-FR');
 
                 // Capture bande haute
-                const cTop = await html2canvas(topDiv, { scale: 6, backgroundColor: '#ffffff', useCORS: true, logging: false });
+                const cTop = await html2canvas(topDiv, { scale: 2, backgroundColor: '#ffffff', useCORS: true, logging: false });
 
                 // Capture bande basse
                 wrap.innerHTML = '';
                 wrap.appendChild(botDiv);
-                const cBot = await html2canvas(botDiv, { scale: 6, backgroundColor: '#ffffff', useCORS: true, logging: false });
+                const cBot = await html2canvas(botDiv, { scale: 2, backgroundColor: '#ffffff', useCORS: true, logging: false });
 
                 const topHmm = (cTop.height * mirW) / cTop.width;
                 const botHmm = (cBot.height * mirW) / cBot.width;
