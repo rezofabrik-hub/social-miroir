@@ -1689,22 +1689,19 @@
         if (!window.jspdf || !window.html2canvas) return null;
         const [largeurMm, hauteurMm] = dimensionsReelles[formatId] || [600, 1000];
 
-        // Lit les valeurs depuis les éléments bat- (synchronisés dans openModal)
-        const g = id => document.getElementById('bat-' + id)?.textContent?.trim() || document.getElementById('preview-' + id)?.textContent?.trim() || '';
-        const liveUser     = g('preview-username') || 'votre_compte';
-        const liveTime     = g('preview-time') || '10:39';
-        const liveLikes    = g('preview-likes') || '3.4M';
-        const liveComments = g('preview-comments') || '1.4M';
-        const liveReposts  = g('preview-reposts') || '2.3M';
-        const liveShares   = g('preview-shares') || '1.6M';
-        const liveCaption  = g('preview-caption') || '';
-        const liveHashtags = g('preview-hashtags') || '';
-        const liveAvatarSrc = document.getElementById('bat-preview-logo')?.src || document.getElementById('preview-logo')?.src || '';
-        const liveHeart = document.getElementById('bat-heart-svg') || document.getElementById('heart-svg');
-        const heartFilled = liveHeart?.getAttribute('fill') === '#e1306c';
-        const heartColor = heartFilled ? '#e1306c' : 'none';
-        const liveSurf = document.getElementById('bat-mirror-surface') || document.getElementById('mirror-surface');
-        const surfaceBg = liveSurf?.style.background || 'linear-gradient(160deg,#e0d8d0,#c8c0b8)';
+        // Même source que generateBatPDF : éléments preview-* du configurateur (toujours présents)
+        const liveUser     = (document.getElementById('preview-username')?.textContent || 'votre_compte').trim();
+        const liveTime     = (document.getElementById('preview-time')?.textContent || '10:39').trim();
+        const liveLikes    = (document.getElementById('preview-likes')?.textContent || '3.4M').trim();
+        const liveComments = (document.getElementById('preview-comments')?.textContent || '1.4M').trim();
+        const liveReposts  = (document.getElementById('preview-reposts')?.textContent || '2.3M').trim();
+        const liveShares   = (document.getElementById('preview-shares')?.textContent || '1.6M').trim();
+        const liveCaption  = (document.getElementById('preview-caption')?.textContent || '').trim();
+        const liveHashtags = (document.getElementById('preview-hashtags')?.textContent || '').trim();
+        const liveAvatarSrc = document.getElementById('preview-logo')?.src || '';
+        const heartFilled  = document.getElementById('heart-svg')?.getAttribute('fill') === '#e1306c';
+        const heartColor   = heartFilled ? '#e1306c' : 'none';
+        const surfaceBg    = document.getElementById('mirror-surface')?.style.background || 'linear-gradient(160deg,#e0d8d0,#c8c0b8)';
 
         // Même approche que generateBatPDF : S=5, inline styles, aucune dépendance CSS
         const S = 5;
