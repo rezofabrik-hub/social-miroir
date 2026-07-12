@@ -1793,11 +1793,11 @@
 
         const { jsPDF } = window.jspdf;
         const PAGE_W = 210, PAGE_H = 297;
-        const HEADER_H = 42, MARGIN = 18;
-        const areaW = PAGE_W - MARGIN * 2;
-        const areaH = Math.min(PAGE_H - HEADER_H - MARGIN * 3, (PAGE_H - HEADER_H) * 0.58);
+        const HEADER_H = 42, MARGIN = 14;
+        const areaH = PAGE_H - HEADER_H - MARGIN * 2 - 12;
         const ratio = canvas.width / canvas.height;
-        let mW = areaW * 0.72, mH = mW / ratio;
+        // Miroir taille réduite : max 55mm de large, centré
+        let mW = 55, mH = mW / ratio;
         if (mH > areaH) { mH = areaH; mW = mH * ratio; }
         const mX = (PAGE_W - mW) / 2;
         const mY = HEADER_H + MARGIN;
