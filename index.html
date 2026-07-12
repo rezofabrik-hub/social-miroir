@@ -2378,10 +2378,6 @@
                 // Image miroir (sans déformation : ratio conservé)
                 pdf.addImage(canvas.toDataURL('image/jpeg', 0.95), 'JPEG', marginX, headerH, mirW, imgHmm);
 
-                // Cadre
-                pdf.setDrawColor(180, 180, 180);
-                pdf.setLineWidth(0.3);
-                pdf.rect(marginX, headerH, mirW, imgHmm);
 
                 // Footer
                 pdf.setFontSize(fs * 0.6);
