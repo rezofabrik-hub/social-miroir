@@ -2177,173 +2177,76 @@
             const fmt = fmtName || 'Original';
             const [mirW, mirH] = formatDims[fmt] || [600, 1000];
 
-            // Lit les vraies valeurs du configurateur
-            const liveUser     = ($('preview-username')?.textContent || 'votre_compte').trim();
-            const liveTime     = ($('preview-time')?.textContent || '10:39').trim();
-            const liveLikes    = ($('preview-likes')?.textContent || '3.4M').trim();
-            const liveComments = ($('preview-comments')?.textContent || '1.4M').trim();
-            const liveReposts  = ($('preview-reposts')?.textContent || '2.3M').trim();
-            const liveShares   = ($('preview-shares')?.textContent || '1.6M').trim();
-            const liveCaption  = ($('preview-caption')?.textContent || '').trim();
-            const liveHashtags = ($('preview-hashtags')?.textContent || '').trim();
-            const liveAvatarSrc = $('preview-logo')?.src || '';
-            const heartFilled  = $('heart-svg')?.getAttribute('fill') === '#e1306c';
-            const heartColor   = heartFilled ? '#e1306c' : 'none';
-            const surfaceBg    = $('mirror-surface')?.style.background || 'linear-gradient(160deg,#e0d8d0,#c8c0b8)';
-            const isGold       = surfaceBg.includes('d4a843') || surfaceBg.includes('f5e6c8');
-
-            // Échelle rendu : S=5 → W=2400px, capture scale:2 → 4800px ≈ 300dpi Original
-            const S = 5;
-            const W = 480 * S; // 2400px
-
-            // Proportion bandes/surface basée sur le vrai miroir
-            // Top band ≈ 18% de la hauteur, surface ≈ 64%, bottom ≈ 18%
-            const topRatio = 0.18;
-            const surfRatio = 0.64;
-            const botRatio = 0.18;
-
-            const avatarHTML = liveAvatarSrc && !liveAvatarSrc.includes('placehold')
-                ? `<img src="${liveAvatarSrc}" style="width:100%;height:100%;object-fit:cover;" crossorigin="anonymous">`
-                : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#fce7f3;font-size:${12*S}px;color:#e1306c;">★</div>`;
-
-            const mirrorHTML = `
-            <div style="width:${W}px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;display:flex;flex-direction:column;">
-
-              <!-- BANDE HAUTE -->
-              <div style="background:white;flex-shrink:0;">
-                <!-- Status bar -->
-                <div style="padding:${5*S}px ${12*S}px;display:flex;align-items:center;justify-content:space-between;font-size:${9.5*S}px;font-weight:700;color:#111;">
-                  <span>${liveTime}</span>
-                  <div style="display:flex;align-items:center;gap:${4*S}px;">
-                    <svg width="${15*S}" height="${11*S}" viewBox="0 0 15 11" fill="#111"><rect x="0" y="6" width="3" height="5" rx=".5"/><rect x="4" y="4" width="3" height="7" rx=".5"/><rect x="8" y="2" width="3" height="9" rx=".5"/><rect x="12" y="0" width="3" height="11" rx=".5"/></svg>
-                    <svg width="${13*S}" height="${10*S}" viewBox="0 0 24 18" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round"><path d="M1 6C5.5 1.5 18.5 1.5 23 6"/><path d="M4 10C7 7 17 7 20 10"/><path d="M8 14C10 12 14 12 16 14"/><circle cx="12" cy="17" r="1.2" fill="#111" stroke="none"/></svg>
-                    <svg viewBox="0 0 22 10" width="${22*S}" height="${10*S}" fill="none" stroke="#111" stroke-width="1.2"><rect x=".6" y=".6" width="18.8" height="8.8" rx="2"/><rect x="19.8" y="3" width="1.5" height="4" rx=".75" fill="#111" stroke="none"/><rect x="2" y="2" width="12" height="6" rx="1" fill="#22c55e" stroke="none"/></svg>
-                  </div>
-                </div>
-                <!-- Profile row -->
-                <div style="padding:${7*S}px ${10*S}px;display:flex;align-items:center;gap:${7*S}px;border-bottom:${1*S}px solid #f0f0f0;">
-                  <div style="width:${26*S}px;height:${26*S}px;border-radius:50%;overflow:hidden;flex-shrink:0;outline:${2*S}px solid rgba(225,48,108,0.25);outline-offset:${1*S}px;">
-                    ${avatarHTML}
-                  </div>
-                  <div style="font-size:${10.5*S}px;font-weight:800;color:#111;flex:1;">${liveUser}</div>
-                  <div style="font-size:${14*S}px;color:#666;letter-spacing:${1*S}px;">···</div>
-                </div>
-              </div>
-
-              <!-- SURFACE RÉFLÉCHISSANTE -->
-              <div style="width:100%;height:${W * (mirH/mirW) * surfRatio}px;background:${surfaceBg};display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;">
-                <div style="text-align:center;opacity:0.28;">
-                  <div style="font-size:${22*S}px;font-weight:900;letter-spacing:${3*S}px;color:${isGold ? '#7a5400' : '#555'};text-transform:uppercase;">VOTRE</div>
-                  <div style="font-size:${22*S}px;font-weight:900;letter-spacing:${3*S}px;color:${isGold ? '#7a5400' : '#555'};text-transform:uppercase;">REFLET</div>
-                </div>
-              </div>
-
-              <!-- BANDE BASSE -->
-              <div style="background:white;flex-shrink:0;padding:${8*S}px ${10*S}px;">
-                <!-- Actions row -->
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:${5*S}px;">
-                  <div style="display:flex;align-items:center;gap:${8*S}px;">
-                    <div style="display:flex;align-items:center;gap:${3*S}px;font-size:${9*S}px;font-weight:700;color:#111;">
-                      <svg fill="${heartColor}" stroke="#e1306c" viewBox="0 0 24 24" stroke-width="2" width="${12*S}" height="${12*S}"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-                      ${liveLikes}
-                    </div>
-                    <div style="display:flex;align-items:center;gap:${3*S}px;font-size:${9*S}px;font-weight:700;color:#111;">
-                      <svg fill="none" stroke="#111" viewBox="0 0 24 24" stroke-width="2" width="${12*S}" height="${12*S}"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-                      ${liveComments}
-                    </div>
-                    <div style="display:flex;align-items:center;gap:${3*S}px;font-size:${9*S}px;font-weight:700;color:#111;">
-                      <svg fill="none" stroke="#111" viewBox="0 0 24 24" stroke-width="2" width="${12*S}" height="${12*S}"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-                      ${liveReposts}
-                    </div>
-                    <div style="display:flex;align-items:center;gap:${3*S}px;font-size:${9*S}px;font-weight:700;color:#111;">
-                      <svg fill="none" stroke="#111" viewBox="0 0 24 24" stroke-width="2" width="${12*S}" height="${12*S}"><path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-                      ${liveShares}
-                    </div>
-                  </div>
-                  <svg fill="none" stroke="#111" viewBox="0 0 24 24" stroke-width="2" style="width:${12*S}px;height:${12*S}px;flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
-                </div>
-                <!-- Caption -->
-                <p style="font-size:${8.5*S}px;color:#111;line-height:1.5;margin-bottom:${3*S}px;"><strong>${liveUser}</strong> ${liveCaption}</p>
-                <!-- Hashtags -->
-                <p style="font-size:${8*S}px;font-weight:600;color:#1d4ed8;line-height:1.5;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">${liveHashtags}</p>
-              </div>
-
-            </div>`;
-
-            const wrap = document.createElement('div');
-            wrap.style.cssText = `position:fixed;left:-9999px;top:0;z-index:-1;`;
-            wrap.innerHTML = mirrorHTML;
-            document.body.appendChild(wrap);
+            // ── Capture le miroir live directement ──
+            const mirrorEl = document.getElementById('mirror-container');
+            if (!mirrorEl) { alert('Miroir introuvable.'); btn.innerHTML = orig; btn.disabled = false; return; }
 
             try {
                 const { jsPDF } = window.jspdf;
                 const date = new Date().toLocaleDateString('fr-FR');
 
-                // Capture miroir complet
-                const canvas = await html2canvas(wrap.firstElementChild, {
-                    scale: 2,
-                    backgroundColor: '#ffffff',
+                // Capture haute résolution du miroir tel qu'affiché
+                const canvas = await html2canvas(mirrorEl, {
+                    scale: 6,
+                    backgroundColor: null,
                     useCORS: true,
+                    allowTaint: false,
                     logging: false,
-                    allowTaint: false
+                    ignoreElements: el => el.classList?.contains('animate-pulse') || el.id === 'label-live'
                 });
 
-                // PDF professionnel : page de garde + miroir au format réel
-                const margin = 20; // mm de marge sur la page de garde
-                const headerH = 30; // mm pour le header BAT
-
-                // Page 1 : document BAT complet en format réel du miroir
-                const pdfW = mirW + 40; // largeur avec marges (mm)
+                // Dimensions PDF en mm (format réel du miroir)
+                const headerH = 22;
+                const footerH = 10;
+                const marginX = 20;
                 const imgHmm = (canvas.height * mirW) / canvas.width;
-                const pdfH = imgHmm + headerH + 30;
+                const pdfH = imgHmm + headerH + footerH + 10;
+                const pdfW = mirW + marginX * 2;
 
-                const pdf = new jsPDF({ orientation: pdfW > pdfH ? 'landscape' : 'portrait', unit: 'mm', format: [pdfW, pdfH] });
+                const pdf = new jsPDF({
+                    orientation: pdfW > pdfH ? 'landscape' : 'portrait',
+                    unit: 'mm',
+                    format: [pdfW, pdfH]
+                });
 
-                // ── En-tête BAT ──
                 const cx = pdfW / 2;
-                // Ligne rose
-                pdf.setDrawColor(230, 0, 126);
-                pdf.setLineWidth(1.5);
-                pdf.line(20, 10, pdfW - 20, 10);
+                const fs = Math.max(4, Math.min(12, mirW * 0.012));
 
-                // Titre
-                pdf.setFontSize(Math.max(6, mirW * 0.018));
+                // En-tête
+                pdf.setDrawColor(230, 0, 126);
+                pdf.setLineWidth(1);
+                pdf.line(marginX, 8, pdfW - marginX, 8);
+                pdf.setFontSize(fs * 1.4);
                 pdf.setTextColor(230, 0, 126);
                 pdf.setFont('helvetica', 'bold');
-                pdf.text('BON À TIRER — SOCIAL-MIROIR.FR', cx, 18, { align: 'center' });
-
-                // Infos
-                pdf.setFontSize(Math.max(4, mirW * 0.010));
-                pdf.setTextColor(80, 80, 80);
+                pdf.text('BON À TIRER — SOCIAL-MIROIR.FR', cx, 15, { align: 'center' });
+                pdf.setFontSize(fs * 0.9);
+                pdf.setTextColor(100, 100, 100);
                 pdf.setFont('helvetica', 'normal');
-                pdf.text(`Format : ${fmt}  ·  Dimensions : ${mirW/10} × ${mirH/10} cm  ·  Date : ${date}`, cx, 25, { align: 'center' });
-
-                // Ligne séparatrice
+                pdf.text(`Format : ${fmt}  ·  ${mirW/10} × ${mirH/10} cm  ·  Date : ${date}`, cx, 20, { align: 'center' });
                 pdf.setDrawColor(220, 220, 220);
-                pdf.setLineWidth(0.4);
-                pdf.line(20, 28, pdfW - 20, 28);
+                pdf.setLineWidth(0.3);
+                pdf.line(marginX, 23, pdfW - marginX, 23);
 
-                // Miroir (centré, avec marges)
-                pdf.addImage(canvas.toDataURL('image/jpeg', 0.95), 'JPEG', 20, headerH, mirW, imgHmm);
+                // Image miroir
+                pdf.addImage(canvas.toDataURL('image/jpeg', 0.95), 'JPEG', marginX, headerH + 3, mirW, imgHmm);
+
+                // Cadre fin autour du miroir
+                pdf.setDrawColor(200, 200, 200);
+                pdf.setLineWidth(0.3);
+                pdf.rect(marginX, headerH + 3, mirW, imgHmm);
 
                 // Footer
-                const footerY = headerH + imgHmm + 8;
-                pdf.setFontSize(Math.max(3, mirW * 0.008));
-                pdf.setTextColor(160, 160, 160);
-                pdf.text('Document généré par social-miroir.fr — À conserver pour référence d\'impression', cx, footerY, { align: 'center' });
+                pdf.setFontSize(fs * 0.7);
+                pdf.setTextColor(180, 180, 180);
+                pdf.text('social-miroir.fr — Document de référence d\'impression', cx, pdfH - 4, { align: 'center' });
 
-                // Cadre autour du miroir
-                pdf.setDrawColor(200, 200, 200);
-                pdf.setLineWidth(0.5);
-                pdf.rect(20, headerH, mirW, imgHmm);
-
-                pdf.save(`BAT_Social-Miroir_${fmt}_${date.replace(/\//g,'-')}.pdf`);
+                pdf.save(`BAT_${fmt}_${date.replace(/\//g,'-')}.pdf`);
             } catch(e) {
                 console.error(e);
                 alert('Erreur génération PDF : ' + e.message);
             }
 
-            document.body.removeChild(wrap);
             btn.innerHTML = orig;
             btn.disabled = false;
         }
