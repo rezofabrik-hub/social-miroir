@@ -1775,11 +1775,6 @@
             // ── Image miroir ──
             pdf.addImage(imgData, 'JPEG', mX, mY, mW, mH);
 
-            // ── Contour noir sur le miroir (dessiné APRÈS l'image, par-dessus) ──
-            pdf.setDrawColor(17, 17, 17);
-            pdf.setLineWidth(0.4);
-            pdf.roundedRect(mX, mY, mW, mH, 3.5, 3.5, 'S');
-
             // ── Légende sous le miroir ──
             const legendeY = mY + mH + 6;
             pdf.setFontSize(7); pdf.setTextColor(100, 100, 100); pdf.setFont('helvetica', 'normal');
