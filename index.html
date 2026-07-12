@@ -1687,19 +1687,20 @@
         if (!window.jspdf || !window.html2canvas) return null;
         const [largeurMm, hauteurMm] = dimensionsReelles[formatId] || [600, 1000];
 
-        // Capturer le visuel BAT validé (identique à ce que le client a vu)
-        const batContainer = document.getElementById('bat-visual-container');
-        const mirror = batContainer || document.getElementById('mirror-container');
+        // Capturer uniquement le miroir BAT (sans ombre ni wrapper)
+        const mirror = document.getElementById('bat-mirror-container');
         if (!mirror) return null;
 
-        // Override temporaire pour lever overflow:hidden et max-height
+        // Override temporaire : supprimer box-shadow (qui crée des traits noirs autour)
         const styleOverride = document.createElement('style');
         styleOverride.id = 'pdf-client-override';
         styleOverride.textContent = `
-            #bat-visual-container, #bat-visual-container *,
-            #mirror-container, #mirror-container * {
+            #bat-mirror-container {
+                box-shadow: none !important;
                 max-height: none !important;
-                overflow: visible !important;
+            }
+            #bat-mirror-container * {
+                max-height: none !important;
             }
         `;
         document.head.appendChild(styleOverride);
