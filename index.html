@@ -1133,17 +1133,17 @@
                 </div>
             </div>
 
-            <!-- Alerte B.A.T -->
+            <!-- Alerte vérification -->
             <div class="bg-brand/5 border border-brand/15 rounded-xl p-4 mb-5">
                 <p class="text-sm text-brand-dark font-medium leading-relaxed">
-                    ⚠️ <strong>Validation B.A.T :</strong> Vérifiez attentivement la maquette ci-contre. L'impression sera réalisée exactement selon ce visuel.
+                    ⚠️ <strong>Vérifiez votre configuration :</strong> L'aperçu ci-contre sera imprimé exactement tel quel. Un récapitulatif vous sera envoyé par email après paiement.
                 </p>
             </div>
 
-            <!-- Checkbox B.A.T -->
+            <!-- Checkbox validation -->
             <label class="flex items-start gap-3 p-4 mb-3 bg-white border-2 border-gray-200 hover:border-brand/40 rounded-2xl cursor-pointer transition-all group">
                 <input type="checkbox" id="checkbox-valide-bat" class="mt-0.5 w-5 h-5 accent-brand cursor-pointer shrink-0">
-                <span class="text-sm text-ink/70 font-semibold group-hover:text-ink transition-colors leading-tight">Je valide la maquette (B.A.T) et confirme l'exactitude de tous les textes.</span>
+                <span class="text-sm text-ink/70 font-semibold group-hover:text-ink transition-colors leading-tight">Je confirme l'exactitude de ma configuration et accepte qu'elle soit imprimée telle quelle.</span>
             </label>
 
             <!-- Checkbox consentement RGPD -->
@@ -2684,8 +2684,8 @@
                         <div style="font-size:2.5rem;text-align:center;margin-bottom:1rem;">⚠️</div>
                         <h3 style="font-size:1.25rem;font-weight:800;color:#111;text-align:center;margin-bottom:0.75rem;">Confirmation définitive</h3>
                         <p style="color:#555;font-size:0.9rem;text-align:center;line-height:1.6;margin-bottom:1.5rem;">
-                            En validant ce B.A.T, vous confirmez que <strong>le visuel est exactement conforme</strong> à votre commande.<br><br>
-                            <strong style="color:#e6007e;">Cette action est irréversible.</strong> L'impression sera lancée telle quelle.
+                            Vous confirmez que <strong>votre configuration est exactement conforme</strong> à ce que vous souhaitez.<br><br>
+                            <strong style="color:#e6007e;">Un récapitulatif vous sera envoyé par email</strong> après le paiement.
                         </p>
                         <div style="display:flex;gap:0.75rem;">
                             <button id="bat-cancel" style="flex:1;padding:0.875rem;border:2px solid #e5e7eb;border-radius:0.75rem;font-weight:700;color:#666;background:white;cursor:pointer;font-size:0.875rem;">Annuler</button>
@@ -2749,18 +2749,11 @@
             // Sauvegarde Airtable
             await saveOrder(orderData);
 
-            // Génération des deux PDFs
-            btnConfirmBat.innerHTML = `<svg class="animate-spin w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg> Préparation du BAT...`;
+            // PDF vendeur uniquement (pour production)
+            btnConfirmBat.innerHTML = `<svg class="animate-spin w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg> Préparation...`;
             try {
-                // PDF client : BAT visuel A4 (téléchargement client)
-                const pdfClient = await genererPDFClient(formatId, orderData);
-                if (pdfClient) {
-                    pdfClient.save(`BAT-Client-${orderData.format}.pdf`);
-                }
-                // PDF vendeur : fichier impression aux vraies dimensions
                 const pdfVendeur = await genererPDFVendeur(formatId, orderData);
                 if (pdfVendeur) {
-                    // Stocker dans localStorage — envoi Discord+email après paiement confirmé
                     try {
                         const pdfBase64 = pdfVendeur.output('datauristring').split(',')[1];
                         localStorage.setItem('sm_pending_bat', JSON.stringify({
@@ -2770,14 +2763,13 @@
                         }));
                     } catch(e) { console.warn('localStorage BAT:', e); }
                 }
-                showToast('✓ BAT validé — redirection paiement...');
+                showToast('✓ Commande validée — redirection paiement...');
             } catch(e) {
-                console.warn("PDF:", e);
-                showToast('⚠️ Erreur génération PDF');
+                console.warn("PDF vendeur:", e);
             }
 
-            // Redirection Stripe (délai 800ms pour laisser le temps au PDF de se générer)
-            await new Promise(r => setTimeout(r, 800));
+            // Redirection Stripe
+            await new Promise(r => setTimeout(r, 600));
             const stripeKey = `${formatId}-${ledFinal ? 'led' : 'noled'}`;
             const stripeUrl = stripeLinks[stripeKey];
             if (stripeUrl) {
