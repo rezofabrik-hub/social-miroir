@@ -1163,6 +1163,14 @@
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                 Paiement sécurisé SSL · Stripe
             </div>
+
+            <!-- Bouton test email — visible uniquement si ?test=1 dans l'URL -->
+            <div id="test-email-block" class="hidden mt-4 pt-4 border-t border-dashed border-gray-200">
+                <p class="text-[11px] text-center text-gray-400 mb-2 font-medium uppercase tracking-wider">🧪 Mode test — ne pas partager</p>
+                <button onclick="testEnvoiEmailClient()" class="w-full py-2.5 rounded-xl border-2 border-dashed border-brand/40 text-brand text-sm font-bold hover:bg-brand/5 transition-colors">
+                    📧 Envoyer l'email de test à mon adresse
+                </button>
+            </div>
         </div>
     </div>
 </div>
@@ -1672,6 +1680,55 @@
             console.log('✅ Email confirmation envoyé au client:', orderData.client.email);
         } catch(err) {
             console.warn('Email client:', err);
+        }
+    }
+
+    async function testEnvoiEmailClient() {
+        const email = document.getElementById('input-email')?.value?.trim();
+        if (!email) { alert('Remplissez d\'abord votre adresse email dans le formulaire de commande.'); return; }
+        const btn = event.target;
+        btn.textContent = '⏳ Envoi en cours…';
+        btn.disabled = true;
+        const inputs = {
+            username: document.getElementById('input-username'),
+            caption:  document.getElementById('input-caption'),
+            likes:    document.getElementById('input-likes'),
+            comments: document.getElementById('input-comments'),
+            reposts:  document.getElementById('input-reposts'),
+            shares:   document.getElementById('input-shares'),
+            hashtags: document.getElementById('input-hashtags'),
+            time:     document.getElementById('input-time'),
+        };
+        const logoSrc = (() => { const s = document.getElementById('preview-logo')?.src || ''; return s.startsWith('data:') ? s : ''; })();
+        const testOrder = {
+            format:  fmtName || 'Original',
+            couleur: selColor_val || 'argent',
+            led:     led && fmtId !== 'format-Mini',
+            total:   document.getElementById('price-display')?.textContent || '0',
+            logoSrc,
+            client: {
+                prenom: document.getElementById('input-firstname')?.value || 'Test',
+                nom:    document.getElementById('input-lastname')?.value || '',
+                email,
+            },
+            textes: {
+                nomUtilisateur: inputs.username?.value || '',
+                legende:        inputs.caption?.value  || '',
+                likes:          inputs.likes?.value    || '',
+                commentaires:   inputs.comments?.value || '',
+                reposts:        inputs.reposts?.value  || '',
+                partages:       inputs.shares?.value   || '',
+                hashtags:       inputs.hashtags?.value || '',
+                heure:          inputs.time?.value     || '',
+            }
+        };
+        try {
+            await envoyerEmailConfirmationClient(testOrder);
+            btn.textContent = '✅ Email envoyé à ' + email;
+            setTimeout(() => { btn.textContent = '📧 Envoyer l\'email de test à mon adresse'; btn.disabled = false; }, 4000);
+        } catch(e) {
+            btn.textContent = '❌ Erreur — vérifiez la console';
+            btn.disabled = false;
         }
     }
 
@@ -2676,6 +2733,12 @@
         // ── Init ──
         updPrice();
         applyMirrorColorBg();
+
+        // ── Mode test email (URL contient ?test=1) ──
+        if (new URLSearchParams(window.location.search).get('test') === '1') {
+            const tb = document.getElementById('test-email-block');
+            if (tb) tb.classList.remove('hidden');
+        }
 
         // ── Retour Stripe : paiement confirmé ──
         if (new URLSearchParams(window.location.search).get('payment') === 'success') {
