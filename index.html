@@ -1763,24 +1763,39 @@
         btn.textContent = '⏳ Envoi en cours…';
         btn.disabled = true;
         try {
-            // Message texte de test
+            const nom = document.getElementById('input-username')?.value || 'salontest';
+
+            // 1. Message texte de test
             const msgRes = await fetch(`${PROXY_URL}/discord`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ content: '🧪 **Test Discord — Social-Miroir**\n✅ Le proxy Cloudflare fonctionne correctement !\n📦 Format : Original 60×100 cm\n🎨 Couleur : Argent Clair\n💡 LED : Non\n👤 @salontest' }),
+                body: JSON.stringify({ content: `🧪 **Test Discord — Social-Miroir**\n✅ Proxy Cloudflare OK\n📦 Format : Original 60×100 cm\n🎨 Couleur : Argent Clair\n💡 LED : Non\n👤 @${nom}` }),
             });
             if (!msgRes.ok) throw new Error('Discord message échoué : ' + msgRes.status);
 
-            // Fichier test (petit PDF fictif en texte)
+            // 2. Fichier test
             const testBlob = new Blob(['TEST DISCORD - Social-Miroir.fr\nCommande test du ' + new Date().toLocaleDateString('fr-FR')], { type: 'text/plain' });
             const form = new FormData();
-            form.append('content', '📄 Fichier test (remplacé par PDF vendeur en prod)');
+            form.append('content', '📄 Fichier test (PDF vendeur en prod)');
             form.append('file', testBlob, 'test-commande.txt');
             const fileRes = await fetch(`${PROXY_URL}/discord`, { method: 'POST', body: form });
             if (!fileRes.ok) throw new Error('Discord fichier échoué : ' + fileRes.status);
 
-            btn.textContent = '✅ Discord OK !';
-            setTimeout(() => { btn.textContent = '💬 Tester la notification Discord'; btn.disabled = false; }, 4000);
+            // 3. Logo haute qualité si chargé
+            const logoSrc = window._logoDiscordSrc || '';
+            if (logoSrc && logoSrc.startsWith('data:')) {
+                const logoBlob = await fetch(logoSrc).then(r => r.blob());
+                const logoForm = new FormData();
+                logoForm.append('content', `🖼️ **Logo client TEST** — @${nom}\n📐 400×400px PNG — impression max 10cm`);
+                logoForm.append('file', logoBlob, `LOGO-${nom}.png`);
+                const logoRes = await fetch(`${PROXY_URL}/discord`, { method: 'POST', body: logoForm });
+                if (!logoRes.ok) throw new Error('Discord logo échoué : ' + logoRes.status);
+                btn.textContent = '✅ Discord OK ! (message + fichier + logo)';
+            } else {
+                btn.textContent = '✅ Discord OK ! (pas de logo chargé)';
+            }
+
+            setTimeout(() => { btn.textContent = '💬 Tester la notification Discord'; btn.disabled = false; }, 5000);
         } catch(e) {
             alert('❌ Erreur Discord :\n\n' + (e?.message || JSON.stringify(e)));
             btn.textContent = '💬 Tester la notification Discord';
