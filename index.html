@@ -635,9 +635,9 @@
                         <div>
                             <div class="flex justify-between items-center mb-2">
                                 <label class="block text-[11px] font-bold text-ink/50 uppercase tracking-wider">Légende</label>
-                                <span id="caption-count" class="text-[10px] font-semibold text-ink/30">55/120</span>
+                                <span id="caption-count" class="text-[10px] font-semibold text-ink/30">55/56</span>
                             </div>
-                            <textarea id="input-caption" rows="2" maxlength="120"
+                            <textarea id="input-caption" rows="2" maxlength="56"
                                 class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white font-medium text-sm transition-all resize-none">Venez découvrir votre nouvel espace beauté et bien-être.</textarea>
                         </div>
 
@@ -676,9 +676,9 @@
                         <div>
                             <div class="flex justify-between items-center mb-2">
                                 <label class="block text-[11px] font-bold text-ink/50 uppercase tracking-wider">Hashtags</label>
-                                <span id="hashtags-count" class="text-[10px] font-semibold text-ink/30">71/150</span>
+                                <span id="hashtags-count" class="text-[10px] font-semibold text-ink/30">71/65</span>
                             </div>
-                            <textarea id="input-hashtags" rows="2" maxlength="150"
+                            <textarea id="input-hashtags" rows="2" maxlength="65"
                                 class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white font-medium text-sm transition-all resize-none">#salondecoiffure #coiffeurparis #hairtransformation #coloriste #beaute</textarea>
                         </div>
 
@@ -2335,8 +2335,8 @@
             el.addEventListener('input', update);
             update();
         };
-        updateCount('input-caption',  'caption-count',  120);
-        updateCount('input-hashtags', 'hashtags-count', 150);
+        updateCount('input-caption',  'caption-count',  56);
+        updateCount('input-hashtags', 'hashtags-count', 65);
 
         // ── Cœur rose toggle ──
         let heartRoseLive = true;
