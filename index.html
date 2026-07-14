@@ -2745,24 +2745,16 @@
             // Sauvegarde Airtable
             await saveOrder(orderData);
 
-            // PDF vendeur uniquement (pour production)
-            btnConfirmBat.innerHTML = `<svg class="animate-spin w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg> Préparation...`;
+            // Stocker uniquement les données (pas le PDF) → regénéré après paiement
             try {
-                const pdfVendeur = await genererPDFVendeur(formatId, orderData);
-                if (pdfVendeur) {
-                    try {
-                        const pdfBase64 = pdfVendeur.output('datauristring').split(',')[1];
-                        localStorage.setItem('sm_pending_bat', JSON.stringify({
-                            orderData,
-                            pdfBase64,
-                            ts: Date.now()
-                        }));
-                    } catch(e) { console.warn('localStorage BAT:', e); }
-                }
-                showToast('✓ Commande validée — redirection paiement...');
-            } catch(e) {
-                console.warn("PDF vendeur:", e);
-            }
+                localStorage.setItem('sm_pending_bat', JSON.stringify({
+                    orderData,
+                    formatId,
+                    ts: Date.now()
+                }));
+            } catch(e) { console.warn('localStorage orderData:', e); }
+
+            showToast('✓ Commande validée — redirection paiement...');
 
             // Redirection Stripe
             await new Promise(r => setTimeout(r, 600));
@@ -2794,7 +2786,7 @@
                     const raw = localStorage.getItem('sm_pending_bat');
                     if (!raw) return;
 
-                    const { orderData, pdfBase64 } = JSON.parse(raw);
+                    const { orderData, formatId: savedFormatId } = JSON.parse(raw);
                     localStorage.removeItem('sm_pending_bat');
 
                     // Nettoyer l'URL
@@ -2807,38 +2799,69 @@
                     document.body.prepend(banner);
                     setTimeout(() => banner.remove(), 10000);
 
-                    // Message Discord
+                    // Email confirmation client (immédiat)
+                    envoyerEmailConfirmationClient(orderData);
+
+                    // Infos communes Discord
                     const nom = [orderData.client?.prenom, orderData.client?.nom].filter(Boolean).join(' ') || 'client';
                     const format = (orderData.format || '').replace('format-', '');
                     const total = orderData.total ? Number(orderData.total).toFixed(2) + ' €' : '';
                     const led = orderData.led ? ' + LED' : '';
-                    const discordMsg = `🎉 **COMMANDE PAYÉE — Social-Miroir**\n📦 ${format}${led} — **${total}**\n👤 ${nom} — ${orderData.client?.email || ''}\n📞 ${orderData.client?.phone || ''}\n🪞 @${orderData.textes?.nomUtilisateur || ''}`;
+                    const discordMsg = `🎉 **COMMANDE PAYÉE — Social-Miroir**\n📦 ${format}${led} — **${total}**\n👤 ${nom} — ${orderData.client?.email || ''}\n📞 ${orderData.client?.phone || ''}\n🪞 @${orderData.textes?.nomUtilisateur || ''}\n📐 Format impression : ${format}`;
 
-                    if (pdfBase64) {
-                        // Envoyer PDF impression sur Discord via proxy
-                        const fileName = `IMPRESSION-${format}-${nom.replace(/\s+/g,'-')}.pdf`;
-                        fetch(`data:application/pdf;base64,${pdfBase64}`)
-                            .then(r => r.blob())
-                            .then(blob => {
-                                const form = new FormData();
-                                form.append('content', discordMsg);
-                                form.append('file', blob, fileName);
-                                return fetch(`${PROXY_URL}/discord`, { method: 'POST', body: form });
-                            })
-                            .catch(e => console.warn('Discord PDF:', e));
-                    } else {
-                        // Pas de PDF → notif texte via proxy
+                    // Regénérer le PDF vendeur aux vraies dimensions + logo séparé
+                    try {
+                        const fmtId = savedFormatId || `format-${format}`;
+                        const pdfVendeur = await genererPDFVendeur(fmtId, orderData);
+
+                        if (pdfVendeur) {
+                            const pdfBase64 = pdfVendeur.output('datauristring').split(',')[1];
+                            const fileName = `IMPRESSION-${format}-${nom.replace(/\s+/g,'-')}.pdf`;
+
+                            // 1. Envoyer PDF impression sur Discord
+                            fetch(`data:application/pdf;base64,${pdfBase64}`)
+                                .then(r => r.blob())
+                                .then(blob => {
+                                    const form = new FormData();
+                                    form.append('content', discordMsg);
+                                    form.append('file', blob, fileName);
+                                    return fetch(`${PROXY_URL}/discord`, { method: 'POST', body: form });
+                                })
+                                .catch(e => console.warn('Discord PDF:', e));
+
+                            // 2. Envoyer logo séparé si disponible
+                            const logoSrc = orderData.logoSrc || window._logoEmailSrc || '';
+                            if (logoSrc && logoSrc.startsWith('data:')) {
+                                fetch(logoSrc)
+                                    .then(r => r.blob())
+                                    .then(blob => {
+                                        const ext = blob.type.includes('png') ? 'png' : 'jpg';
+                                        const logoForm = new FormData();
+                                        logoForm.append('content', `🖼️ **Logo client** — @${orderData.textes?.nomUtilisateur || nom}`);
+                                        logoForm.append('file', blob, `LOGO-${nom.replace(/\s+/g,'-')}.${ext}`);
+                                        return fetch(`${PROXY_URL}/discord`, { method: 'POST', body: logoForm });
+                                    })
+                                    .catch(e => console.warn('Discord logo:', e));
+                            }
+
+                            // Email vendeur avec PDF
+                            envoyerEmailBAT(orderData, pdfBase64);
+                        } else {
+                            fetch(`${PROXY_URL}/discord`, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ content: discordMsg + '\n⚠️ PDF non généré' })
+                            }).catch(e => console.warn('Discord notif:', e));
+                            envoyerEmailBAT(orderData, null);
+                        }
+                    } catch(pdfErr) {
+                        console.warn('PDF vendeur après paiement:', pdfErr);
                         fetch(`${PROXY_URL}/discord`, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ content: discordMsg + '\n⚠️ PDF non disponible (taille)' })
-                        }).catch(e => console.warn('Discord notif:', e));
+                            body: JSON.stringify({ content: discordMsg + '\n⚠️ Erreur PDF : ' + pdfErr.message })
+                        }).catch(e => console.warn('Discord err:', e));
                     }
-
-                    // Email vendeur (RezoFabrik)
-                    envoyerEmailBAT(orderData, pdfBase64);
-                    // Email confirmation client
-                    envoyerEmailConfirmationClient(orderData);
 
                 } catch(e) {
                     console.warn('Retour paiement:', e);
