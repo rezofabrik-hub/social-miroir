@@ -1175,6 +1175,9 @@
                 <button onclick="testEnvoiDiscord()" class="w-full mt-2 py-2.5 rounded-xl border-2 border-dashed border-indigo-400/50 text-indigo-600 text-sm font-bold hover:bg-indigo-50 transition-colors">
                     💬 Tester la notification Discord
                 </button>
+                <button onclick="testTout()" class="w-full mt-2 py-2.5 rounded-xl border-2 border-dashed border-green-500/50 text-green-700 text-sm font-bold hover:bg-green-50 transition-colors">
+                    🚀 Tout tester (Discord + Email client)
+                </button>
             </div>
         </div>
     </div>
@@ -1807,6 +1810,61 @@
             btn.textContent = '💬 Tester la notification Discord';
             btn.disabled = false;
         }
+    }
+
+    async function testTout() {
+        const btn = event.target;
+        const email = document.getElementById('input-email')?.value?.trim();
+        if (!email) { alert('Remplissez d\'abord votre adresse email dans le formulaire.'); return; }
+        btn.textContent = '⏳ Envoi en cours…';
+        btn.disabled = true;
+        let results = [];
+        try {
+            await testEnvoiDiscord();
+            results.push('💬 Discord ✅');
+        } catch(e) { results.push('💬 Discord ❌'); }
+        try {
+            const inputs = {
+                username: document.getElementById('input-username'),
+                caption:  document.getElementById('input-caption'),
+                likes:    document.getElementById('input-likes'),
+                comments: document.getElementById('input-comments'),
+                reposts:  document.getElementById('input-reposts'),
+                shares:   document.getElementById('input-shares'),
+                hashtags: document.getElementById('input-hashtags'),
+                time:     document.getElementById('input-time'),
+            };
+            const logoSrc = (() => { const s = document.getElementById('preview-logo')?.src || ''; return s.startsWith('data:') ? s : ''; })();
+            const testOrder = {
+                format:  fmtName || 'Original',
+                couleur: selColor_val || 'argent',
+                led:     led && fmtId !== 'format-Mini',
+                total:   document.getElementById('price-display')?.textContent || '0',
+                logoSrc,
+                client: {
+                    prenom: document.getElementById('input-firstname')?.value || 'Test',
+                    nom:    document.getElementById('input-lastname')?.value || '',
+                    email,
+                },
+                textes: {
+                    nomUtilisateur: inputs.username?.value || '',
+                    legende:        inputs.caption?.value  || '',
+                    likes:          inputs.likes?.value    || '',
+                    commentaires:   inputs.comments?.value || '',
+                    reposts:        inputs.reposts?.value  || '',
+                    partages:       inputs.shares?.value   || '',
+                    hashtags:       inputs.hashtags?.value || '',
+                    heure:          inputs.time?.value     || '',
+                    reseau:         document.getElementById('input-network')?.value || 'full',
+                    batterie:       document.getElementById('input-battery')?.value || 'full',
+                    coeur:          document.getElementById('heart-svg')?.getAttribute('fill') === '#e1306c' ? 'rose' : 'classique',
+                }
+            };
+            await envoyerEmailConfirmationClient(testOrder);
+            results.push('📧 Email client ✅');
+        } catch(e) { results.push('📧 Email client ❌ : ' + (e?.text || e?.message || '')); }
+        btn.textContent = results.join(' — ');
+        setTimeout(() => { btn.textContent = '🚀 Tout tester (Discord + Email client)'; btn.disabled = false; }, 6000);
     }
 
     async function envoyerEmailBAT(orderData, pdfBase64) {
