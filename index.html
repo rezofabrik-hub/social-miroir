@@ -989,7 +989,7 @@
         <!-- Colonne gauche : miroir identique page accueil -->
         <div class="w-full md:w-2/5 flex flex-col p-6 border-b md:border-b-0 md:border-r border-gray-100 md:h-full md:overflow-y-auto">
             <div id="bat-preview-zone" style="background:white;padding:16px 0;display:flex;flex-direction:column;align-items:center;">
-            <p class="font-display font-bold text-ink text-sm mb-4 text-center tracking-wide uppercase">Votre Bon À Tirer</p>
+            <p class="font-display font-bold text-ink text-sm mb-4 text-center tracking-wide uppercase">Aperçu de votre miroir</p>
             <div id="bat-visual-container" class="w-full pointer-events-none flex items-center justify-center">
                 <!-- Wrapper 300px = même que #col-mirror dans le configurateur -->
                 <div style="width:300px;display:flex;align-items:center;justify-content:center;">
@@ -1029,13 +1029,9 @@
                 </div><!-- fin wrapper 300px -->
             </div>
             </div><!-- fin bat-preview-zone -->
-            <div style="margin-top:16px;background:#fef3c7;border:1.5px solid #f59e0b;border-radius:10px;padding:9px 12px;font-size:11px;color:#92400e;font-weight:600;text-align:center;line-height:1.4;">
-                📥 Téléchargez votre BAT avant de payer
+            <div style="margin-top:16px;background:#fdf0f8;border:1.5px solid #e6007e;border-radius:10px;padding:9px 12px;font-size:11px;color:#e6007e;font-weight:600;text-align:center;line-height:1.4;">
+                📧 Un récapitulatif vous sera envoyé par email après paiement
             </div>
-            <button onclick="generateBatPDF()" id="btn-bat-pdf" style="margin-top:8px;display:flex;align-items:center;justify-content:center;gap:8px;background:#e6007e;color:white;border:none;border-radius:10px;padding:12px 16px;font-size:13px;font-weight:700;cursor:pointer;width:100%;letter-spacing:0.03em;transition:opacity 0.15s;" onmouseover="this.style.opacity=0.85" onmouseout="this.style.opacity=1">
-                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17v3a2 2 0 002 2h14a2 2 0 002-2v-3"/></svg>
-                Télécharger mon BAT PDF
-            </button>
         </div>
 
         <!-- Colonne droite : Récap + form (3/5) -->
@@ -1406,16 +1402,16 @@
 
             <!-- Article 5 -->
             <div class="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
-                <h3 class="font-display font-bold text-ink text-base mb-3">Article 5 — Bon à tirer (B.A.T.) et validation</h3>
-                <p>Compte tenu du caractère personnalisé des produits, un <strong class="text-ink">Bon à Tirer (B.A.T.)</strong> est présenté au client avant paiement. Le client est tenu de vérifier attentivement l'exactitude de toutes les informations (textes, visuels, statistiques, hashtags).</p>
-                <p class="mt-2">En cochant la case de validation du B.A.T. et en procédant au paiement, le client reconnaît avoir approuvé la maquette finale. <strong class="text-ink">Aucune modification ne pourra être acceptée après validation du B.A.T. et paiement.</strong></p>
+                <h3 class="font-display font-bold text-ink text-base mb-3">Article 5 — Validation de la configuration</h3>
+                <p>Compte tenu du caractère personnalisé des produits, un aperçu de la configuration est présenté au client avant paiement. Le client est tenu de vérifier attentivement l'exactitude de toutes les informations (textes, visuels, statistiques, hashtags). Un récapitulatif est envoyé par email après paiement.</p>
+                <p class="mt-2">En cochant la case de validation et en procédant au paiement, le client reconnaît avoir approuvé sa configuration finale. <strong class="text-ink">Aucune modification ne pourra être acceptée après validation et paiement.</strong></p>
                 <p class="mt-2">RezoFabrik ne saurait être tenu responsable des erreurs contenues dans le visuel validé par le client.</p>
             </div>
 
             <!-- Article 6 -->
             <div class="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
                 <h3 class="font-display font-bold text-ink text-base mb-3">Article 6 — Commande et paiement</h3>
-                <p>La commande est réputée ferme et définitive dès validation du B.A.T. et réception du paiement intégral. Le paiement s'effectue en ligne, de manière sécurisée, via la plateforme <strong class="text-ink">Stripe</strong> (CB, Visa, Mastercard, Apple Pay, Google Pay).</p>
+                <p>La commande est réputée ferme et définitive dès validation de la configuration et réception du paiement intégral. Le paiement s'effectue en ligne, de manière sécurisée, via la plateforme <strong class="text-ink">Stripe</strong> (CB, Visa, Mastercard, Apple Pay, Google Pay).</p>
                 <p class="mt-2">Les données bancaires du client ne transitent à aucun moment par les serveurs de RezoFabrik. Stripe est certifié PCI DSS niveau 1.</p>
                 <p class="mt-2">Un email de confirmation de commande est envoyé à l'adresse fournie par le client dans les minutes suivant le paiement.</p>
             </div>
@@ -1438,7 +1434,7 @@
             <!-- Article 9 -->
             <div class="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
                 <h3 class="font-display font-bold text-ink text-base mb-3">Article 9 — Garanties et réclamations</h3>
-                <p>En cas de produit livré endommagé ou non-conforme au B.A.T. validé, le client dispose de <strong class="text-ink">48 heures</strong> à compter de la réception pour contacter RezoFabrik par email (<a href="mailto:rezofabrik@gmail.com" class="text-brand hover:underline">rezofabrik@gmail.com</a>), en joignant des photos du produit reçu et de l'emballage.</p>
+                <p>En cas de produit livré endommagé ou non-conforme à la configuration validée, le client dispose de <strong class="text-ink">48 heures</strong> à compter de la réception pour contacter RezoFabrik par email (<a href="mailto:rezofabrik@gmail.com" class="text-brand hover:underline">rezofabrik@gmail.com</a>), en joignant des photos du produit reçu et de l'emballage.</p>
                 <p class="mt-2">Après vérification, RezoFabrik s'engage à refabriquer et réexpédier le produit à ses frais, ou à rembourser le client selon les circonstances. Aucune réclamation ne sera acceptée au-delà de ce délai de 48 heures.</p>
             </div>
 
