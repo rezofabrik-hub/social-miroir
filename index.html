@@ -1533,6 +1533,9 @@
         const reposts  = t.reposts || '';
         const shares   = t.partages || '';
         const heure    = t.heure || '';
+        const reseau   = t.reseau === 'medium' ? 'Moyen' : 'Max';
+        const batterie = t.batterie === 'low' ? 'Faible 🔴' : t.batterie === 'medium' ? 'Moyenne 🟡' : 'Pleine ✅';
+        const coeur    = t.coeur === 'rose' ? '❤️ Cœur rose' : '🖤 Contour classique';
         const logo     = orderData.logoSrc || '';
         const date     = new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
         const ref      = 'SM-' + Date.now().toString(36).toUpperCase().slice(-6);
@@ -1604,8 +1607,20 @@
         <td style="padding:11px 14px;font-size:13px;color:#111;">${hashPills}</td>
       </tr>
       <tr style="border-bottom:1px solid #ebebeb;">
+        <td style="padding:11px 14px;font-size:12px;color:#999;background:#fafafa;border-right:1px solid #ebebeb;">Style du cœur</td>
+        <td style="padding:11px 14px;font-size:13px;font-weight:600;color:#111;">${coeur}</td>
+      </tr>
+      <tr style="border-bottom:1px solid #ebebeb;">
         <td style="padding:11px 14px;font-size:12px;color:#999;background:#fafafa;border-right:1px solid #ebebeb;">Heure affichée</td>
         <td style="padding:11px 14px;font-size:13px;font-weight:600;color:#111;">${heure}</td>
+      </tr>
+      <tr style="border-bottom:1px solid #ebebeb;">
+        <td style="padding:11px 14px;font-size:12px;color:#999;background:#fafafa;border-right:1px solid #ebebeb;">Réseau</td>
+        <td style="padding:11px 14px;font-size:13px;font-weight:600;color:#111;">${reseau}</td>
+      </tr>
+      <tr>
+        <td style="padding:11px 14px;font-size:12px;color:#999;background:#fafafa;border-right:1px solid #ebebeb;">Batterie</td>
+        <td style="padding:11px 14px;font-size:13px;font-weight:600;color:#111;">${batterie}</td>
       </tr>
     </table>
 
@@ -1720,6 +1735,9 @@
                 partages:       inputs.shares?.value   || '',
                 hashtags:       inputs.hashtags?.value || '',
                 heure:          inputs.time?.value     || '',
+                reseau:         document.getElementById('input-network')?.value || 'full',
+                batterie:       document.getElementById('input-battery')?.value || 'full',
+                coeur:          document.getElementById('heart-svg')?.getAttribute('fill') === '#e1306c' ? 'rose' : 'classique',
             }
         };
         try {
@@ -2684,6 +2702,9 @@
                     partages:       inputs.shares.value,
                     hashtags:       inputs.hashtags.value,
                     heure:          inputs.time.value,
+                    reseau:         inputs.network?.value || 'full',
+                    batterie:       inputs.battery?.value || 'full',
+                    coeur:          document.getElementById('heart-svg')?.getAttribute('fill') === '#e1306c' ? 'rose' : 'classique',
                 }
             };
 
