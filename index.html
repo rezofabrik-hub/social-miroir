@@ -2964,7 +2964,11 @@
                     const format = (orderData.format || '').replace('format-', '');
                     const total = orderData.total ? Number(orderData.total).toFixed(2) + ' €' : '';
                     const led = orderData.led ? ' + LED' : '';
-                    const discordMsg = `🎉 **COMMANDE PAYÉE — Social-Miroir**\n📦 ${format}${led} — **${total}**\n👤 ${nom} — ${orderData.client?.email || ''}\n📞 ${orderData.client?.phone || ''}\n🪞 @${orderData.textes?.nomUtilisateur || ''}\n📐 Format impression : ${format}`;
+                    const now = new Date();
+                    const dateStr = now.toLocaleDateString('fr-FR');
+                    const rand = Math.floor(1000 + Math.random() * 9000);
+                    const orderRef = `SM-${now.getFullYear()}-${rand}`;
+                    const discordMsg = `🎉 **COMMANDE PAYÉE — Social-Miroir**\n🔢 **Réf : ${orderRef}** — ${dateStr}\n📦 ${format}${led} — **${total}**\n👤 ${nom} — ${orderData.client?.email || ''}\n📞 ${orderData.client?.phone || ''}\n🪞 @${orderData.textes?.nomUtilisateur || ''}\n📐 Format impression : ${format}`;
 
                     // Regénérer le PDF vendeur aux vraies dimensions + logo séparé
                     try {
