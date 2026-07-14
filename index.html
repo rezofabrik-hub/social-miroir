@@ -1542,7 +1542,7 @@
         const reseau   = t.reseau === 'medium' ? 'Moyen' : 'Max';
         const batterie = t.batterie === 'low' ? 'Faible 🔴' : t.batterie === 'medium' ? 'Moyenne 🟡' : 'Pleine ✅';
         const coeur    = t.coeur === 'rose' ? '❤️ Cœur rose' : '🖤 Contour classique';
-        const logo     = orderData.logoSrc || '';
+        const logo     = ''; // logo exclu de l'email (limite 50Ko EmailJS)
         const date     = new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
         const ref      = 'SM-' + Date.now().toString(36).toUpperCase().slice(-6);
 
