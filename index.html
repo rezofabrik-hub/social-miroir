@@ -382,7 +382,7 @@
         .v2-sicons{display:flex;align-items:center;gap:6px;}
         .v2-stat{display:flex;align-items:center;gap:2px;font-size:9px;font-weight:700;color:#111;}
         .v2-stat svg{width:11px;height:11px;}
-        .v2-cap{font-size:9px;color:#444;line-height:1.4;margin-bottom:2px;}
+        .v2-cap{font-size:9px;color:#444;line-height:1.4;margin-bottom:2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
         .v2-hash{font-size:8px;font-weight:600;color:#1d4ed8;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
         .v2-brand{font-size:4px;color:#ccc;text-align:center;margin-top:3px;letter-spacing:3px;}
         .format-Mini      { height: auto; }
@@ -633,8 +633,11 @@
 
                         <!-- Légende -->
                         <div>
-                            <label class="block text-[11px] font-bold text-ink/50 mb-2 uppercase tracking-wider">Légende</label>
-                            <textarea id="input-caption" rows="2"
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="block text-[11px] font-bold text-ink/50 uppercase tracking-wider">Légende</label>
+                                <span id="caption-count" class="text-[10px] font-semibold text-ink/30">55/120</span>
+                            </div>
+                            <textarea id="input-caption" rows="2" maxlength="120"
                                 class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white font-medium text-sm transition-all resize-none">Venez découvrir votre nouvel espace beauté et bien-être.</textarea>
                         </div>
 
@@ -671,8 +674,11 @@
 
                         <!-- Hashtags -->
                         <div>
-                            <label class="block text-[11px] font-bold text-ink/50 mb-2 uppercase tracking-wider">Hashtags</label>
-                            <textarea id="input-hashtags" rows="2"
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="block text-[11px] font-bold text-ink/50 uppercase tracking-wider">Hashtags</label>
+                                <span id="hashtags-count" class="text-[10px] font-semibold text-ink/30">71/150</span>
+                            </div>
+                            <textarea id="input-hashtags" rows="2" maxlength="150"
                                 class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white font-medium text-sm transition-all resize-none">#salondecoiffure #coiffeurparis #hairtransformation #coloriste #beaute</textarea>
                         </div>
 
@@ -2315,6 +2321,22 @@
         bind(inputs.shares,   previews.shares,     '0');
         bind(inputs.hashtags, previews.hashtags,   '#hashtags');
         bind(inputs.time,     previews.time,       '12:00');
+
+        // ── Compteurs de caractères ──
+        const updateCount = (inputId, counterId, max) => {
+            const el = document.getElementById(inputId);
+            const ct = document.getElementById(counterId);
+            if (!el || !ct) return;
+            const update = () => {
+                const n = el.value.length;
+                ct.textContent = n + '/' + max;
+                ct.style.color = n >= max * 0.9 ? '#e6007e' : n >= max * 0.75 ? '#f59e0b' : '';
+            };
+            el.addEventListener('input', update);
+            update();
+        };
+        updateCount('input-caption',  'caption-count',  120);
+        updateCount('input-hashtags', 'hashtags-count', 150);
 
         // ── Cœur rose toggle ──
         let heartRoseLive = true;
