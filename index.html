@@ -479,10 +479,20 @@
 <!-- TOAST -->
 <div id="toast">✓ Ajouté au panier</div>
 
-<!-- ═══════════════ BANNIÈRE PROMO JUILLET ═══════════════ -->
-<div style="background:linear-gradient(90deg,#e6007e,#ff3399,#e6007e);background-size:200% auto;animation:shimmer 3s linear infinite;color:white;text-align:center;padding:10px 16px;font-size:13px;font-weight:700;letter-spacing:0.02em;position:relative;z-index:60;overflow:hidden;white-space:normal;word-break:break-word;">
+<!-- ═══════════════ BANNIÈRE PROMO / LIVRAISON ═══════════════ -->
+<div id="banniere-livraison" style="background:linear-gradient(90deg,#e6007e,#ff3399,#e6007e);background-size:200% auto;animation:shimmer 3s linear infinite;color:white;text-align:center;padding:10px 16px;font-size:13px;font-weight:700;letter-spacing:0.02em;position:relative;z-index:60;overflow:hidden;white-space:normal;word-break:break-word;">
     🎁 <span style="text-decoration:underline;text-underline-offset:3px;">Frais de livraison offerts</span> tout le mois de juillet &nbsp;·&nbsp; 🇫🇷 Livraison France entière
 </div>
+<script>
+(function() {
+    const now = new Date();
+    const isAout = now >= new Date(now.getFullYear(), 7, 1); // 1er août
+    const banner = document.getElementById('banniere-livraison');
+    if (isAout) {
+        banner.innerHTML = '🚚 Livraison France entière : <strong>30,00 €</strong> &nbsp;·&nbsp; 🇫🇷 Expédition sous 7 jours ouvrés';
+    }
+})();
+</script>
 
 <!-- ═══════════════ TICKER CIBLES ═══════════════ -->
 <div style="background:#0f0f0f;overflow:hidden;padding:10px 0;border-bottom:1px solid rgba(230,0,126,0.2);position:relative;max-width:100vw;">
@@ -1061,6 +1071,10 @@
                     <div class="flex justify-between text-sm hidden" id="cart-led-row">
                         <span class="text-ink/50">Rétroéclairage LED RGB</span>
                         <span class="font-semibold text-brand">+ 29,90 €</span>
+                    </div>
+                    <div class="flex justify-between text-sm" id="cart-shipping-row">
+                        <span class="text-ink/50" id="cart-shipping-label">Livraison</span>
+                        <span class="font-semibold" id="cart-shipping-price">Offerte 🎁</span>
                     </div>
                     <div class="flex justify-between items-center border-t border-gray-200 pt-3 mt-3">
                         <span class="font-display font-bold text-ink text-base">Total TTC</span>
@@ -2344,11 +2358,21 @@
         updPrice();
     }
 
+    const SHIPPING_ACTIVE = new Date() >= new Date(new Date().getFullYear(), 7, 1); // 1er août
+    const SHIPPING_COST   = SHIPPING_ACTIVE ? 30 : 0;
+
     function updPrice() {
-        const total = formatPrice((fmtPrice || 0) + (led && fmtId !== 'format-Mini' ? 29.90 : 0));
-        const pd = document.getElementById('price-display'); if (pd) pd.textContent = total;
+        const base  = (fmtPrice || 0) + (led && fmtId !== 'format-Mini' ? 29.90 : 0);
+        const total = formatPrice(base + SHIPPING_COST);
+        const pd = document.getElementById('price-display'); if (pd) pd.textContent = formatPrice(base);
         const pb = document.getElementById('price-in-btn'); if (pb) pb.textContent = total;
         const ct = document.getElementById('cart-total-price'); if (ct) ct.textContent = total;
+        // Ligne livraison dans le récap
+        const sp = document.getElementById('cart-shipping-price');
+        if (sp) {
+            sp.textContent   = SHIPPING_ACTIVE ? '30,00 €' : 'Offerte 🎁';
+            sp.style.color   = SHIPPING_ACTIVE ? '' : '#16a34a';
+        }
     }
 
     function applyMirrorColorBg() {
