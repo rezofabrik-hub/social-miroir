@@ -1172,6 +1172,9 @@
                 <button onclick="testEnvoiEmailClient()" class="w-full py-2.5 rounded-xl border-2 border-dashed border-brand/40 text-brand text-sm font-bold hover:bg-brand/5 transition-colors">
                     📧 Envoyer l'email de test à mon adresse
                 </button>
+                <button onclick="testEnvoiDiscord()" class="w-full mt-2 py-2.5 rounded-xl border-2 border-dashed border-indigo-400/50 text-indigo-600 text-sm font-bold hover:bg-indigo-50 transition-colors">
+                    💬 Tester la notification Discord
+                </button>
             </div>
         </div>
     </div>
@@ -1751,6 +1754,36 @@
             const msg = e?.text || e?.message || JSON.stringify(e);
             alert('❌ Erreur EmailJS :\n\n' + msg);
             btn.textContent = '📧 Envoyer l\'email de test à mon adresse';
+            btn.disabled = false;
+        }
+    }
+
+    async function testEnvoiDiscord() {
+        const btn = event.target;
+        btn.textContent = '⏳ Envoi en cours…';
+        btn.disabled = true;
+        try {
+            // Message texte de test
+            const msgRes = await fetch(`${PROXY_URL}/discord`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ content: '🧪 **Test Discord — Social-Miroir**\n✅ Le proxy Cloudflare fonctionne correctement !\n📦 Format : Original 60×100 cm\n🎨 Couleur : Argent Clair\n💡 LED : Non\n👤 @salontest' }),
+            });
+            if (!msgRes.ok) throw new Error('Discord message échoué : ' + msgRes.status);
+
+            // Fichier test (petit PDF fictif en texte)
+            const testBlob = new Blob(['TEST DISCORD - Social-Miroir.fr\nCommande test du ' + new Date().toLocaleDateString('fr-FR')], { type: 'text/plain' });
+            const form = new FormData();
+            form.append('content', '📄 Fichier test (remplacé par PDF vendeur en prod)');
+            form.append('file', testBlob, 'test-commande.txt');
+            const fileRes = await fetch(`${PROXY_URL}/discord`, { method: 'POST', body: form });
+            if (!fileRes.ok) throw new Error('Discord fichier échoué : ' + fileRes.status);
+
+            btn.textContent = '✅ Discord OK !';
+            setTimeout(() => { btn.textContent = '💬 Tester la notification Discord'; btn.disabled = false; }, 4000);
+        } catch(e) {
+            alert('❌ Erreur Discord :\n\n' + (e?.message || JSON.stringify(e)));
+            btn.textContent = '💬 Tester la notification Discord';
             btn.disabled = false;
         }
     }
