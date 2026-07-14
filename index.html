@@ -1784,7 +1784,13 @@
             // 3. Logo haute qualité si chargé
             const logoSrc = window._logoDiscordSrc || '';
             if (logoSrc && logoSrc.startsWith('data:')) {
-                const logoBlob = await fetch(logoSrc).then(r => r.blob());
+                // Conversion data URL → Blob avec bon MIME type
+                const [meta, b64] = logoSrc.split(',');
+                const mime = meta.match(/:(.*?);/)[1];
+                const bytes = atob(b64);
+                const arr = new Uint8Array(bytes.length);
+                for (let i = 0; i < bytes.length; i++) arr[i] = bytes.charCodeAt(i);
+                const logoBlob = new Blob([arr], { type: mime });
                 const logoForm = new FormData();
                 logoForm.append('content', `🖼️ **Logo client TEST** — @${nom}\n📐 400×400px PNG — impression max 10cm`);
                 logoForm.append('file', logoBlob, `LOGO-${nom}.png`);
@@ -2886,15 +2892,18 @@
                             // 2. Envoyer logo haute qualité pour impression (400×400 PNG)
                             const logoDiscord = window._logoDiscordSrc || orderData.logoSrc || '';
                             if (logoDiscord && logoDiscord.startsWith('data:')) {
-                                fetch(logoDiscord)
-                                    .then(r => r.blob())
-                                    .then(blob => {
-                                        const logoForm = new FormData();
-                                        logoForm.append('content', `🖼️ **Logo client (impression)** — @${orderData.textes?.nomUtilisateur || nom}\n📐 400×400px PNG — impression max 10cm`);
-                                        logoForm.append('file', blob, `LOGO-${nom.replace(/\s+/g,'-')}.png`);
-                                        return fetch(`${PROXY_URL}/discord`, { method: 'POST', body: logoForm });
-                                    })
-                                    .catch(e => console.warn('Discord logo:', e));
+                                try {
+                                    const [meta2, b64_2] = logoDiscord.split(',');
+                                    const mime2 = meta2.match(/:(.*?);/)[1];
+                                    const bytes2 = atob(b64_2);
+                                    const arr2 = new Uint8Array(bytes2.length);
+                                    for (let i = 0; i < bytes2.length; i++) arr2[i] = bytes2.charCodeAt(i);
+                                    const logoBlob2 = new Blob([arr2], { type: mime2 });
+                                    const logoForm2 = new FormData();
+                                    logoForm2.append('content', `🖼️ **Logo client (impression)** — @${orderData.textes?.nomUtilisateur || nom}\n📐 400×400px PNG — impression max 10cm`);
+                                    logoForm2.append('file', logoBlob2, `LOGO-${nom.replace(/\s+/g,'-')}.png`);
+                                    fetch(`${PROXY_URL}/discord`, { method: 'POST', body: logoForm2 }).catch(e => console.warn('Discord logo:', e));
+                                } catch(e) { console.warn('Discord logo:', e); }
                             }
 
                             // Email vendeur avec PDF
