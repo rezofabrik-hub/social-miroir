@@ -1701,6 +1701,7 @@
             console.log('✅ Email confirmation envoyé au client:', orderData.client.email);
         } catch(err) {
             console.warn('Email client:', err);
+            throw err;
         }
     }
 
@@ -1751,7 +1752,9 @@
             btn.textContent = '✅ Email envoyé à ' + email;
             setTimeout(() => { btn.textContent = '📧 Envoyer l\'email de test à mon adresse'; btn.disabled = false; }, 4000);
         } catch(e) {
-            btn.textContent = '❌ Erreur — vérifiez la console';
+            const msg = e?.text || e?.message || JSON.stringify(e);
+            alert('❌ Erreur EmailJS :\n\n' + msg);
+            btn.textContent = '📧 Envoyer l\'email de test à mon adresse';
             btn.disabled = false;
         }
     }
