@@ -1542,7 +1542,7 @@
         const reseau   = t.reseau === 'medium' ? 'Moyen' : 'Max';
         const batterie = t.batterie === 'low' ? 'Faible 🔴' : t.batterie === 'medium' ? 'Moyenne 🟡' : 'Pleine ✅';
         const coeur    = t.coeur === 'rose' ? '❤️ Cœur rose' : '🖤 Contour classique';
-        const logo     = ''; // logo exclu de l'email (limite 50Ko EmailJS)
+        const logo     = window._logoEmailSrc || ''; // version compressée 80×80 JPEG
         const date     = new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
         const ref      = 'SM-' + Date.now().toString(36).toUpperCase().slice(-6);
 
@@ -2399,7 +2399,20 @@
             $('logo-filename').textContent = file.name.length > 18 ? file.name.slice(0,15) + '…' : file.name;
             $('upload-label').classList.add('has-file');
             const reader = new FileReader();
-            reader.onload = ev => { $('preview-logo').src = ev.target.result; };
+            reader.onload = ev => {
+                const img = new Image();
+                img.onload = () => {
+                    // Affichage miroir : taille originale
+                    $('preview-logo').src = ev.target.result;
+                    // Version compressée 80×80 JPEG pour l'email
+                    const canvas = document.createElement('canvas');
+                    canvas.width = 80; canvas.height = 80;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, 80, 80);
+                    window._logoEmailSrc = canvas.toDataURL('image/jpeg', 0.7);
+                };
+                img.src = ev.target.result;
+            };
             reader.readAsDataURL(file);
         });
 
