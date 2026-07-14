@@ -1148,8 +1148,13 @@
                 <span class="text-sm text-ink/70 font-semibold group-hover:text-ink transition-colors leading-tight">J'accepte que mes données personnelles (nom, email, téléphone) soient utilisées par RezoFabrik uniquement pour le traitement de ma commande, conformément à la <button type="button" onclick="openCgv();event.stopPropagation();" class="text-brand underline underline-offset-2 hover:opacity-70">politique de confidentialité</button>.</span>
             </label>
 
+            <!-- Bouton aperçu email -->
+            <button id="btn-apercu-email" onclick="apercuEmailAvantPaiement(this)" class="w-full mt-3 py-2.5 rounded-xl border-2 border-dashed border-brand/40 text-brand text-sm font-bold hover:bg-brand/5 transition-colors">
+                📧 Recevoir un aperçu de ma commande par email
+            </button>
+
             <!-- Boutons -->
-            <div class="flex gap-3 mt-auto">
+            <div class="flex gap-3 mt-3">
                 <button id="btn-edit-bat" class="flex-1 py-3.5 border-2 border-gray-200 rounded-xl font-bold text-ink/60 hover:bg-gray-50 hover:text-ink transition-all text-sm">
                     ← Modifier
                 </button>
@@ -1164,20 +1169,6 @@
             <div class="flex items-center justify-center gap-2 mt-4 text-[11px] text-ink/25 font-medium">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                 Paiement sécurisé SSL · Stripe
-            </div>
-
-            <!-- Bouton test email — visible uniquement si ?test=1 dans l'URL -->
-            <div id="test-email-block" class="hidden mt-4 pt-4 border-t border-dashed border-gray-200">
-                <p class="text-[11px] text-center text-gray-400 mb-2 font-medium uppercase tracking-wider">🧪 Mode test — ne pas partager</p>
-                <button onclick="testEnvoiEmailClient()" class="w-full py-2.5 rounded-xl border-2 border-dashed border-brand/40 text-brand text-sm font-bold hover:bg-brand/5 transition-colors">
-                    📧 Envoyer l'email de test à mon adresse
-                </button>
-                <button onclick="testEnvoiDiscord()" class="w-full mt-2 py-2.5 rounded-xl border-2 border-dashed border-indigo-400/50 text-indigo-600 text-sm font-bold hover:bg-indigo-50 transition-colors">
-                    💬 Tester la notification Discord
-                </button>
-                <button onclick="testTout()" class="w-full mt-2 py-2.5 rounded-xl border-2 border-dashed border-green-500/50 text-green-700 text-sm font-bold hover:bg-green-50 transition-colors">
-                    🚀 Tout tester (Discord + Email client)
-                </button>
             </div>
         </div>
     </div>
@@ -1865,6 +1856,59 @@
         } catch(e) { results.push('📧 Email client ❌ : ' + (e?.text || e?.message || '')); }
         btn.textContent = results.join(' — ');
         setTimeout(() => { btn.textContent = '🚀 Tout tester (Discord + Email client)'; btn.disabled = false; }, 6000);
+    }
+
+    async function apercuEmailAvantPaiement(btn) {
+        const email = document.getElementById('input-email')?.value?.trim();
+        if (!email) { alert('Remplissez d\'abord votre adresse email dans le formulaire.'); return; }
+        btn.textContent = '⏳ Envoi en cours…';
+        btn.disabled = true;
+        const inputs = {
+            username: document.getElementById('input-username'),
+            caption:  document.getElementById('input-caption'),
+            likes:    document.getElementById('input-likes'),
+            comments: document.getElementById('input-comments'),
+            reposts:  document.getElementById('input-reposts'),
+            shares:   document.getElementById('input-shares'),
+            hashtags: document.getElementById('input-hashtags'),
+            time:     document.getElementById('input-time'),
+        };
+        const logoSrc = (() => { const s = document.getElementById('preview-logo')?.src || ''; return s.startsWith('data:') ? s : ''; })();
+        const orderData = {
+            format:  fmtName || 'Original',
+            couleur: selColor_val || 'argent',
+            led:     led && fmtId !== 'format-Mini',
+            total:   document.getElementById('price-display')?.textContent || '0',
+            logoSrc,
+            client: {
+                prenom: document.getElementById('input-firstname')?.value || '',
+                nom:    document.getElementById('input-lastname')?.value || '',
+                email,
+            },
+            textes: {
+                nomUtilisateur: inputs.username?.value || '',
+                legende:        inputs.caption?.value  || '',
+                likes:          inputs.likes?.value    || '',
+                commentaires:   inputs.comments?.value || '',
+                reposts:        inputs.reposts?.value  || '',
+                partages:       inputs.shares?.value   || '',
+                hashtags:       inputs.hashtags?.value || '',
+                heure:          inputs.time?.value     || '',
+                reseau:         document.getElementById('input-network')?.value || 'full',
+                batterie:       document.getElementById('input-battery')?.value || 'full',
+                coeur:          document.getElementById('heart-svg')?.getAttribute('fill') === '#e1306c' ? 'rose' : 'classique',
+            }
+        };
+        try {
+            await envoyerEmailConfirmationClient(orderData);
+            btn.textContent = '✅ Aperçu envoyé à ' + email;
+            setTimeout(() => { btn.textContent = '📧 Recevoir un aperçu de ma commande par email'; btn.disabled = false; }, 5000);
+        } catch(e) {
+            const msg = e?.text || e?.message || JSON.stringify(e);
+            alert('❌ Erreur envoi email :\n\n' + msg);
+            btn.textContent = '📧 Recevoir un aperçu de ma commande par email';
+            btn.disabled = false;
+        }
     }
 
     async function envoyerEmailBAT(orderData, pdfBase64) {
