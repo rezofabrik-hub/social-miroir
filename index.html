@@ -2433,12 +2433,18 @@
                 img.onload = () => {
                     // Affichage miroir : taille originale
                     $('preview-logo').src = ev.target.result;
-                    // Version compressée 80×80 JPEG pour l'email
+                    // Version compressée 80×80 JPEG pour l'email (limite 50KB EmailJS)
                     const canvas = document.createElement('canvas');
                     canvas.width = 80; canvas.height = 80;
                     const ctx = canvas.getContext('2d');
                     ctx.drawImage(img, 0, 0, 80, 80);
                     window._logoEmailSrc = canvas.toDataURL('image/jpeg', 0.7);
+                    // Version haute qualité 400×400 PNG pour Discord/impression (10cm @ 100dpi)
+                    const canvasHQ = document.createElement('canvas');
+                    canvasHQ.width = 400; canvasHQ.height = 400;
+                    const ctxHQ = canvasHQ.getContext('2d');
+                    ctxHQ.drawImage(img, 0, 0, 400, 400);
+                    window._logoDiscordSrc = canvasHQ.toDataURL('image/png');
                 };
                 img.src = ev.target.result;
             };
@@ -2862,16 +2868,15 @@
                                 })
                                 .catch(e => console.warn('Discord PDF:', e));
 
-                            // 2. Envoyer logo séparé si disponible
-                            const logoSrc = orderData.logoSrc || window._logoEmailSrc || '';
-                            if (logoSrc && logoSrc.startsWith('data:')) {
-                                fetch(logoSrc)
+                            // 2. Envoyer logo haute qualité pour impression (400×400 PNG)
+                            const logoDiscord = window._logoDiscordSrc || orderData.logoSrc || '';
+                            if (logoDiscord && logoDiscord.startsWith('data:')) {
+                                fetch(logoDiscord)
                                     .then(r => r.blob())
                                     .then(blob => {
-                                        const ext = blob.type.includes('png') ? 'png' : 'jpg';
                                         const logoForm = new FormData();
-                                        logoForm.append('content', `🖼️ **Logo client** — @${orderData.textes?.nomUtilisateur || nom}`);
-                                        logoForm.append('file', blob, `LOGO-${nom.replace(/\s+/g,'-')}.${ext}`);
+                                        logoForm.append('content', `🖼️ **Logo client (impression)** — @${orderData.textes?.nomUtilisateur || nom}\n📐 400×400px PNG — impression max 10cm`);
+                                        logoForm.append('file', blob, `LOGO-${nom.replace(/\s+/g,'-')}.png`);
                                         return fetch(`${PROXY_URL}/discord`, { method: 'POST', body: logoForm });
                                     })
                                     .catch(e => console.warn('Discord logo:', e));
