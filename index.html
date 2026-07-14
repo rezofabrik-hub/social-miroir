@@ -480,31 +480,23 @@
 <div id="toast">✓ Ajouté au panier</div>
 
 <!-- ═══════════════ BANNIÈRE PROMO / LIVRAISON ═══════════════ -->
-<div id="banniere-livraison" style="display:none;background:linear-gradient(90deg,#e6007e,#ff3399,#e6007e);background-size:200% auto;animation:shimmer 3s linear infinite;color:white;text-align:center;padding:10px 16px;font-size:13px;font-weight:700;letter-spacing:0.02em;position:relative;z-index:60;overflow:hidden;white-space:normal;word-break:break-word;">
+<div id="banniere-livraison" style="background:linear-gradient(90deg,#e6007e,#ff3399,#e6007e);background-size:200% auto;animation:shimmer 3s linear infinite;color:white;text-align:center;padding:10px 16px;font-size:13px;font-weight:700;letter-spacing:0.02em;position:relative;z-index:60;overflow:hidden;white-space:normal;word-break:break-word;">
     🎁 <span style="text-decoration:underline;text-underline-offset:3px;">Frais de livraison offerts</span> tout le mois de juillet &nbsp;·&nbsp; 🇫🇷 Livraison France entière
 </div>
 <script>
 (function() {
-    const now   = new Date();
-    const yr    = now.getFullYear();
-    const debut = new Date(yr, 6, 25); // 25 juillet
-    const aout  = new Date(yr, 7, 1);  // 1er août
+    const now  = new Date();
+    const yr   = now.getFullYear();
+    const aout = new Date(yr, 7, 1);
     const banner = document.getElementById('banniere-livraison');
-    if (now >= debut && now < aout) {
-        // Du 25 juillet au 31 juillet : promo livraison offerte
-        banner.style.display = 'block';
-    } else if (now >= aout) {
-        // À partir du 1er août : livraison 30€
-        banner.style.display = 'block';
+    if (now >= aout) {
         banner.innerHTML = '🚚 Livraison France entière : <strong>30,00 €</strong> &nbsp;·&nbsp; 🇫🇷 Expédition sous 7 jours ouvrés';
     }
-    // Avant le 25 juillet : bannière masquée
 })();
 </script>
 
 <!-- ═══════════════ TICKER CIBLES ═══════════════ -->
-<div id="ticker-cibles" style="display:none;background:#0f0f0f;overflow:hidden;padding:10px 0;border-bottom:1px solid rgba(230,0,126,0.2);position:relative;max-width:100vw;">
-<script>(function(){ const now=new Date(),yr=now.getFullYear(); if(now>=new Date(yr,6,25)){document.getElementById('ticker-cibles').style.display='block';} })();</script>
+<div id="ticker-cibles" style="background:#0f0f0f;overflow:hidden;padding:10px 0;border-bottom:1px solid rgba(230,0,126,0.2);position:relative;max-width:100vw;">
     <div style="display:flex;gap:0;animation:ticker 25s linear infinite;width:max-content;">
         <span style="display:flex;align-items:center;gap:0;white-space:nowrap;font-size:13px;font-weight:700;color:white;letter-spacing:0.04em;padding-right:0;">
             Salons de coiffure &nbsp;<span style="color:#e6007e;margin:0 12px;">✦</span>&nbsp; Barbershops &nbsp;<span style="color:#e6007e;margin:0 12px;">✦</span>&nbsp; Instituts beauté &nbsp;<span style="color:#e6007e;margin:0 12px;">✦</span>&nbsp; Nail Art &nbsp;<span style="color:#e6007e;margin:0 12px;">✦</span>&nbsp; Studios Tattoo &nbsp;<span style="color:#e6007e;margin:0 12px;">✦</span>&nbsp; Mariages &nbsp;<span style="color:#e6007e;margin:0 12px;">✦</span>&nbsp; Hôtels &nbsp;<span style="color:#e6007e;margin:0 12px;">✦</span>&nbsp; Bars &amp; Restos &nbsp;<span style="color:#e6007e;margin:0 12px;">✦</span>&nbsp; Boutiques &nbsp;<span style="color:#e6007e;margin:0 12px;">✦</span>&nbsp; Soirées privées &nbsp;<span style="color:#e6007e;margin:0 12px;">✦</span>&nbsp; Anniversaires &nbsp;<span style="color:#e6007e;margin:0 12px;">✦</span>&nbsp; Pop-ups &nbsp;<span style="color:#e6007e;margin:0 12px;">✦</span>&nbsp; Cadeaux d'entreprise &nbsp;<span style="color:#e6007e;margin:0 12px;">✦</span>&nbsp;
