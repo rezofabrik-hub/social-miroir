@@ -1,36 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
   <rect width="200" height="200" fill="#29ABE2"/>
-
-  <!-- Outer large P (dark fill, even-odd creates inner void = background shows) -->
-  <path fill="#1C1C2E" fill-rule="evenodd" d="
-    M 28 178
-    L 28 22
-    L 162 22
-    L 162 112
-    L 50 112
-    L 50 178
-    Z
-    M 50 44
-    L 140 44
-    L 140 90
-    L 50 90
-    Z
-  "/>
-
-  <!-- Inner P shape nested in bowl (dark, with its own inner cutout) -->
-  <path fill="#1C1C2E" fill-rule="evenodd" d="
-    M 64 90
-    L 64 44
-    L 140 44
-    L 140 90
-    Z
-    M 64 58
-    L 126 58
-    L 126 76
-    L 64 76
-    Z
-  "/>
-
+  <!-- Outer P stroke (thick, rounded corners) -->
+  <path
+    fill="none"
+    stroke="#1C1C2E"
+    stroke-width="28"
+    stroke-linecap="square"
+    stroke-linejoin="round"
+    d="M 38 178 L 38 38 Q 38 20 56 20 L 150 20 Q 168 20 168 38 L 168 112 L 38 112"
+  />
+  <!-- Inner R stroke (smaller, nested inside outer P bowl) -->
+  <path
+    fill="none"
+    stroke="#1C1C2E"
+    stroke-width="22"
+    stroke-linecap="square"
+    stroke-linejoin="round"
+    d="M 74 178 L 74 48 Q 74 40 82 40 L 148 40 Q 156 40 156 48 L 156 90 L 74 90"
+  />
   <!-- R diagonal leg -->
-  <polygon fill="#1C1C2E" points="126,112 150,112 166,162 142,162"/>
+  <path
+    fill="none"
+    stroke="#1C1C2E"
+    stroke-width="22"
+    stroke-linecap="square"
+    d="M 158 112 L 176 162"
+  />
 </svg>
