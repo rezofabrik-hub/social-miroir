@@ -3226,11 +3226,15 @@
         }
         window.updCamPos = updCamPos;
 
-        // Favori cliquable on/off
+        // Favori cliquable on/off — coché = icône noire pleine
         function updBookmark() {
             const checked = document.getElementById('bookmark-clickable')?.checked;
             const bm = document.getElementById('bookmark-svg');
-            if (bm) bm.style.cursor = checked ? 'pointer' : 'default';
+            if (!bm) return;
+            bm.style.cursor = checked ? 'pointer' : 'default';
+            bm.setAttribute('fill', checked ? '#111' : 'none');
+            bm.setAttribute('stroke', checked ? '#111' : 'currentColor');
+            window._bookmarkActive = !!checked;
         }
         window.updBookmark = updBookmark;
 
