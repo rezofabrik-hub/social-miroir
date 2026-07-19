@@ -414,6 +414,7 @@
         .v2-profile{padding:7px 10px;display:flex;align-items:center;gap:7px;border-bottom:1px solid #f0f0f0;}
         .v2-av{width:26px;height:26px;border-radius:50%;overflow:hidden;flex-shrink:0;outline:2px solid rgba(225,48,108,0.25);outline-offset:1px;}
         .v2-av img{width:100%;height:100%;object-fit:cover;}
+        .v2-av.ig-border{outline:none;padding:2px;background:linear-gradient(135deg,#f9ce34,#ee2a7b,#6228d7);}
         .v2-uname{font-size:10.5px;font-weight:800;color:#111;flex:1;}
         .v2-dots{display:flex;gap:2px;margin-left:auto;}
         .v2-dot{width:3px;height:3px;border-radius:50%;background:rgba(0,0,0,0.5);}
@@ -656,8 +657,10 @@
                         <!-- Barre statut -->
                         <div class="v2-status">
                             <span id="preview-time">10:39</span>
-                            <div class="v2-notch"></div>
-                            <div class="v2-icons">
+                            <div class="v2-notch" id="preview-notch" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:46px;height:11px;background:#111;border-radius:8px;"></div>
+                            <div class="v2-icons" style="display:flex;align-items:center;gap:3px;">
+                                <!-- caméra côté droit en mode test -->
+                                <span id="preview-cam" style="display:none;font-size:7px;">📷</span>
                                 <svg id="preview-network" width="11" height="11" fill="currentColor" viewBox="0 0 20 20"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zm6-4a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zm6-3a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>
                                 <svg width="18" height="9" viewBox="0 0 22 10"><rect x="1" y="1" width="17" height="8" rx="2" stroke="#333" stroke-width="1.5" fill="none"/><path d="M19 3.5V6.5" stroke="#333" stroke-width="1.5" stroke-linecap="round"/><rect id="battery-level" x="2.5" y="2.5" width="12" height="5" rx="1" fill="#22c55e"/></svg>
                             </div>
@@ -665,8 +668,13 @@
 
                         <!-- Profil -->
                         <div class="v2-profile">
-                            <div class="v2-av"><img id="preview-logo" src="https://placehold.co/60x60/fce7f3/e6007e?text=★" alt="Logo"></div>
-                            <div class="v2-uname" id="preview-username">votre_compte</div>
+                            <div class="v2-av" id="preview-av-wrap" style="position:relative;overflow:hidden;border-radius:50%;">
+                                <img id="preview-logo" src="https://placehold.co/60x60/fce7f3/e6007e?text=★" alt="Logo" style="width:100%;height:100%;object-fit:cover;display:block;">
+                            </div>
+                            <div>
+                                <div class="v2-uname" id="preview-username">votre_compte</div>
+                                <div id="preview-subtitle" style="font-size:7px;color:#888;margin-top:1px;display:none;"></div>
+                            </div>
                             <div class="v2-dots"><div class="v2-dot"></div><div class="v2-dot"></div><div class="v2-dot"></div></div>
                         </div>
 
@@ -685,7 +693,7 @@
                                     <div class="v2-stat"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg><span id="preview-reposts">2.3M</span></div>
                                     <div class="v2-stat"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg><span id="preview-shares">1.6M</span></div>
                                 </div>
-                                <svg class="v2-stat" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" style="width:11px;height:11px;flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
+                                <svg id="bookmark-svg" onclick="window._TEST_MODE && togBookmark()" class="v2-stat" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" style="width:11px;height:11px;flex-shrink:0;cursor:default;"><path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
                             </div>
                             <p class="v2-cap"><strong id="preview-username-bottom" style="color:#111;">votre_compte</strong> <span id="preview-caption">Votre espace beauté.</span></p>
                             <p class="v2-hash" id="preview-hashtags">#salondecoiffure #beaute</p>
@@ -787,13 +795,74 @@
                                 class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white font-medium text-sm transition-all resize-none">#salondecoiffure #coiffeurparis #hairtransformation #coloriste #beaute</textarea>
                         </div>
 
+                        <!-- Champs test Sandra (visibles uniquement en ?test=1) -->
+                        <div id="test-sandra-block" class="hidden pt-4 border-t border-brand/20 bg-brand/5 rounded-xl p-4 space-y-4">
+                            <p class="text-[11px] font-bold text-brand uppercase tracking-wider">✦ Options test Sandra</p>
+
+                            <!-- Sous-titre sous le nom -->
+                            <div>
+                                <label class="block text-[10px] text-ink/50 mb-1.5 font-semibold uppercase tracking-wide">Sous le nom de compte</label>
+                                <div class="flex flex-col gap-2">
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="radio" name="subtitle-mode" value="none" checked onchange="updSubtitle()" class="accent-brand"> <span class="text-sm">Nom de compte seul</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="radio" name="subtitle-mode" value="city" onchange="updSubtitle()" class="accent-brand"> <span class="text-sm">Nom + Ville</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="radio" name="subtitle-mode" value="music" onchange="updSubtitle()" class="accent-brand"> <span class="text-sm">Nom + ♪ Musique</span>
+                                    </label>
+                                </div>
+                                <input type="text" id="input-city" placeholder="Ex: Paris" class="mt-2 hidden w-full px-3 py-2 rounded-xl border border-gray-200 text-sm bg-white">
+                                <input type="text" id="input-music" placeholder="Ex: Beyoncé — Crazy in Love" class="mt-2 hidden w-full px-3 py-2 rounded-xl border border-gray-200 text-sm bg-white">
+                            </div>
+
+                            <!-- Contour photo profil -->
+                            <div>
+                                <label class="block text-[10px] text-ink/50 mb-1.5 font-semibold uppercase tracking-wide">Contour photo de profil</label>
+                                <div class="flex gap-3">
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="radio" name="avatar-border" value="pink" checked onchange="updAvatarBorder()" class="accent-brand"> <span class="text-sm">Rose (actuel)</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="radio" name="avatar-border" value="instagram" onchange="updAvatarBorder()" class="accent-brand"> <span class="text-sm">Dégradé Instagram</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Recadrage photo profil -->
+                            <div>
+                                <label class="block text-[10px] text-ink/50 mb-1.5 font-semibold uppercase tracking-wide">Recadrage photo de profil</label>
+                                <div class="flex gap-3 items-center flex-wrap">
+                                    <label class="text-xs text-ink/50">Zoom</label>
+                                    <input type="range" id="avatar-zoom" min="100" max="200" value="100" oninput="updAvatarCrop()" class="flex-1 accent-brand">
+                                    <label class="text-xs text-ink/50">X</label>
+                                    <input type="range" id="avatar-x" min="-50" max="50" value="0" oninput="updAvatarCrop()" class="flex-1 accent-brand">
+                                    <label class="text-xs text-ink/50">Y</label>
+                                    <input type="range" id="avatar-y" min="-50" max="50" value="0" oninput="updAvatarCrop()" class="flex-1 accent-brand">
+                                </div>
+                            </div>
+
+                            <!-- Caméra côté droit -->
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" id="cam-right" onchange="updCamPos()" class="accent-brand w-4 h-4">
+                                <label for="cam-right" class="text-sm cursor-pointer">Caméra côté droit du notch</label>
+                            </div>
+
+                            <!-- Favori cliquable -->
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" id="bookmark-clickable" onchange="updBookmark()" class="accent-brand w-4 h-4">
+                                <label for="bookmark-clickable" class="text-sm cursor-pointer">Icône favori cliquable (actif/inactif)</label>
+                            </div>
+                        </div>
+
                         <!-- Barre statut -->
                         <div class="pt-4 border-t border-gray-100">
                             <p class="text-[11px] font-bold text-ink/30 mb-3 uppercase tracking-wider">Barre d'état téléphone</p>
                             <div class="grid grid-cols-3 gap-3">
                                 <div>
                                     <label class="block text-[10px] text-ink/40 mb-1.5 font-semibold">Heure</label>
-                                    <input type="text" id="input-time" value="10:39" maxlength="5" pattern="[0-9]{2}:[0-9]{2}"
+                                    <input type="text" id="input-time" value="10:39" maxlength="5" inputmode="numeric"
                                         class="w-full px-3 py-2.5 rounded-xl border border-gray-200 text-sm bg-gray-50 focus:bg-white transition-all text-center font-bold" placeholder="10:39">
                                 </div>
                                 <div>
@@ -801,6 +870,7 @@
                                     <select id="input-network" class="w-full px-3 py-2.5 rounded-xl border border-gray-200 text-sm bg-gray-50 cursor-pointer transition-all">
                                         <option value="full">Max</option>
                                         <option value="medium">Moyen</option>
+                                        <option value="low">Faible</option>
                                     </select>
                                 </div>
                                 <div>
@@ -3107,10 +3177,129 @@
         updPrice();
         applyMirrorColorBg();
 
-        // ── Mode test email (URL contient ?test=1) ──
+        // ── Mode test (URL contient ?test=1) ──
+        window._TEST_MODE = false;
         if (new URLSearchParams(window.location.search).get('test') === '1') {
+            window._TEST_MODE = true;
             const tb = document.getElementById('test-email-block');
             if (tb) tb.classList.remove('hidden');
+            const sb = document.getElementById('test-sandra-block');
+            if (sb) sb.classList.remove('hidden');
+            // heure : chiffres et ":" uniquement
+            const timeInput = document.getElementById('input-time');
+            if (timeInput) {
+                timeInput.addEventListener('input', function() {
+                    let v = this.value.replace(/[^0-9:]/g,'');
+                    if (v.length === 2 && !v.includes(':')) v = v + ':';
+                    this.value = v;
+                });
+            }
+            // champs ville / musique
+            document.querySelectorAll('input[name="subtitle-mode"]').forEach(r => {
+                r.addEventListener('change', updSubtitle);
+            });
+            document.getElementById('input-city')?.addEventListener('input', updSubtitle);
+            document.getElementById('input-music')?.addEventListener('input', updSubtitle);
+        }
+
+        // Favori toggle
+        window._bookmarkActive = false;
+        function togBookmark() {
+            window._bookmarkActive = !window._bookmarkActive;
+            const bm = document.getElementById('bookmark-svg');
+            if (bm) {
+                bm.setAttribute('fill', window._bookmarkActive ? '#111' : 'none');
+                bm.style.cursor = 'pointer';
+            }
+        }
+        window.togBookmark = togBookmark;
+
+        // Caméra côté droit
+        function updCamPos() {
+            const checked = document.getElementById('cam-right')?.checked;
+            const cam = document.getElementById('preview-cam');
+            if (cam) cam.style.display = checked ? 'inline' : 'none';
+        }
+        window.updCamPos = updCamPos;
+
+        // Favori cliquable on/off
+        function updBookmark() {
+            const checked = document.getElementById('bookmark-clickable')?.checked;
+            const bm = document.getElementById('bookmark-svg');
+            if (bm) bm.style.cursor = checked ? 'pointer' : 'default';
+        }
+        window.updBookmark = updBookmark;
+
+        // Sous-titre sous le nom
+        function updSubtitle() {
+            const mode = document.querySelector('input[name="subtitle-mode"]:checked')?.value || 'none';
+            const sub = document.getElementById('preview-subtitle');
+            const cityInput = document.getElementById('input-city');
+            const musicInput = document.getElementById('input-music');
+            if (!sub) return;
+            if (mode === 'none') {
+                sub.style.display = 'none';
+                cityInput && (cityInput.className = cityInput.className.replace('block','hidden').replace(/hidden hidden/,'hidden'));
+                musicInput && (musicInput.className = musicInput.className.replace('block','hidden').replace(/hidden hidden/,'hidden'));
+                if(cityInput) cityInput.classList.add('hidden');
+                if(musicInput) musicInput.classList.add('hidden');
+            } else if (mode === 'city') {
+                if(cityInput) { cityInput.classList.remove('hidden'); cityInput.classList.add('block'); }
+                if(musicInput) { musicInput.classList.add('hidden'); musicInput.classList.remove('block'); }
+                sub.style.display = 'block';
+                sub.textContent = '📍 ' + (cityInput?.value || 'Ville');
+            } else if (mode === 'music') {
+                if(musicInput) { musicInput.classList.remove('hidden'); musicInput.classList.add('block'); }
+                if(cityInput) { cityInput.classList.add('hidden'); cityInput.classList.remove('block'); }
+                sub.style.display = 'block';
+                sub.textContent = '♪ ' + (musicInput?.value || 'Titre de la chanson');
+            }
+        }
+        window.updSubtitle = updSubtitle;
+
+        // Contour avatar Instagram vs rose
+        function updAvatarBorder() {
+            const mode = document.querySelector('input[name="avatar-border"]:checked')?.value || 'pink';
+            const av = document.querySelector('.v2-av');
+            if (!av) return;
+            if (mode === 'instagram') {
+                av.classList.add('ig-border');
+            } else {
+                av.classList.remove('ig-border');
+            }
+        }
+        window.updAvatarBorder = updAvatarBorder;
+
+        // Recadrage / zoom photo de profil
+        function updAvatarCrop() {
+            const zoom = document.getElementById('avatar-zoom')?.value || 100;
+            const x = document.getElementById('avatar-x')?.value || 0;
+            const y = document.getElementById('avatar-y')?.value || 0;
+            const img = document.getElementById('preview-logo');
+            if (img) {
+                img.style.transform = `scale(${zoom/100}) translate(${x}px, ${y}px)`;
+                img.style.transformOrigin = 'center center';
+            }
+        }
+        window.updAvatarCrop = updAvatarCrop;
+
+        // Réseau faible
+        const netSel = document.getElementById('input-network');
+        if (netSel) {
+            netSel.addEventListener('change', function() {
+                const net = document.getElementById('preview-network');
+                if (!net) return;
+                if (this.value === 'full') {
+                    net.innerHTML = '<path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zm6-4a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zm6-3a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>';
+                    net.setAttribute('fill','currentColor');
+                } else if (this.value === 'medium') {
+                    net.innerHTML = '<path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zm6-4a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zm6-3a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>';
+                    net.setAttribute('fill','#ccc');
+                } else if (this.value === 'low') {
+                    net.innerHTML = '<path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zm6-4a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7z"/>';
+                    net.setAttribute('fill','#ccc');
+                }
+            });
         }
 
         // ── Retour Stripe : paiement confirmé ──
