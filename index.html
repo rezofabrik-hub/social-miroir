@@ -3209,7 +3209,7 @@
             const bm = document.getElementById('bookmark-svg');
             if (bm) {
                 bm.setAttribute('fill', window._bookmarkActive ? '#111' : 'none');
-                bm.style.cursor = 'pointer';
+                bm.setAttribute('stroke', window._bookmarkActive ? '#111' : 'currentColor');
             }
         }
         window.togBookmark = togBookmark;
