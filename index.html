@@ -776,14 +776,25 @@
                             </div>
                         </div>
 
-                        <!-- Option coeur rose -->
-                        <div id="heart-toggle-wrap" onclick="togHeartLive()" class="flex items-center gap-3 p-3 rounded-xl border-2 cursor-pointer select-none transition-all" style="border-color:#e1306c;background:rgba(225,48,108,0.03)">
-                            <div id="heart-chk-live" class="w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 transition-all" style="background:#e1306c;border:2px solid #e1306c">
-                                <svg id="heart-chk-svg" viewBox="0 0 20 20" fill="white" class="w-3 h-3"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                        <!-- Option coeur rose + favori -->
+                        <div class="rounded-xl border-2 overflow-hidden" style="border-color:#e1306c;">
+                            <div id="heart-toggle-wrap" onclick="togHeartLive()" class="flex items-center gap-3 p-3 cursor-pointer select-none transition-all" style="background:rgba(225,48,108,0.03)">
+                                <div id="heart-chk-live" class="w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 transition-all" style="background:#e1306c;border:2px solid #e1306c">
+                                    <svg id="heart-chk-svg" viewBox="0 0 20 20" fill="white" class="w-3 h-3"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-gray-800">❤️ Cœur rose</p>
+                                    <p class="text-xs text-gray-400 mt-0.5">Décoché = contour noir classique</p>
+                                </div>
                             </div>
-                            <div>
-                                <p class="text-sm font-bold text-gray-800">❤️ Cœur rose</p>
-                                <p class="text-xs text-gray-400 mt-0.5">Décoché = contour noir classique</p>
+                            <div id="test-bookmark-wrap" class="hidden border-t items-center gap-3 p-3 cursor-pointer select-none transition-all bg-gray-50/50" style="border-color:#e1306c20;" onclick="togBookmarkConfig()">
+                                <div id="bookmark-chk-live" class="w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 transition-all" style="background:#e2e8f0;border:2px solid #cbd5e1">
+                                    <svg id="bookmark-chk-svg" viewBox="0 0 20 20" fill="white" class="w-3 h-3" style="opacity:0"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-gray-800">🔖 Favori actif</p>
+                                    <p class="text-xs text-gray-400 mt-0.5">Décoché = favori vide</p>
+                                </div>
                             </div>
                         </div>
 
@@ -845,11 +856,7 @@
                                 </div>
                             </div>
 
-                            <!-- Favori cliquable -->
-                            <div class="flex items-center gap-3">
-                                <input type="checkbox" id="bookmark-clickable" onchange="updBookmark()" class="accent-brand w-4 h-4">
-                                <label for="bookmark-clickable" class="text-sm cursor-pointer">Icône favori cliquable (actif/inactif)</label>
-                            </div>
+                            <!-- Favori : géré dans l'encadré cœur -->
                         </div>
 
                         <!-- Barre statut -->
@@ -3181,6 +3188,9 @@
             if (tb) tb.classList.remove('hidden');
             const sb = document.getElementById('test-sandra-block');
             if (sb) sb.classList.remove('hidden');
+            // Afficher le bloc favori dans l'encadré cœur
+            const bkw = document.getElementById('test-bookmark-wrap');
+            if (bkw) bkw.classList.remove('hidden'); bkw && (bkw.style.display = 'flex');
             // heure : chiffres et ":" uniquement
             const timeInput = document.getElementById('input-time');
             if (timeInput) {
@@ -3198,17 +3208,23 @@
             document.getElementById('input-music')?.addEventListener('input', updSubtitle);
         }
 
-        // Favori toggle
+        // Favori toggle depuis l'encadré configurateur
         window._bookmarkActive = false;
-        function togBookmark() {
+        function togBookmarkConfig() {
             window._bookmarkActive = !window._bookmarkActive;
             const bm = document.getElementById('bookmark-svg');
+            const chk = document.getElementById('bookmark-chk-live');
+            const chkSvg = document.getElementById('bookmark-chk-svg');
             if (bm) {
-                bm.setAttribute('fill', window._bookmarkActive ? '#111' : 'none');
-                bm.setAttribute('stroke', window._bookmarkActive ? '#111' : 'currentColor');
+                const path = bm.querySelector('path');
+                if (path) { path.style.fill = window._bookmarkActive ? '#111' : 'none'; path.style.stroke = '#111'; }
+                bm.style.fill = window._bookmarkActive ? '#111' : 'none';
             }
+            if (chk) { chk.style.background = window._bookmarkActive ? '#111' : '#e2e8f0'; chk.style.borderColor = window._bookmarkActive ? '#111' : '#cbd5e1'; }
+            if (chkSvg) chkSvg.style.opacity = window._bookmarkActive ? '1' : '0';
         }
-        window.togBookmark = togBookmark;
+        window.togBookmarkConfig = togBookmarkConfig;
+        window.togBookmark = togBookmarkConfig;
 
         // Caméra côté droit — visible par défaut en test
         const cam = document.getElementById('preview-cam');
@@ -3252,12 +3268,12 @@
                 if(cityInput) cityInput.classList.remove('hidden');
                 if(musicInput) musicInput.classList.add('hidden');
                 sub.style.display = '-webkit-box';
-                sub.textContent = '📍 ' + (cityInput?.value || 'Ville');
+                sub.textContent = cityInput?.value || 'Ville';
             } else if (mode === 'music') {
                 if(musicInput) musicInput.classList.remove('hidden');
                 if(cityInput) cityInput.classList.add('hidden');
                 sub.style.display = '-webkit-box';
-                sub.textContent = '♪ ' + (musicInput?.value || 'Titre de la chanson');
+                sub.textContent = '♬ ' + (musicInput?.value || 'Titre de la chanson');
             }
         }
         window.updSubtitle = updSubtitle;
