@@ -364,6 +364,8 @@
         input[type="email"].invalid { border-color: #ef4444 !important; }
 
         /* === UPLOAD ZONE === */
+        .emoji-btn-item { font-size:18px; padding:3px; border-radius:6px; line-height:1; transition:background 0.1s; cursor:pointer; }
+        .emoji-btn-item:hover { background:#fce7f3; }
         .upload-zone { transition: all 0.2s ease; }
         .upload-zone:hover { background: #fef0f7; border-color: var(--brand); }
         .upload-zone.has-file { border-color: #22c55e; background: #f0fdf4; }
@@ -783,12 +785,57 @@
                         </div>
 
                         <!-- Légende -->
-                        <div>
-                            <div class="flex justify-end items-center mb-2">
-                                <span id="caption-count" class="text-[10px] font-semibold text-ink/30">0/70</span>
+                        <div class="relative">
+                            <div class="flex justify-between items-center mb-2">
+                                <!-- Bouton emoji desktop uniquement -->
+                                <button type="button" id="emoji-btn" onclick="toggleEmojiPicker()" class="hidden md:flex items-center gap-1 text-[11px] font-semibold text-ink/40 hover:text-brand transition-colors select-none">
+                                    <span>😊</span><span>Emoji</span>
+                                </button>
+                                <span id="caption-count" class="text-[10px] font-semibold text-ink/30 ml-auto">0/70</span>
                             </div>
                             <textarea id="input-caption" rows="2" maxlength="70"
                                 class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white font-medium text-sm transition-all resize-none">Venez découvrir votre nouvel espace beauté et bien-être.</textarea>
+                            <!-- Panel emoji -->
+                            <div id="emoji-panel" class="hidden absolute left-0 z-50 mt-1 bg-white border border-gray-200 rounded-2xl shadow-xl p-3" style="width:280px;">
+                                <div class="grid grid-cols-8 gap-1">
+                                    <!-- Visages -->
+                                    <button type="button" onclick="insertEmoji('😊')" class="emoji-btn-item">😊</button>
+                                    <button type="button" onclick="insertEmoji('😍')" class="emoji-btn-item">😍</button>
+                                    <button type="button" onclick="insertEmoji('🥰')" class="emoji-btn-item">🥰</button>
+                                    <button type="button" onclick="insertEmoji('😎')" class="emoji-btn-item">😎</button>
+                                    <button type="button" onclick="insertEmoji('🤩')" class="emoji-btn-item">🤩</button>
+                                    <button type="button" onclick="insertEmoji('😄')" class="emoji-btn-item">😄</button>
+                                    <button type="button" onclick="insertEmoji('🙏')" class="emoji-btn-item">🙏</button>
+                                    <button type="button" onclick="insertEmoji('👌')" class="emoji-btn-item">👌</button>
+                                    <!-- Cœurs -->
+                                    <button type="button" onclick="insertEmoji('❤️')" class="emoji-btn-item">❤️</button>
+                                    <button type="button" onclick="insertEmoji('🩷')" class="emoji-btn-item">🩷</button>
+                                    <button type="button" onclick="insertEmoji('💖')" class="emoji-btn-item">💖</button>
+                                    <button type="button" onclick="insertEmoji('💫')" class="emoji-btn-item">💫</button>
+                                    <button type="button" onclick="insertEmoji('✨')" class="emoji-btn-item">✨</button>
+                                    <button type="button" onclick="insertEmoji('⭐')" class="emoji-btn-item">⭐</button>
+                                    <button type="button" onclick="insertEmoji('🌟')" class="emoji-btn-item">🌟</button>
+                                    <button type="button" onclick="insertEmoji('🔥')" class="emoji-btn-item">🔥</button>
+                                    <!-- Nature / beauté -->
+                                    <button type="button" onclick="insertEmoji('🌸')" class="emoji-btn-item">🌸</button>
+                                    <button type="button" onclick="insertEmoji('🌺')" class="emoji-btn-item">🌺</button>
+                                    <button type="button" onclick="insertEmoji('🌹')" class="emoji-btn-item">🌹</button>
+                                    <button type="button" onclick="insertEmoji('💐')" class="emoji-btn-item">💐</button>
+                                    <button type="button" onclick="insertEmoji('🦋')" class="emoji-btn-item">🦋</button>
+                                    <button type="button" onclick="insertEmoji('💅')" class="emoji-btn-item">💅</button>
+                                    <button type="button" onclick="insertEmoji('💇')" class="emoji-btn-item">💇</button>
+                                    <button type="button" onclick="insertEmoji('✂️')" class="emoji-btn-item">✂️</button>
+                                    <!-- Divers utiles -->
+                                    <button type="button" onclick="insertEmoji('🎉')" class="emoji-btn-item">🎉</button>
+                                    <button type="button" onclick="insertEmoji('🎊')" class="emoji-btn-item">🎊</button>
+                                    <button type="button" onclick="insertEmoji('🏆')" class="emoji-btn-item">🏆</button>
+                                    <button type="button" onclick="insertEmoji('💎')" class="emoji-btn-item">💎</button>
+                                    <button type="button" onclick="insertEmoji('👑')" class="emoji-btn-item">👑</button>
+                                    <button type="button" onclick="insertEmoji('📍')" class="emoji-btn-item">📍</button>
+                                    <button type="button" onclick="insertEmoji('📸')" class="emoji-btn-item">📸</button>
+                                    <button type="button" onclick="insertEmoji('🪞')" class="emoji-btn-item">🪞</button>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Stats -->
@@ -3452,6 +3499,43 @@
         setTimeout(() => m.classList.add('hidden'), 300);
     }
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCgv(); });
+
+    // ── Emoji picker (desktop uniquement) ──
+    let _emojiCursorPos = null;
+    const _captionEl = document.getElementById('input-caption');
+    if (_captionEl) {
+        _captionEl.addEventListener('mouseup', () => { _emojiCursorPos = _captionEl.selectionStart; });
+        _captionEl.addEventListener('keyup',   () => { _emojiCursorPos = _captionEl.selectionStart; });
+    }
+    window.toggleEmojiPicker = function() {
+        const p = document.getElementById('emoji-panel');
+        if (p) p.classList.toggle('hidden');
+    };
+    window.insertEmoji = function(emoji) {
+        const el = document.getElementById('input-caption');
+        if (!el) return;
+        const pos = (_emojiCursorPos !== null) ? _emojiCursorPos : el.value.length;
+        const maxLen = parseInt(el.getAttribute('maxlength') || '70');
+        const before = el.value.slice(0, pos);
+        const after  = el.value.slice(pos);
+        const newVal = before + emoji + after;
+        if (newVal.length <= maxLen) {
+            el.value = newVal;
+            const newPos = pos + emoji.length;
+            el.setSelectionRange(newPos, newPos);
+            _emojiCursorPos = newPos;
+            el.dispatchEvent(new Event('input'));
+        }
+        el.focus();
+    };
+    // Fermer le panel si clic ailleurs
+    document.addEventListener('click', function(e) {
+        const panel = document.getElementById('emoji-panel');
+        const btn   = document.getElementById('emoji-btn');
+        if (panel && !panel.contains(e.target) && e.target !== btn && !btn?.contains(e.target)) {
+            panel.classList.add('hidden');
+        }
+    });
 </script>
 
 
