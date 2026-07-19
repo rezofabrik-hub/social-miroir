@@ -770,7 +770,10 @@
                             </div>
 
                             <div>
-                                <label class="block text-[11px] font-bold text-ink/50 mb-2 uppercase tracking-wider">Nom d'utilisateur</label>
+                                <div class="flex justify-between items-center mb-2">
+                                    <label class="block text-[11px] font-bold text-ink/50 uppercase tracking-wider">Nom d'utilisateur</label>
+                                    <span id="username-count" class="text-[10px] font-semibold text-ink/30">0/35</span>
+                                </div>
                                 <input type="text" id="input-username" value="ici votre titre" maxlength="35"
                                     class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white font-bold text-sm transition-all">
                             </div>
@@ -855,8 +858,14 @@
                                         <input type="radio" name="subtitle-mode" value="music" onchange="updSubtitle()" class="accent-brand"> <span class="text-sm">Nom + ♪ Musique</span>
                                     </label>
                                 </div>
-                                <textarea id="input-city" placeholder="Ex: Paris" rows="2" maxlength="60" class="mt-2 hidden w-full px-3 py-2 rounded-xl border border-gray-200 text-sm bg-white resize-none"></textarea>
-                                <textarea id="input-music" placeholder="Ex: Beyoncé — Crazy in Love" rows="2" maxlength="60" class="mt-2 hidden w-full px-3 py-2 rounded-xl border border-gray-200 text-sm bg-white resize-none"></textarea>
+                                <div class="mt-2 hidden" id="city-wrap">
+                                    <div class="flex justify-end mb-1"><span id="city-count" class="text-[10px] font-semibold text-ink/30">0/60</span></div>
+                                    <textarea id="input-city" placeholder="Ex: Paris" rows="2" maxlength="60" class="w-full px-3 py-2 rounded-xl border border-gray-200 text-sm bg-white resize-none"></textarea>
+                                </div>
+                                <div class="mt-2 hidden" id="music-wrap">
+                                    <div class="flex justify-end mb-1"><span id="music-count" class="text-[10px] font-semibold text-ink/30">0/60</span></div>
+                                    <textarea id="input-music" placeholder="Ex: Beyoncé — Crazy in Love" rows="2" maxlength="60" class="w-full px-3 py-2 rounded-xl border border-gray-200 text-sm bg-white resize-none"></textarea>
+                                </div>
                             </div>
 
                             <!-- Contour + recadrage : déplacés sous Logo/Photo -->
@@ -2738,8 +2747,11 @@
             el.addEventListener('input', update);
             update();
         };
+        updateCount('input-username', 'username-count', 35);
         updateCount('input-caption',  'caption-count',  70);
         updateCount('input-hashtags', 'hashtags-count', 65);
+        updateCount('input-city',  'city-count',  60);
+        updateCount('input-music', 'music-count', 60);
 
         // ── Cœur rose toggle ──
         let heartRoseLive = true;
@@ -3265,18 +3277,20 @@
             const cityInput = document.getElementById('input-city');
             const musicInput = document.getElementById('input-music');
             if (!sub) return;
+            const cityWrap = document.getElementById('city-wrap');
+            const musicWrap = document.getElementById('music-wrap');
             if (mode === 'none') {
                 sub.style.display = 'none';
-                if(cityInput) cityInput.classList.add('hidden');
-                if(musicInput) musicInput.classList.add('hidden');
+                if(cityWrap) cityWrap.classList.add('hidden');
+                if(musicWrap) musicWrap.classList.add('hidden');
             } else if (mode === 'city') {
-                if(cityInput) cityInput.classList.remove('hidden');
-                if(musicInput) musicInput.classList.add('hidden');
+                if(cityWrap) cityWrap.classList.remove('hidden');
+                if(musicWrap) musicWrap.classList.add('hidden');
                 sub.style.display = '-webkit-box';
                 sub.textContent = cityInput?.value || 'Ville';
             } else if (mode === 'music') {
-                if(musicInput) musicInput.classList.remove('hidden');
-                if(cityInput) cityInput.classList.add('hidden');
+                if(musicWrap) musicWrap.classList.remove('hidden');
+                if(cityWrap) cityWrap.classList.add('hidden');
                 sub.style.display = '-webkit-box';
                 sub.textContent = '♬ ' + (musicInput?.value || 'Titre de la chanson');
             }
