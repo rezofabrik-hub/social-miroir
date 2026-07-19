@@ -698,7 +698,7 @@
                                     <div class="v2-stat"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg><span id="preview-reposts">2.3M</span></div>
                                     <div class="v2-stat"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg><span id="preview-shares">1.6M</span></div>
                                 </div>
-                                <svg id="bookmark-svg" onclick="window._TEST_MODE && togBookmark()" class="v2-stat" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" style="width:11px;height:11px;flex-shrink:0;cursor:default;"><path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
+                                <svg id="bookmark-svg" onclick="togBookmark()" class="v2-stat" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" style="width:11px;height:11px;flex-shrink:0;cursor:default;"><path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
                             </div>
                             <p class="v2-cap"><strong id="preview-username-bottom" style="color:#111;">votre_compte</strong> <span id="preview-caption">Votre espace beauté.</span></p>
                             <p class="v2-hash" id="preview-hashtags">#salondecoiffure #beaute</p>
@@ -744,7 +744,7 @@
                             </div>
 
                             <!-- Options photo profil (test uniquement) -->
-                            <div id="test-avatar-options" class="hidden mt-3 p-3 rounded-xl border border-brand/20 bg-brand/5 space-y-3">
+                            <div id="test-avatar-options" class="mt-3 p-3 rounded-xl border border-brand/20 bg-brand/5 space-y-3">
                                 <div>
                                     <label class="block text-[10px] text-ink/50 mb-1.5 font-semibold uppercase tracking-wide">Contour photo de profil</label>
                                     <div class="flex gap-3">
@@ -819,7 +819,7 @@
                                     <p class="text-xs text-gray-400 mt-0.5">Décoché = contour noir classique</p>
                                 </div>
                             </div>
-                            <div id="test-bookmark-wrap" class="hidden border-t items-center gap-3 p-3 cursor-pointer select-none transition-all bg-gray-50/50" style="border-color:#e1306c20;" onclick="togBookmarkConfig()">
+                            <div id="test-bookmark-wrap" class="flex border-t items-center gap-3 p-3 cursor-pointer select-none transition-all bg-gray-50/50" style="border-color:#e1306c20;" onclick="togBookmarkConfig()">
                                 <div id="bookmark-chk-live" class="w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 transition-all" style="background:#e2e8f0;border:2px solid #cbd5e1">
                                     <svg id="bookmark-chk-svg" viewBox="0 0 20 20" fill="white" class="w-3 h-3" style="opacity:0"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
                                 </div>
@@ -840,9 +840,9 @@
                                 class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white font-medium text-sm transition-all resize-none">#salondecoiffure #coiffeurparis #hairtransformation #coloriste</textarea>
                         </div>
 
-                        <!-- Champs test Sandra (visibles uniquement en ?test=1) -->
-                        <div id="test-sandra-block" class="hidden pt-4 border-t border-brand/20 bg-brand/5 rounded-xl p-4 space-y-4">
-                            <p class="text-[11px] font-bold text-brand uppercase tracking-wider">✦ Options test Sandra</p>
+                        <!-- Options sous le nom -->
+                        <div id="test-sandra-block" class="pt-4 border-t border-brand/20 bg-brand/5 rounded-xl p-4 space-y-4">
+                            <p class="text-[11px] font-bold text-brand uppercase tracking-wider">✦ Options</p>
 
                             <!-- Sous-titre sous le nom -->
                             <div>
@@ -3195,35 +3195,21 @@
         updPrice();
         applyMirrorColorBg();
 
-        // ── Mode test (URL contient ?test=1) ──
-        window._TEST_MODE = false;
-        if (new URLSearchParams(window.location.search).get('test') === '1') {
-            window._TEST_MODE = true;
-            const tb = document.getElementById('test-email-block');
-            if (tb) tb.classList.remove('hidden');
-            const sb = document.getElementById('test-sandra-block');
-            if (sb) sb.classList.remove('hidden');
-            // Afficher le bloc favori dans l'encadré cœur
-            const bkw = document.getElementById('test-bookmark-wrap');
-            if (bkw) bkw.classList.remove('hidden'); bkw && (bkw.style.display = 'flex');
-            const tao = document.getElementById('test-avatar-options');
-            if (tao) tao.classList.remove('hidden');
-            // heure : chiffres et ":" uniquement
-            const timeInput = document.getElementById('input-time');
-            if (timeInput) {
-                timeInput.addEventListener('input', function() {
-                    let v = this.value.replace(/[^0-9:]/g,'');
-                    if (v.length === 2 && !v.includes(':')) v = v + ':';
-                    this.value = v;
-                });
-            }
-            // champs ville / musique
-            document.querySelectorAll('input[name="subtitle-mode"]').forEach(r => {
-                r.addEventListener('change', updSubtitle);
+        // Heure : chiffres et ":" uniquement
+        const timeInput = document.getElementById('input-time');
+        if (timeInput) {
+            timeInput.addEventListener('input', function() {
+                let v = this.value.replace(/[^0-9:]/g,'');
+                if (v.length === 2 && !v.includes(':')) v = v + ':';
+                this.value = v;
             });
-            document.getElementById('input-city')?.addEventListener('input', updSubtitle);
-            document.getElementById('input-music')?.addEventListener('input', updSubtitle);
         }
+        // Sous-titre ville / musique
+        document.querySelectorAll('input[name="subtitle-mode"]').forEach(r => {
+            r.addEventListener('change', updSubtitle);
+        });
+        document.getElementById('input-city')?.addEventListener('input', updSubtitle);
+        document.getElementById('input-music')?.addEventListener('input', updSubtitle);
 
         // Favori toggle depuis l'encadré configurateur
         window._bookmarkActive = false;
