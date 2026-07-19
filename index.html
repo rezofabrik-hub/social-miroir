@@ -657,7 +657,9 @@
                         <!-- Barre statut -->
                         <div class="v2-status">
                             <span id="preview-time">10:39</span>
-                            <div class="v2-notch" id="preview-notch" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:46px;height:11px;background:#111;border-radius:8px;"></div>
+                            <div class="v2-notch" id="preview-notch" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:46px;height:11px;background:#111;border-radius:8px;display:flex;align-items:center;justify-content:flex-end;padding-right:3px;">
+                                <div id="preview-cam" style="width:5px;height:5px;border-radius:50%;background:#1a1a2e;border:1px solid #333;display:none;flex-shrink:0;"></div>
+                            </div>
                             <div class="v2-icons" style="display:flex;align-items:center;gap:3px;">
                                 <!-- caméra côté droit en mode test -->
                                 <span id="preview-cam" style="display:none;font-size:7px;">📷</span>
@@ -3214,11 +3216,13 @@
         }
         window.togBookmark = togBookmark;
 
-        // Caméra côté droit
+        // Caméra côté droit — visible par défaut en test
+        const cam = document.getElementById('preview-cam');
+        if (cam) cam.style.display = 'block';
         function updCamPos() {
             const checked = document.getElementById('cam-right')?.checked;
             const cam = document.getElementById('preview-cam');
-            if (cam) cam.style.display = checked ? 'inline' : 'none';
+            if (cam) cam.style.display = checked ? 'block' : 'none';
         }
         window.updCamPos = updCamPos;
 
