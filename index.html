@@ -1020,7 +1020,7 @@
                     <div class="p-6">
                         <div class="led-card" id="led-card" onclick="togLed()">
                             <div class="led-chk" id="led-chk"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg></div>
-                            <div class="led-info"><div class="led-t">Rétroéclairage LED RGB <span id="led-na" style="display:none;font-size:9px;color:#ef4444">— Indisponible Mini</span></div><div class="led-s">Halo lumineux animé derrière le miroir. Non compatible avec le format Mini.</div></div>
+                            <div class="led-info"><div class="led-t">Rétroéclairage LED RGB <span id="led-na" style="display:none;font-size:9px;color:#ef4444">— Indisponible Mini / Studio</span></div><div class="led-s">Halo lumineux animé derrière le miroir. Non compatible avec les formats Mini et Studio.</div></div>
                             <div class="led-p">+ 29,90 €</div>
                         </div>
                     </div>
@@ -2155,7 +2155,7 @@
         const testOrder = {
             format:  fmtName || 'Original',
             couleur: selColor_val || 'argent',
-            led:     led && fmtId !== 'format-Mini',
+            led:     led && fmtId !== 'format-Mini' && fmtId !== 'format-Studio',
             total:   document.getElementById('price-display')?.textContent || '0',
             logoSrc,
             client: {
@@ -2266,7 +2266,7 @@
             const testOrder = {
                 format:  fmtName || 'Original',
                 couleur: selColor_val || 'argent',
-                led:     led && fmtId !== 'format-Mini',
+                led:     led && fmtId !== 'format-Mini' && fmtId !== 'format-Studio',
                 total:   document.getElementById('price-display')?.textContent || '0',
                 logoSrc,
                 client: {
@@ -2314,7 +2314,7 @@
         const orderData = {
             format:  fmtName || 'Original',
             couleur: selColor_val || 'argent',
-            led:     led && fmtId !== 'format-Mini',
+            led:     led && fmtId !== 'format-Mini' && fmtId !== 'format-Studio',
             total:   document.getElementById('price-display')?.textContent || '0',
             logoSrc,
             client: {
@@ -2783,7 +2783,7 @@
     const SHIPPING_COST   = SHIPPING_ACTIVE ? 30 : 0;
 
     function updPrice() {
-        const base  = (fmtPrice || 0) + (led && fmtId !== 'format-Mini' ? 29.90 : 0);
+        const base  = (fmtPrice || 0) + (led && fmtId !== 'format-Mini' && fmtId !== 'format-Studio' ? 29.90 : 0);
         const total = formatPrice(base + SHIPPING_COST);
         const pd = document.getElementById('price-display'); if (pd) pd.textContent = formatPrice(base);
         const pb = document.getElementById('price-in-btn'); if (pb) pb.textContent = total;
@@ -3060,7 +3060,7 @@
             const FORMAT_CLS = ['format-Mini','format-Studio','format-Original','format-Signature','format-Prestige'];
             FORMAT_CLS.forEach(f => batMirror.classList.remove(f));
             batMirror.classList.add(fmtId || 'format-Original');
-            if (led && fmtId !== 'format-Mini') batMirror.classList.add('led-active');
+            if (led && fmtId !== 'format-Mini' && fmtId !== 'format-Studio') batMirror.classList.add('led-active');
             else batMirror.classList.remove('led-active');
 
             // Surface couleur
