@@ -2745,7 +2745,9 @@
             mirrorContainerEl.classList.add(fmtId);
         }
         const isMini = el.dataset.f === 'Mini';
-        if (isMini && led) {
+        const isStudio = el.dataset.f === 'Studio';
+        const ledBlocked = isMini || isStudio;
+        if (ledBlocked && led) {
             led = false;
             const lc = document.getElementById('led-card');
             if (lc) lc.classList.remove('sel');
@@ -2754,7 +2756,7 @@
             if (mirrorContainerEl) mirrorContainerEl.classList.remove('led-active');
         }
         const ledNa = document.getElementById('led-na');
-        if (ledNa) ledNa.style.display = isMini ? 'inline' : 'none';
+        if (ledNa) ledNa.style.display = ledBlocked ? 'inline' : 'none';
         updPrice();
     }
 
@@ -2766,7 +2768,7 @@
     }
 
     function togLed() {
-        if (fmtId === 'format-Mini') return;
+        if (fmtId === 'format-Mini' || fmtId === 'format-Studio') return;
         led = !led;
         const lc = document.getElementById('led-card');
         if (lc) lc.classList.toggle('sel', led);
@@ -3313,8 +3315,8 @@
             btnConfirmBat.innerHTML = `<svg class="animate-spin w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg> Redirection...`;
             btnConfirmBat.disabled = true;
 
-            // LED jamais possible sur Mini
-            const ledFinal = led && formatId !== 'format-Mini';
+            // LED jamais possible sur Mini ni Studio
+            const ledFinal = led && formatId !== 'format-Mini' && formatId !== 'format-Studio';
 
             const orderData = {
                 format:    fmtName || formatId.replace('format-', ''),
