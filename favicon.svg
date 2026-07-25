@@ -1,4 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="100" fill="#e6007e"/>
-  <text x="256" y="340" font-family="Arial Black,sans-serif" font-size="260" font-weight="900" text-anchor="middle" fill="white">SM</text>
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9B2EFF"/>
+      <stop offset="100%" stop-color="#FF6B00"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="110" fill="url(#g)"/>
+  <!-- Forme miroir smartphone -->
+  <rect x="156" y="80" width="200" height="320" rx="28" fill="white" opacity="0.95"/>
+  <rect x="176" y="100" width="160" height="260" rx="16" fill="url(#g)" opacity="0.25"/>
+  <!-- Encoche en haut -->
+  <rect x="216" y="88" width="80" height="18" rx="9" fill="url(#g)"/>
+  <!-- Reflet miroir -->
+  <rect x="176" y="100" width="160" height="260" rx="16" fill="none" stroke="white" stroke-width="3" opacity="0.6"/>
+  <!-- Texte SM petit en bas -->
+  <text x="256" y="432" font-family="Arial Black,sans-serif" font-size="72" font-weight="900" text-anchor="middle" fill="white" opacity="0.9">SM</text>
 </svg>
