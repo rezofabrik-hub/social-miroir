@@ -654,6 +654,79 @@
     </div>
 </header>
 
+<!-- ═══════════════ EXPLAINER SOCIAL-MIROIR ═══════════════ -->
+<style>
+.sm-explainer{width:100%;background:#fff;padding:48px 20px 40px;text-align:center;border-bottom:1px solid rgba(0,0,0,.06)}
+.sm-badge-exp{display:inline-flex;align-items:center;gap:7px;background:rgba(155,46,255,.1);border:1px solid rgba(155,46,255,.3);border-radius:999px;padding:5px 16px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#9B2EFF;margin-bottom:20px}
+.sm-dot-exp{width:7px;height:7px;border-radius:50%;background:#9B2EFF;animation:smBlink 1.2s ease-in-out infinite;display:inline-block}
+@keyframes smBlink{0%,100%{opacity:1}50%{opacity:.2}}
+.sm-explainer h2{font-size:clamp(22px,5vw,36px);font-weight:900;line-height:1.15;letter-spacing:-.02em;color:#0f0f0f;margin-bottom:10px}
+.sm-explainer h2 .sm-grad{background:linear-gradient(135deg,#9B2EFF,#FF6B00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sm-sub-exp{font-size:clamp(14px,3vw,16px);color:#555;line-height:1.65;max-width:480px;margin:0 auto 32px}
+.sm-anim-wrap{position:relative;margin:0 auto 44px;width:clamp(150px,35vw,200px)}
+.sm-mirror-frame{width:100%;aspect-ratio:9/14;border-radius:clamp(16px,4vw,26px);background:#f5f0ff;border:2.5px solid rgba(155,46,255,.2);position:relative;overflow:hidden;box-shadow:0 12px 40px rgba(155,46,255,.15);animation:smFloat 4s ease-in-out infinite}
+@keyframes smFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.sm-reflection{position:absolute;inset:0;background:linear-gradient(135deg,rgba(155,46,255,.08) 0%,rgba(255,255,255,.5) 50%,rgba(255,107,0,.06) 100%);animation:smFadeRef 4s ease-in-out infinite}
+@keyframes smFadeRef{0%,30%{opacity:1}50%,100%{opacity:0}}
+.sm-ig-content{position:absolute;inset:0;display:flex;flex-direction:column;animation:smFadeIG 4s ease-in-out infinite}
+@keyframes smFadeIG{0%,30%{opacity:0}55%,85%{opacity:1}100%{opacity:0}}
+.sm-ig-hd{display:flex;align-items:center;gap:6px;padding:10px 10px 6px;background:rgba(0,0,0,.04)}
+.sm-ig-av{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#9B2EFF,#FF6B00);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px}
+.sm-ig-nm{font-size:10px;font-weight:800;color:#111}
+.sm-ig-lc{font-size:8px;color:#888}
+.sm-ig-ph{flex:1;background:linear-gradient(160deg,rgba(155,46,255,.15),rgba(255,107,0,.1));display:flex;align-items:center;justify-content:center;font-size:36px}
+.sm-ig-st{display:flex;gap:8px;padding:5px 10px;background:rgba(0,0,0,.04);font-size:9px;color:#666;align-items:center}
+.sm-ig-ht{color:#FF3B5C;font-size:11px}
+.sm-ig-vl{color:#111;font-weight:700}
+.sm-ig-cp{padding:5px 10px 8px;background:rgba(0,0,0,.04);text-align:left}
+.sm-ig-cu{font-weight:800;font-size:8px;margin-right:3px;color:#111}
+.sm-ig-ct{font-size:8px;color:#444}
+.sm-ig-tg{font-size:7px;color:#9B2EFF;margin-top:2px}
+.sm-notch-exp{position:absolute;top:0;left:50%;transform:translateX(-50%);width:35%;height:11px;background:#f5f0ff;border-radius:0 0 8px 8px;z-index:10}
+.sm-mlabel{position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);white-space:nowrap;background:linear-gradient(135deg,#9B2EFF,#FF6B00);color:#fff;font-size:10px;font-weight:800;padding:4px 12px;border-radius:999px}
+.sm-steps-exp{display:flex;gap:10px;max-width:600px;margin:0 auto 28px;padding:0 4px}
+.sm-step-exp{flex:1;background:#faf8ff;border:1px solid rgba(155,46,255,.12);border-radius:12px;padding:12px 8px;position:relative;overflow:hidden}
+.sm-step-exp::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#9B2EFF,#FF6B00)}
+.sm-step-n{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#9B2EFF;margin-bottom:5px}
+.sm-step-ico{font-size:20px;display:block;margin-bottom:4px}
+.sm-step-ttl{font-size:11px;font-weight:800;color:#111;margin-bottom:2px;line-height:1.3}
+.sm-step-dsc{font-size:9px;color:#666;line-height:1.4}
+.sm-cta-exp{font-size:14px;color:#666;margin-bottom:14px;line-height:1.6}
+.sm-cta-exp strong{color:#111}
+.sm-cta-lnk{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#9B2EFF,#FF6B00);color:#fff;font-size:15px;font-weight:800;padding:13px 28px;border-radius:10px;text-decoration:none;animation:smPulse 2.5s ease-in-out infinite}
+@keyframes smPulse{0%,100%{box-shadow:0 0 0 0 rgba(155,46,255,.35)}50%{box-shadow:0 0 0 10px rgba(155,46,255,0)}}
+</style>
+
+<div class="sm-explainer">
+  <div class="sm-badge-exp"><span class="sm-dot-exp"></span> C'est quoi exactement ?</div>
+  <h2>Un vrai miroir avec<br><span class="sm-grad">ton profil Instagram</span> dessus</h2>
+  <p class="sm-sub-exp">Tu te regardes dedans comme un miroir normal — mais il affiche ton pseudo, ta photo de profil, tes hashtags et tes likes. Unique au monde. Fabriqué à la main. 🪞</p>
+  <div class="sm-anim-wrap">
+    <div class="sm-mirror-frame">
+      <div class="sm-notch-exp"></div>
+      <div class="sm-reflection"></div>
+      <div class="sm-ig-content">
+        <div class="sm-ig-hd">
+          <div class="sm-ig-av">😊</div>
+          <div><div class="sm-ig-nm">Ton prénom</div><div class="sm-ig-lc">social-miroir.fr</div></div>
+        </div>
+        <div class="sm-ig-ph">🪞</div>
+        <div class="sm-ig-st"><span class="sm-ig-ht">♥</span><span><span class="sm-ig-vl">3.4M</span></span><span>💬 <span class="sm-ig-vl">1.4M</span></span></div>
+        <div class="sm-ig-cp"><span class="sm-ig-cu">Ton pseudo</span><span class="sm-ig-ct">Ton message ✨</span><div class="sm-ig-tg">#socialmiroir #tonpseudo</div></div>
+      </div>
+    </div>
+    <div class="sm-mlabel">✨ C'est un VRAI miroir</div>
+  </div>
+  <div class="sm-steps-exp">
+    <div class="sm-step-exp"><div class="sm-step-n">01</div><span class="sm-step-ico">📱</span><div class="sm-step-ttl">Tu choisis ton profil</div><div class="sm-step-dsc">Pseudo, photo, message, hashtags — tout est personnalisable</div></div>
+    <div class="sm-step-exp"><div class="sm-step-n">02</div><span class="sm-step-ico">🖨️</span><div class="sm-step-ttl">On fabrique à la main</div><div class="sm-step-dsc">Imprimé et assemblé dans notre atelier à Canet-en-Roussillon 🇫🇷</div></div>
+    <div class="sm-step-exp"><div class="sm-step-n">03</div><span class="sm-step-ico">📦</span><div class="sm-step-ttl">Tu reçois ton miroir</div><div class="sm-step-dsc">Livré chez toi, emballé soigneusement. Stickers offerts 🎁</div></div>
+  </div>
+  <p class="sm-cta-exp"><strong>Choisis ton format ci-dessous</strong> et configure ton miroir en quelques clics 👇</p>
+  <a href="#module-commande" class="sm-cta-lnk">🪞 Configurer mon miroir</a>
+</div>
+<!-- ═══════════════ FIN EXPLAINER ═══════════════ -->
+
 <!-- ═══════════════ MAIN CONFIGURATEUR ═══════════════ -->
 <main class="w-full px-4 py-10 md:py-14 relative max-w-screen-xl mx-auto overflow-x-hidden" id="module-commande">
     
