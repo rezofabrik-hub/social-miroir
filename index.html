@@ -727,6 +727,54 @@
 </div>
 <!-- ═══════════════ FIN EXPLAINER ═══════════════ -->
 
+<!-- ═══════════════ CARROUSEL PHOTOS ═══════════════ -->
+<style>
+.sm-carousel-wrap{width:100%;background:#f9f7ff;padding:28px 0;overflow:hidden;border-bottom:1px solid rgba(155,46,255,.08)}
+.sm-carousel-track{display:flex;gap:12px;width:max-content}
+.sm-carousel-track.row1{animation:smScroll1 22s linear infinite}
+.sm-carousel-track.row2{animation:smScroll2 28s linear infinite;margin-top:12px}
+@keyframes smScroll1{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes smScroll2{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
+.sm-carousel-wrap:hover .sm-carousel-track{animation-play-state:paused}
+.sm-carousel-item{flex-shrink:0;width:clamp(140px,28vw,220px);height:clamp(180px,36vw,280px);border-radius:14px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.1);cursor:pointer;transition:transform .3s,box-shadow .3s}
+.sm-carousel-item:hover{transform:scale(1.04);box-shadow:0 8px 32px rgba(155,46,255,.2)}
+.sm-carousel-item img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.sm-carousel-label{text-align:center;padding:10px 16px 0;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(155,46,255,.7)}
+</style>
+
+<div class="sm-carousel-wrap" onclick="document.getElementById('portfolio')?.scrollIntoView({behavior:'smooth'})">
+  <p class="sm-carousel-label">✨ Nos réalisations</p>
+  <!-- Rangée 1 — défile vers la gauche -->
+  <div class="sm-carousel-track row1">
+    <div class="sm-carousel-item"><img src="photo1.jpg" alt="Social-Miroir salon" loading="lazy"></div>
+    <div class="sm-carousel-item"><img src="miroir social miroir canet .jpeg" alt="Social-Miroir Studio" loading="lazy" style="object-position:center 20%"></div>
+    <div class="sm-carousel-item"><img src="miroir-alicia.png" alt="Social-Miroir Alicia" loading="lazy" style="object-position:center 15%"></div>
+    <div class="sm-carousel-item"><img src="miroir-leonie.png" alt="Social-Miroir Léonie" loading="lazy" style="object-position:center 10%"></div>
+    <div class="sm-carousel-item"><img src="miroir-alicia-led.png" alt="Social-Miroir LED" loading="lazy" style="object-position:center 30%"></div>
+    <!-- Doublon pour boucle infinie -->
+    <div class="sm-carousel-item"><img src="photo1.jpg" alt="Social-Miroir salon" loading="lazy"></div>
+    <div class="sm-carousel-item"><img src="miroir social miroir canet .jpeg" alt="Social-Miroir Studio" loading="lazy" style="object-position:center 20%"></div>
+    <div class="sm-carousel-item"><img src="miroir-alicia.png" alt="Social-Miroir Alicia" loading="lazy" style="object-position:center 15%"></div>
+    <div class="sm-carousel-item"><img src="miroir-leonie.png" alt="Social-Miroir Léonie" loading="lazy" style="object-position:center 10%"></div>
+    <div class="sm-carousel-item"><img src="miroir-alicia-led.png" alt="Social-Miroir LED" loading="lazy" style="object-position:center 30%"></div>
+  </div>
+  <!-- Rangée 2 — défile vers la droite -->
+  <div class="sm-carousel-track row2">
+    <div class="sm-carousel-item"><img src="miroir-alicia-led.png" alt="Social-Miroir LED" loading="lazy" style="object-position:center 30%"></div>
+    <div class="sm-carousel-item"><img src="miroir-leonie.png" alt="Social-Miroir Léonie" loading="lazy" style="object-position:center 10%"></div>
+    <div class="sm-carousel-item"><img src="miroir-alicia.png" alt="Social-Miroir Alicia" loading="lazy" style="object-position:center 15%"></div>
+    <div class="sm-carousel-item"><img src="miroir social miroir canet .jpeg" alt="Social-Miroir Studio" loading="lazy" style="object-position:center 20%"></div>
+    <div class="sm-carousel-item"><img src="photo1.jpg" alt="Social-Miroir salon" loading="lazy"></div>
+    <!-- Doublon -->
+    <div class="sm-carousel-item"><img src="miroir-alicia-led.png" alt="Social-Miroir LED" loading="lazy" style="object-position:center 30%"></div>
+    <div class="sm-carousel-item"><img src="miroir-leonie.png" alt="Social-Miroir Léonie" loading="lazy" style="object-position:center 10%"></div>
+    <div class="sm-carousel-item"><img src="miroir-alicia.png" alt="Social-Miroir Alicia" loading="lazy" style="object-position:center 15%"></div>
+    <div class="sm-carousel-item"><img src="miroir social miroir canet .jpeg" alt="Social-Miroir Studio" loading="lazy" style="object-position:center 20%"></div>
+    <div class="sm-carousel-item"><img src="photo1.jpg" alt="Social-Miroir salon" loading="lazy"></div>
+  </div>
+</div>
+<!-- ═══════════════ FIN CARROUSEL ═══════════════ -->
+
 <!-- ═══════════════ MAIN CONFIGURATEUR ═══════════════ -->
 <main class="w-full px-4 py-10 md:py-14 relative max-w-screen-xl mx-auto overflow-x-hidden" id="module-commande">
     
