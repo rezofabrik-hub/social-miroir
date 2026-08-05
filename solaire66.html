@@ -649,6 +649,106 @@
     .admin-card p { font-size: 0.8rem; color: var(--gray-700); line-height: 1.5; }
     @media (max-width: 900px) { .install-steps { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 600px) { .install-steps { grid-template-columns: 1fr; } }
+
+    /* ===== BATTERIE VIRTUELLE ===== */
+    #batterie { background: linear-gradient(180deg, var(--gray-50) 0%, #fff 100%); }
+    .batt-intro {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+      align-items: center; margin-bottom: 64px;
+    }
+    .batt-schema {
+      background: white; border-radius: 20px; padding: 32px 28px;
+      box-shadow: var(--shadow); position: relative; overflow: hidden;
+    }
+    .batt-schema::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--solar), var(--green));
+    }
+    .batt-flow { display: flex; flex-direction: column; gap: 0; }
+    .batt-step {
+      display: flex; align-items: flex-start; gap: 16px; padding: 14px 0;
+      border-bottom: 1px dashed var(--gray-200); position: relative;
+    }
+    .batt-step:last-child { border-bottom: none; }
+    .batt-step-num {
+      width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 0.85rem; color: white;
+    }
+    .batt-step-content h4 { font-size: 0.9rem; font-weight: 700; color: var(--gray-900); margin-bottom: 3px; }
+    .batt-step-content p { font-size: 0.8rem; color: var(--gray-600); line-height: 1.5; }
+    .batt-legal {
+      background: white; border-radius: 20px; padding: 32px 28px;
+      box-shadow: var(--shadow); position: relative; overflow: hidden;
+    }
+    .batt-legal::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--sky), var(--sky-mid));
+    }
+    .batt-legal h3 { font-size: 1.05rem; font-weight: 800; color: var(--gray-900); margin-bottom: 20px; }
+    .legal-item {
+      display: flex; gap: 12px; align-items: flex-start; margin-bottom: 14px;
+    }
+    .legal-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+    .legal-item strong { font-size: 0.88rem; color: var(--gray-900); display: block; margin-bottom: 2px; }
+    .legal-item p { font-size: 0.8rem; color: var(--gray-600); line-height: 1.5; margin: 0; }
+    .batt-avsi {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 52px;
+    }
+    .av-card, .inc-card {
+      border-radius: 18px; padding: 28px 26px;
+    }
+    .av-card { background: var(--green-light); border: 1.5px solid #A7F3D0; }
+    .inc-card { background: #FEF2F2; border: 1.5px solid #FECACA; }
+    .av-card h3 { color: var(--green); font-size: 1rem; font-weight: 800; margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
+    .inc-card h3 { color: #DC2626; font-size: 1rem; font-weight: 800; margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
+    .av-item, .inc-item {
+      display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px;
+    }
+    .av-item:last-child, .inc-item:last-child { margin-bottom: 0; }
+    .av-item .check { color: var(--green); font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+    .inc-item .cross { color: #DC2626; font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+    .av-item p, .inc-item p { font-size: 0.84rem; color: var(--gray-700); line-height: 1.5; margin: 0; }
+    .batt-providers {
+      background: white; border-radius: 18px; padding: 32px;
+      box-shadow: var(--shadow); border: 1px solid var(--gray-200); margin-bottom: 40px;
+    }
+    .batt-providers h3 { font-size: 1rem; font-weight: 800; color: var(--gray-900); margin-bottom: 20px; }
+    .providers-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px;
+    }
+    .provider-chip {
+      background: var(--gray-50); border: 1.5px solid var(--gray-200); border-radius: 12px;
+      padding: 14px 18px; display: flex; align-items: center; gap: 10px;
+      transition: border-color 0.2s;
+    }
+    .provider-chip:hover { border-color: var(--solar); }
+    .provider-chip .pico { font-size: 1.4rem; }
+    .provider-chip strong { font-size: 0.88rem; color: var(--gray-900); display: block; }
+    .provider-chip span { font-size: 0.75rem; color: var(--gray-600); }
+    .batt-vs {
+      background: linear-gradient(135deg, #0C1445, #1E40AF); border-radius: 18px;
+      padding: 32px; color: white; margin-bottom: 40px;
+    }
+    .batt-vs h3 { font-size: 1rem; font-weight: 800; color: var(--solar); margin-bottom: 24px; }
+    .vs-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .vs-table th { text-align: left; padding: 10px 14px; font-size: 0.75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.07em; opacity: 0.6; border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .vs-table td { padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,0.08); vertical-align: top; }
+    .vs-table tr:last-child td { border-bottom: none; }
+    .vs-table td:first-child { font-weight: 600; opacity: 0.9; }
+    .vs-win { color: #6EE7B7; }
+    .vs-lose { color: #FCA5A5; }
+    .vs-neutral { color: #FCD34D; }
+    @media (max-width: 900px) {
+      .batt-intro { grid-template-columns: 1fr; }
+      .batt-avsi { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .batt-schema, .batt-legal, .batt-providers, .batt-vs { padding: 22px 18px; }
+      .vs-table { font-size: 0.78rem; }
+      .vs-table td, .vs-table th { padding: 9px 10px; }
+    }
   </style>
 </head>
 <body>
@@ -664,6 +764,7 @@
       <a href="#avantages">Avantages</a>
       <a href="#entreprises">Nos partenaires</a>
       <a href="#installation">Installation</a>
+      <a href="#batterie">Batterie virtuelle</a>
       <a href="#simulateur">Simulateur</a>
       <a href="#faq">FAQ</a>
       <a href="#devis" class="btn-nav">Devis gratuit</a>
@@ -1197,6 +1298,242 @@
           </p>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- BATTERIE VIRTUELLE -->
+  <section id="batterie">
+    <div class="container">
+      <div style="text-align:center;max-width:680px;margin:0 auto 52px;">
+        <span class="section-label">Innovation 2024–2026</span>
+        <h2 class="section-title">La batterie virtuelle (stockage en ligne)</h2>
+        <p class="section-sub" style="max-width:100%;">Une alternative à la batterie physique : votre surplus solaire est crédité virtuellement chez votre fournisseur et restitué à la demande — sans aucun matériel supplémentaire.</p>
+      </div>
+
+      <!-- FONCTIONNEMENT + LÉGALISATION -->
+      <div class="batt-intro">
+
+        <!-- Comment ça marche -->
+        <div class="batt-schema">
+          <h3 style="font-size:1.05rem;font-weight:800;color:var(--gray-900);margin-bottom:24px;">⚡ Comment fonctionne une batterie virtuelle ?</h3>
+          <div class="batt-flow">
+            <div class="batt-step">
+              <div class="batt-step-num" style="background:var(--solar);">1</div>
+              <div class="batt-step-content">
+                <h4>Votre installation produit de l'énergie</h4>
+                <p>Le matin, vos panneaux génèrent plus d'électricité que vous n'en consommez.</p>
+              </div>
+            </div>
+            <div class="batt-step">
+              <div class="batt-step-num" style="background:var(--sky-mid);">2</div>
+              <div class="batt-step-content">
+                <h4>L'excédent est injecté dans le réseau</h4>
+                <p>Via votre compteur Linky, le surplus part chez Enedis — exactement comme en autoconsommation classique.</p>
+              </div>
+            </div>
+            <div class="batt-step">
+              <div class="batt-step-num" style="background:#7C3AED;">3</div>
+              <div class="batt-step-content">
+                <h4>Les kWh injectés sont crédités virtuellement</h4>
+                <p>Votre fournisseur comptabilise chaque kWh injecté comme un crédit sur votre "compte" — votre batterie en ligne se charge.</p>
+              </div>
+            </div>
+            <div class="batt-step">
+              <div class="batt-step-num" style="background:var(--green);">4</div>
+              <div class="batt-step-content">
+                <h4>La nuit, vous puisez dans vos crédits</h4>
+                <p>Votre consommation nocturne est d'abord imputée sur vos crédits, avant de facturer votre fournisseur au tarif réseau.</p>
+              </div>
+            </div>
+            <div class="batt-step">
+              <div class="batt-step-num" style="background:var(--solar-dark);">5</div>
+              <div class="batt-step-content">
+                <h4>Vous ne payez que la différence</h4>
+                <p>Si vos crédits couvrent toute votre consommation nocturne, votre facture peut être nulle ou très réduite.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Légalisation -->
+        <div class="batt-legal">
+          <h3>⚖️ Cadre légal & réglementation</h3>
+
+          <div class="legal-item">
+            <span class="legal-icon">📜</span>
+            <div>
+              <strong>Pas de loi spécifique « batterie virtuelle »</strong>
+              <p>Ce service repose sur un contrat commercial entre vous et votre fournisseur d'énergie, pas sur une réglementation propre. Il s'inscrit dans le cadre de l'autoconsommation avec vente du surplus (arrêté du 6 oct. 2021).</p>
+            </div>
+          </div>
+
+          <div class="legal-item">
+            <span class="legal-icon">🔌</span>
+            <div>
+              <strong>RGE obligatoire pour l'installation solaire</strong>
+              <p>La partie « batterie virtuelle » n'impose aucune certification supplémentaire. En revanche, l'installation photovoltaïque doit toujours être réalisée par un professionnel certifié RGE QualiPV.</p>
+            </div>
+          </div>
+
+          <div class="legal-item">
+            <span class="legal-icon">📡</span>
+            <div>
+              <strong>Compteur Linky indispensable</strong>
+              <p>La mesure du surplus injecté exige un compteur communicant. Enedis doit avoir activé la télémesure — sans Linky, le service ne peut pas fonctionner.</p>
+            </div>
+          </div>
+
+          <div class="legal-item">
+            <span class="legal-icon">📋</span>
+            <div>
+              <strong>Convention CACSI + contrat fournisseur</strong>
+              <p>Deux documents : la convention de raccordement CACSI signée avec Enedis (pour mesurer l'injection), et le contrat de batterie virtuelle souscrit auprès de votre fournisseur d'énergie.</p>
+            </div>
+          </div>
+
+          <div class="legal-item">
+            <span class="legal-icon">⏳</span>
+            <div>
+              <strong>Durée de validité des crédits</strong>
+              <p>La réglementation ne fixe pas de durée légale — c'est le contrat qui définit le délai d'expiration des crédits (en général 12 mois). Vérifiez ce point avant de souscrire.</p>
+            </div>
+          </div>
+
+          <div class="legal-item">
+            <span class="legal-icon">🏛️</span>
+            <div>
+              <strong>Supervision par la CRE</strong>
+              <p>La Commission de Régulation de l'Énergie encadre les tarifs d'utilisation du réseau (TURPE). Les offres de batterie virtuelle ne peuvent pas facturer l'injection de surplus en violation du cadre tarifaire CRE.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AVANTAGES & INCONVÉNIENTS -->
+      <h3 style="font-size:1.2rem;font-weight:800;color:var(--gray-900);margin-bottom:24px;padding-bottom:12px;border-bottom:2px solid var(--gray-200);">Avantages & inconvénients</h3>
+      <div class="batt-avsi">
+
+        <div class="av-card">
+          <h3>✅ Avantages</h3>
+          <div class="av-item"><span class="check">✓</span><p><strong>Zéro investissement matériel</strong> — pas de batterie physique à acheter (5 000 à 15 000 € économisés).</p></div>
+          <div class="av-item"><span class="check">✓</span><p><strong>Zéro maintenance</strong> — pas de dégradation chimique, pas de remplacement d'accumulateurs après 10 ans.</p></div>
+          <div class="av-item"><span class="check">✓</span><p><strong>Capacité illimitée</strong> — pas de limite en kWh, contrairement à une batterie physique de 5 à 15 kWh.</p></div>
+          <div class="av-item"><span class="check">✓</span><p><strong>Aucun risque d'incendie</strong> — pas de lithium, pas de gestion thermique, pas de risque d'emballement.</p></div>
+          <div class="av-item"><span class="check">✓</span><p><strong>Installation immédiate</strong> — pas de travaux supplémentaires, pas de surface nécessaire dans votre maison.</p></div>
+          <div class="av-item"><span class="check">✓</span><p><strong>Transférable</strong> — le service reste associé au compteur, pas à la personne, facilitant la revente du bien.</p></div>
+          <div class="av-item"><span class="check">✓</span><p><strong>Résiliation souple</strong> — pas d'engagement matériel, vous pouvez changer de fournisseur selon les offres du marché.</p></div>
+        </div>
+
+        <div class="inc-card">
+          <h3>✗ Inconvénients</h3>
+          <div class="inc-item"><span class="cross">✗</span><p><strong>Dépendance au fournisseur</strong> — le service peut être modifié ou supprimé, et les tarifs peuvent évoluer.</p></div>
+          <div class="inc-item"><span class="cross">✗</span><p><strong>Crédits limités dans le temps</strong> — les kWh non utilisés expirent (souvent au bout de 12 mois) et sont perdus.</p></div>
+          <div class="inc-item"><span class="cross">✗</span><p><strong>Aucune autonomie en cas de coupure</strong> — contrairement à une batterie physique couplée à un onduleur hybride, la batterie virtuelle ne fonctionne pas hors réseau.</p></div>
+          <div class="inc-item"><span class="cross">✗</span><p><strong>Coût du service</strong> — certains fournisseurs facturent un abonnement mensuel ou prélèvent une commission sur les kWh crédités.</p></div>
+          <div class="inc-item"><span class="cross">✗</span><p><strong>Offre peu répandue</strong> — peu de fournisseurs proposent ce service en France ; la concurrence est faible, ce qui limite la négociation.</p></div>
+          <div class="inc-item"><span class="cross">✗</span><p><strong>Mesure complexe</strong> — la valeur exacte du crédit dépend du tarif de rachat au moment de l'injection, pas de celui au moment de la consommation.</p></div>
+          <div class="inc-item"><span class="cross">✗</span><p><strong>Pas de gain en pointe tarifaire</strong> — une vraie batterie peut décharger lors des heures pleines (HP) même sans réseau, maximisant les économies.</p></div>
+        </div>
+      </div>
+
+      <!-- TABLEAU COMPARATIF -->
+      <div class="batt-vs">
+        <h3>⚖️ Batterie physique vs Batterie virtuelle</h3>
+        <div style="overflow-x:auto;">
+          <table class="vs-table">
+            <thead>
+              <tr>
+                <th>Critère</th>
+                <th>Batterie physique</th>
+                <th>Batterie virtuelle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Coût d'entrée</td>
+                <td class="vs-lose">5 000 – 15 000 €</td>
+                <td class="vs-win">0 € (abonnement possible)</td>
+              </tr>
+              <tr>
+                <td>Durée de vie</td>
+                <td class="vs-neutral">8 – 15 ans</td>
+                <td class="vs-win">Illimitée (contrat)</td>
+              </tr>
+              <tr>
+                <td>Capacité de stockage</td>
+                <td class="vs-lose">5 – 20 kWh (fixe)</td>
+                <td class="vs-win">Illimitée en théorie</td>
+              </tr>
+              <tr>
+                <td>Fonctionne sans réseau</td>
+                <td class="vs-win">✓ (onduleur hybride)</td>
+                <td class="vs-lose">✗ Non</td>
+              </tr>
+              <tr>
+                <td>Maintenance</td>
+                <td class="vs-lose">Entretien / remplacement</td>
+                <td class="vs-win">Aucune</td>
+              </tr>
+              <tr>
+                <td>Risque incendie</td>
+                <td class="vs-lose">Faible mais réel (lithium)</td>
+                <td class="vs-win">Nul</td>
+              </tr>
+              <tr>
+                <td>Autonomie complète</td>
+                <td class="vs-win">Possible</td>
+                <td class="vs-lose">Impossible</td>
+              </tr>
+              <tr>
+                <td>Installation</td>
+                <td class="vs-lose">Travaux, place nécessaire</td>
+                <td class="vs-win">Contrat, immédiat</td>
+              </tr>
+              <tr>
+                <td>Idéal pour</td>
+                <td class="vs-neutral">Recherche d'autonomie, coupures fréquentes</td>
+                <td class="vs-neutral">Optimisation économique sans contrainte</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- FOURNISSEURS -->
+      <div class="batt-providers">
+        <h3>🏢 Principaux fournisseurs proposant la batterie virtuelle en France</h3>
+        <div class="providers-grid">
+          <div class="provider-chip">
+            <span class="pico">🌞</span>
+            <div><strong>EDF ENR</strong><span>Mon Soleil & Moi — stockage virtuel intégré</span></div>
+          </div>
+          <div class="provider-chip">
+            <span class="pico">🔵</span>
+            <div><strong>Engie</strong><span>Offre autoconsommation + batterie en ligne</span></div>
+          </div>
+          <div class="provider-chip">
+            <span class="pico">🟠</span>
+            <div><strong>TotalEnergies</strong><span>Solution PV + stockage virtuel</span></div>
+          </div>
+          <div class="provider-chip">
+            <span class="pico">⚡</span>
+            <div><strong>Mylight Systems</strong><span>Sunstock — spécialiste du stockage virtuel</span></div>
+          </div>
+          <div class="provider-chip">
+            <span class="pico">🌿</span>
+            <div><strong>Ekwateur</strong><span>Offre verte avec comptabilisation du surplus</span></div>
+          </div>
+          <div class="provider-chip">
+            <span class="pico">💡</span>
+            <div><strong>Autres fournisseurs</strong><span>Le marché évolue rapidement — comparez les offres lors du devis</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;">
+        <p style="color:var(--gray-600);font-size:0.95rem;margin-bottom:20px;">Votre installateur vous conseillera sur la solution la mieux adaptée à votre profil de consommation.</p>
+        <a href="#devis" class="btn-primary" style="display:inline-flex;">⚡ Discuter mon projet avec un expert</a>
       </div>
     </div>
   </section>
