@@ -79,7 +79,7 @@
     /* ===== HERO ===== */
     .hero {
       min-height: 100vh;
-      background: linear-gradient(135deg, #0C1445 0%, #1E40AF 45%, #0369A1 75%, #0C1445 100%);
+      background: linear-gradient(135deg, rgba(12,20,69,0.88) 0%, rgba(30,64,175,0.84) 45%, rgba(3,105,161,0.82) 75%, rgba(12,20,69,0.88) 100%), url('https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
       display: flex; align-items: center; justify-content: center;
       text-align: center; padding: 100px 24px 60px;
       position: relative; overflow: hidden;
@@ -453,6 +453,15 @@
       .footer-grid { grid-template-columns: 1fr; }
       .footer-brand { grid-column: span 1; }
     }
+    /* ===== GALERIE PHOTOS ===== */
+    .photo-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    @media (min-width: 640px) { .photo-gallery { grid-template-columns: repeat(4, 1fr); } }
+    .photo-item { border-radius: 14px; overflow: hidden; aspect-ratio: 4/3; }
+    .photo-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; display: block; }
+    .photo-item:hover img { transform: scale(1.07); }
+    /* ===== STEP PHOTOS ===== */
+    .step-photo { height: 160px; overflow: hidden; margin: -36px -28px 24px; border-radius: var(--radius) var(--radius) 0 0; }
+    .step-photo img { width: 100%; height: 100%; object-fit: cover; }
   </style>
 </head>
 <body>
@@ -529,18 +538,21 @@
       <p class="section-sub">Notre plateforme vous met en relation avec les meilleurs installateurs locaux, vérifiés et certifiés.</p>
       <div class="steps">
         <div class="step">
+          <div class="step-photo"><img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=400&h=200&q=80" alt="Formulaire devis solaire" loading="lazy"></div>
           <div class="step-icon">📋</div>
           <div class="step-num">1</div>
           <h3>Remplissez le formulaire</h3>
           <p>Décrivez votre projet en 2 minutes : type de logement, toiture, consommation, budget. C'est gratuit et sans engagement.</p>
         </div>
         <div class="step">
+          <div class="step-photo"><img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=400&h=200&q=80" alt="Sélection installateurs RGE" loading="lazy"></div>
           <div class="step-icon">🔍</div>
           <div class="step-num">2</div>
           <h3>On sélectionne les meilleurs</h3>
           <p>Nous sélectionnons jusqu'à 3 installateurs certifiés RGE près de chez vous, adaptés à votre projet.</p>
         </div>
         <div class="step">
+          <div class="step-photo"><img src="https://images.unsplash.com/photo-1548407260-da850faa41e3?auto=format&fit=crop&w=400&h=200&q=80" alt="Comparer devis panneaux solaires" loading="lazy"></div>
           <div class="step-icon">📞</div>
           <div class="step-num">3</div>
           <h3>Comparez et choisissez</h3>
@@ -599,6 +611,34 @@
             <p>Les P.-O. sont le département le plus ensoleillé de France métropolitaine, idéal pour le photovoltaïque.</p>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIE PHOTOS -->
+  <section id="galerie" style="background:#0C1445;padding:64px 24px;">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:40px;">
+        <span class="section-label" style="background:rgba(245,158,11,0.2);color:#FCD34D;">Nos réalisations</span>
+        <h2 class="section-title" style="color:white;margin-top:10px;">Le solaire dans les Pyrénées-Orientales</h2>
+        <p style="color:rgba(255,255,255,0.7);font-size:1rem;max-width:520px;margin:12px auto 0;">Installations photovoltaïques réalisées dans la région par nos partenaires certifiés RGE.</p>
+      </div>
+      <div class="photo-gallery">
+        <div class="photo-item">
+          <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=600&q=80" alt="Panneaux solaires sur toiture" loading="lazy">
+        </div>
+        <div class="photo-item">
+          <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=600&q=80" alt="Champ photovoltaïque" loading="lazy">
+        </div>
+        <div class="photo-item">
+          <img src="https://images.unsplash.com/photo-1548407260-da850faa41e3?auto=format&fit=crop&w=600&q=80" alt="Maison avec panneaux solaires" loading="lazy">
+        </div>
+        <div class="photo-item">
+          <img src="https://images.unsplash.com/photo-1521618755572-156ae0cdd74d?auto=format&fit=crop&w=600&q=80" alt="Installation solaire professionnelle" loading="lazy">
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:40px;">
+        <a href="#devis" class="btn-primary">⚡ Obtenir mon devis gratuit</a>
       </div>
     </div>
   </section>
