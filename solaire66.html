@@ -435,6 +435,61 @@
 
     /* ===== RESPONSIVE ===== */
 
+    /* ===== SOLUTIONS ÉNERGÉTIQUES ===== */
+    #solutions { background: var(--gray-50); }
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .solution-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      border-top: 4px solid var(--solar);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .solution-card:nth-child(2) { border-top-color: var(--sky); }
+    .solution-card:nth-child(3) { border-top-color: var(--green); }
+    .solution-card:nth-child(4) { border-top-color: #8B5CF6; }
+    .solution-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .solution-icon {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 16px;
+    }
+    .solution-icon.sol { background: var(--solar-light); }
+    .solution-icon.sky { background: var(--sky-light); }
+    .solution-icon.grn { background: var(--green-light); }
+    .solution-icon.pur { background: #EDE9FE; }
+    .solution-card h3 {
+      font-size: 1.05rem; font-weight: 700;
+      color: var(--gray-900); margin-bottom: 6px;
+    }
+    .solution-card .sol-subtitle {
+      font-size: 0.8rem; font-weight: 600;
+      color: var(--solar); margin-bottom: 12px;
+      text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .solution-card:nth-child(2) .sol-subtitle { color: var(--sky); }
+    .solution-card:nth-child(3) .sol-subtitle { color: var(--green); }
+    .solution-card:nth-child(4) .sol-subtitle { color: #7C3AED; }
+    .solution-card p {
+      font-size: 0.88rem; color: var(--gray-600); margin-bottom: 14px;
+    }
+    .solution-tags {
+      display: flex; flex-wrap: wrap; gap: 6px;
+    }
+    .solution-tag {
+      background: var(--gray-100); color: var(--gray-700);
+      font-size: 0.75rem; font-weight: 600;
+      padding: 3px 10px; border-radius: 20px;
+    }
+
     /* --- Tablette large 1024px --- */
     @media (max-width: 1024px) {
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
@@ -832,6 +887,7 @@
       <a href="#avantages">Avantages</a>
       <a href="#entreprises">Notre entreprise</a>
       <a href="#installation">Installation</a>
+      <a href="#solutions">Nos solutions</a>
       <a href="#batterie" style="color:var(--solar-dark);font-weight:700;">🔋 Batteries</a>
       <a href="#simulateur">Simulateur</a>
       <a href="#faq">FAQ</a>
@@ -1273,6 +1329,79 @@
 
       <div style="text-align:center;margin-top:32px;">
         <a href="#devis" class="btn-primary" style="display:inline-flex;">⚡ Lancer mon projet — Devis gratuit</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTIONS ÉNERGÉTIQUES -->
+  <section id="solutions">
+    <div class="container">
+      <div class="section-label">Nos solutions complètes</div>
+      <h2 class="section-title">Au-delà du solaire : toutes vos solutions énergétiques</h2>
+      <p class="section-sub">
+        Perpignan Solaire vous accompagne sur l'ensemble de votre transition énergétique.
+        Nos équipes certifiées interviennent sur quatre domaines complémentaires dans les Pyrénées-Orientales (66) et l'Aude (11).
+      </p>
+      <div class="solutions-grid">
+
+        <!-- Panneaux solaires -->
+        <div class="solution-card">
+          <div class="solution-icon sol">☀️</div>
+          <div class="sol-subtitle">Notre cœur de métier</div>
+          <h3>Panneaux photovoltaïques</h3>
+          <p>Installation complète de systèmes solaires sur toiture ou au sol : maison individuelle, bâtiment agricole, entrepôt. Matériel garanti 25 ans, pose soignée en 1 à 2 jours.</p>
+          <div class="solution-tags">
+            <span class="solution-tag">✅ RGE QualiPV</span>
+            <span class="solution-tag">Garantie 25 ans</span>
+            <span class="solution-tag">Démarches incluses</span>
+          </div>
+        </div>
+
+        <!-- Pompe à chaleur -->
+        <div class="solution-card">
+          <div class="solution-icon sky">🌡️</div>
+          <div class="sol-subtitle">Confort toute l'année</div>
+          <h3>Pompes à chaleur & climatisation</h3>
+          <p>Chauffage en hiver, climatisation en été : la pompe à chaleur air/air ou air/eau est la solution la plus efficace pour votre confort thermique, surtout couplée à vos panneaux solaires.</p>
+          <div class="solution-tags">
+            <span class="solution-tag">✅ RGE QualiSOL</span>
+            <span class="solution-tag">MaPrimeRénov' éligible</span>
+            <span class="solution-tag">COP jusqu'à 4</span>
+          </div>
+        </div>
+
+        <!-- Ballon thermodynamique -->
+        <div class="solution-card">
+          <div class="solution-icon grn">💧</div>
+          <div class="sol-subtitle">Eau chaude écologique</div>
+          <h3>Ballons thermodynamiques</h3>
+          <p>Produisez votre eau chaude sanitaire en utilisant les calories de l'air ambiant plutôt que l'électricité du réseau. 3 à 4 fois plus économique qu'un chauffe-eau classique, idéal couplé au solaire.</p>
+          <div class="solution-tags">
+            <span class="solution-tag">-70 % sur l'ECS</span>
+            <span class="solution-tag">Installation rapide</span>
+            <span class="solution-tag">Discret & silencieux</span>
+          </div>
+        </div>
+
+        <!-- Borne IRVE -->
+        <div class="solution-card">
+          <div class="solution-icon pur">⚡</div>
+          <div class="sol-subtitle">Mobilité électrique</div>
+          <h3>Bornes de recharge IRVE</h3>
+          <p>Rechargez votre véhicule électrique directement avec l'énergie de vos panneaux. Nos techniciens certifiés IRVE installent votre borne en toute sécurité, compatible tous véhicules électriques et hybrides.</p>
+          <div class="solution-tags">
+            <span class="solution-tag">✅ Cert. IRVE</span>
+            <span class="solution-tag">7 kW à 22 kW</span>
+            <span class="solution-tag">Tous véhicules</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="text-align:center;margin-top:40px;padding:28px;background:linear-gradient(135deg,#0C1445,#1E40AF);border-radius:16px;color:white;">
+        <p style="font-size:1rem;margin-bottom:6px;opacity:0.85;">Vous souhaitez coupler plusieurs solutions ?</p>
+        <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:20px;">Solaire + PAC + Borne IRVE : la combinaison gagnante en 2026</h3>
+        <a href="#devis" class="btn-primary" style="display:inline-flex;">⚡ Étudier mon projet global</a>
       </div>
     </div>
   </section>
@@ -2037,17 +2166,17 @@
           <li><a href="tel:+33775769232">📞 07 75 76 92 32</a></li>
           <li><a href="#">📍 9 rue de la Close, 66140 Canet-en-Roussillon</a></li>
           <li><a href="#">🏢 SARL Rezofabrik</a></li>
-          <li><a href="#">Mentions légales</a></li>
-          <li><a href="#">Politique de confidentialité</a></li>
-          <li><a href="#">RGPD</a></li>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="mentions-legales.html#donnees-collectees">Politique de confidentialité</a></li>
+          <li><a href="mentions-legales.html#droits">RGPD</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 Perpignan Solaire — Tous droits réservés</span>
       <span>Fait avec ☀️ dans les P.-O. & l'Aude</span>
-      <a href="#">Mentions légales</a>
-      <a href="#">CGU</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="mentions-legales.html">Politique de confidentialité</a>
     </div>
   </footer>
 
