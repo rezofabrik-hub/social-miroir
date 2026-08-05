@@ -624,15 +624,15 @@
         <div class="avantage">
           <div class="avantage-icon solar">⚡</div>
           <div>
-            <h4>Revente du surplus</h4>
-            <p>Revendez l'électricité non consommée à EDF OA et générez des revenus complémentaires chaque mois.</p>
+            <h4>Batterie de stockage</h4>
+            <p>Stockez votre surplus pour le consommer le soir. L'autoconsommation maximale est la stratégie la plus rentable en 2026.</p>
           </div>
         </div>
         <div class="avantage">
           <div class="avantage-icon green">🎁</div>
           <div>
             <h4>Aides & subventions</h4>
-            <p>Profitez de MaPrimeRénov', de la prime à l'autoconsommation, et de la TVA réduite à 10 % ou 20 %.</p>
+            <p>Profitez de la TVA réduite à 10 % ou 20 %, des CEE, et de MaPrimeRénov' pour les systèmes avec batterie ou pompe à chaleur.</p>
           </div>
         </div>
         <div class="avantage">
@@ -882,8 +882,8 @@
           <div class="sim-input-group">
             <div class="sim-label" style="margin-bottom:10px;">Type d'installation</div>
             <select class="sim-select" id="sim-type" onchange="updateSim()">
-              <option value="autoconso">Autoconsommation (70 % utilisé + 30 % revendu)</option>
-              <option value="injection">Injection totale (tout revendu à EDF)</option>
+              <option value="autoconso70">Autoconsommation sans batterie (~70 % utilisé)</option>
+              <option value="autoconso90">Autoconsommation avec batterie (~90 % utilisé)</option>
             </select>
           </div>
 
@@ -923,7 +923,7 @@
               <div class="sim-metric-icon" style="background:var(--green-light)">💰</div>
               <div>
                 <div class="sim-metric-text">Économies annuelles</div>
-                <div class="sim-metric-sub">Autoconso 0,2516 €/kWh + revente EDF</div>
+                <div class="sim-metric-sub">Autoconso 0,2516 €/kWh · surplus revendu 0,011 €/kWh</div>
               </div>
             </div>
             <div class="sim-metric-value"><span id="res-economies">—</span><small>€/an</small></div>
@@ -1257,7 +1257,7 @@
             <span class="faq-chevron">▼</span>
           </button>
           <div class="faq-answer">
-            <p>Plusieurs aides sont disponibles : <strong>Prime à l'autoconsommation</strong> (versée par EDF sur 5 ans), <strong>TVA à taux réduit</strong> (10 % ou 20 % selon puissance), <strong>MaPrimeRénov'</strong> pour les systèmes avec pompe à chaleur ou batterie, et les <strong>CEE</strong> (Certificats d'Économie d'Énergie). Vos installateurs vous guident dans les démarches.</p>
+            <p>En 2026, les aides disponibles sont : <strong>TVA réduite</strong> (10 % pour les installations ≤ 3 kWc, 20 % au-delà), <strong>MaPrimeRénov'</strong> pour les systèmes couplés à une pompe à chaleur ou batterie, et les <strong>CEE</strong> (Certificats d'Économie d'Énergie). Attention : la prime à l'autoconsommation a été supprimée pour toutes les tranches de puissance. Vos installateurs vous guident dans les démarches restantes.</p>
           </div>
         </div>
         <div class="faq-item">
@@ -1323,7 +1323,7 @@
           <li><a href="#">Certification RGE</a></li>
           <li><a href="#">Prix panneaux solaires</a></li>
           <li><a href="#">Autoconsommation</a></li>
-          <li><a href="#">Revente surplus EDF</a></li>
+          <li><a href="#">Autoconsommation & batterie</a></li>
           <li><a href="#contact-pro">Espace installateurs</a></li>
         </ul>
       </div>
@@ -1539,7 +1539,7 @@ Demande reçue via perpignan-solaire.fr`;
       const PERF_RATIO    = 0.75;   // rendement système
       const EFF_PANEL     = 0.20;   // 200 Wc/m² (monocristallin standard)
       const PRIX_EDF      = 0.2516; // €/kWh TTC tarif bleu 2024
-      const PRIX_RACHAT   = 0.076;  // €/kWh EDF OA 2024 (≤9 kWc)
+      const PRIX_RACHAT   = 0.011;  // €/kWh EDF OA 2026 (arrêté 1er juin 2026)
       const PRIX_KWC      = 1800;   // €/kWc pose comprise (moy. 66)
       const CO2_FACTOR    = 0.052;  // kg CO₂/kWh (mix France nucléaire)
       const CO2_TREE      = 22;     // kg CO₂/arbre/an
@@ -1547,14 +1547,12 @@ Demande reçue via perpignan-solaire.fr`;
       const puissance  = surface * EFF_PANEL;
       const production = puissance * IRRADIATION * PERF_RATIO * orientation * inclinaison;
 
-      let economies;
-      if (type === 'autoconso') {
-        const tauxAuto = Math.min(0.70, conso / production);
-        const tauxInj  = 1 - tauxAuto;
-        economies = production * tauxAuto * PRIX_EDF + production * tauxInj * PRIX_RACHAT;
-      } else {
-        economies = production * PRIX_RACHAT;
-      }
+      // Injection totale supprimée depuis mars 2025 (installations < 9 kWc)
+      const tauxAuto = type === 'autoconso90'
+        ? Math.min(0.90, conso / production)
+        : Math.min(0.70, conso / production);
+      const tauxInj  = 1 - tauxAuto;
+      const economies = production * tauxAuto * PRIX_EDF + production * tauxInj * PRIX_RACHAT;
 
       const cout    = puissance * PRIX_KWC;
       const roi     = economies > 0 ? cout / economies : 0;
