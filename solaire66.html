@@ -462,6 +462,36 @@
     /* ===== STEP PHOTOS ===== */
     .step-photo { height: 160px; overflow: hidden; margin: -36px -28px 24px; border-radius: var(--radius) var(--radius) 0 0; }
     .step-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ===== SIMULATEUR SOLAIRE ===== */
+    #simulateur { background: var(--gray-50); }
+    .sim-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; margin-top: 48px; align-items: start; }
+    .sim-card { background: white; border-radius: 20px; padding: 36px; box-shadow: var(--shadow); }
+    .sim-input-group { margin-bottom: 24px; }
+    .sim-label { font-weight: 700; font-size: 0.88rem; color: var(--gray-700); margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+    .sim-label-val { color: var(--solar); font-weight: 900; }
+    .sim-slider { width: 100%; -webkit-appearance: none; height: 6px; border-radius: 100px; background: var(--gray-200); outline: none; cursor: pointer; margin-top: 4px; }
+    .sim-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--solar); cursor: pointer; box-shadow: 0 2px 8px rgba(245,158,11,0.4); }
+    .sim-slider::-moz-range-thumb { width: 22px; height: 22px; border: none; border-radius: 50%; background: var(--solar); cursor: pointer; }
+    .sim-range-labels { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--gray-600); margin-top: 5px; }
+    .sim-select { width: 100%; padding: 12px 16px; border: 2px solid var(--gray-200); border-radius: 10px; font-size: 0.92rem; background: white; cursor: pointer; font-family: inherit; color: var(--gray-900); }
+    .sim-select:focus { outline: none; border-color: var(--solar); box-shadow: 0 0 0 3px rgba(245,158,11,0.15); }
+    .sim-note { background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.3); border-radius: 10px; padding: 12px 16px; font-size: 0.8rem; color: var(--gray-700); margin-top: 8px; }
+    .sim-metric { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--gray-100); gap: 12px; }
+    .sim-metric-label { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+    .sim-metric-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+    .sim-metric-text { font-weight: 600; color: var(--gray-800); font-size: 0.9rem; }
+    .sim-metric-sub { font-size: 0.75rem; color: var(--gray-500); margin-top: 2px; }
+    .sim-metric-value { font-weight: 900; font-size: 1.15rem; color: var(--gray-900); text-align: right; white-space: nowrap; }
+    .sim-metric-value small { font-size: 0.72rem; font-weight: 600; color: var(--gray-500); display: block; }
+    .sim-roi-bar { height: 6px; border-radius: 100px; background: var(--gray-200); margin-top: 5px; overflow: hidden; width: 140px; }
+    .sim-roi-fill { height: 100%; border-radius: 100px; background: linear-gradient(90deg, var(--green), var(--solar)); transition: width 0.6s ease; }
+    .sim-summary { background: linear-gradient(135deg, #0C1445, #1E40AF); border-radius: 14px; padding: 22px 24px; margin: 16px 0 20px; color: white; }
+    .sim-summary h4 { font-size: 0.78rem; opacity: 0.7; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .sim-big-savings { font-size: 2.2rem; font-weight: 900; color: var(--solar); line-height: 1; }
+    .sim-savings-label { font-size: 0.8rem; opacity: 0.7; margin-top: 6px; }
+    @media (max-width: 900px) { .sim-layout { grid-template-columns: 1fr; } }
+    @media (max-width: 480px) { .sim-card { padding: 24px 20px; } .sim-roi-bar { width: 80px; } }
   </style>
 </head>
 <body>
@@ -476,6 +506,7 @@
       <a href="#comment-ca-marche">Comment ça marche</a>
       <a href="#avantages">Avantages</a>
       <a href="#entreprises">Nos partenaires</a>
+      <a href="#simulateur">Simulateur</a>
       <a href="#faq">FAQ</a>
       <a href="#devis" class="btn-nav">Devis gratuit</a>
     </div>
@@ -798,6 +829,153 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIMULATEUR SOLAIRE -->
+  <section id="simulateur">
+    <div class="container">
+      <div style="text-align:center;max-width:640px;margin:0 auto 48px;">
+        <span class="section-label">Outil gratuit</span>
+        <h2 class="section-title">Simulez votre installation solaire</h2>
+        <p class="section-sub" style="max-width:100%;">Estimez en temps réel votre production, vos économies et votre retour sur investissement avec les données solaires réelles des Pyrénées-Orientales (source PVGIS — Commission Européenne).</p>
+      </div>
+      <div class="sim-layout">
+
+        <!-- PARAMÈTRES -->
+        <div class="sim-card">
+          <h3 style="font-size:1.05rem;font-weight:800;color:var(--gray-900);margin-bottom:28px;">⚙️ Paramètres de votre projet</h3>
+
+          <div class="sim-input-group">
+            <div class="sim-label">Surface de toiture disponible <span class="sim-label-val" id="val-surface">30 m²</span></div>
+            <input type="range" class="sim-slider" id="sim-surface" min="10" max="150" value="30" step="5" oninput="updateSim()">
+            <div class="sim-range-labels"><span>10 m²</span><span>150 m²</span></div>
+          </div>
+
+          <div class="sim-input-group">
+            <div class="sim-label" style="margin-bottom:10px;">Orientation du toit</div>
+            <select class="sim-select" id="sim-orientation" onchange="updateSim()">
+              <option value="1.00">Plein Sud (optimal)</option>
+              <option value="0.95">Sud-Est ou Sud-Ouest</option>
+              <option value="0.80">Est ou Ouest</option>
+              <option value="0.60">Nord (déconseillé)</option>
+            </select>
+          </div>
+
+          <div class="sim-input-group">
+            <div class="sim-label" style="margin-bottom:10px;">Inclinaison du toit</div>
+            <select class="sim-select" id="sim-inclinaison" onchange="updateSim()">
+              <option value="1.00">30–35° (optimal)</option>
+              <option value="0.97">15–20°</option>
+              <option value="0.97">40–45°</option>
+              <option value="0.85">Toit plat / terrasse</option>
+            </select>
+          </div>
+
+          <div class="sim-input-group">
+            <div class="sim-label">Consommation électrique annuelle <span class="sim-label-val" id="val-conso">4 000 kWh/an</span></div>
+            <input type="range" class="sim-slider" id="sim-conso" min="1000" max="15000" value="4000" step="500" oninput="updateSim()">
+            <div class="sim-range-labels"><span>1 000 kWh</span><span>15 000 kWh</span></div>
+          </div>
+
+          <div class="sim-input-group">
+            <div class="sim-label" style="margin-bottom:10px;">Type d'installation</div>
+            <select class="sim-select" id="sim-type" onchange="updateSim()">
+              <option value="autoconso">Autoconsommation (70 % utilisé + 30 % revendu)</option>
+              <option value="injection">Injection totale (tout revendu à EDF)</option>
+            </select>
+          </div>
+
+          <div class="sim-note">
+            📍 <strong>Données solaires P.-O. :</strong> 1 750 kWh/m²/an d'irradiation — Perpignan est parmi les villes les plus ensoleillées de France métropolitaine.
+          </div>
+        </div>
+
+        <!-- RÉSULTATS -->
+        <div class="sim-card">
+          <h3 style="font-size:1.05rem;font-weight:800;color:var(--gray-900);margin-bottom:20px;">📊 Votre estimation</h3>
+
+          <div class="sim-metric">
+            <div class="sim-metric-label">
+              <div class="sim-metric-icon" style="background:var(--solar-light)">⚡</div>
+              <div>
+                <div class="sim-metric-text">Puissance installée</div>
+                <div class="sim-metric-sub">Panneaux monocristallins 200 Wc/m²</div>
+              </div>
+            </div>
+            <div class="sim-metric-value"><span id="res-puissance">—</span><small>kWc</small></div>
+          </div>
+
+          <div class="sim-metric">
+            <div class="sim-metric-label">
+              <div class="sim-metric-icon" style="background:var(--sky-light)">☀️</div>
+              <div>
+                <div class="sim-metric-text">Production annuelle</div>
+                <div class="sim-metric-sub">Énergie produite par an</div>
+              </div>
+            </div>
+            <div class="sim-metric-value"><span id="res-production">—</span><small>kWh/an</small></div>
+          </div>
+
+          <div class="sim-metric">
+            <div class="sim-metric-label">
+              <div class="sim-metric-icon" style="background:var(--green-light)">💰</div>
+              <div>
+                <div class="sim-metric-text">Économies annuelles</div>
+                <div class="sim-metric-sub">Autoconso 0,2516 €/kWh + revente EDF</div>
+              </div>
+            </div>
+            <div class="sim-metric-value"><span id="res-economies">—</span><small>€/an</small></div>
+          </div>
+
+          <div class="sim-metric">
+            <div class="sim-metric-label">
+              <div class="sim-metric-icon" style="background:var(--solar-light)">📈</div>
+              <div>
+                <div class="sim-metric-text">Retour sur investissement</div>
+                <div class="sim-roi-bar"><div class="sim-roi-fill" id="res-roi-bar" style="width:0%"></div></div>
+              </div>
+            </div>
+            <div class="sim-metric-value"><span id="res-roi">—</span><small>ans</small></div>
+          </div>
+
+          <div class="sim-metric">
+            <div class="sim-metric-label">
+              <div class="sim-metric-icon" style="background:var(--green-light)">🌿</div>
+              <div>
+                <div class="sim-metric-text">CO₂ évité</div>
+                <div class="sim-metric-sub">Mix électrique France (nucléaire)</div>
+              </div>
+            </div>
+            <div class="sim-metric-value"><span id="res-co2">—</span><small>kg/an</small></div>
+          </div>
+
+          <div class="sim-metric" style="border-bottom:none">
+            <div class="sim-metric-label">
+              <div class="sim-metric-icon" style="background:var(--green-light)">🌳</div>
+              <div>
+                <div class="sim-metric-text">Équivalent arbres plantés</div>
+                <div class="sim-metric-sub">22 kg CO₂ absorbé/arbre/an</div>
+              </div>
+            </div>
+            <div class="sim-metric-value"><span id="res-arbres">—</span><small>arbres/an</small></div>
+          </div>
+
+          <div class="sim-summary">
+            <h4>Gain net sur 25 ans (durée de vie des panneaux)</h4>
+            <div class="sim-big-savings">+ <span id="res-25ans">—</span> €</div>
+            <div class="sim-savings-label">Après remboursement de l'investissement initial</div>
+          </div>
+
+          <a href="#devis" class="btn-primary" style="width:100%;justify-content:center;">
+            📋 Obtenir mon étude personnalisée gratuite
+          </a>
+          <p style="text-align:center;font-size:0.78rem;color:var(--gray-500);margin-top:10px;">
+            Estimation indicative — Un installateur RGE vous fera une étude technique précise et gratuite
+          </p>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1282,9 +1460,61 @@ ${message}
 ====================================================
 Demande reçue via perpignan-solaire.fr`;
 
-      window.location.href = 'mailto:contact@perpignan-solaire.fr'
+      // ── Airtable integration ──────────────────────────────────────────
+      const AIRTABLE_TOKEN = '';           // collez votre PAT ici (airtable.com/create/tokens)
+      const AIRTABLE_BASE  = 'appctTHuijKSMlrFa';
+      const WEBHOOK_URL    = '';           // Make.com / n8n webhook URL (optionnel)
+
+      const surfaceVal  = document.getElementById('surface_toit').value || '';
+      const budgetNum   = {'Moins de 5 000 €':3000,'5 000 € à 10 000 €':7500,'10 000 € à 20 000 €':15000,'Plus de 20 000 €':25000}[document.getElementById('budget').value] || 0;
+
+      const payload = {
+        fields: {
+          'Nom':               prenom + ' ' + nom,
+          'Email':             email,
+          'Téléphone':         telephone,
+          'Ville':             ville,
+          'Code postal':       codepostal,
+          'Type de projet':    logement ? logement.value : '',
+          'Surface toiture (m²)': parseInt(surfaceVal) || 0,
+          'Budget estimé (€)': budgetNum,
+          'Statut':            '🆕 Nouveau',
+          'Notes':             [
+            'Toiture: ' + (document.getElementById('toiture').value || 'Non précisé'),
+            'Surface: ' + surfaceVal,
+            'Facture EDF: ' + (document.getElementById('facture').value || 'Non précisé'),
+            'Budget: ' + (document.getElementById('budget').value || 'Non précisé'),
+            document.getElementById('message').value.trim()
+          ].filter(Boolean).join('\n')
+        }
+      };
+
+      if (AIRTABLE_TOKEN) {
+        fetch('https://api.airtable.com/v0/' + AIRTABLE_BASE + '/Leads', {
+          method: 'POST',
+          headers: { 'Authorization': 'Bearer ' + AIRTABLE_TOKEN, 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }).catch(() => {});
+      }
+
+      if (WEBHOOK_URL) {
+        fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...payload.fields, timestamp: new Date().toISOString() })
+        }).catch(() => {});
+      }
+
+      // Fallback email (s'ouvre en arrière-plan)
+      const mailHref = 'mailto:contact@perpignan-solaire.fr'
         + '?subject=' + encodeURIComponent('🌞 Nouveau devis solaire — ' + prenom + ' ' + nom + ' (' + ville + ')')
         + '&body=' + encodeURIComponent(body);
+      const mailLink = document.createElement('a');
+      mailLink.href = mailHref;
+      mailLink.style.display = 'none';
+      document.body.appendChild(mailLink);
+      mailLink.click();
+      document.body.removeChild(mailLink);
 
       // Show success
       document.getElementById('form-container').style.display = 'none';
@@ -1292,6 +1522,60 @@ Demande reçue via perpignan-solaire.fr`;
       success.style.display = 'block';
       document.getElementById('form-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
+
+    // ===== SIMULATEUR SOLAIRE =====
+    function updateSim() {
+      const surface     = parseFloat(document.getElementById('sim-surface').value);
+      const orientation = parseFloat(document.getElementById('sim-orientation').value);
+      const inclinaison = parseFloat(document.getElementById('sim-inclinaison').value);
+      const conso       = parseFloat(document.getElementById('sim-conso').value);
+      const type        = document.getElementById('sim-type').value;
+
+      document.getElementById('val-surface').textContent = surface + ' m²';
+      document.getElementById('val-conso').textContent   = conso.toLocaleString('fr-FR') + ' kWh/an';
+
+      // Constantes département 66
+      const IRRADIATION   = 1750;   // kWh/m²/an (PVGIS Perpignan)
+      const PERF_RATIO    = 0.75;   // rendement système
+      const EFF_PANEL     = 0.20;   // 200 Wc/m² (monocristallin standard)
+      const PRIX_EDF      = 0.2516; // €/kWh TTC tarif bleu 2024
+      const PRIX_RACHAT   = 0.076;  // €/kWh EDF OA 2024 (≤9 kWc)
+      const PRIX_KWC      = 1800;   // €/kWc pose comprise (moy. 66)
+      const CO2_FACTOR    = 0.052;  // kg CO₂/kWh (mix France nucléaire)
+      const CO2_TREE      = 22;     // kg CO₂/arbre/an
+
+      const puissance  = surface * EFF_PANEL;
+      const production = puissance * IRRADIATION * PERF_RATIO * orientation * inclinaison;
+
+      let economies;
+      if (type === 'autoconso') {
+        const tauxAuto = Math.min(0.70, conso / production);
+        const tauxInj  = 1 - tauxAuto;
+        economies = production * tauxAuto * PRIX_EDF + production * tauxInj * PRIX_RACHAT;
+      } else {
+        economies = production * PRIX_RACHAT;
+      }
+
+      const cout    = puissance * PRIX_KWC;
+      const roi     = economies > 0 ? cout / economies : 0;
+      const co2     = production * CO2_FACTOR;
+      const arbres  = Math.round(co2 / CO2_TREE);
+      const gain25  = Math.max(0, Math.round(economies * 25 - cout));
+
+      const fmt = n => Math.round(n).toLocaleString('fr-FR');
+
+      document.getElementById('res-puissance').textContent  = puissance.toFixed(1);
+      document.getElementById('res-production').textContent = fmt(production);
+      document.getElementById('res-economies').textContent  = fmt(economies);
+      document.getElementById('res-roi').textContent        = roi.toFixed(1);
+      document.getElementById('res-co2').textContent        = fmt(co2);
+      document.getElementById('res-arbres').textContent     = arbres;
+      document.getElementById('res-25ans').textContent      = fmt(gain25);
+
+      // Barre ROI (25 ans = 100 %)
+      document.getElementById('res-roi-bar').style.width = Math.min(100, (roi / 25) * 100) + '%';
+    }
+    updateSim(); // Initialisation au chargement
 
     // Clear errors on input
     document.querySelectorAll('input, select, textarea').forEach(el => {
