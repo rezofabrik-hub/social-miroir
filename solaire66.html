@@ -492,6 +492,81 @@
     .sim-savings-label { font-size: 0.8rem; opacity: 0.7; margin-top: 6px; }
     @media (max-width: 900px) { .sim-layout { grid-template-columns: 1fr; } }
     @media (max-width: 480px) { .sim-card { padding: 24px 20px; } .sim-roi-bar { width: 80px; } }
+
+    /* ===== SERVICE INSTALLATION ===== */
+    #installation { background: var(--white); }
+    .install-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 48px 0 64px;
+    }
+    .install-step {
+      background: var(--gray-50);
+      border-radius: 16px;
+      padding: 28px 24px;
+      border-top: 4px solid var(--solar);
+      position: relative;
+    }
+    .step-num {
+      width: 34px; height: 34px;
+      background: var(--solar); color: white;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 0.95rem; margin-bottom: 14px;
+    }
+    .step-icon { font-size: 1.8rem; margin-bottom: 10px; }
+    .install-step h3 { font-size: 1rem; font-weight: 700; color: var(--gray-900); margin-bottom: 8px; }
+    .install-step p { font-size: 0.84rem; color: var(--gray-600); line-height: 1.55; margin-bottom: 12px; }
+    .step-duration {
+      font-size: 0.75rem; font-weight: 700; color: var(--solar-dark);
+      background: var(--solar-light); padding: 4px 10px; border-radius: 20px; display: inline-block;
+    }
+    .qual-section { margin-bottom: 52px; }
+    .qual-section h3, .admin-section h3 {
+      font-size: 1.25rem; font-weight: 800; color: var(--gray-900);
+      margin-bottom: 24px; padding-bottom: 12px; border-bottom: 2px solid var(--gray-200);
+    }
+    .qual-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px;
+    }
+    .qual-card {
+      background: var(--white); border: 1.5px solid var(--gray-200);
+      border-radius: 14px; padding: 20px 22px;
+      display: flex; gap: 16px; align-items: flex-start;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .qual-card:hover { border-color: var(--solar); box-shadow: 0 4px 20px rgba(245,158,11,0.10); }
+    .qual-badge {
+      width: 46px; height: 46px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.35rem; flex-shrink: 0;
+    }
+    .qual-card h4 { font-size: 0.93rem; font-weight: 700; color: var(--gray-900); margin-bottom: 5px; }
+    .qual-card p { font-size: 0.81rem; color: var(--gray-600); line-height: 1.5; margin-bottom: 8px; }
+    .qual-required {
+      font-size: 0.7rem; font-weight: 700; background: var(--green);
+      color: white; padding: 2px 9px; border-radius: 20px; display: inline-block;
+    }
+    .qual-recommended {
+      font-size: 0.7rem; font-weight: 700; background: var(--sky);
+      color: white; padding: 2px 9px; border-radius: 20px; display: inline-block;
+    }
+    .qual-check {
+      font-size: 0.7rem; font-weight: 700; background: var(--gray-600);
+      color: white; padding: 2px 9px; border-radius: 20px; display: inline-block;
+    }
+    .admin-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;
+    }
+    .admin-card { background: var(--sky-light); border-radius: 14px; padding: 22px 20px; }
+    .admin-num {
+      font-size: 0.68rem; font-weight: 800; color: var(--sky);
+      text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 6px;
+    }
+    .admin-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--gray-900); margin-bottom: 5px; }
+    .admin-card p { font-size: 0.8rem; color: var(--gray-700); line-height: 1.5; }
+    @media (max-width: 900px) { .install-steps { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .install-steps { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -506,6 +581,7 @@
       <a href="#comment-ca-marche">Comment ça marche</a>
       <a href="#avantages">Avantages</a>
       <a href="#entreprises">Nos partenaires</a>
+      <a href="#installation">Installation</a>
       <a href="#simulateur">Simulateur</a>
       <a href="#faq">FAQ</a>
       <a href="#devis" class="btn-nav">Devis gratuit</a>
@@ -739,6 +815,159 @@
           <div style="font-weight:600;margin-bottom:8px;">Entreprises du 66</div>
           <div style="color:var(--gray-600);font-size:0.9rem;">Tous nos partenaires interviennent dans les Pyrénées-Orientales — pas de sous-traitance lointaine, des professionnels qui connaissent le terrain.</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE INSTALLATION -->
+  <section id="installation">
+    <div class="container">
+      <div class="section-label">Votre projet de A à Z</div>
+      <h2 class="section-title">L'installation solaire étape par étape</h2>
+      <p class="section-sub">De la première demande à la mise en service, voici le déroulé complet d'un projet photovoltaïque réalisé dans le respect des normes en vigueur dans les Pyrénées-Orientales.</p>
+
+      <!-- ÉTAPES -->
+      <div class="install-steps">
+        <div class="install-step">
+          <div class="step-num">1</div>
+          <div class="step-icon">🔍</div>
+          <h3>Bilan & visite technique</h3>
+          <p>L'installateur évalue votre toiture (orientation, inclinaison, surface, ombrage), votre tableau électrique et votre consommation annuelle pour dimensionner l'installation.</p>
+          <span class="step-duration">⏱ Sous 1 semaine</span>
+        </div>
+        <div class="install-step">
+          <div class="step-num">2</div>
+          <div class="step-icon">📄</div>
+          <h3>Devis & choix du matériel</h3>
+          <p>Vous recevez un devis détaillé incluant la marque des panneaux, le type d'onduleur, le système de fixation, le coût de raccordement et les aides mobilisables.</p>
+          <span class="step-duration">⏱ 48h après la visite</span>
+        </div>
+        <div class="install-step">
+          <div class="step-num">3</div>
+          <div class="step-icon">🏛️</div>
+          <h3>Démarches administratives</h3>
+          <p>Déclaration préalable en mairie, convention de raccordement CACSI avec Enedis — l'installateur constitue et dépose l'intégralité du dossier à votre place.</p>
+          <span class="step-duration">⏱ 2 à 4 semaines</span>
+        </div>
+        <div class="install-step">
+          <div class="step-num">4</div>
+          <div class="step-icon">🔧</div>
+          <h3>Installation sur toiture</h3>
+          <p>Pose des panneaux sur rail aluminium, câblage DC/AC, installation de l'onduleur et du coffret de protection. Chantier propre réalisé en 1 à 2 jours.</p>
+          <span class="step-duration">⏱ 1 à 2 jours</span>
+        </div>
+        <div class="install-step">
+          <div class="step-num">5</div>
+          <div class="step-icon">📋</div>
+          <h3>Attestation CONSUEL</h3>
+          <p>Contrôle de conformité électrique obligatoire par un organisme agréé avant tout raccordement au réseau. L'installateur prend en charge la demande et la visite.</p>
+          <span class="step-duration">⏱ 1 à 2 semaines</span>
+        </div>
+        <div class="install-step">
+          <div class="step-num">6</div>
+          <div class="step-icon">🌞</div>
+          <h3>Mise en service & suivi</h3>
+          <p>Enedis active le raccordement et le compteur Linky. Votre installation produit dès le premier rayon de soleil. Suivi en temps réel via l'application de l'onduleur.</p>
+          <span class="step-duration">⏱ 1 à 3 semaines</span>
+        </div>
+      </div>
+
+      <!-- QUALIFICATIONS -->
+      <div class="qual-section">
+        <h3>Qualifications & certifications exigées des installateurs</h3>
+        <div class="qual-grid">
+
+          <div class="qual-card">
+            <div class="qual-badge" style="background:#FEF3C7;">✅</div>
+            <div>
+              <h4>RGE QualiPV</h4>
+              <p>Certification QUALIT'ENR spécifique aux installations photovoltaïques. Indispensable pour que le client accède aux aides de l'État (MaPrimeRénov', CEE, TVA réduite).</p>
+              <span class="qual-required">● Obligatoire</span>
+            </div>
+          </div>
+
+          <div class="qual-card">
+            <div class="qual-badge" style="background:#DBEAFE;">⚡</div>
+            <div>
+              <h4>QualiElec / QUALIFELEC</h4>
+              <p>Qualification électrique pour le raccordement de l'onduleur, du coffret AC/DC et du tableau général. Garantit la conformité à la norme NF C 15-100.</p>
+              <span class="qual-required">● Obligatoire</span>
+            </div>
+          </div>
+
+          <div class="qual-card">
+            <div class="qual-badge" style="background:#D1FAE5;">🛡️</div>
+            <div>
+              <h4>Assurance décennale</h4>
+              <p>Couvre pendant 10 ans tout vice ou malfaçon compromettant la solidité de l'ouvrage (toiture, structure de fixation). Obligatoire pour tout artisan du bâtiment en France.</p>
+              <span class="qual-required">● Obligatoire</span>
+            </div>
+          </div>
+
+          <div class="qual-card">
+            <div class="qual-badge" style="background:#EDE9FE;">🏗️</div>
+            <div>
+              <h4>Qualibat 3511</h4>
+              <p>Certification bâtiment pour les travaux de couverture liés à une installation solaire intégrée ou surimposée. Recommandée pour les projets nécessitant des interventions sur la toiture.</p>
+              <span class="qual-recommended">● Recommandée</span>
+            </div>
+          </div>
+
+          <div class="qual-card">
+            <div class="qual-badge" style="background:#FEE2E2;">📋</div>
+            <div>
+              <h4>Attestation CONSUEL</h4>
+              <p>Délivrée par un organisme agréé après inspection complète de l'installation. Enedis n'active aucun raccordement sans cette attestation de conformité électrique.</p>
+              <span class="qual-required">● Obligatoire</span>
+            </div>
+          </div>
+
+          <div class="qual-card">
+            <div class="qual-badge" style="background:#F0FDF4;">🔆</div>
+            <div>
+              <h4>Garanties fabricant</h4>
+              <p><strong>Panneaux :</strong> 25 ans de rendement (≥ 80 %). <strong>Onduleur :</strong> 10 à 12 ans. Exigez ces garanties par écrit dans le devis — elles sont transférables en cas de revente du bien.</p>
+              <span class="qual-check">● À vérifier au devis</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- DÉMARCHES ADMINISTRATIVES -->
+      <div class="admin-section">
+        <h3>Démarches administratives à prévoir</h3>
+        <div class="admin-grid">
+
+          <div class="admin-card">
+            <div class="admin-num">Mairie</div>
+            <h4>Déclaration préalable de travaux</h4>
+            <p>Obligatoire en zone urbaine (PLU). Délai d'instruction : 1 mois. En secteur protégé ou ABF, une autorisation spécifique peut être requise.</p>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-num">Enedis</div>
+            <h4>Convention CACSI</h4>
+            <p>Convention d'autoconsommation avec injection du surplus. Enedis installe ou reprogramme le compteur Linky pour mesurer l'énergie injectée sur le réseau.</p>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-num">CONSUEL</div>
+            <h4>Attestation de conformité</h4>
+            <p>Déposée par l'installateur après la pose. Contrôleur agréé CONSUEL vérifie le câblage, la mise à la terre et les protections avant activation du raccordement.</p>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-num">EDF OA</div>
+            <h4>Contrat de rachat du surplus</h4>
+            <p>Facultatif : si vous injectez du surplus, EDF OA rachète à 0,011 €/kWh (arrêté juin 2026). Contrat établi par l'installateur ou directement sur le portail EDF OA.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:32px;">
+        <a href="#devis" class="btn-primary" style="display:inline-flex;">⚡ Lancer mon projet — Devis gratuit</a>
       </div>
     </div>
   </section>
