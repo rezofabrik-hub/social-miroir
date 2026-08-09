@@ -124,28 +124,24 @@
       overflow: hidden;
       box-shadow: var(--shadow2);
       aspect-ratio: 4/3;
-      background: linear-gradient(135deg, #0284C7 0%, #0EA5E9 40%, #38BDF8 70%, #7DD3FC 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
+      background: #0EA5E9;
       position: relative;
     }
-    .hero-img-sun {
-      font-size: 5rem;
-      animation: spin-slow 20s linear infinite;
-      filter: drop-shadow(0 0 20px rgba(251,191,36,.6));
+    .hero-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-img-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 20px 18px 18px;
+      background: linear-gradient(to top, rgba(15,23,42,.72) 0%, transparent 100%);
     }
-    @keyframes spin-slow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
-    .hero-img-label { color: rgba(255,255,255,.85); font-size: .9rem; font-weight: 600; text-align: center; line-height: 1.4; }
+    .hero-img-overlay p { color: rgba(255,255,255,.92); font-size: .86rem; font-weight: 600; line-height: 1.4; }
     .hero-img-badge {
       position: absolute; top: 16px; right: 16px;
-      background: rgba(255,255,255,.9);
+      background: rgba(255,255,255,.92);
       color: var(--sky);
       font-size: .75rem; font-weight: 800;
       padding: 5px 12px; border-radius: 50px;
       letter-spacing: .04em;
+      z-index: 1;
     }
 
     /* STATS */
@@ -191,15 +187,13 @@
       padding: 20px;
       position: relative;
       box-shadow: var(--shadow);
+      background-size: cover;
+      background-position: center;
+      background-color: #CBD5E1;
     }
-    .photo-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,23,42,.6) 0%, transparent 60%); }
-    .photo-label { position: relative; z-index: 1; color: #fff; font-size: .95rem; font-weight: 700; }
-    .photo-sub { position: relative; z-index: 1; color: rgba(255,255,255,.75); font-size: .8rem; margin-top: 2px; }
-    .pc-1 { background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 40%, #60A5FA 100%); }
-    .pc-2 { background: linear-gradient(135deg, #F59E0B 0%, #F97316 50%, #EF4444 100%); }
-    .pc-3 { background: linear-gradient(135deg, #059669 0%, #10B981 50%, #34D399 100%); }
-    .pc-4 { background: linear-gradient(135deg, #7C3AED 0%, #9333EA 50%, #C084FC 100%); }
-    .photo-ico { font-size: 3.5rem; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-70%); opacity: .55; }
+    .photo-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,23,42,.68) 0%, rgba(15,23,42,.1) 55%, transparent 100%); z-index: 0; }
+    .photo-label { position: relative; z-index: 1; color: #fff; font-size: .95rem; font-weight: 700; text-shadow: 0 1px 4px rgba(0,0,0,.4); }
+    .photo-sub { position: relative; z-index: 1; color: rgba(255,255,255,.82); font-size: .8rem; margin-top: 2px; text-shadow: 0 1px 3px rgba(0,0,0,.4); }
 
     /* VIDEO */
     .vid-inner { display: grid; gap: 40px; align-items: center; }
@@ -418,9 +412,11 @@
       </div>
     </div>
     <div class="hero-img">
-      <div class="hero-img-badge">1 750 kWh/m²/an</div>
-      <div class="hero-img-sun">☀️</div>
-      <div class="hero-img-label">Pyrénées-Orientales<br>Le meilleur ensoleillement d'Occitanie</div>
+      <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=900&q=80" alt="Installation de panneaux solaires sur toiture — Perpignan Solaire" loading="eager">
+      <div class="hero-img-badge">☀ 1 750 kWh/m²/an</div>
+      <div class="hero-img-overlay">
+        <p>Pyrénées-Orientales · Meilleur ensoleillement d'Occitanie</p>
+      </div>
     </div>
   </div>
 </section>
@@ -527,23 +523,19 @@
     <h2 class="h2">Installations réalisées <span class="hi">dans les P.-O.</span></h2>
     <p class="sub">Chaque installation est unique. Nous nous adaptons à chaque toiture, chaque exposition et chaque budget.</p>
     <div class="photo-row">
-      <div class="photo-card pc-1 fu">
-        <div class="photo-ico">🏠</div>
+      <div class="photo-card fu" style="background-image:url('https://images.unsplash.com/photo-1559302504-64aae6ca6890?auto=format&fit=crop&w=700&q=80');">
         <div class="photo-label">Maison individuelle</div>
         <div class="photo-sub">6 kWc · Perpignan (66)</div>
       </div>
-      <div class="photo-card pc-2 fu">
-        <div class="photo-ico">🔋</div>
+      <div class="photo-card fu" style="background-image:url('https://images.unsplash.com/photo-1611365892117-bda3cd8c4ac9?auto=format&fit=crop&w=700&q=80');">
         <div class="photo-label">PV + batterie physique</div>
         <div class="photo-sub">9 kWc + 10 kWh · Canet-en-Roussillon</div>
       </div>
-      <div class="photo-card pc-3 fu">
-        <div class="photo-ico">🏭</div>
+      <div class="photo-card fu" style="background-image:url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=700&q=80');">
         <div class="photo-label">Local professionnel</div>
         <div class="photo-sub">24 kWc · Narbonne (11)</div>
       </div>
-      <div class="photo-card pc-4 fu">
-        <div class="photo-ico">☀️</div>
+      <div class="photo-card fu" style="background-image:url('https://images.unsplash.com/photo-1548337138-e87d889cc369?auto=format&fit=crop&w=700&q=80');">
         <div class="photo-label">Toiture terrasse</div>
         <div class="photo-sub">4,5 kWc · Béziers (34)</div>
       </div>
