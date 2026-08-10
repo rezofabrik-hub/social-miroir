@@ -321,6 +321,37 @@
     .ftr-btm a { color: #64748B; }
     .ftr-btm a:hover { color: var(--sun); }
 
+    /* APPORT D'AFFAIRES */
+    .ref-hero { background: linear-gradient(135deg, #FFF7ED 0%, var(--sun3) 50%, #FEF3C7 100%); border-radius: var(--r); padding: 40px 28px; display: grid; gap: 32px; align-items: center; margin-bottom: 48px; }
+    .ref-prime-badge { display: inline-flex; align-items: center; gap: 10px; background: var(--sun); color: #fff; font-size: 1.05rem; font-weight: 900; padding: 10px 22px; border-radius: 50px; margin-bottom: 16px; box-shadow: 0 4px 16px rgba(245,158,11,.35); }
+    .ref-tagline { font-size: clamp(1.3rem, 3.5vw, 1.9rem); font-weight: 900; color: var(--slate); line-height: 1.2; margin-bottom: 12px; }
+    .ref-tagline span { color: var(--sun); }
+    .ref-tagline-sub { font-size: .92rem; color: var(--slate2); line-height: 1.7; }
+    .ref-stat-box { background: #fff; border-radius: var(--r); padding: 28px 24px; box-shadow: var(--shadow2); text-align: center; border: 2px solid rgba(245,158,11,.2); }
+    .ref-stat-n { font-size: 2.6rem; font-weight: 900; color: var(--sun); display: block; line-height: 1; }
+    .ref-stat-l { font-size: .82rem; color: var(--slate3); margin-top: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+    .ref-steps { display: grid; gap: 16px; margin-bottom: 40px; }
+    .ref-step { padding: 26px 22px; display: flex; gap: 18px; align-items: flex-start; }
+    .ref-step-num { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--sun) 0%, #F97316 100%); color: #fff; font-size: 1.15rem; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 12px rgba(245,158,11,.3); }
+    .ref-step-title { font-size: 1rem; font-weight: 800; margin-bottom: 5px; color: var(--slate); }
+    .ref-step-desc { font-size: .86rem; color: var(--slate3); line-height: 1.6; }
+    .ref-form-wrap { background: var(--white); border-radius: var(--r); box-shadow: var(--shadow2); padding: 32px 24px; border: 2px solid rgba(245,158,11,.15); }
+    .ref-form-title { font-size: 1.2rem; font-weight: 800; color: var(--slate); margin-bottom: 6px; }
+    .ref-form-sub { font-size: .86rem; color: var(--slate3); margin-bottom: 24px; }
+    .ref-cgu { font-size: .79rem; color: var(--slate3); margin-top: 14px; line-height: 1.5; text-align: center; }
+    .ref-success { display: none; text-align: center; padding: 40px 20px; }
+    .ref-suc-ico { font-size: 2.8rem; margin-bottom: 12px; }
+    .ref-suc-title { font-size: 1.3rem; font-weight: 800; color: var(--green); margin-bottom: 8px; }
+    .ref-suc-sub { color: var(--slate3); font-size: .88rem; }
+    @media (min-width: 640px) {
+      .ref-steps { grid-template-columns: repeat(3,1fr); }
+      .ref-step { flex-direction: column; text-align: center; align-items: center; }
+    }
+    @media (min-width: 1024px) {
+      .ref-hero { grid-template-columns: 1.4fr 0.6fr; }
+      .ref-form-wrap { padding: 40px 36px; }
+    }
+
     /* STICKY BOTTOM BAR */
     .sticky-bot { position: fixed; bottom: 0; left: 0; right: 0; z-index: 99; display: flex; background: rgba(255,255,255,.96); border-top: 1px solid var(--slate4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 10px 16px; gap: 10px; padding-bottom: max(10px,env(safe-area-inset-bottom)); transition: opacity .3s; box-shadow: 0 -4px 16px rgba(15,23,42,.08); }
     .sticky-bot a { flex: 1; display: flex; align-items: center; justify-content: center; gap: 7px; padding: 12px; border-radius: 50px; font-size: .88rem; font-weight: 700; }
@@ -383,6 +414,7 @@
       <a href="#batterie">Batterie</a>
       <a href="#zones">Zones</a>
       <a href="#faq">FAQ</a>
+      <a href="#partenaires">💰 Apporteurs</a>
       <a href="#devis" class="ncta">Devis gratuit</a>
     </div>
     <button class="hbg" id="hbg" aria-label="Menu">
@@ -970,6 +1002,117 @@
   </div>
 </section>
 
+<!-- APPORT D'AFFAIRES -->
+<section class="section bg-light" id="partenaires">
+  <div class="wrap">
+    <div class="label">Programme partenaire</div>
+    <h2 class="h2">Recommandez-nous, <span class="hi">touchez une prime</span></h2>
+    <p class="sub">Vous connaissez quelqu'un qui veut passer au solaire ? Rejoignez notre réseau d'apporteurs d'affaires et recevez une prime pour chaque installation signée grâce à vous.</p>
+
+    <!-- Hero apporteur -->
+    <div class="ref-hero fu">
+      <div>
+        <div class="ref-prime-badge">💰 Prime par installation réalisée</div>
+        <div class="ref-tagline">Partagez. On installe.<br><span>Vous êtes récompensé.</span></div>
+        <p class="ref-tagline-sub">
+          Clients satisfaits, agents immobiliers, artisans, voisins, amis… Chaque recommandation compte.
+          Vous nous mettez en relation, nous faisons le reste — et vous recevez votre prime une fois l'installation terminée.
+        </p>
+      </div>
+      <div class="ref-stat-box">
+        <span class="ref-stat-n">300 €</span>
+        <div class="ref-stat-l">Prime par installation<br>réalisée grâce à vous</div>
+        <div style="margin-top:18px;font-size:.78rem;color:var(--slate3);">Versement par virement<br>à réception de facture</div>
+      </div>
+    </div>
+
+    <!-- 3 étapes -->
+    <div class="ref-steps">
+      <div class="card ref-step fu">
+        <div class="ref-step-num">1</div>
+        <div>
+          <div class="ref-step-title">Inscrivez-vous</div>
+          <p class="ref-step-desc">Remplissez le formulaire ci-dessous. On vous confirme votre inscription sous 24h et on vous explique tout.</p>
+        </div>
+      </div>
+      <div class="card ref-step fu">
+        <div class="ref-step-num">2</div>
+        <div>
+          <div class="ref-step-title">Recommandez</div>
+          <p class="ref-step-desc">Partagez nos coordonnées à toute personne intéressée par le solaire. Donnez leur votre prénom pour le suivi.</p>
+        </div>
+      </div>
+      <div class="card ref-step fu">
+        <div class="ref-step-num">3</div>
+        <div>
+          <div class="ref-step-title">Touchez votre prime</div>
+          <p class="ref-step-desc">Dès que l'installation est réalisée, vous recevez 300 € par virement. Simple, légal et sans plafond.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulaire inscription apporteur -->
+    <div class="ref-form-wrap fu" id="ref-form-wrap">
+      <div id="ref-form-container">
+        <div class="ref-form-title">🤝 Devenir apporteur d'affaires</div>
+        <p class="ref-form-sub">Inscription gratuite · Sans engagement · Prime versée après chaque installation</p>
+        <form id="ref-form" novalidate>
+          <div class="form-grid">
+            <div class="form-row">
+              <div class="ff">
+                <label class="fl" for="ref-prenom">Prénom *</label>
+                <input class="fc2" type="text" id="ref-prenom" placeholder="Jean" autocomplete="given-name">
+                <div class="ferr" id="ref-prenom-err">Prénom requis</div>
+              </div>
+              <div class="ff">
+                <label class="fl" for="ref-nom">Nom *</label>
+                <input class="fc2" type="text" id="ref-nom" placeholder="Dupont" autocomplete="family-name">
+                <div class="ferr" id="ref-nom-err">Nom requis</div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="ff">
+                <label class="fl" for="ref-email">Email *</label>
+                <input class="fc2" type="email" id="ref-email" placeholder="jean@exemple.fr" autocomplete="email">
+                <div class="ferr" id="ref-email-err">Email invalide</div>
+              </div>
+              <div class="ff">
+                <label class="fl" for="ref-tel">Téléphone *</label>
+                <input class="fc2" type="tel" id="ref-tel" placeholder="06 XX XX XX XX" autocomplete="tel">
+                <div class="ferr" id="ref-tel-err">Téléphone invalide</div>
+              </div>
+            </div>
+            <div class="ff">
+              <label class="fl" for="ref-profil">Votre profil (facultatif)</label>
+              <select class="fc2" id="ref-profil">
+                <option value="">Sélectionner…</option>
+                <option>Client Perpignan Solaire</option>
+                <option>Agent immobilier</option>
+                <option>Artisan / professionnel du bâtiment</option>
+                <option>Courtier / conseiller financier</option>
+                <option>Commerçant / chef d'entreprise</option>
+                <option>Particulier / voisin / ami</option>
+                <option>Autre</option>
+              </select>
+            </div>
+            <div class="ff">
+              <label class="fl" for="ref-msg">Avez-vous déjà un contact à recommander ?</label>
+              <textarea class="fc2" id="ref-msg" style="min-height:70px;" placeholder="Facultatif — décrivez brièvement si vous avez déjà quelqu'un en tête…"></textarea>
+            </div>
+            <button type="submit" class="btn btn-sun sub-btn">💰 Je rejoins le programme →</button>
+          </div>
+        </form>
+        <p class="ref-cgu">En vous inscrivant, vous acceptez d'être contacté par Perpignan Solaire (SARL Rezofabrik) pour la gestion de votre dossier apporteur, conformément à notre politique de confidentialité.</p>
+      </div>
+      <div class="ref-success" id="ref-success">
+        <div class="ref-suc-ico">🤝</div>
+        <div class="ref-suc-title">Bienvenue dans l'équipe !</div>
+        <p class="ref-suc-sub">Votre inscription est bien reçue. Nous vous contactons sous 24h pour vous confirmer les détails et votre code de suivi personnel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="wrap">
@@ -992,6 +1135,7 @@
           <a href="#solutions">Batterie physique</a>
           <a href="#solutions">Batterie virtuelle</a>
           <a href="#simulateur">Simulateur solaire</a>
+          <a href="#partenaires">Apport d'affaires</a>
         </div>
       </div>
       <div>
@@ -1200,6 +1344,43 @@ Demande reçue via perpignan-solaire.fr`;
       const e = document.getElementById(el.id+'-err');
       if (e) e.style.display = 'none';
     });
+  });
+
+  // FORMULAIRE APPORTEUR
+  document.getElementById('ref-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const prenom = document.getElementById('ref-prenom').value.trim();
+    const nom    = document.getElementById('ref-nom').value.trim();
+    const email  = document.getElementById('ref-email').value.trim();
+    const tel    = document.getElementById('ref-tel').value.trim();
+    let ok = true;
+    const rfe = id => { const el = document.getElementById('ref-'+id+'-err'); if(el) el.style.display='block'; document.getElementById('ref-'+id).classList.add('error'); ok=false; };
+    const rfc = id => { const el = document.getElementById('ref-'+id+'-err'); if(el) el.style.display='none'; document.getElementById('ref-'+id).classList.remove('error'); };
+    if (!prenom) { rfe('prenom'); } else { rfc('prenom'); }
+    if (!nom)    { rfe('nom');    } else { rfc('nom');    }
+    if (!email || !/^[^@]+@[^@]+\.[^@]+$/.test(email)) { rfe('email'); } else { rfc('email'); }
+    if (!tel || tel.length < 8) { rfe('tel'); } else { rfc('tel'); }
+    if (!ok) return;
+    const profil = document.getElementById('ref-profil').value || 'Non précisé';
+    const msg    = document.getElementById('ref-msg').value.trim() || 'Aucune info';
+    const body = `Nouvelle inscription Apporteur d'Affaires — Perpignan Solaire
+====================================================
+Prénom : ${prenom}
+Nom    : ${nom}
+Email  : ${email}
+Tél    : ${tel}
+Profil : ${profil}
+Contact en vue : ${msg}
+====================================================
+Reçu via perpignan-solaire.fr`;
+    const ml = document.createElement('a');
+    ml.href = 'mailto:contact@perpignan-solaire.fr'
+      + '?subject=' + encodeURIComponent('🤝 Nouvel apporteur d\'affaires — ' + prenom + ' ' + nom)
+      + '&body=' + encodeURIComponent(body);
+    ml.style.display = 'none';
+    document.body.appendChild(ml); ml.click(); document.body.removeChild(ml);
+    document.getElementById('ref-form-container').style.display = 'none';
+    document.getElementById('ref-success').style.display = 'block';
   });
 
   // SCROLL ANIMATIONS
