@@ -982,13 +982,38 @@
               <label class="fl" for="message">Informations complémentaires</label>
               <textarea class="fc2" id="message" name="message" placeholder="Décrivez votre projet, vos attentes, vos contraintes particulières…"></textarea>
             </div>
-            <div class="ff">
-              <label class="chk-row">
-                <input type="checkbox" id="rgpd">
-                J'accepte que mes données soient utilisées pour traiter ma demande de devis et être recontacté par Perpignan Solaire, conformément à la politique de confidentialité.
-              </label>
-              <div class="ferr" id="rgpd-err">Vous devez accepter la politique de confidentialité</div>
+            <!-- CONSENTEMENTS LÉGAUX — Loi du 11 août 2026, opt-in obligatoire -->
+            <div style="background:var(--sky3);border:1.5px solid var(--sky2);border-radius:var(--rs);padding:16px 18px;display:flex;flex-direction:column;gap:14px;">
+              <div style="font-size:.77rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sky);">🔒 Vos consentements (obligatoires)</div>
+
+              <div class="ff">
+                <label class="chk-row">
+                  <input type="checkbox" id="rgpd">
+                  <span>J'accepte que mes données personnelles (nom, email, téléphone, adresse) soient enregistrées et traitées par <strong>Perpignan Solaire / SARL Rezofabrik</strong> uniquement pour traiter ma demande de devis, conformément au RGPD. Données supprimées sur simple demande.</span>
+                </label>
+                <div class="ferr" id="rgpd-err">Ce consentement est obligatoire pour traiter votre demande</div>
+              </div>
+
+              <div class="ff">
+                <label class="chk-row">
+                  <input type="checkbox" id="consent-tel">
+                  <span>📞 <strong>J'accepte expressément d'être rappelé(e) par téléphone</strong> par l'équipe Perpignan Solaire pour traiter ma demande de devis. <em>(Sans cette case, aucun appel ne sera effectué — conformément à la loi du 11 août 2026 sur l'interdiction du démarchage téléphonique.)</em></span>
+                </label>
+                <div class="ferr" id="consent-tel-err">Cochez cette case pour autoriser un rappel téléphonique</div>
+              </div>
+
+              <div class="ff">
+                <label class="chk-row">
+                  <input type="checkbox" id="consent-email">
+                  <span>📧 <em>(Facultatif)</em> J'accepte de recevoir par email des informations sur les offres, aides financières et actualités solaires de Perpignan Solaire. Désinscription à tout moment.</span>
+                </label>
+              </div>
             </div>
+
+            <div style="font-size:.78rem;color:var(--slate3);text-align:center;line-height:1.5;padding:0 4px;">
+              Vous pouvez également contacter le service public <strong>France Rénov'</strong> au <strong>0 808 800 700</strong> (appel gratuit) pour tout conseil neutre sur la rénovation énergétique.
+            </div>
+
             <button type="submit" class="btn btn-sun sub-btn">⚡ Envoyer ma demande de devis</button>
           </div>
         </form>
@@ -1102,7 +1127,20 @@
             <button type="submit" class="btn btn-sun sub-btn">💰 Je rejoins le programme →</button>
           </div>
         </form>
-        <p class="ref-cgu">En vous inscrivant, vous acceptez d'être contacté par Perpignan Solaire (SARL Rezofabrik) pour la gestion de votre dossier apporteur, conformément à notre politique de confidentialité.</p>
+            <!-- Consentements apporteur -->
+            <div style="background:var(--sky3);border:1.5px solid var(--sky2);border-radius:var(--rs);padding:14px 16px;display:flex;flex-direction:column;gap:12px;">
+              <div style="font-size:.77rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sky);">🔒 Vos consentements</div>
+              <label class="chk-row">
+                <input type="checkbox" id="ref-rgpd">
+                <span>J'accepte que mes données soient enregistrées par <strong>Perpignan Solaire / SARL Rezofabrik</strong> pour la gestion de mon dossier apporteur d'affaires (RGPD).</span>
+              </label>
+              <div class="ferr" id="ref-rgpd-err" style="margin-top:-8px;">Ce consentement est obligatoire</div>
+              <label class="chk-row">
+                <input type="checkbox" id="ref-consent-tel">
+                <span>📞 <strong>J'accepte d'être contacté(e) par téléphone</strong> par Perpignan Solaire pour la suite de mon inscription. <em>(Obligatoire — conformément à la loi du 11 août 2026.)</em></span>
+              </label>
+              <div class="ferr" id="ref-consent-tel-err" style="margin-top:-8px;">Cochez pour autoriser le rappel</div>
+            </div>
       </div>
       <div class="ref-success" id="ref-success">
         <div class="ref-suc-ico">🤝</div>
@@ -1220,8 +1258,10 @@
     const telephone  = document.getElementById('telephone').value.trim();
     const ville      = document.getElementById('ville').value.trim();
     const codepostal = document.getElementById('codepostal').value.trim();
-    const logement   = document.querySelector('input[name="type_logement"]:checked');
-    const rgpd       = document.getElementById('rgpd').checked;
+    const logement    = document.querySelector('input[name="type_logement"]:checked');
+    const rgpd        = document.getElementById('rgpd').checked;
+    const consentTel  = document.getElementById('consent-tel').checked;
+    const consentEmail= document.getElementById('consent-email').checked;
 
     markF('prenom', !prenom);    if (!prenom) valid = false;
     markF('nom', !nom);          if (!nom) valid = false;
@@ -1237,6 +1277,8 @@
     if (!logement) { le.style.display = 'block'; valid = false; } else le.style.display = 'none';
     const re = document.getElementById('rgpd-err');
     if (!rgpd) { re.style.display = 'block'; valid = false; } else re.style.display = 'none';
+    const te = document.getElementById('consent-tel-err');
+    if (!consentTel) { te.style.display = 'block'; valid = false; } else te.style.display = 'none';
     if (!valid) return;
 
     const toiture = document.getElementById('toiture').value || 'Non précisé';
@@ -1259,6 +1301,11 @@ Surface de toiture : ${surface}
 Facture EDF annuelle : ${facture}
 Budget envisagé : ${budget}
 Informations : ${message}
+====================================================
+CONSENTEMENTS (loi 11 août 2026)
+Traitement données RGPD : OUI
+Rappel téléphonique autorisé : ${consentTel ? 'OUI ✓' : 'NON — NE PAS APPELER'}
+Emails commerciaux acceptés : ${consentEmail ? 'OUI' : 'NON'}
 ====================================================
 Demande reçue via perpignan-solaire.fr`;
 
@@ -1349,17 +1396,23 @@ Demande reçue via perpignan-solaire.fr`;
   // FORMULAIRE APPORTEUR
   document.getElementById('ref-form').addEventListener('submit', function(e) {
     e.preventDefault();
-    const prenom = document.getElementById('ref-prenom').value.trim();
-    const nom    = document.getElementById('ref-nom').value.trim();
-    const email  = document.getElementById('ref-email').value.trim();
-    const tel    = document.getElementById('ref-tel').value.trim();
+    const prenom     = document.getElementById('ref-prenom').value.trim();
+    const nom        = document.getElementById('ref-nom').value.trim();
+    const email      = document.getElementById('ref-email').value.trim();
+    const tel        = document.getElementById('ref-tel').value.trim();
+    const refRgpd    = document.getElementById('ref-rgpd').checked;
+    const refConsTel = document.getElementById('ref-consent-tel').checked;
     let ok = true;
-    const rfe = id => { const el = document.getElementById('ref-'+id+'-err'); if(el) el.style.display='block'; document.getElementById('ref-'+id).classList.add('error'); ok=false; };
-    const rfc = id => { const el = document.getElementById('ref-'+id+'-err'); if(el) el.style.display='none'; document.getElementById('ref-'+id).classList.remove('error'); };
+    const rfe = id => { const el = document.getElementById('ref-'+id+'-err'); if(el) el.style.display='block'; const fi = document.getElementById('ref-'+id); if(fi) fi.classList.add('error'); ok=false; };
+    const rfc = id => { const el = document.getElementById('ref-'+id+'-err'); if(el) el.style.display='none'; const fi = document.getElementById('ref-'+id); if(fi) fi.classList.remove('error'); };
     if (!prenom) { rfe('prenom'); } else { rfc('prenom'); }
     if (!nom)    { rfe('nom');    } else { rfc('nom');    }
     if (!email || !/^[^@]+@[^@]+\.[^@]+$/.test(email)) { rfe('email'); } else { rfc('email'); }
     if (!tel || tel.length < 8) { rfe('tel'); } else { rfc('tel'); }
+    const rre = document.getElementById('ref-rgpd-err');
+    if (!refRgpd) { rre.style.display='block'; ok=false; } else { rre.style.display='none'; }
+    const rte = document.getElementById('ref-consent-tel-err');
+    if (!refConsTel) { rte.style.display='block'; ok=false; } else { rte.style.display='none'; }
     if (!ok) return;
     const profil = document.getElementById('ref-profil').value || 'Non précisé';
     const msg    = document.getElementById('ref-msg').value.trim() || 'Aucune info';
@@ -1371,6 +1424,10 @@ Email  : ${email}
 Tél    : ${tel}
 Profil : ${profil}
 Contact en vue : ${msg}
+====================================================
+CONSENTEMENTS (loi 11 août 2026)
+RGPD accepté : OUI
+Rappel téléphonique autorisé : OUI ✓
 ====================================================
 Reçu via perpignan-solaire.fr`;
     const ml = document.createElement('a');
