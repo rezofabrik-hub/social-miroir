@@ -16,13 +16,22 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" href="favicon.svg">
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0YW2MM8BF"></script>
+    <!-- Google Analytics — chargé UNIQUEMENT après consentement CNIL -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-G0YW2MM8BF');
+      function loadGA4() {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-G0YW2MM8BF';
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', 'G-G0YW2MM8BF', { anonymize_ip: true });
+      }
+      try {
+        if (localStorage.getItem('sm_consent') === 'accepted') loadGA4();
+      } catch(e) {}
     </script>
 
     <!-- SEO META -->
@@ -572,6 +581,42 @@
     </style>
 </head>
 <body>
+
+<!-- ── BANDEAU CONSENTEMENT CNIL ── -->
+<div id="sm-consent-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#1a1a2e;color:#fff;padding:1rem 1.25rem;box-shadow:0 -4px 24px rgba(0,0,0,.35);font-family:system-ui,sans-serif;">
+  <div style="max-width:960px;margin:0 auto;display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;justify-content:space-between;">
+    <p style="margin:0;font-size:.85rem;line-height:1.5;flex:1;min-width:220px;">
+      🍪 Nous utilisons Google Analytics pour mesurer l'audience du site. Vos données restent anonymisées.
+      <a href="#cgv" style="color:#c084fc;text-decoration:underline;margin-left:.3rem;">En savoir plus</a>
+    </p>
+    <div style="display:flex;gap:.6rem;flex-shrink:0;">
+      <button id="sm-consent-refuse" style="padding:.5rem 1.1rem;border-radius:8px;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;font-size:.82rem;font-weight:600;cursor:pointer;">Refuser</button>
+      <button id="sm-consent-accept" style="padding:.5rem 1.25rem;border-radius:8px;border:none;background:#9B2EFF;color:#fff;font-size:.82rem;font-weight:700;cursor:pointer;">Accepter</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  try {
+    var consent = localStorage.getItem('sm_consent');
+    if (!consent) {
+      var banner = document.getElementById('sm-consent-banner');
+      if (banner) banner.style.display = 'block';
+    }
+    document.getElementById('sm-consent-accept')?.addEventListener('click', function() {
+      try { localStorage.setItem('sm_consent', 'accepted'); } catch(e) {}
+      document.getElementById('sm-consent-banner').style.display = 'none';
+      if (typeof loadGA4 === 'function') loadGA4();
+    });
+    document.getElementById('sm-consent-refuse')?.addEventListener('click', function() {
+      try { localStorage.setItem('sm_consent', 'refused'); } catch(e) {}
+      document.getElementById('sm-consent-banner').style.display = 'none';
+    });
+  } catch(e) {}
+})();
+</script>
+
 
 <!-- TOAST -->
 <div id="toast">✓ Ajouté au panier</div>
@@ -3215,7 +3260,11 @@
             const file = e.target.files[0];
             if (!file) return;
             if (!file.type.startsWith('image/')) {
-                showToast('⚠️ Format non supporté');
+                showToast('⚠️ Format non supporté — utilisez JPG, PNG ou WebP');
+                return;
+            }
+            if (file.size > 10 * 1024 * 1024) {
+                showToast('⚠️ Image trop lourde — 10 Mo maximum');
                 return;
             }
             $('logo-filename').textContent = file.name.length > 18 ? file.name.slice(0,15) + '…' : file.name;
