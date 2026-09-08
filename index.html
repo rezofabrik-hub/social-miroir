@@ -833,9 +833,13 @@
     
     <!-- Hero titre mobile (visible < lg) -->
     <div class="lg:hidden mb-8 text-center">
-        <p class="text-xs font-bold uppercase tracking-widest text-brand mb-2">Configurateur en direct</p>
-        <p class="font-display text-3xl font-bold text-ink leading-tight">Créez votre <span class="gradient-text">Social-Miroir®</span></p>
-        <p class="text-ink/50 mt-2 text-sm">Modifiez et visualisez en temps réel</p>
+        <p class="text-xs font-bold uppercase tracking-widest text-brand mb-2">Fabriqué en France · Marque déposée INPI</p>
+        <h1 class="font-display text-3xl font-bold text-ink leading-tight mb-2">Miroir Instagram personnalisé<br><span class="gradient-text">fabriqué en France</span></h1>
+        <p class="text-ink/60 mt-1 text-sm font-medium">Votre profil Instagram gravé sur un vrai miroir Dibond 3mm</p>
+        <div class="flex items-center justify-center gap-3 mt-3 flex-wrap">
+            <span class="text-2xl font-extrabold text-ink">Dès <span class="gradient-text">24,90&nbsp;€</span></span>
+            <span class="badge-free-shipping text-xs font-bold bg-green-50 text-green-700 border border-green-200 px-2.5 py-1 rounded-full">🎁 Livraison offerte</span>
+        </div>
     </div>
 
 <div id="configurator-section" class="flex flex-col lg:flex-row gap-8 lg:gap-14">
@@ -918,10 +922,15 @@
 
             <!-- Titre desktop -->
             <div class="hidden lg:block mb-10">
-                <p class="text-xs font-bold uppercase tracking-widest text-brand mb-3">Configurateur en direct</p>
+                <p class="text-xs font-bold uppercase tracking-widest text-brand mb-3">Fabriqué à Canet-en-Roussillon · Marque déposée INPI</p>
                 <h1 class="font-display text-3xl xl:text-4xl font-bold text-ink leading-[1.1] mb-2">Miroir Instagram personnalisé<br><span class="gradient-text">fabriqué en France</span></h1>
-                <p class="font-display text-xl font-semibold text-ink/70 mb-3">Créez votre Social-Miroir®</p>
-                <p class="text-ink/50 text-base">Chaque détail se met à jour instantanément sur l'aperçu.</p>
+                <p class="font-display text-xl font-semibold text-ink/70 mb-2">Créez votre Social-Miroir®</p>
+                <div class="flex items-center gap-3 mb-3 flex-wrap">
+                    <span class="text-2xl font-extrabold text-ink">Dès <span class="gradient-text">24,90&nbsp;€</span></span>
+                    <span class="badge-free-shipping text-xs font-bold bg-green-50 text-green-700 border border-green-200 px-2.5 py-1 rounded-full">🎁 Livraison offerte</span>
+                    <span class="text-xs font-bold bg-purple-50 text-purple-700 border border-purple-200 px-2.5 py-1 rounded-full">⚡ Livré en 7 jours</span>
+                </div>
+                <p class="text-ink/50 text-sm">Modifiez et visualisez votre miroir en temps réel.</p>
             </div>
 
             <div class="space-y-8">
@@ -3046,6 +3055,11 @@
 
     const PROMO_END     = new Date(new Date().getFullYear(), 10, 1); // 1er novembre
     const SHIPPING_COST = new Date() < PROMO_END ? 0 : 30;
+
+    // Masque les badges "Livraison offerte" si la promo est terminée
+    if (SHIPPING_COST > 0) {
+        document.querySelectorAll('.badge-free-shipping').forEach(el => el.remove());
+    }
 
     function updPrice() {
         const base  = (fmtPrice || 0) + (led && fmtId !== 'format-Mini' && fmtId !== 'format-Studio' ? 29.90 : 0);
