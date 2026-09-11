@@ -3,4 +3,4 @@ Allow: /
 Disallow: /?payment=
 Disallow: /?test=
 
-Sitemap: https://www.social-miroir.fr/sitemap.xml
+Sitemap: https://social-miroir.fr/sitemap.xml
