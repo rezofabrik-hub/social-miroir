@@ -19,10 +19,34 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://www.cabinetcortes-c3c.fr/questions-reponses.html</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.cabinetcortes-c3c.fr/simulateurs.html</loc>
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.cabinetcortes-c3c.fr/chiffres-utiles.html</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.cabinetcortes-c3c.fr/echeancier.html</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.cabinetcortes-c3c.fr/dossiers.html</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.cabinetcortes-c3c.fr/blog.html</loc>
@@ -50,6 +74,12 @@
   </url>
   <url>
     <loc>https://www.cabinetcortes-c3c.fr/blog/veille-reglementaire.html</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.cabinetcortes-c3c.fr/blog/en-bref-facturation-electronique.html</loc>
     <lastmod>2026-09-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>

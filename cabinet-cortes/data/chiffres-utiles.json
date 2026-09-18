@@ -1,0 +1,56 @@
+{
+  "commentaire": "Chiffres de référence affichés par chiffres-utiles.html. Une valeur laissée à null s'affiche comme « à compléter » : c'est volontaire. Les montants qui changent chaque année ne sont pas pré-remplis — publier un SMIC erroné sur le site d'un expert-comptable coûte plus cher que de laisser la case vide. Renseigner `valeur`, puis mettre `verifieLe` à jour.",
+  "verifieLe": null,
+  "sections": [
+    {
+      "titre": "Taux de TVA",
+      "intro": "Applicables en France métropolitaine.",
+      "lignes": [
+        { "libelle": "Taux normal", "valeur": "20 %", "precision": "Cas général" },
+        { "libelle": "Taux réduit", "valeur": "10 %", "precision": "Restauration, travaux de rénovation, transports" },
+        { "libelle": "Taux réduit", "valeur": "5,5 %", "precision": "Produits alimentaires, livres, énergie, travaux de rénovation énergétique" },
+        { "libelle": "Taux particulier", "valeur": "2,1 %", "precision": "Médicaments remboursables, presse" }
+      ]
+    },
+    {
+      "titre": "Salaires et cotisations",
+      "intro": "Ces montants sont revalorisés au moins une fois par an.",
+      "lignes": [
+        { "libelle": "SMIC horaire brut", "valeur": null, "precision": "" },
+        { "libelle": "SMIC mensuel brut (35 h)", "valeur": null, "precision": "" },
+        { "libelle": "Plafond mensuel de la Sécurité sociale", "valeur": null, "precision": "" },
+        { "libelle": "Plafond annuel de la Sécurité sociale", "valeur": null, "precision": "" },
+        { "libelle": "Minimum garanti", "valeur": null, "precision": "" }
+      ]
+    },
+    {
+      "titre": "Indices et taux",
+      "intro": "Ce sont les indices qui servent à réviser un bail commercial ou à calculer des pénalités de retard — bien plus utiles à un commerçant que les cours de la Bourse.",
+      "lignes": [
+        { "libelle": "Indice des loyers commerciaux (ILC)", "valeur": null, "precision": "Révision des baux commerciaux" },
+        { "libelle": "Indice des loyers des activités tertiaires (ILAT)", "valeur": null, "precision": "Bureaux et professions libérales" },
+        { "libelle": "Indice du coût de la construction (ICC)", "valeur": null, "precision": "" },
+        { "libelle": "Indice des prix à la consommation (IPC)", "valeur": null, "precision": "Variation sur un an" },
+        { "libelle": "Taux d’intérêt légal", "valeur": null, "precision": "Créances professionnelles, par semestre" },
+        { "libelle": "Taux des pénalités de retard entre entreprises", "valeur": null, "precision": "À défaut de clause : taux BCE majoré de 10 points" }
+      ]
+    },
+    {
+      "titre": "Impôt sur les sociétés",
+      "intro": "",
+      "lignes": [
+        { "libelle": "Taux normal", "valeur": "25 %", "precision": "Cas général" },
+        { "libelle": "Taux réduit PME", "valeur": "15 %", "precision": "Sur la fraction de bénéfice éligible, sous conditions de chiffre d’affaires et de détention du capital" }
+      ]
+    },
+    {
+      "titre": "Frais de déplacement",
+      "intro": "Le barème kilométrique est publié chaque année par l’administration fiscale.",
+      "lignes": [
+        { "libelle": "Barème kilométrique automobiles", "valeur": null, "precision": "Selon puissance fiscale et distance annuelle" },
+        { "libelle": "Barème kilométrique deux-roues", "valeur": null, "precision": "" },
+        { "libelle": "Indemnité forfaitaire de repas", "valeur": null, "precision": "Repas pris hors des locaux" }
+      ]
+    }
+  ]
+}

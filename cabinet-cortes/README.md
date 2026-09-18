@@ -14,6 +14,10 @@ cabinet-cortes/
 ├── blog/                   Un fichier HTML par article
 ├── newsletter.html         Inscription à la lettre mensuelle
 ├── simulateurs.html        Neuf calculateurs
+├── dossiers.html           Guides du cabinet + ressources officielles
+├── chiffres-utiles.html    Taux, plafonds et indices
+├── echeancier.html         Calendrier des échéances
+├── questions-reponses.html FAQ (avec données structurées)
 ├── contact.html            Coordonnées + formulaire
 ├── mentions-legales.html   Mentions légales et RGPD
 ├── plan-du-site.html       Plan du site
@@ -28,6 +32,9 @@ cabinet-cortes/
 ├── data/
 │   ├── sources.json        Flux RSS agrégés (éditable)
 │   ├── blog.json           Index des articles (éditable)
+│   ├── dossiers.json       Index des dossiers (éditable)
+│   ├── chiffres-utiles.json   Taux et indices — À COMPLÉTER
+│   ├── echeances.json      Échéances — DATES À CONFIRMER
 │   └── actualites.json     Fil généré — ne pas modifier à la main
 ├── scripts/
 │   └── fetch-actualites.mjs
@@ -329,3 +336,56 @@ kilométriques et de versement mobilité dépendent de barèmes officiels revus
 chaque année. Le moteur serait identique, mais publier un barème erroné sur le
 site d'un expert-comptable coûte plus cher que de ne pas le publier. Ils
 pourront être ajoutés dès que le cabinet fournit les valeurs en vigueur.
+
+
+---
+
+## Les rubriques documentaires
+
+Sept rubriques partagent une barre de navigation interne (`barre_rubriques`
+dans les pages générées), sur le principe de la bande de boutons du site
+actuel : le menu principal reste court, la section se parcourt de l'intérieur.
+
+| Rubrique | Source des données | État |
+|---|---|---|
+| Fil d'actualités | `data/actualites.json`, automatique | ✅ opérationnel |
+| Dossiers | `data/dossiers.json` + liens officiels | vide, à écrire |
+| Chiffres utiles | `data/chiffres-utiles.json` | **14 valeurs à renseigner** |
+| Échéancier | `data/echeances.json` | **16 dates à confirmer** |
+| Questions-réponses | écrit dans la page | ✅ 11 questions |
+| En bref | `data/blog.json`, catégorie « En bref » | 1 article d'amorce |
+| Simulateurs | aucune | ✅ 9 calculateurs |
+
+### Compléter les chiffres utiles
+
+Ouvrir `data/chiffres-utiles.json`, renseigner les `valeur` laissées à `null`,
+puis mettre `verifieLe` à la date du jour au format `AAAA-MM-JJ`. Le bandeau
+d'avertissement disparaît de lui-même une fois toutes les valeurs renseignées
+et la date posée.
+
+Les taux de TVA et d'impôt sur les sociétés sont pré-remplis : ils sont stables
+depuis plusieurs années. Le SMIC, les plafonds de Sécurité sociale, les indices
+et les barèmes ne le sont pas — ils sont revalorisés chaque année et doivent
+être saisis par le cabinet. C'est vingt minutes de travail, une fois par an.
+
+### Confirmer l'échéancier
+
+Même principe dans `data/echeances.json` : passer `dateVerifiee` à `true` pour
+chaque échéance dont la date a été contrôlée. Les intitulés et la périodicité
+sont posés ; les dates exactes dépendent du régime d'imposition, de la forme
+juridique, de l'effectif et parfois du département.
+
+### Deux rubriques du site actuel non reprises
+
+**La Bourse.** Le site actuel affiche des cours. Pour une clientèle d'artisans,
+de commerçants et de TPE, un cours du CAC 40 ne sert à rien, et l'afficher
+supposerait d'appeler un service financier tiers à chaque visite — ce qui
+romprait la promesse « aucune ressource externe ». Le créneau est occupé par la
+section « Indices et taux » des chiffres utiles : l'ILC révise un bail
+commercial, le taux d'intérêt légal chiffre une pénalité de retard. Ces
+indices-là, eux, servent.
+
+**La minute de l'expert.** C'est de la vidéo produite par l'éditeur actuel. Le
+format est repris sous la forme d'une catégorie « En bref » du blog, alimentée
+par le cabinet. Si des vidéos sont tournées un jour, elles s'intégreront à ces
+articles.

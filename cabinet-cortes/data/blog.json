@@ -2,6 +2,13 @@
   "commentaire": "Index du blog du cabinet. Pour publier un article : dupliquer un fichier de blog/, en modifier le contenu, puis ajouter une entrée ici en tête de liste. Les articles sont des pages HTML autonomes — c'est elles que Google indexe ; ce fichier ne sert qu'à construire la liste.",
   "articles": [
     {
+      "fichier": "blog/en-bref-facturation-electronique.html",
+      "titre": "En bref : la facturation électronique est entrée en vigueur",
+      "date": "2026-09-18",
+      "categorie": "En bref",
+      "resume": "Format court : ce qui change, à partir de quand, et ce que le cabinet fait pour vous. Trois minutes de lecture."
+    },
+    {
       "fichier": "blog/veille-reglementaire.html",
       "titre": "Notre cabinet au plus près de votre actualité de dirigeant, 24 h/24",
       "date": "2026-09-18",

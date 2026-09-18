@@ -19,7 +19,10 @@
   var compteur = document.querySelector('[data-compteur-blog]');
 
   var tous = [];
-  var categorieActive = 'toutes';
+  // blog.html?categorie=En+bref ouvre directement la rubrique demandée : c'est
+  // ainsi que la barre des rubriques pointe « En bref » sans page dédiée.
+  var demandee = new URLSearchParams(location.search).get('categorie');
+  var categorieActive = demandee || 'toutes';
 
   var formatDate = new Intl.DateTimeFormat('fr-FR', {
     day: 'numeric', month: 'long', year: 'numeric'
@@ -87,7 +90,7 @@
           return a.localeCompare(b, 'fr');
         })).map(function (c) {
           return '<button type="button" class="filtre" data-categorie="' + echapper(c) + '"' +
-                 ' aria-pressed="' + (c === 'toutes') + '">' +
+                 ' aria-pressed="' + (c === categorieActive) + '">' +
                  (c === 'toutes' ? 'Toutes' : echapper(c)) + '</button>';
         }).join('');
 

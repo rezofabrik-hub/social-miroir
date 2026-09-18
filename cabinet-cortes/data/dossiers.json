@@ -1,0 +1,4 @@
+{
+  "commentaire": "Index des dossiers de fond. Même fonctionnement que data/blog.json : un fichier HTML par dossier dans blog/, une entrée ici. Vide au départ — c'est au cabinet d'écrire ses guides.",
+  "articles": []
+}

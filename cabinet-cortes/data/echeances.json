@@ -1,0 +1,52 @@
+{
+  "commentaire": "Calendrier des échéances affiché par echeancier.html. Les intitulés et la périodicité sont posés ; les dates exactes dépendent du régime, de la forme juridique, de l'effectif et parfois du département — elles doivent être confirmées par le cabinet avant mise en ligne. Une échéance dont `dateVerifiee` vaut false s'affiche avec un repère « à confirmer ».",
+  "verifieLe": null,
+  "recurrentes": [
+    {
+      "intitule": "DSN mensuelle",
+      "quand": "Le 5 ou le 15 du mois suivant",
+      "precision": "Le 5 pour les entreprises d’au moins 50 salariés en paie décalée, le 15 pour les autres",
+      "concerne": "Tout employeur",
+      "categorie": "Social",
+      "dateVerifiee": false
+    },
+    {
+      "intitule": "TVA — déclaration CA3 mensuelle",
+      "quand": "Entre le 15 et le 24 du mois suivant",
+      "precision": "La date dépend de la forme juridique et du numéro de dossier",
+      "concerne": "Régime réel normal",
+      "categorie": "Fiscalité",
+      "dateVerifiee": false
+    },
+    {
+      "intitule": "TVA — acomptes semestriels",
+      "quand": "Juillet et décembre",
+      "precision": "Régime simplifié d’imposition",
+      "concerne": "Régime réel simplifié",
+      "categorie": "Fiscalité",
+      "dateVerifiee": false
+    },
+    {
+      "intitule": "Cotisations URSSAF du travailleur indépendant",
+      "quand": "Le 5 ou le 20 du mois",
+      "precision": "Selon l’option mensuelle ou trimestrielle retenue",
+      "concerne": "Travailleurs non salariés",
+      "categorie": "Social",
+      "dateVerifiee": false
+    }
+  ],
+  "annuelles": [
+    { "mois": "Janvier",   "intitule": "Déclaration et paiement de la taxe sur les salaires", "concerne": "Employeurs non assujettis à la TVA", "categorie": "Social", "dateVerifiee": false },
+    { "mois": "Février",   "intitule": "Déclaration des honoraires versés (DAS 2)", "concerne": "Toute entreprise ayant versé des honoraires", "categorie": "Fiscalité", "dateVerifiee": false },
+    { "mois": "Mars",      "intitule": "Premier acompte d’impôt sur les sociétés", "concerne": "Sociétés à l’IS", "categorie": "Fiscalité", "dateVerifiee": false },
+    { "mois": "Avril",     "intitule": "Ouverture de la déclaration de revenus", "concerne": "Dirigeants et particuliers", "categorie": "Fiscalité", "dateVerifiee": false },
+    { "mois": "Mai",       "intitule": "Liasse fiscale — exercice clos au 31 décembre", "concerne": "Toute entreprise", "categorie": "Fiscalité", "dateVerifiee": false },
+    { "mois": "Juin",      "intitule": "Deuxième acompte d’impôt sur les sociétés", "concerne": "Sociétés à l’IS", "categorie": "Fiscalité", "dateVerifiee": false },
+    { "mois": "Juin",      "intitule": "Assemblée générale d’approbation des comptes", "concerne": "Sociétés, dans les six mois de la clôture", "categorie": "Juridique", "dateVerifiee": false },
+    { "mois": "Juillet",   "intitule": "Dépôt des comptes annuels au greffe", "concerne": "Sociétés commerciales", "categorie": "Juridique", "dateVerifiee": false },
+    { "mois": "Septembre", "intitule": "Troisième acompte d’impôt sur les sociétés", "concerne": "Sociétés à l’IS", "categorie": "Fiscalité", "dateVerifiee": false },
+    { "mois": "Décembre",  "intitule": "Cotisation foncière des entreprises (CFE)", "concerne": "Toute entreprise", "categorie": "Fiscalité", "dateVerifiee": false },
+    { "mois": "Décembre",  "intitule": "Quatrième acompte d’impôt sur les sociétés", "concerne": "Sociétés à l’IS", "categorie": "Fiscalité", "dateVerifiee": false },
+    { "mois": "Décembre",  "intitule": "Arbitrages de fin d’exercice", "concerne": "Investissements, rémunération du dirigeant, épargne", "categorie": "Gestion", "dateVerifiee": false }
+  ]
+}

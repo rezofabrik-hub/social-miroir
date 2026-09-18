@@ -1063,3 +1063,151 @@ a.carte:hover h3 { color: var(--accent); }
 .filtre__point--patrimoine { background: #96591f; }
 .filtre__point--creation   { background: #b8452a; }
 .filtre[aria-pressed="true"] .filtre__point { background: currentColor; }
+
+/* --- 20. Barre des rubriques documentaires ------------------------------- */
+.rubriques { background: var(--surface-marquee); border-bottom: 1px solid var(--bordure); }
+.rubriques__grille {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+  padding-block: 1rem;
+}
+.rubriques a {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .65rem .85rem;
+  background: var(--fond);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon-s);
+  color: var(--encre-douce);
+  font-size: .88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+}
+.rubriques a svg { flex: none; color: var(--encre-tenue); transition: var(--transition); }
+.rubriques a:hover { border-color: var(--bordure-forte); color: var(--encre); }
+.rubriques a:hover svg { color: var(--accent); }
+.rubriques a[aria-current="page"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.rubriques a[aria-current="page"] svg { color: currentColor; }
+:root[data-theme="dark"] .rubriques a[aria-current="page"] { color: #24181d; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .rubriques a[aria-current="page"] { color: #24181d; }
+}
+
+/* --- 21. Chiffres utiles -------------------------------------------------- */
+.bloc-chiffres { margin-bottom: 2.75rem; }
+.bloc-chiffres h2 { margin-bottom: .4rem; }
+.bloc-chiffres .chapeau { margin-bottom: 1.25rem; font-size: .96rem; }
+
+.chiffres { border: 1px solid var(--bordure); border-radius: var(--rayon-m); overflow: hidden; }
+.chiffre {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem 1.5rem;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: .85rem 1.15rem;
+  border-bottom: 1px solid var(--bordure);
+}
+.chiffre:last-child { border-bottom: 0; }
+.chiffre:nth-child(odd) { background: var(--surface); }
+.chiffre__libelle { display: grid; gap: .15rem; }
+.chiffre__precision { font-size: .82rem; color: var(--encre-tenue); }
+.chiffre__valeur {
+  font-weight: 700;
+  font-size: 1.05rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+  text-align: right;
+}
+.chiffre__valeur--vide { font-size: .85rem; font-weight: 600; }
+
+.note-source--attention { border-left-color: #e0a800; background: #fffaeb; }
+/* Le bandeau d'état ouvre la page : il lui faut de l'air avant le contenu. */
+[data-etat] .note-source { margin-top: 0; margin-bottom: 2.5rem; }
+:root[data-theme="dark"] .note-source--attention { background: #2e2717; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .note-source--attention { background: #2e2717; }
+}
+
+/* --- 22. Échéancier ------------------------------------------------------- */
+.bloc-echeances { margin-bottom: 2.75rem; }
+.bloc-echeances h2 { margin-bottom: 1.25rem; }
+.bloc-echeances--courant .echeance { border-color: var(--accent-clair); }
+
+.echeances { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; }
+.echeance {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  gap: .3rem 1.25rem;
+  padding: 1rem 1.15rem;
+  background: var(--fond);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon-m);
+}
+.echeance:has(> div:first-child) { grid-template-columns: minmax(0, 1fr); }
+@media (max-width: 560px) { .echeance { grid-template-columns: minmax(0, 1fr); } }
+
+.echeance__mois {
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-top: .15rem;
+}
+.echeance h3 { font-size: 1rem; margin-bottom: .2rem; }
+.echeance__quand { font-weight: 600; font-size: .93rem; color: var(--encre-douce); }
+.echeance__precision { font-size: .86rem; color: var(--encre-tenue); margin-top: .15rem; }
+.echeance__meta { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; margin-top: .6rem; }
+
+/* --- 23. Questions-réponses ----------------------------------------------- */
+.bloc-qr { margin-bottom: 2.75rem; }
+.bloc-qr h2 { margin-bottom: 1.25rem; }
+.bloc-qr h3 { margin: 0; font-size: 1rem; }
+
+.qr { border-bottom: 1px solid var(--bordure); }
+.qr:first-of-type { border-top: 1px solid var(--bordure); }
+
+.qr__question {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1.05rem .25rem;
+  background: none;
+  border: 0;
+  font: inherit;
+  font-weight: 600;
+  font-size: 1.02rem;
+  line-height: 1.35;
+  color: var(--encre);
+  text-align: left;
+  cursor: pointer;
+}
+.qr__question:hover { color: var(--accent); }
+
+.qr__chevron {
+  flex: none;
+  width: 11px;
+  height: 11px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translate(-2px, -2px);
+  transition: transform var(--transition);
+  opacity: .5;
+}
+.qr__question[aria-expanded="true"] .qr__chevron {
+  transform: rotate(225deg) translate(-3px, -3px);
+  opacity: 1;
+}
+
+.qr__reponse { padding: 0 .25rem 1.25rem; color: var(--encre-douce); font-size: .97rem; }
+.qr__reponse p + p { margin-top: .7rem; }
