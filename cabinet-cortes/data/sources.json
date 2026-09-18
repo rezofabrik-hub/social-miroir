@@ -1,5 +1,5 @@
 {
-  "commentaire": "Flux RSS publics et officiels agrégés par le fil d'actualités. Pour ajouter une source, ajoutez un objet ici : le script scripts/fetch-actualites.mjs le prendra en compte à la prochaine exécution. `theme` force une thématique ; s'il vaut null, la thématique est déduite du titre et du résumé.",
+  "commentaire": "Flux RSS publics et officiels agrégés par le fil d'actualités. Pour ajouter une source, ajoutez un objet ici : le script scripts/fetch-actualites.mjs le prendra en compte à la prochaine exécution. `theme` force une thématique ; s'il vaut null, la thématique est déduite du titre et du résumé. `actif: false` garde la source en réserve sans l'utiliser — voir le champ `note` pour savoir pourquoi.",
   "sources": [
     {
       "id": "service-public-pro",
@@ -27,6 +27,36 @@
       "site": "https://www.economie.gouv.fr/",
       "theme": null,
       "actif": true
+    },
+    {
+      "id": "dgccrf",
+      "nom": "DGCCRF",
+      "editeur": "Direction générale de la concurrence, de la consommation et de la répression des fraudes",
+      "url": "https://www.economie.gouv.fr/dgccrf/rss",
+      "site": "https://www.economie.gouv.fr/dgccrf",
+      "theme": "Juridique",
+      "actif": false,
+      "note": "Flux actif et à jour. Utile pour les règles du commerce (affichage des prix, CGV, démarchage), mais largement occupé par des annonces de condamnations et d'amendes visant des entreprises nommément citées — un registre discutable sur le site d'un cabinet. À activer en connaissance de cause."
+    },
+    {
+      "id": "cnil",
+      "nom": "CNIL",
+      "editeur": "Commission nationale de l'informatique et des libertés",
+      "url": "https://www.cnil.fr/fr/rss.xml",
+      "site": "https://www.cnil.fr/",
+      "theme": "Juridique",
+      "actif": false,
+      "note": "Flux actif et à jour. Quelques sujets vraiment utiles aux dirigeants (facturation électronique, RGPD en entreprise), noyés dans les ordres du jour des séances plénières. À activer si l'on accepte ce bruit."
+    },
+    {
+      "id": "inpi",
+      "nom": "INPI",
+      "editeur": "Institut national de la propriété industrielle",
+      "url": "https://www.inpi.fr/rss.xml",
+      "site": "https://www.inpi.fr/",
+      "theme": null,
+      "actif": false,
+      "note": "Flux actif mais peu alimenté (plusieurs mois de retard) et dominé par les bulletins BOPI brevets, sans intérêt pour une clientèle d'artisans et de commerçants. Déconseillé en l'état."
     }
   ]
 }

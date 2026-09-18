@@ -71,6 +71,23 @@ requêtes vers des tiers.
 Seuls les titres, résumés et liens sont repris, avec mention de la source et
 renvoi vers l'article d'origine — l'usage prévu d'un flux de syndication.
 
+### Sources testées et gardées en réserve
+
+Trois autres flux officiels répondent correctement mais sont déclarés
+`"actif": false` dans `data/sources.json`, avec la raison dans leur champ
+`note` :
+
+| Source | Pourquoi elle n'est pas activée |
+|---|---|
+| DGCCRF | À jour, mais surtout des annonces de condamnations d'entreprises nommées |
+| CNIL | Quelques sujets utiles noyés dans les ordres du jour de séances plénières |
+| INPI | Plusieurs mois de retard, dominé par les bulletins BOPI brevets |
+
+Passer `"actif": true` suffit à en activer une. Inutile de refaire la
+recherche : les flux d'Urssaf, Légifrance, impots.gouv.fr, Bpifrance et
+service-public « particuliers » ont aussi été testés et ne sont pas
+exploitables (404, 403 ou absence de flux public).
+
 ### Lancer une mise à jour à la main
 
 ```bash
