@@ -72,7 +72,7 @@
       if (e.key === 'Escape') fermerMenu();
     });
     window.addEventListener('resize', function () {
-      if (window.innerWidth > 900) fermerMenu();
+      if (window.innerWidth > 1080) fermerMenu();
     });
   }
 

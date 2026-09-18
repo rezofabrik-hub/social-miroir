@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simulateurs : emprunt, épargne, seuil de rentabilité | Cabinet C3C</title>
+  <meta name="description" content="Neuf calculateurs gratuits du cabinet C3C : mensualité et capacité d’emprunt, intérêts composés, rendement d’une épargne, seuil de rentabilité, jours ouvrables et jours ouvrés.">
+  <link rel="canonical" href="https://www.cabinetcortes-c3c.fr/simulateurs.html">
+  <meta name="theme-color" content="#615d5c">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Cabinet Corinne Cortes — C3C">
+  <meta property="og:title" content="Simulateurs : emprunt, épargne, seuil de rentabilité | Cabinet C3C">
+  <meta property="og:description" content="Neuf calculateurs gratuits du cabinet C3C : mensualité et capacité d’emprunt, intérêts composés, rendement d’une épargne, seuil de rentabilité, jours ouvrables et jours ouvrés.">
+  <meta property="og:url" content="https://www.cabinetcortes-c3c.fr/simulateurs.html">
+  <meta property="og:image" content="https://www.cabinetcortes-c3c.fr/assets/img/logo-c3c.png">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/logo-c3c.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+<body>
+  <a class="evite" href="#contenu">Aller au contenu principal</a>
+
+  <div class="bandeau-info">
+    <div class="contenu bandeau-info__grille">
+      <span class="bandeau-info__item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Perpignan — 11 rue Jacques de Lacretelle</span>
+      <span class="bandeau-info__item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+33468504110">04 68 50 41 10</a></span>
+    </div>
+  </div>
+
+  <header class="entete">
+    <div class="contenu entete__grille">
+      <a class="marque" href="index.html" aria-label="Cabinet Corinne Cortes C3C — accueil">
+        <img class="logo-clair" src="assets/img/logo-c3c.png" width="400" height="196"
+             alt="Cabinet Corinne Cortes C3C, expert-comptable">
+        <img class="logo-sombre" src="assets/img/logo-c3c-blanc.png" width="400" height="196"
+             alt="Cabinet Corinne Cortes C3C, expert-comptable">
+      </a>
+
+      <nav class="nav" id="menu" aria-label="Navigation principale">
+        <a href="cabinet.html">Le cabinet</a>
+        <a href="missions.html">Nos missions</a>
+        <a href="actualites.html">Actualités</a>
+        <a href="blog.html">Blog</a>
+        <a href="simulateurs.html" aria-current="page">Outils</a>
+        <a href="newsletter.html">Newsletter</a>
+        <a href="contact.html">Contact</a>
+        <a class="btn btn--primaire" href="contact.html">Prendre rendez-vous</a>
+      </nav>
+
+      <div class="entete__actions">
+        <a class="btn btn--primaire" href="contact.html">Prendre rendez-vous</a>
+        <button class="bascule-theme" type="button" aria-label="Passer en mode sombre">
+          <span class="icone-soleil"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span>
+          <span class="icone-lune"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+        </button>
+        <button class="burger" type="button" aria-expanded="false" aria-controls="menu"
+                aria-label="Ouvrir le menu"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <nav class="fil-ariane" aria-label="Fil d’Ariane">
+      <div class="contenu"><ol><li><a href="index.html">Accueil</a></li><li>Outils et simulateurs</li></ol></div>
+    </nav>
+
+    <section class="entete-page">
+      <div class="contenu">
+        <span class="surtitre">Outils</span>
+        <h1>Neuf calculateurs pour préparer vos décisions</h1>
+        <p class="chapeau">Épargne, emprunt, seuil de rentabilité, congés : de quoi dégrossir une question avant d’en parler au cabinet. Les calculs se font dans votre navigateur — aucune des valeurs saisies n’est transmise, ni au cabinet, ni à personne d’autre.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="contenu">
+        <h2 class="simu__famille">Épargne et placement</h2>
+        <div class="simus">
+      <article class="simu" id="interets-composes" data-simu="interets-composes">
+        <header class="simu__tete">
+          <span class="carte__icone"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15v4M8 19h4"/></svg></span>
+          <div>
+            <h3>Intérêts composés</h3>
+            <p>Ce que devient une somme placée pendant une durée donnée, les intérêts produits étant eux-mêmes replacés chaque année.</p>
+          </div>
+        </header>
+
+        <div class="simu__corps">
+          <form class="simu__form" novalidate>
+            <div class="champ">
+              <label for="interets-composes-capital">Capital placé <span class="simu__unite">(€)</span></label>
+              <input type="number" id="interets-composes-capital" data-champ="capital" value="10000"
+                     step="100" min="0" inputmode="decimal" autocomplete="off">
+            </div>
+            <div class="champ">
+              <label for="interets-composes-taux">Taux annuel <span class="simu__unite">(%)</span></label>
+              <input type="number" id="interets-composes-taux" data-champ="taux" value="3"
+                     step="0.1" min="0" inputmode="decimal" autocomplete="off">
+            </div>
+            <div class="champ">
+              <label for="interets-composes-duree">Durée <span class="simu__unite">(années)</span></label>
+              <input type="number" id="interets-composes-duree" data-champ="duree" value="10"
+                     step="1" min="0" inputmode="decimal" autocomplete="off">
+            </div>
+          </form>
+
+          <div class="simu__sortie" data-sortie aria-live="polite">
+            <p class="simu__attente">Renseignez les champs pour voir le résultat.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="simu" id="versements-constants" data-simu="versements-constants">
+        <header class="simu__tete">
+          <span class="carte__icone"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 15l3.5-4 3 2.5L20 7"/></svg></span>
+          <div>
+            <h3>Valeur acquise par des versements réguliers</h3>
+            <p>Ce que produit un effort d’épargne répété, par exemple un versement annuel sur un contrat de retraite ou une assurance-vie.</p>
+          </div>
+        </header>
+
+        <div class="simu__corps">
+          <form class="simu__form" novalidate>
+            <div class="champ">
+              <label for="versements-constants-versement">Versement annuel <span class="simu__unite">(€)</span></label>
+              <input type="number" id="versements-constants-versement" data-champ="versement" value="2400"
+                     step="100" min="0" inputmode="decimal" autocomplete="off">
+            </div>
+            <div class="champ">
+              <label for="versements-constants-taux">Taux annuel <span class="simu__unite">(%)</span></label>
+              <input type="number" id="versements-constants-taux" data-champ="taux" value="3"
+                     step="0.1" min="0" inputmode="decimal" autocomplete="off">
+            </div>
+            <div class="champ">
+              <label for="versements-constants-duree">Nombre de versements <span class="simu__unite">(années)</span></label>
+              <input type="number" id="versements-constants-duree" data-champ="duree" value="15"
+                     step="1" min="0" inputmode="decimal" autocomplete="off">
+            </div>
+          </form>
+
+          <div class="simu__sortie" data-sortie aria-live="polite">
+            <p class="simu__attente">Renseignez les champs pour voir le résultat.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="simu" id="taux-rendement-capital" data-simu="taux-rendement-capital">
+        <header class="simu__tete">
+          <span class="carte__icone"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 15l3.5-4 3 2.5L20 7"/></svg></span>
+          <div>
+            <h3>Taux de rendement d’un capital</h3>
+            <p>Le rendement annuel réellement obtenu, à partir de la somme placée au départ et de ce qu’elle vaut aujourd’hui.</p>
+          </div>
+        </header>
+
+        <div class="simu__corps">
+          <form class="simu__form" novalidate>
+            <div class="champ">
+              <label for="taux-rendement-capital-capital">Capital de départ <span class="simu__unite">(€)</span></label>
+              <input type="number" id="taux-rendement-capital-capital" data-champ="capital" value="10000"
+                     step="100" min="0" inputmode="decimal" autocomplete="off">
+            </div>
+            <div class="champ">
+              <label for="taux-rendement-capital-acquise">Valeur aujourd’hui <span class="simu__unite">(€)</span></label>
+              <input type="number" id="taux-rendement-capital-acquise" data-champ="acquise" value="14000"
+                     step="100" min="0" inputmode="decimal" autocomplete="off">
+            </div>
+            <div class="champ">
+              <label for="taux-rendement-capital-duree">Durée écoulée <span class="simu__unite">(années)</span></label>
+              <input type="number" id="taux-rendement-capital-duree" data-champ="duree" value="10"
+                     step="1" min="0" inputmode="decimal" autocomplete="off">
+            </div>
+          </form>
+
+          <div class="simu__sortie" data-sortie aria-live="polite">
+            <p class="simu__attente">Renseignez les champs pour voir le résultat.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="simu" id="taux-rendement-versements" data-simu="taux-rendement-versements">
+        <header class="simu__tete">
+          <span class="carte__icone"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 15l3.5-4 3 2.5L20 7"/></svg></span>
+          <div>
+            <h3>Taux de rendement de versements réguliers</h3>
+            <p>Le rendement annuel d’une épargne alimentée par versements constants, calculé par approximations successives.</p>
+          </div>
+        </header>
+
+        <div class="simu__corps">
+          <form class="simu__form" novalidate>
+            <div class="champ">
+              <label for="taux-rendement-versements-versement">Versement annuel <span class="simu__unite">(€)</span></label>
+              <input type="number" id="taux-rendement-versements-versement" data-champ="versement" value="2400"
+                     step="100" min="0" inputmode="decimal" autocomplete="off">
+            </div>
+            <div class="champ">
+              <label for="taux-rendement-versements-acquise">Valeur aujourd’hui <span class="simu__unite">(€)</span></label>
+              <input type="number" id="taux-rendement-versements-acquise" data-champ="acquise" value="45000"
+                     step="100" min="0" inputmode="decimal" autocomplete="off">
+            </div>
+            <div class="champ">
+              <label for="taux-rendement-versements-duree">Nombre de versements <span class="simu__unite">(années)</span></label>
+              <input type="number" id="taux-rendement-versements-duree" data-champ="duree" value="15"
+                     step="1" min="0" inputmode="decimal" autocomplete="off">
+            </div>
+          </form>
+
+          <div class="simu__sortie" data-sortie aria-live="polite">
+            <p class="simu__attente">Renseignez les champs pour voir le résultat.</p>
+          </div>
+        </div>
+      </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="contenu">
+        <h2 class="simu__famille">Emprunt et financement</h2>
+        <div class="simus">
+      <article class="simu" id="mensualite-emprunt" data-simu="mensualite-emprunt">
+        <header class="simu__tete">
+          <span class="carte__icone"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15v4M8 19h4"/></svg></span>
+          <div>
+            <h3>Mensualité d’un emprunt</h3>
+            <p>La mensualité d’un crédit amortissable à taux fixe, remboursé à terme échu. Hors assurance emprunteur et frais de dossier.</p>
+          </div>
+        </header>
+
+        <div class="simu__corps">
+          <form class="simu__form" novalidate>
+            <div class="champ">
+              <label for="mensualite-emprunt-capital">Montant emprunté <span class="simu__unite">(€)</span></label>
+              <input type="number" id="mensualite-emprunt-capital" data-champ="capital" value="150000"
+                     step="1000" min="0" inputmode="decimal" autocomplete="off">
+            </div>
+            <div class="champ">
+              <label for="mensualite-emprunt-taux">Taux annuel <span class="simu__unite">(%)</span></label>
+              <input type="number" id="mensualite-emprunt-taux" data-champ="taux" value="3.5"
+                     step="0.05" min="0" inputmode="decimal" autocomplete="off">
+            </div>
+            <div class="champ">
+              <label for="mensualite-emprunt-duree">Durée <span class="simu__unite">(années)</span></label>
+              <input type="number" id="mensualite-emprunt-duree" data-champ="duree" value="15"
+                     step="1" min="0" inputmode="decimal" autocomplete="off">
+            </div>
+          </form>
+
+          <div class="simu__sortie" data-sortie aria-live="polite">
+            <p class="simu__attente">Renseignez les champs pour voir le résultat.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="simu" id="capacite-emprunt" data-simu="capacite-emprunt">
+        <header class="simu__tete">
+          <span class="carte__icone"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></span>
+          <div>
+            <h3>Capacité d’emprunt</h3>
+            <p>Le capital que vous pouvez emprunter pour une mensualité donnée. Utile avant de solliciter un financement.</p>
+          </div>
+        </header>
+
+        <div class="simu__corps">
+          <form class="simu__form" novalidate>
+            <div class="champ">
+              <label for="capacite-emprunt-mensualite">Mensualité possible <span class="simu__unite">(€)</span></label>
+              <input type="number" id="capacite-emprunt-mensualite" data-champ="mensualite" value="1200"
+                     step="50" min="0" inputmode="decimal" autocomplete="off">
+            </div>
+            <div class="champ">
+              <label for="capacite-emprunt-taux">Taux annuel <span class="simu__unite">(%)</span></label>
+              <input type="number" id="capacite-emprunt-taux" data-champ="taux" value="3.5"
+                     step="0.05" min="0" inputmode="decimal" autocomplete="off">
+            </div>
+            <div class="champ">
+              <label for="capacite-emprunt-duree">Durée <span class="simu__unite">(années)</span></label>
+              <input type="number" id="capacite-emprunt-duree" data-champ="duree" value="15"
+                     step="1" min="0" inputmode="decimal" autocomplete="off">
+            </div>
+          </form>
+
+          <div class="simu__sortie" data-sortie aria-live="polite">
+            <p class="simu__attente">Renseignez les champs pour voir le résultat.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="simu" id="duree-emprunt" data-simu="duree-emprunt">
+        <header class="simu__tete">
+          <span class="carte__icone"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+          <div>
+            <h3>Durée de remboursement</h3>
+            <p>Le temps nécessaire pour rembourser un capital donné, selon la mensualité que vous pouvez y consacrer.</p>
+          </div>
+        </header>
+
+        <div class="simu__corps">
+          <form class="simu__form" novalidate>
+            <div class="champ">
+              <label for="duree-emprunt-capital">Montant emprunté <span class="simu__unite">(€)</span></label>
+              <input type="number" id="duree-emprunt-capital" data-champ="capital" value="150000"
+                     step="1000" min="0" inputmode="decimal" autocomplete="off">
+            </div>
+            <div class="champ">
+              <label for="duree-emprunt-mensualite">Mensualité possible <span class="simu__unite">(€)</span></label>
+              <input type="number" id="duree-emprunt-mensualite" data-champ="mensualite" value="1200"
+                     step="50" min="0" inputmode="decimal" autocomplete="off">
+            </div>
+            <div class="champ">
+              <label for="duree-emprunt-taux">Taux annuel <span class="simu__unite">(%)</span></label>
+              <input type="number" id="duree-emprunt-taux" data-champ="taux" value="3.5"
+                     step="0.05" min="0" inputmode="decimal" autocomplete="off">
+            </div>
+          </form>
+
+          <div class="simu__sortie" data-sortie aria-live="polite">
+            <p class="simu__attente">Renseignez les champs pour voir le résultat.</p>
+          </div>
+        </div>
+      </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="contenu">
+        <h2 class="simu__famille">Pilotage de l’entreprise</h2>
+        <div class="simus">
+      <article class="simu" id="seuil-rentabilite" data-simu="seuil-rentabilite">
+        <header class="simu__tete">
+          <span class="carte__icone"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 15l3.5-4 3 2.5L20 7"/></svg></span>
+          <div>
+            <h3>Seuil de rentabilité</h3>
+            <p>Le chiffre d’affaires à partir duquel l’activité couvre ses charges. Le point mort indique à quelle date de l’année il est atteint.</p>
+          </div>
+        </header>
+
+        <div class="simu__corps">
+          <form class="simu__form" novalidate>
+            <div class="champ">
+              <label for="seuil-rentabilite-ca">Chiffre d’affaires annuel <span class="simu__unite">(€)</span></label>
+              <input type="number" id="seuil-rentabilite-ca" data-champ="ca" value="250000"
+                     step="1000" min="0" inputmode="decimal" autocomplete="off">
+            </div>
+            <div class="champ">
+              <label for="seuil-rentabilite-variables">Charges variables <span class="simu__unite">(€)</span></label>
+              <input type="number" id="seuil-rentabilite-variables" data-champ="variables" value="150000"
+                     step="1000" min="0" inputmode="decimal" autocomplete="off">
+            </div>
+            <div class="champ">
+              <label for="seuil-rentabilite-fixes">Charges fixes <span class="simu__unite">(€)</span></label>
+              <input type="number" id="seuil-rentabilite-fixes" data-champ="fixes" value="70000"
+                     step="1000" min="0" inputmode="decimal" autocomplete="off">
+            </div>
+          </form>
+
+          <div class="simu__sortie" data-sortie aria-live="polite">
+            <p class="simu__attente">Renseignez les champs pour voir le résultat.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="simu" id="jours-ouvres" data-simu="jours-ouvres">
+        <header class="simu__tete">
+          <span class="carte__icone"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+          <div>
+            <h3>Jours ouvrables et jours ouvrés</h3>
+            <p>La correspondance entre les deux décomptes de congés payés : 30 jours ouvrables équivalent à 25 jours ouvrés, soit cinq semaines.</p>
+          </div>
+        </header>
+
+        <div class="simu__corps">
+          <form class="simu__form" novalidate>
+            <div class="champ">
+              <label for="jours-ouvres-ouvrables">Jours ouvrables <span class="simu__unite">(jours)</span></label>
+              <input type="number" id="jours-ouvres-ouvrables" data-champ="ouvrables" value="30"
+                     step="1" min="0" inputmode="decimal" autocomplete="off">
+            </div>
+          </form>
+
+          <div class="simu__sortie" data-sortie aria-live="polite">
+            <p class="simu__attente">Renseignez les champs pour voir le résultat.</p>
+          </div>
+        </div>
+      </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--fine">
+      <div class="contenu">
+        <div class="note-source">
+          <p><strong>Ce que ces outils sont, et ce qu’ils ne sont pas.</strong></p>
+          <p>
+            Ce sont des ordres de grandeur. Les calculs d’emprunt s’entendent hors
+            assurance emprunteur, frais de dossier et de garantie, qui pèsent
+            sensiblement sur le coût réel. Le seuil de rentabilité suppose une
+            structure de charges stable sur l’exercice.
+          </p>
+          <p>
+            Aucun de ces résultats ne remplace une étude de votre situation.
+            Avant d’engager une décision, parlez-en au cabinet :
+            <a href="tel:+33468504110">04 68 50 41 10</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="pied">
+    <div class="contenu">
+      <div class="pied__grille">
+        <div>
+          <img class="logo-sombre" src="assets/img/logo-c3c-blanc.png" width="400" height="196"
+               alt="Cabinet Corinne Cortes C3C">
+          <p>Cabinet d’expertise comptable à taille humaine, au service des artisans,
+             commerçants, TPE, professions libérales et agricoles des Pyrénées-Orientales.</p>
+        </div>
+
+        <div>
+          <h4>Le cabinet</h4>
+          <ul>
+            <li><a href="cabinet.html">Qui sommes-nous</a></li>
+            <li><a href="missions.html">Nos missions</a></li>
+            <li><a href="actualites.html">Actualités</a></li>
+            <li><a href="blog.html">Blog du cabinet</a></li>
+            <li><a href="simulateurs.html">Outils et simulateurs</a></li>
+            <li><a href="newsletter.html">Newsletter</a></li>
+            <li><a href="contact.html">Nous contacter</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Nos missions</h4>
+          <ul>
+            <li><a href="missions.html#comptabilite">Comptabilité et fiscalité</a></li>
+            <li><a href="missions.html#conseil">Conseil en gestion</a></li>
+            <li><a href="missions.html#creation">Création d’entreprise</a></li>
+            <li><a href="missions.html#paie">RH &amp; paie</a></li>
+            <li><a href="missions.html#patrimoine">Gestion de patrimoine</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Nous trouver</h4>
+          <address>
+            11 rue Jacques de Lacretelle<br>
+            66100 Perpignan<br>
+            <a href="tel:+33468504110">04 68 50 41 10</a><br>
+            <a href="mailto:cabinet.cortes@gmail.com">cabinet.cortes@gmail.com</a>
+          </address>
+        </div>
+      </div>
+
+      <div class="pied__bas">
+        <span>© 2021–<span data-annee>2026</span> Cabinet Corinne Cortes — C3C</span>
+        <span>
+          <a href="mentions-legales.html">Mentions légales &amp; RGPD</a> ·
+          <a href="mentions-legales.html#cookies" data-rouvrir-cookies>Gestion des cookies</a> ·
+          <a href="plan-du-site.html">Plan du site</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <aside class="bandeau-cookies" role="dialog" aria-labelledby="titre-cookies" hidden>
+    <h2 id="titre-cookies">Vos données sur ce site</h2>
+    <p>Ce site ne dépose aucun traceur publicitaire, n’utilise aucun outil de mesure
+       d’audience et n’appelle aucun service tiers : ni police de caractères distante,
+       ni carte, ni vidéo intégrée. Rien de ce que vous consultez ici n’est transmis
+       à un autre acteur.</p>
+    <p>Seule votre préférence d’affichage (thème clair ou sombre) peut être conservée
+       dans votre navigateur, sur votre appareil. Elle n’est jamais envoyée au cabinet.</p>
+    <div class="bandeau-cookies__actions">
+      <button class="btn btn--primaire" type="button" data-consentement="accepte">J’ai compris</button>
+      <a class="btn btn--fantome" href="mentions-legales.html#cookies">Tout savoir</a>
+    </div>
+  </aside>
+
+  <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/simulateurs.js" defer></script>
+</body>
+</html>

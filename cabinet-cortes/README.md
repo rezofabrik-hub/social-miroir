@@ -10,6 +10,10 @@ cabinet-cortes/
 ├── cabinet.html            Le cabinet
 ├── missions.html           Nos missions (six sections ancrées)
 ├── actualites.html         Fil d'actualités (filtres + recherche)
+├── blog.html               Index du blog du cabinet
+├── blog/                   Un fichier HTML par article
+├── newsletter.html         Inscription à la lettre mensuelle
+├── simulateurs.html        Neuf calculateurs
 ├── contact.html            Coordonnées + formulaire
 ├── mentions-legales.html   Mentions légales et RGPD
 ├── plan-du-site.html       Plan du site
@@ -18,9 +22,12 @@ cabinet-cortes/
 │   ├── css/style.css       Toute la mise en forme
 │   ├── js/site.js          Menu, thème clair/sombre, formulaire
 │   ├── js/actualites.js    Rendu du fil
+│   ├── js/blog.js          Liste des articles
+│   ├── js/simulateurs.js   Les neuf calculs
 │   └── img/                Logo (clair + variante fonds sombres), favicon
 ├── data/
 │   ├── sources.json        Flux RSS agrégés (éditable)
+│   ├── blog.json           Index des articles (éditable)
 │   └── actualites.json     Fil généré — ne pas modifier à la main
 ├── scripts/
 │   └── fetch-actualites.mjs
@@ -255,3 +262,70 @@ l'un ou l'autre. Le choix est mémorisé sur l'appareil du visiteur.
 assombrie, `--accent`, est utilisée pour les liens et les libellés, le rose
 d'origine restant réservé aux aplats et aux fonds sombres), et respect de
 `prefers-reduced-motion`.
+
+
+---
+
+## Publier un article de blog
+
+Les articles sont des pages HTML autonomes dans `blog/` — c'est elles que
+Google indexe, avec leur contenu complet et leur propre adresse.
+`data/blog.json` ne sert qu'à construire la liste affichée sur `blog.html`,
+ce qui évite d'avoir à regénérer une page d'index à chaque publication.
+
+1. Dupliquer `blog/modele-article.html` sous un nom parlant
+   (`blog/facturation-electronique-2026.html` : le nom du fichier devient
+   l'adresse de la page, autant qu'il contienne les mots-clés du sujet).
+2. Remplacer le titre, la date, la catégorie et le contenu. Trois balises
+   sont à corriger en haut du fichier : `<title>`, `<meta name="description">`
+   et `<link rel="canonical">`.
+3. Ajouter une entrée **en tête** du tableau `articles` de `data/blog.json` :
+
+```json
+{
+  "fichier": "blog/facturation-electronique-2026.html",
+  "titre": "Facturation électronique : ce qui change pour votre entreprise",
+  "date": "2026-10-02",
+  "categorie": "Fiscalité",
+  "resume": "Deux ou trois phrases qui posent la question à laquelle l'article répond."
+}
+```
+
+4. Ajouter la page à `sitemap.xml`.
+
+Les catégories sont libres : les filtres de `blog.html` se construisent tout
+seuls à partir de celles qui existent. **Avant la mise en ligne, retirer
+`blog/modele-article.html` du JSON** — sinon le gabarit apparaît dans la liste.
+
+## Newsletter
+
+`newsletter.html` utilise la même mécanique que le formulaire de contact :
+`data-endpoint` vide ouvre la messagerie du visiteur, une URL de service
+d'emailing envoie directement.
+
+Pour un envoi réel, il faut un prestataire capable de gérer les
+désinscriptions — c'est une obligation légale, pas un confort. Brevo
+(ex-Sendinblue, données hébergées en France) propose un palier gratuit
+largement suffisant au volume d'un cabinet. Le prestataire retenu devient un
+sous-traitant au sens du RGPD : il doit être mentionné dans les mentions
+légales, section « Protection des données ».
+
+## Les simulateurs
+
+Les neuf calculateurs de `simulateurs.html` sont du JavaScript autonome : rien
+n'est transmis, tout est calculé dans le navigateur du visiteur. Les formules
+vivent dans `assets/js/simulateurs.js`, les formulaires dans la page.
+
+Conventions retenues : taux saisis en pourcentage annuel, mensualités à terme
+échu (usage du crédit amortissable français), hors assurance emprunteur et
+frais de dossier. Les taux d'une suite de versements n'ayant pas de forme
+analytique, ils sont résolus par dichotomie.
+
+Les résultats ont été vérifiés : 10 000 € à 3 % sur 10 ans donnent 13 439,16 € ;
+150 000 € à 3,5 % sur 15 ans donnent une mensualité de 1 072,32 €.
+
+**Ce qui n'est pas repris de l'ancien site** : les calculateurs de frais
+kilométriques et de versement mobilité dépendent de barèmes officiels revus
+chaque année. Le moteur serait identique, mais publier un barème erroné sur le
+site d'un expert-comptable coûte plus cher que de ne pas le publier. Ils
+pourront être ajoutés dès que le cabinet fournit les valeurs en vigueur.

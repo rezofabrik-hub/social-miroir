@@ -325,6 +325,8 @@ hr {
 .nav > .btn { display: none; }        /* réservé au menu mobile */
 
 .entete__actions { display: flex; align-items: center; gap: .6rem; }
+/* Sept entrées de menu serrent la barre : le bouton ne doit pas se couper. */
+.entete__actions .btn { white-space: nowrap; }
 
 .bascule-theme {
   display: inline-grid;
@@ -376,7 +378,7 @@ hr {
 .burger[aria-expanded="true"] span::before { top: 0; transform: rotate(45deg); }
 .burger[aria-expanded="true"] span::after  { top: 0; transform: rotate(-45deg); }
 
-@media (max-width: 900px) {
+@media (max-width: 1080px) {
   .burger { display: inline-flex; }
   .nav {
     position: fixed;
@@ -864,3 +866,84 @@ a.carte:hover h3 { color: var(--accent); }
 .motif-trait        { fill: var(--bordure-forte); }
 .motif-pastille     { fill: var(--accent-voile); stroke: var(--accent-clair); }
 .motif-coche        { stroke: var(--accent); }
+
+/* --- 18. Simulateurs ------------------------------------------------------ */
+.simu__famille {
+  padding-bottom: .9rem;
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid var(--bordure);
+}
+
+.simus { display: grid; gap: clamp(1rem, 2vw, 1.5rem); }
+
+.simu {
+  padding: clamp(1.3rem, 2.5vw, 1.9rem);
+  background: var(--fond);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon-l);
+  box-shadow: var(--ombre-1);
+}
+
+.simu__tete { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem; }
+.simu__tete .carte__icone { flex: none; width: 46px; height: 46px; margin: 0; }
+.simu__tete h3 { margin-bottom: .3rem; }
+.simu__tete p { color: var(--encre-douce); font-size: .95rem; max-width: 70ch; }
+
+.simu__corps {
+  display: grid;
+  gap: clamp(1.25rem, 3vw, 2.25rem);
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+}
+@media (min-width: 720px) {
+  .simu__corps { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); }
+}
+
+.simu__form { display: grid; gap: .9rem; }
+.simu__unite { color: var(--encre-tenue); font-weight: 400; }
+
+.simu__sortie {
+  padding: 1.15rem 1.35rem;
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon-m);
+}
+
+.simu__ligne {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem 1rem;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: .5rem 0;
+  border-bottom: 1px solid var(--bordure);
+}
+.simu__ligne:last-child { border-bottom: 0; padding-bottom: 0; }
+
+.simu__cle { color: var(--encre-douce); font-size: .92rem; }
+.simu__val { font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; }
+
+/* Le résultat principal se détache : c'est la réponse à la question posée. */
+.simu__ligne--cle { padding-top: 0; }
+.simu__ligne--cle .simu__cle {
+  font-weight: 600;
+  color: var(--encre);
+  font-size: .82rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.simu__ligne--cle .simu__val {
+  font-size: clamp(1.4rem, 1.2rem + .9vw, 1.85rem);
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -.02em;
+}
+
+.simu__attente { color: var(--encre-tenue); font-size: .92rem; margin: 0; }
+.simu__alerte {
+  margin: 0;
+  color: var(--encre);
+  font-size: .92rem;
+  padding-left: .85rem;
+  border-left: 3px solid var(--accent-clair);
+}

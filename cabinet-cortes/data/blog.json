@@ -1,0 +1,19 @@
+{
+  "commentaire": "Index du blog du cabinet. Pour publier un article : dupliquer un fichier de blog/, en modifier le contenu, puis ajouter une entrée ici en tête de liste. Les articles sont des pages HTML autonomes — c'est elles que Google indexe ; ce fichier ne sert qu'à construire la liste.",
+  "articles": [
+    {
+      "fichier": "blog/veille-reglementaire.html",
+      "titre": "Notre cabinet au plus près de votre actualité de dirigeant, 24 h/24",
+      "date": "2026-09-18",
+      "categorie": "Le cabinet",
+      "resume": "Le cabinet suit les évolutions réglementaires et relaie chaque jour les nouveautés susceptibles d’impacter votre activité. Voici comment nous nous organisons, et ce que vous pouvez en attendre."
+    },
+    {
+      "fichier": "blog/modele-article.html",
+      "titre": "Modèle d’article — à dupliquer puis remplacer",
+      "date": "2026-09-18",
+      "categorie": "Modèle",
+      "resume": "Ce fichier sert de gabarit pour publier un nouvel article. Il est à retirer de data/blog.json avant la mise en ligne du site."
+    }
+  ]
+}

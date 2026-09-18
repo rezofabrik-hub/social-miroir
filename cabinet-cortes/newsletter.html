@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contact — Cabinet Corinne Cortes C3C, expert-comptable à Perpignan</title>
-  <meta name="description" content="Contactez le cabinet C3C à Perpignan : 04 68 50 41 10, 11 rue Jacques de Lacretelle, 66100 Perpignan. Premier rendez-vous sans engagement.">
-  <link rel="canonical" href="https://www.cabinetcortes-c3c.fr/contact.html">
+  <title>Newsletter du cabinet | Cabinet Corinne Cortes C3C</title>
+  <meta name="description" content="Recevez chaque mois la synthèse des nouveautés fiscales, sociales et juridiques utiles aux artisans, commerçants et TPE, par le cabinet C3C.">
+  <link rel="canonical" href="https://www.cabinetcortes-c3c.fr/newsletter.html">
   <meta name="theme-color" content="#615d5c">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Cabinet Corinne Cortes — C3C">
-  <meta property="og:title" content="Contact — Cabinet Corinne Cortes C3C, expert-comptable à Perpignan">
-  <meta property="og:description" content="Contactez le cabinet C3C à Perpignan : 04 68 50 41 10, 11 rue Jacques de Lacretelle, 66100 Perpignan. Premier rendez-vous sans engagement.">
-  <meta property="og:url" content="https://www.cabinetcortes-c3c.fr/contact.html">
+  <meta property="og:title" content="Newsletter du cabinet | Cabinet Corinne Cortes C3C">
+  <meta property="og:description" content="Recevez chaque mois la synthèse des nouveautés fiscales, sociales et juridiques utiles aux artisans, commerçants et TPE, par le cabinet C3C.">
+  <meta property="og:url" content="https://www.cabinetcortes-c3c.fr/newsletter.html">
   <meta property="og:image" content="https://www.cabinetcortes-c3c.fr/assets/img/logo-c3c.png">
   <meta property="og:locale" content="fr_FR">
   <meta name="twitter:card" content="summary">
@@ -47,8 +47,8 @@
         <a href="actualites.html">Actualités</a>
         <a href="blog.html">Blog</a>
         <a href="simulateurs.html">Outils</a>
-        <a href="newsletter.html">Newsletter</a>
-        <a href="contact.html" aria-current="page">Contact</a>
+        <a href="newsletter.html" aria-current="page">Newsletter</a>
+        <a href="contact.html">Contact</a>
         <a class="btn btn--primaire" href="contact.html">Prendre rendez-vous</a>
       </nav>
 
@@ -66,14 +66,14 @@
 
   <main id="contenu">
     <nav class="fil-ariane" aria-label="Fil d’Ariane">
-      <div class="contenu"><ol><li><a href="index.html">Accueil</a></li><li>Contact</li></ol></div>
+      <div class="contenu"><ol><li><a href="index.html">Accueil</a></li><li>Newsletter</li></ol></div>
     </nav>
 
     <section class="entete-page">
       <div class="contenu">
-        <span class="surtitre">Contact</span>
-        <h1>Parlons de votre entreprise</h1>
-        <p class="chapeau">Un premier échange ne coûte rien et clarifie souvent beaucoup de choses. Appelez le cabinet, écrivez-nous, ou passez nous voir sur rendez-vous.</p>
+        <span class="surtitre">Newsletter</span>
+        <h1>Recevez l’essentiel, une fois par mois</h1>
+        <p class="chapeau">Une synthèse mensuelle des nouveautés fiscales, sociales et juridiques qui concernent réellement les petites entreprises. Pas de démarchage, pas de revente d’adresses, désinscription en un clic.</p>
       </div>
     </section>
 
@@ -81,72 +81,52 @@
       <div class="contenu banniere__grille banniere__grille--haut">
 
         <div>
-          <h2>Écrire au cabinet</h2>
+          <h2>S’inscrire</h2>
           <p class="chapeau" style="margin-bottom:2rem">
-            Décrivez votre situation en quelques lignes. Nous revenons vers vous
-            sous 48 heures ouvrées.
+            Votre adresse sert uniquement à vous envoyer cette lettre. Elle n’est
+            transmise à personne.
           </p>
 
-          <!-- Site statique : aucun serveur ne traite l'envoi.
-               `data-endpoint` vide  -> le message s'ouvre dans la messagerie du
-               visiteur, pré-rempli. Aucune donnée ne transite par un tiers.
-               Pour un envoi direct, renseigner l'URL d'un service de formulaire
-               dans `data-endpoint` (voir README, section « Formulaire »). -->
+          <!-- Même mécanique que le formulaire de contact : `data-endpoint` vide
+               ouvre la messagerie du visiteur. Pour un envoi automatisé et une
+               vraie gestion des désinscriptions, renseigner ici l'URL d'un
+               service d'emailing (voir README, section « Newsletter »). -->
           <form class="formulaire" data-formulaire-contact
                 data-endpoint=""
                 data-courriel="cabinet.cortes@gmail.com"
                 method="post" action="mailto:cabinet.cortes@gmail.com">
 
-            <div class="formulaire__trio">
-              <div class="champ">
-                <label for="civilite">Civilité</label>
-                <select id="civilite" name="civilite">
-                  <option value="Madame">Madame</option>
-                  <option value="Monsieur">Monsieur</option>
-                  <option value="">Ne se prononce pas</option>
-                </select>
-              </div>
-              <div class="champ">
-                <label for="prenom">Prénom <span class="requis" aria-hidden="true">*</span></label>
-                <input type="text" id="prenom" name="prenom" autocomplete="given-name" required>
-              </div>
-              <div class="champ">
-                <label for="nom">Nom <span class="requis" aria-hidden="true">*</span></label>
-                <input type="text" id="nom" name="nom" autocomplete="family-name" required>
-              </div>
-            </div>
-
             <div class="formulaire__duo">
               <div class="champ">
-                <label for="courriel">Courriel <span class="requis" aria-hidden="true">*</span></label>
-                <input type="email" id="courriel" name="courriel" autocomplete="email" required>
+                <label for="prenom">Prénom</label>
+                <input type="text" id="prenom" name="prenom" autocomplete="given-name">
               </div>
               <div class="champ">
-                <label for="telephone">Téléphone</label>
-                <input type="tel" id="telephone" name="telephone" autocomplete="tel">
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" name="nom" autocomplete="family-name">
               </div>
             </div>
 
             <div class="champ">
-              <label for="sujet">Votre demande concerne</label>
+              <label for="courriel">Courriel <span class="requis" aria-hidden="true">*</span></label>
+              <input type="email" id="courriel" name="courriel" autocomplete="email" required>
+            </div>
+
+            <div class="champ">
+              <label for="sujet">Votre profil</label>
               <select id="sujet" name="sujet">
-                <option>Une création d’entreprise</option>
-                <option>Un changement de cabinet comptable</option>
-                <option>La comptabilité et les déclarations fiscales</option>
-                <option>La paie et les déclarations sociales</option>
-                <option>Un conseil en gestion ou un financement</option>
-                <option>Une question de patrimoine ou de rémunération</option>
-                <option>Autre sujet</option>
+                <option>Artisan ou commerçant</option>
+                <option>TPE ou société</option>
+                <option>Profession libérale</option>
+                <option>Exploitation agricole</option>
+                <option>Porteur de projet</option>
+                <option>Autre</option>
               </select>
             </div>
 
-            <div class="champ">
-              <label for="message">Votre message <span class="requis" aria-hidden="true">*</span></label>
-              <textarea id="message" name="message" required
-                        placeholder="Votre activité, votre forme juridique, ce qui vous amène…"></textarea>
-            </div>
+            <input type="hidden" name="message"
+                   value="Demande d’inscription à la newsletter du cabinet.">
 
-            <!-- Piège à robots : un champ que seul un automate remplit. -->
             <div class="pot-de-miel" aria-hidden="true">
               <label for="site-web">Ne pas remplir</label>
               <input type="text" id="site-web" name="site-web" tabindex="-1" autocomplete="off">
@@ -155,76 +135,45 @@
             <div class="champ champ--case">
               <input type="checkbox" id="rgpd" name="rgpd" required>
               <label for="rgpd">
-                J’accepte que les informations saisies soient utilisées par le cabinet
-                pour me recontacter. Elles ne sont ni cédées ni revendues.
+                J’accepte de recevoir la newsletter du cabinet et je peux me
+                désinscrire à tout moment.
                 <a href="mentions-legales.html#donnees">En savoir plus</a>.
               </label>
             </div>
 
             <div>
-              <button class="btn btn--primaire" type="submit">Envoyer ma demande</button>
+              <button class="btn btn--primaire" type="submit">Je m’inscris</button>
               <p class="aide" data-retour hidden role="status" style="margin-top:.75rem"></p>
             </div>
-
-            <p class="aide">
-              Les champs marqués d’un <span class="requis">*</span> sont obligatoires.
-              Votre courriel ne sera jamais publié.
-            </p>
           </form>
         </div>
 
         <div>
-          <h2>Coordonnées</h2>
-          <div class="coordonnees" style="margin-top:1.75rem">
-
-            <div class="coordonnee">
-              <span class="coordonnee__icone"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-              <div>
-                <h3>Téléphone</h3>
-                <p><a href="tel:+33468504110">04 68 50 41 10</a></p>
-              </div>
+          <h2>Au sommaire</h2>
+          <div class="etapes" style="margin-top:1.75rem">
+            <div class="etape">
+              <h3>Ce qui change ce mois-ci</h3>
+              <p>Les textes entrés en vigueur, résumés en quelques lignes, avec ce
+                 qu’ils impliquent concrètement pour une petite structure.</p>
             </div>
-
-            <div class="coordonnee">
-              <span class="coordonnee__icone"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
-              <div>
-                <h3>Courriel</h3>
-                <p><a href="mailto:cabinet.cortes@gmail.com">cabinet.cortes@gmail.com</a></p>
-              </div>
+            <div class="etape">
+              <h3>Les échéances à ne pas manquer</h3>
+              <p>Déclarations, paiements, formalités : les dates du mois à venir,
+                 pour que rien ne tombe au dernier moment.</p>
             </div>
-
-            <div class="coordonnee">
-              <span class="coordonnee__icone"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-              <div>
-                <h3>Adresse</h3>
-                <p>
-                  11 rue Jacques de Lacretelle<br>66100 Perpignan<br>
-                  <a href="https://www.openstreetmap.org/search?query=11+rue+Jacques+de+Lacretelle+66100+Perpignan"
-                     target="_blank" rel="noopener noreferrer">Voir le plan d’accès</a>
-                </p>
-              </div>
+            <div class="etape">
+              <h3>Un point de vigilance</h3>
+              <p>Un sujet que nous voyons revenir chez nos clients, expliqué avant
+                 qu’il ne devienne un problème.</p>
             </div>
-
-            <!-- HORAIRES : à confirmer par le cabinet avant mise en ligne
-                 (voir README, section « À compléter »). Aucune plage n'est
-                 affichée tant que l'information n'est pas vérifiée. -->
-            <div class="coordonnee">
-              <span class="coordonnee__icone"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
-              <div>
-                <h3>Rendez-vous</h3>
-                <p>Le cabinet vous reçoit sur rendez-vous. Appelez-nous ou écrivez-nous,
-                   nous convenons ensemble d’un créneau.</p>
-              </div>
-            </div>
-
           </div>
 
           <div class="note-source" style="margin-top:2.5rem">
-            <p><strong>Aucune carte intégrée, c’est volontaire.</strong></p>
+            <p><strong>Ce que nous ne ferons pas.</strong></p>
             <p>
-              Un plan interactif embarqué transmet votre adresse IP à son éditeur
-              dès l’ouverture de la page, avant même que vous ne cliquiez. Le lien
-              ci-dessus vous laisse décider.
+              Votre adresse ne sera ni cédée, ni louée, ni revendue, et ne servira
+              pas à du démarchage commercial. Chaque envoi comporte un lien de
+              désinscription immédiat.
             </p>
           </div>
         </div>
