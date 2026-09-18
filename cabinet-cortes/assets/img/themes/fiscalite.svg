@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" role="img"
+     aria-label="Illustration de la thématique fiscalite">
+  <defs>
+    <linearGradient id="fond-fiscalite" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fceef4"/>
+      <stop offset="100%" stop-color="#f9f0f4"/>
+    </linearGradient>
+    <clipPath id="cadre-fiscalite"><rect width="480" height="270"/></clipPath>
+  </defs>
+
+  <rect width="480" height="270" fill="url(#fond-fiscalite)"/>
+
+  <g clip-path="url(#cadre-fiscalite)" fill="none" stroke="#b02f68">
+    <circle cx="150" cy="190" r="125" stroke-width="22" opacity=".16"/>
+    <circle cx="310" cy="110" r="100" stroke-width="22" opacity=".10"/>
+    <circle cx="150" cy="190" r="91" stroke-width="2" opacity=".22"/>
+  </g>
+
+  <g transform="translate(46 87) scale(4)" fill="none" stroke="#b02f68"
+     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".62">
+    <rect x="4" y="2" width="16" height="20" rx="2"/>
+    <path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15v4M8 19h4"/>
+  </g>
+</svg>

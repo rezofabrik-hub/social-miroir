@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" role="img"
+     aria-label="Illustration de la thématique gestion">
+  <defs>
+    <linearGradient id="fond-gestion" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e7f4f0"/>
+      <stop offset="100%" stop-color="#f0f5f3"/>
+    </linearGradient>
+    <clipPath id="cadre-gestion"><rect width="480" height="270"/></clipPath>
+  </defs>
+
+  <rect width="480" height="270" fill="url(#fond-gestion)"/>
+
+  <g clip-path="url(#cadre-gestion)" fill="none" stroke="#2d7561">
+    <circle cx="330" cy="150" r="120" stroke-width="22" opacity=".16"/>
+    <circle cx="190" cy="240" r="105" stroke-width="22" opacity=".10"/>
+    <circle cx="330" cy="150" r="86" stroke-width="2" opacity=".22"/>
+  </g>
+
+  <g transform="translate(46 87) scale(4)" fill="none" stroke="#2d7561"
+     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".62">
+    
+    <path d="M3 3v16a2 2 0 0 0 2 2h16M7 15l3.5-4 3 2.5L20 7"/>
+  </g>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" role="img"
+     aria-label="Illustration de la thématique juridique">
+  <defs>
+    <linearGradient id="fond-juridique" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f1ecfa"/>
+      <stop offset="100%" stop-color="#f4f2f8"/>
+    </linearGradient>
+    <clipPath id="cadre-juridique"><rect width="480" height="270"/></clipPath>
+  </defs>
+
+  <rect width="480" height="270" fill="url(#fond-juridique)"/>
+
+  <g clip-path="url(#cadre-juridique)" fill="none" stroke="#6a4d9e">
+    <circle cx="260" cy="100" r="115" stroke-width="22" opacity=".16"/>
+    <circle cx="170" cy="230" r="140" stroke-width="22" opacity=".10"/>
+    <circle cx="260" cy="100" r="81" stroke-width="2" opacity=".22"/>
+  </g>
+
+  <g transform="translate(46 87) scale(4)" fill="none" stroke="#6a4d9e"
+     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".62">
+    
+    <path d="M12 3v18M7 21h10M12 6l-6 1.5L3 14a3 3 0 0 0 6 0L6 7.5M12 6l6 1.5L21 14a3 3 0 0 1-6 0l3-6.5"/>
+  </g>
+</svg>

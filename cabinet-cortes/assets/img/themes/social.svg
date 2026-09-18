@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" role="img"
+     aria-label="Illustration de la thématique social">
+  <defs>
+    <linearGradient id="fond-social" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e8f1f6"/>
+      <stop offset="100%" stop-color="#f0f4f6"/>
+    </linearGradient>
+    <clipPath id="cadre-social"><rect width="480" height="270"/></clipPath>
+  </defs>
+
+  <rect width="480" height="270" fill="url(#fond-social)"/>
+
+  <g clip-path="url(#cadre-social)" fill="none" stroke="#2b6a8a">
+    <circle cx="210" cy="120" r="105" stroke-width="22" opacity=".16"/>
+    <circle cx="330" cy="200" r="130" stroke-width="22" opacity=".10"/>
+    <circle cx="210" cy="120" r="71" stroke-width="2" opacity=".22"/>
+  </g>
+
+  <g transform="translate(46 87) scale(4)" fill="none" stroke="#2b6a8a"
+     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".62">
+    <circle cx="9" cy="7" r="4"/>
+    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+  </g>
+</svg>

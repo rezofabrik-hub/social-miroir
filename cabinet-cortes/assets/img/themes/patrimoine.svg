@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" role="img"
+     aria-label="Illustration de la thématique patrimoine">
+  <defs>
+    <linearGradient id="fond-patrimoine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fbf0e3"/>
+      <stop offset="100%" stop-color="#f7f3ef"/>
+    </linearGradient>
+    <clipPath id="cadre-patrimoine"><rect width="480" height="270"/></clipPath>
+  </defs>
+
+  <rect width="480" height="270" fill="url(#fond-patrimoine)"/>
+
+  <g clip-path="url(#cadre-patrimoine)" fill="none" stroke="#96591f">
+    <circle cx="180" cy="140" r="135" stroke-width="22" opacity=".16"/>
+    <circle cx="350" cy="230" r="110" stroke-width="22" opacity=".10"/>
+    <circle cx="180" cy="140" r="101" stroke-width="2" opacity=".22"/>
+  </g>
+
+  <g transform="translate(46 87) scale(4)" fill="none" stroke="#96591f"
+     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".62">
+    
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM9 12l2 2 4-4"/>
+  </g>
+</svg>

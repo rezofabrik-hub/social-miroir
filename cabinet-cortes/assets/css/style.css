@@ -172,15 +172,16 @@ hr {
 
 .evite {
   position: absolute;
-  left: -9999px;
+  left: 0;
   top: 0;
+  clip-path: inset(50%);
   background: var(--accent);
   color: #fff;
   padding: .75rem 1.25rem;
   z-index: 200;
   border-radius: 0 0 var(--rayon-s) 0;
 }
-.evite:focus { left: 0; }
+.evite:focus { clip-path: none; }
 
 /* --- 4. Éléments de titraille -------------------------------------------- */
 .surtitre {
@@ -591,35 +592,100 @@ a.carte:hover h3 { color: var(--accent); }
   pointer-events: none;
 }
 
-.actus { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
-
-.actu {
+.actus {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: grid;
-  grid-template-columns: 158px minmax(0, 1fr);
-  gap: 1.5rem;
-  padding: 1.4rem 1.5rem;
+  gap: clamp(1rem, 2vw, 1.6rem);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+}
+
+/* Carte d'actualité : visuel, pastille de date, titre, résumé.
+   Toute la carte est cliquable — d'où les <span> à l'intérieur du lien,
+   un bloc ne pouvant pas être imbriqué dans une ancre. */
+.actu {
+  display: flex;
   background: var(--fond);
   border: 1px solid var(--bordure);
   border-radius: var(--rayon-m);
-  transition: var(--transition);
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition),
+              border-color var(--transition);
 }
-.actu:hover { border-color: var(--bordure-forte); box-shadow: var(--ombre-2); }
-@media (max-width: 620px) {
-  .actu { grid-template-columns: 1fr; gap: .75rem; }
+.actu:hover {
+  transform: translateY(-3px);
+  border-color: var(--bordure-forte);
+  box-shadow: var(--ombre-3);
+}
+
+.actu__lien {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.actu__visuel { position: relative; display: block; background: var(--surface); }
+.actu__visuel img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+
+.actu__pastille {
+  position: absolute;
+  right: .7rem;
+  bottom: .7rem;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--fond);
+  color: var(--sujet, var(--accent));
+  box-shadow: var(--ombre-1);
 }
 
 .actu__date {
-  font-size: .82rem;
-  font-weight: 600;
-  line-height: 1.4;
-  color: var(--encre-tenue);
-  padding-top: .2rem;
+  position: absolute;
+  left: .7rem;
+  top: .7rem;
+  display: grid;
+  justify-items: center;
+  padding: .35rem .6rem;
+  border-radius: var(--rayon-s);
+  background: var(--fond);
+  box-shadow: var(--ombre-2);
+  line-height: 1.05;
 }
-.actu__titre { margin: 0 0 .4rem; font-size: 1.08rem; }
-.actu__titre a { color: var(--encre); text-decoration: none; }
-.actu__titre a:hover { color: var(--accent); }
-.actu__resume { margin: 0 0 .7rem; color: var(--encre-douce); font-size: .95rem; }
-.actu__meta { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+.actu__jour { font-size: 1.05rem; font-weight: 700; color: var(--encre); }
+.actu__mois {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--encre-tenue);
+}
+
+.actu__corps {
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+  padding: 1.1rem 1.25rem 1.25rem;
+  flex: 1;
+}
+
+.actu__titre {
+  font-size: 1.02rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -.01em;
+  color: var(--encre);
+  transition: color var(--transition);
+  text-wrap: pretty;
+}
+.actu__lien:hover .actu__titre { color: var(--sujet, var(--accent)); }
+
+.actu__resume { font-size: .92rem; color: var(--encre-douce); flex: 1; }
+.actu__meta { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; margin-top: .2rem; }
 
 .etiquette {
   display: inline-flex;
@@ -718,7 +784,11 @@ a.carte:hover h3 { color: var(--accent); }
   color: var(--accent);
 }
 .coordonnee h3 { font-size: 1rem; margin-bottom: .15rem; }
-.coordonnee p, .coordonnee a { font-size: .97rem; color: var(--encre-douce); }
+.coordonnee p, .coordonnee a {
+  font-size: .97rem;
+  color: var(--encre-douce);
+  overflow-wrap: anywhere;
+}
 .coordonnee a { font-weight: 600; text-decoration: none; }
 .coordonnee a:hover { color: var(--accent); }
 
@@ -765,7 +835,9 @@ a.carte:hover h3 { color: var(--accent); }
 .pied ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; }
 .pied a { color: var(--sur-sombre-tenu); text-decoration: none; }
 .pied a:hover { color: var(--accent-clair); }
-.pied address { font-style: normal; line-height: 1.7; }
+/* Une adresse de courriel ne comporte aucune coupure naturelle : sans cette
+   règle elle déborde de sa colonne sur les petits écrans. */
+.pied address { font-style: normal; line-height: 1.7; overflow-wrap: anywhere; }
 
 .pied__bas {
   display: flex;
@@ -977,30 +1049,9 @@ a.carte:hover h3 { color: var(--accent); }
   :root:not([data-theme="light"]) .actu--creation   { --sujet: #e8907a; --sujet-voile: #331f1b; }
 }
 
-.actu__repere { display: flex; align-items: flex-start; gap: .75rem; }
-
-.actu__pastille {
-  display: grid;
-  place-items: center;
-  flex: none;
-  width: 38px;
-  height: 38px;
-  border-radius: 11px;
-  background: var(--sujet-voile, var(--surface));
-  color: var(--sujet, var(--accent));
-}
-
-/* Un liseré discret redonne au fil le rythme visuel qu'apportait une image. */
-.actu { border-left: 3px solid var(--sujet, var(--bordure)); }
-
 .actu .etiquette {
   background: var(--sujet-voile, var(--accent-voile));
   color: var(--sujet, var(--accent));
-}
-
-@media (max-width: 620px) {
-  .actu__repere { align-items: center; }
-  .actu__date { padding-top: 0; }
 }
 
 .filtre { display: inline-flex; align-items: center; gap: .45rem; }

@@ -76,33 +76,41 @@
     });
   }
 
+  var moisCourt = new Intl.DateTimeFormat('fr-FR', { month: 'short' });
+  var dossierVisuels = conteneur.getAttribute('data-visuels') || 'assets/img/themes/';
+
   function gabarit(a) {
     var date = new Date(a.date);
     var t = repere(a.theme);
 
     return '' +
       '<li class="actu actu--' + t.cle + '">' +
-        '<div class="actu__repere">' +
-          '<span class="actu__pastille" aria-hidden="true">' +
-            '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" ' +
-            'stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">' + t.icone + '</svg>' +
+        '<a class="actu__lien" href="' + encodeURI(a.lien) + '"' +
+           ' target="_blank" rel="noopener noreferrer">' +
+
+          '<span class="actu__visuel">' +
+            '<img src="' + dossierVisuels + t.cle + '.svg" alt="" aria-hidden="true"' +
+                 ' width="480" height="270" loading="lazy" decoding="async">' +
+            '<span class="actu__pastille" aria-hidden="true">' +
+              '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" ' +
+              'stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + t.icone + '</svg>' +
+            '</span>' +
+            '<time class="actu__date" datetime="' + a.date.slice(0, 10) + '">' +
+              '<span class="actu__jour">' + date.getDate() + '</span>' +
+              '<span class="actu__mois">' + moisCourt.format(date).replace('.', '') + '</span>' +
+            '</time>' +
           '</span>' +
-          '<div class="actu__date"><time datetime="' + a.date.slice(0, 10) + '">' +
-            formatDate.format(date) +
-          '</time></div>' +
-        '</div>' +
-        '<div>' +
-          '<h3 class="actu__titre">' +
-            '<a href="' + encodeURI(a.lien) + '" target="_blank" rel="noopener noreferrer">' +
-              echapper(a.titre) +
-            '</a>' +
-          '</h3>' +
-          (a.resume ? '<p class="actu__resume">' + echapper(a.resume) + '</p>' : '') +
-          '<p class="actu__meta">' +
-            '<span class="etiquette">' + echapper(a.theme) + '</span>' +
-            '<span class="etiquette etiquette--source">' + echapper(a.source) + '</span>' +
-          '</p>' +
-        '</div>' +
+
+          '<span class="actu__corps">' +
+            '<span class="actu__titre">' + echapper(a.titre) + '</span>' +
+            (a.resume ? '<span class="actu__resume">' + echapper(a.resume) + '</span>' : '') +
+            '<span class="actu__meta">' +
+              '<span class="etiquette">' + echapper(a.theme) + '</span>' +
+              '<span class="etiquette etiquette--source">' + echapper(a.source) + '</span>' +
+            '</span>' +
+          '</span>' +
+
+        '</a>' +
       '</li>';
   }
 
