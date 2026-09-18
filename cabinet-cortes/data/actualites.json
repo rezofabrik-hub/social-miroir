@@ -1,5 +1,5 @@
 {
-  "genereLe": "2026-09-18T14:27:03.058Z",
+  "genereLe": "2026-09-18T15:21:44.559Z",
   "nombre": 150,
   "themes": [
     "Création d’entreprise",
@@ -39,6 +39,16 @@
     }
   ],
   "articles": [
+    {
+      "titre": "Ce qu’il faut savoir sur les titres-restaurant en tant que salarié",
+      "resume": "Le titre-restaurant permet à des millions de bénéficiaires en France de se restaurer chaque jour dans des milliers d’établissements affiliés. Qui peut en obtenir ? Quel est son montant ? Que permet-il d’acheter ? On fait le tour…",
+      "lien": "https://www.economie.gouv.fr/particuliers/vie-en-entreprise/ce-quil-faut-savoir-sur-les-titres-restaurant-en-tant-que-salarie",
+      "date": "2026-09-18T16:34:46.000Z",
+      "theme": "Social",
+      "source": "economie.gouv.fr",
+      "sourceId": "economie-gouv",
+      "editeur": "Ministère de l'Économie et des Finances"
+    },
     {
       "titre": "Une majoration temporaire des indemnités kilométriques pour les agents publics",
       "resume": "Pour pallier la hausse des prix des carburants, le barème des indemnités kilométriques s’appliquant aux déplacements des personnels de l’État est revalorisé de 3,2 % au 1 er juin 2026, de manière temporaire.",
@@ -144,16 +154,6 @@
       "resume": "Vous venez de recevoir un SMS vous indiquant qu’un colis sera bientôt livré chez vous : comment savoir qu’il s’agit bien d’une « vraie » livraison et non une tentative d’arnaque ? Comment réagir face à ce type de message ?…",
       "lien": "https://www.economie.gouv.fr/particuliers/numerique-et-cybersecurite/smishing-comment-reagir-face-aux-sms-frauduleux-de-livraison-de-colis",
       "date": "2026-09-14T15:07:42.000Z",
-      "theme": "Gestion",
-      "source": "economie.gouv.fr",
-      "sourceId": "economie-gouv",
-      "editeur": "Ministère de l'Économie et des Finances"
-    },
-    {
-      "titre": "Arnaque au CPF : comment protéger son compte formation ?",
-      "resume": "Vous êtes contacté par téléphone, courriel, SMS ou sur les réseaux sociaux par une personne qui prétend représenter Mon Compte Formation ou un autre organisme ? Il peut s’agir d’une tentative d’arnaque au CPF visant à vous…",
-      "lien": "https://www.economie.gouv.fr/particuliers/numerique-et-cybersecurite/arnaque-au-cpf-comment-proteger-son-compte-formation",
-      "date": "2026-09-14T14:44:04.000Z",
       "theme": "Gestion",
       "source": "economie.gouv.fr",
       "sourceId": "economie-gouv",
