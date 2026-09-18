@@ -37,24 +37,26 @@
 
   /* Repère visuel par thématique.
    *
+   * `visuel` est le nom du fichier affiché en tête de carte. Pour passer à de
+   * vraies photographies, déposer six images dans assets/img/themes/ et
+   * remplacer les six noms ci-dessous — rien d'autre ne change.
+   *
    * Remplace l'image d'illustration : une liste de 150 actualités se parcourt
    * mieux avec un marqueur qui porte une information (le sujet) qu'avec des
    * photos de banque d'images qui n'en portent aucune. Chaque repère reste
    * doublé par l'étiquette écrite — la couleur n'est jamais seule à informer.
    */
   var THEMES = {
-    'Social':                { cle: 'social',     icone: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>' },
-    'Fiscalité':             { cle: 'fiscalite',  icone: '<rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15v4M8 19h4"/>' },
-    'Juridique':             { cle: 'juridique',  icone: '<path d="M12 3v18M7 21h10M12 6l-6 1.5L3 14a3 3 0 0 0 6 0L6 7.5M12 6l6 1.5L21 14a3 3 0 0 1-6 0l3-6.5"/>' },
-    'Gestion':               { cle: 'gestion',    icone: '<path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 15l3.5-4 3 2.5L20 7"/>' },
-    'Patrimoine':            { cle: 'patrimoine', icone: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>' },
-    'Création d\u2019entreprise': { cle: 'creation', icone: '<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>' }
+    'Social':                { cle: 'social',     visuel: 'social.svg',     icone: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>' },
+    'Fiscalité':             { cle: 'fiscalite',  visuel: 'fiscalite.svg',  icone: '<rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15v4M8 19h4"/>' },
+    'Juridique':             { cle: 'juridique',  visuel: 'juridique.svg',  icone: '<path d="M12 3v18M7 21h10M12 6l-6 1.5L3 14a3 3 0 0 0 6 0L6 7.5M12 6l6 1.5L21 14a3 3 0 0 1-6 0l3-6.5"/>' },
+    'Gestion':               { cle: 'gestion',    visuel: 'gestion.svg',    icone: '<path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 15l3.5-4 3 2.5L20 7"/>' },
+    'Patrimoine':            { cle: 'patrimoine', visuel: 'patrimoine.svg', icone: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>' },
+    'Création d\u2019entreprise': { cle: 'creation', visuel: 'creation.svg', icone: '<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>' }
   };
 
   function repere(theme) {
-    var t = THEMES[theme];
-    if (!t) return { cle: 'gestion', icone: THEMES.Gestion.icone };
-    return t;
+    return THEMES[theme] || THEMES.Gestion;
   }
 
   function echapper(texte) {
@@ -89,7 +91,7 @@
            ' target="_blank" rel="noopener noreferrer">' +
 
           '<span class="actu__visuel">' +
-            '<img src="' + dossierVisuels + t.cle + '.svg" alt="" aria-hidden="true"' +
+            '<img src="' + dossierVisuels + t.visuel + '" alt="" aria-hidden="true"' +
                  ' width="480" height="270" loading="lazy" decoding="async">' +
             '<span class="actu__pastille" aria-hidden="true">' +
               '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" ' +

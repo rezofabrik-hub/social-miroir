@@ -389,3 +389,79 @@ indices-là, eux, servent.
 format est repris sous la forme d'une catégorie « En bref » du blog, alimentée
 par le cabinet. Si des vidéos sont tournées un jour, elles s'intégreront à ces
 articles.
+
+
+---
+
+## Remplacer les illustrations par de vraies photos
+
+Les six visuels du fil d'actualités sont des fichiers comme les autres :
+`assets/img/themes/social.svg`, `fiscalite.svg`, `juridique.svg`,
+`gestion.svg`, `patrimoine.svg`, `creation.svg`.
+
+Pour passer à la photographie :
+
+1. Préparer six images en 16/9, **1200 × 675 px** suffit largement, compressées
+   en JPEG de qualité 80 (viser moins de 150 Ko chacune).
+2. Les déposer dans `assets/img/themes/` sous les mêmes noms, avec l'extension
+   `.jpg`.
+3. Ouvrir `assets/js/actualites.js` et corriger les six champs `visuel` de la
+   constante `THEMES` — `'social.svg'` devient `'social.jpg'`, etc. Rien d'autre
+   ne change.
+
+Six images suffisent pour illustrer cent cinquante actualités qui se
+renouvellent seules : c'est le seul modèle qui tienne avec un fil automatique.
+Associer une photo différente à chaque article supposerait de les choisir à la
+main chaque matin.
+
+**Ce qu'il ne faut pas faire** : reprendre les photos du site actuel. Elles
+appartiennent à son éditeur, pas au cabinet.
+
+## Mise en ligne, pas à pas
+
+Le dossier `cabinet-cortes/` est la racine du site. Il n'y a rien à compiler.
+
+### 1. Un dépôt dédié
+
+Le site vit pour l'instant dans un dépôt qui sert à autre chose. Il lui faut le
+sien : créer un dépôt GitHub (public — Pages est gratuit sur les dépôts
+publics ; un dépôt privé demande un abonnement) et y placer le **contenu** de
+`cabinet-cortes/`, pas le dossier lui-même. `index.html` doit se trouver à la
+racine du dépôt.
+
+### 2. Activer GitHub Pages
+
+Dans le dépôt : **Settings → Pages → Source : Deploy from a branch**, branche
+`main`, dossier `/ (root)`. Le site est en ligne quelques minutes plus tard sur
+une adresse en `github.io`. C'est cette adresse qui sert à tout vérifier avant
+de toucher au vrai domaine.
+
+### 3. Remettre le workflow des actualités
+
+Copier `.github/workflows/actualites-cabinet-cortes.yml` dans le nouveau dépôt
+et retirer le préfixe `cabinet-cortes/` du chemin du script, qui devient
+`node scripts/fetch-actualites.mjs`. La mise à jour quotidienne démarre au
+prochain déclenchement — GitHub n'exécute les tâches planifiées que depuis la
+branche par défaut.
+
+### 4. Le domaine, en dernier
+
+**Ne pas basculer `cabinetcortes-c3c.fr` avant d'avoir réglé le contrat en
+cours.** Tant que l'abonnement court, le domaine reste pointé sur le site
+actuel.
+
+Quand le moment vient : ajouter un fichier `CNAME` à la racine du dépôt
+contenant `www.cabinetcortes-c3c.fr`, puis créer chez le registrar un
+enregistrement CNAME `www` vers `<compte>.github.io`. Cocher ensuite
+« Enforce HTTPS » dans les réglages Pages.
+
+Prévoir aussi les redirections 301 depuis les anciennes adresses (`/blog`,
+`/actualites-ec`, `/mentions-legales-rgpd`) pour ne pas perdre le référencement
+acquis.
+
+### Hébergement classique
+
+Un hébergeur mutualisé fait aussi l'affaire : copier le contenu du dossier dans
+le répertoire public. Il faudra alors une autre mécanique pour le fil
+quotidien — une tâche cron exécutant le script, ou un workflow GitHub qui
+dépose le JSON par FTP.
