@@ -595,7 +595,7 @@ a.carte:hover h3 { color: var(--accent); }
 
 .actu {
   display: grid;
-  grid-template-columns: 112px minmax(0, 1fr);
+  grid-template-columns: 158px minmax(0, 1fr);
   gap: 1.5rem;
   padding: 1.4rem 1.5rem;
   background: var(--fond);
@@ -947,3 +947,68 @@ a.carte:hover h3 { color: var(--accent); }
   padding-left: .85rem;
   border-left: 3px solid var(--accent-clair);
 }
+
+/* --- 19. Repères de thématique du fil d'actualités ------------------------
+   Six sujets, six teintes. La couleur est un raccourci de lecture, jamais
+   l'unique information : chaque actualité porte aussi l'icône du sujet et son
+   nom écrit en toutes lettres. Les teintes sont assez éloignées les unes des
+   autres pour rester distinguables en cas de daltonisme, et de toute façon
+   redondantes avec le texte. */
+.actu--social     { --sujet: #2b6a8a; --sujet-voile: #e8f1f6; }
+.actu--fiscalite  { --sujet: #b02f68; --sujet-voile: #fceef4; }
+.actu--juridique  { --sujet: #6a4d9e; --sujet-voile: #f1ecfa; }
+.actu--gestion    { --sujet: #2d7561; --sujet-voile: #e7f4f0; }
+.actu--patrimoine { --sujet: #96591f; --sujet-voile: #fbf0e3; }
+.actu--creation   { --sujet: #b8452a; --sujet-voile: #fdeee9; }
+
+:root[data-theme="dark"] .actu--social     { --sujet: #77b6d6; --sujet-voile: #1d2b33; }
+:root[data-theme="dark"] .actu--fiscalite  { --sujet: #f28cb6; --sujet-voile: #33222a; }
+:root[data-theme="dark"] .actu--juridique  { --sujet: #b49ce4; --sujet-voile: #272235; }
+:root[data-theme="dark"] .actu--gestion    { --sujet: #6ec0a8; --sujet-voile: #1d2e2a; }
+:root[data-theme="dark"] .actu--patrimoine { --sujet: #d9a166; --sujet-voile: #322720; }
+:root[data-theme="dark"] .actu--creation   { --sujet: #e8907a; --sujet-voile: #331f1b; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .actu--social     { --sujet: #77b6d6; --sujet-voile: #1d2b33; }
+  :root:not([data-theme="light"]) .actu--fiscalite  { --sujet: #f28cb6; --sujet-voile: #33222a; }
+  :root:not([data-theme="light"]) .actu--juridique  { --sujet: #b49ce4; --sujet-voile: #272235; }
+  :root:not([data-theme="light"]) .actu--gestion    { --sujet: #6ec0a8; --sujet-voile: #1d2e2a; }
+  :root:not([data-theme="light"]) .actu--patrimoine { --sujet: #d9a166; --sujet-voile: #322720; }
+  :root:not([data-theme="light"]) .actu--creation   { --sujet: #e8907a; --sujet-voile: #331f1b; }
+}
+
+.actu__repere { display: flex; align-items: flex-start; gap: .75rem; }
+
+.actu__pastille {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: var(--sujet-voile, var(--surface));
+  color: var(--sujet, var(--accent));
+}
+
+/* Un liseré discret redonne au fil le rythme visuel qu'apportait une image. */
+.actu { border-left: 3px solid var(--sujet, var(--bordure)); }
+
+.actu .etiquette {
+  background: var(--sujet-voile, var(--accent-voile));
+  color: var(--sujet, var(--accent));
+}
+
+@media (max-width: 620px) {
+  .actu__repere { align-items: center; }
+  .actu__date { padding-top: 0; }
+}
+
+.filtre { display: inline-flex; align-items: center; gap: .45rem; }
+.filtre__point { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+.filtre__point--social     { background: #2b6a8a; }
+.filtre__point--fiscalite  { background: #b02f68; }
+.filtre__point--juridique  { background: #6a4d9e; }
+.filtre__point--gestion    { background: #2d7561; }
+.filtre__point--patrimoine { background: #96591f; }
+.filtre__point--creation   { background: #b8452a; }
+.filtre[aria-pressed="true"] .filtre__point { background: currentColor; }
