@@ -1,0 +1,53 @@
+# Met à jour chaque jour le fil d'actualités du site du Cabinet Corinne Cortes.
+#
+# Le script interroge les flux RSS publics (Service Public Entreprendre,
+# economie.gouv.fr, BOFiP) et réécrit cabinet-cortes/data/actualites.json.
+# Le commit n'a lieu que si le contenu a réellement changé, pour ne pas
+# empiler des commits vides dans l'historique.
+#
+# GitHub n'exécute les tâches planifiées que depuis la branche par défaut :
+# ce workflow ne se déclenchera donc qu'une fois la branche fusionnée. En
+# attendant, « Run workflow » depuis l'onglet Actions permet de le lancer
+# à la main.
+
+name: Fil d'actualités — Cabinet C3C
+
+on:
+  schedule:
+    - cron: '20 5 * * *'   # 5 h 20 UTC, soit ~7 h 20 à Paris
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: actualites-c3c
+  cancel-in-progress: false
+
+jobs:
+  mettre-a-jour:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Installer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Récupérer les flux officiels
+        run: node cabinet-cortes/scripts/fetch-actualites.mjs
+
+      - name: Publier si le fil a changé
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- cabinet-cortes/data/actualites.json; then
+            echo "Fil inchangé : rien à publier."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cabinet-cortes/data/actualites.json
+          git commit -m "Actualités C3C : mise à jour automatique du fil"
+          git push

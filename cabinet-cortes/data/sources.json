@@ -1,0 +1,32 @@
+{
+  "commentaire": "Flux RSS publics et officiels agrégés par le fil d'actualités. Pour ajouter une source, ajoutez un objet ici : le script scripts/fetch-actualites.mjs le prendra en compte à la prochaine exécution. `theme` force une thématique ; s'il vaut null, la thématique est déduite du titre et du résumé.",
+  "sources": [
+    {
+      "id": "service-public-pro",
+      "nom": "Service Public Entreprendre",
+      "editeur": "DILA — Premier ministre",
+      "url": "https://www.service-public.fr/abonnements/rss/actu-actu-pro.rss",
+      "site": "https://entreprendre.service-public.fr/",
+      "theme": null,
+      "actif": true
+    },
+    {
+      "id": "bofip",
+      "nom": "BOFiP-Impôts",
+      "editeur": "Direction générale des Finances publiques",
+      "url": "https://bofip.impots.gouv.fr/bofip/ext/rss/last-rss.xml",
+      "site": "https://bofip.impots.gouv.fr/",
+      "theme": "Fiscalité",
+      "actif": true
+    },
+    {
+      "id": "economie-gouv",
+      "nom": "economie.gouv.fr",
+      "editeur": "Ministère de l'Économie et des Finances",
+      "url": "https://www.economie.gouv.fr/rss/toutesactualites",
+      "site": "https://www.economie.gouv.fr/",
+      "theme": null,
+      "actif": true
+    }
+  ]
+}

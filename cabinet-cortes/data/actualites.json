@@ -1,0 +1,1543 @@
+{
+  "genereLe": "2026-09-18T14:09:31.134Z",
+  "nombre": 150,
+  "themes": [
+    "Création d’entreprise",
+    "Fiscalité",
+    "Gestion",
+    "Juridique",
+    "Patrimoine",
+    "Social"
+  ],
+  "sources": [
+    {
+      "id": "service-public-pro",
+      "nom": "Service Public Entreprendre",
+      "url": "https://www.service-public.fr/abonnements/rss/actu-actu-pro.rss",
+      "site": "https://entreprendre.service-public.fr/",
+      "ok": true,
+      "articles": 243,
+      "erreur": null
+    },
+    {
+      "id": "bofip",
+      "nom": "BOFiP-Impôts",
+      "url": "https://bofip.impots.gouv.fr/bofip/ext/rss/last-rss.xml",
+      "site": "https://bofip.impots.gouv.fr/",
+      "ok": true,
+      "articles": 8,
+      "erreur": null
+    },
+    {
+      "id": "economie-gouv",
+      "nom": "economie.gouv.fr",
+      "url": "https://www.economie.gouv.fr/rss/toutesactualites",
+      "site": "https://www.economie.gouv.fr/",
+      "ok": true,
+      "articles": 10,
+      "erreur": null
+    }
+  ],
+  "articles": [
+    {
+      "titre": "Une majoration temporaire des indemnités kilométriques pour les agents publics",
+      "resume": "Pour pallier la hausse des prix des carburants, le barème des indemnités kilométriques s’appliquant aux déplacements des personnels de l’État est revalorisé de 3,2 % au 1 er juin 2026, de manière temporaire.",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A18943?xtor=RSS-112",
+      "date": "2026-09-17T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Quelle est la fiscalité de l’assurance-vie ?",
+      "resume": "L’assurance-vie est un placement financier qui vous permet d’épargner en vue de vous constituer un capital à moyen et long terme pour financer des projets, préparer votre retraite ou encore votre succession. Quelle est la…",
+      "lien": "https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/quelle-est-la-fiscalite-de-lassurance-vie",
+      "date": "2026-09-17T12:28:58.000Z",
+      "theme": "Patrimoine",
+      "source": "economie.gouv.fr",
+      "sourceId": "economie-gouv",
+      "editeur": "Ministère de l'Économie et des Finances"
+    },
+    {
+      "titre": "Publication des indicateurs de la Programmation pluriannuelle de l’énergie",
+      "resume": "La Programmation pluriannuelle de l’énergie (PPE) fixe les orientations et priorités d’action des pouvoirs publics pour la gestion de l’ensemble des formes d’énergie sur le territoire hexagonal. Découvrez les indicateurs.",
+      "lien": "https://www.economie.gouv.fr/actualites/publication-des-indicateurs-de-la-programmation-pluriannuelle-de-lenergie",
+      "date": "2026-09-17T09:51:40.000Z",
+      "theme": "Gestion",
+      "source": "economie.gouv.fr",
+      "sourceId": "economie-gouv",
+      "editeur": "Ministère de l'Économie et des Finances"
+    },
+    {
+      "titre": "Semaine de l’industrie : ouverture des labellisations pour la 15e édition",
+      "resume": "Le coup d’envoi de la 15e édition de la Semaine de l’industrie est donné avec l’ouverture des labellisations des évènements. Les entreprises, les fédérations industrielles et les établissements scolaires et de formation ont…",
+      "lien": "https://www.economie.gouv.fr/actualites/semaine-de-lindustrie-ouverture-des-labellisations-pour-la-15e-edition",
+      "date": "2026-09-16T17:14:42.000Z",
+      "theme": "Gestion",
+      "source": "economie.gouv.fr",
+      "sourceId": "economie-gouv",
+      "editeur": "Ministère de l'Économie et des Finances"
+    },
+    {
+      "titre": "Associations : pensez à déclarer les dons reçus avant la fin de l'année",
+      "resume": "Vous recevez des dons et vous émettez des reçus fiscaux ? Vous avez l’obligation de déclarer à l’administration fiscale le nombre de reçus émis et le montant des dons et versements reçus au cours de l’année. On fait le point.",
+      "lien": "https://www.economie.gouv.fr/entreprises/gerer-sa-fiscalite-et-ses-impots/autres-impots-et-taxes/associations-pensez-declarer-les-dons-recus-avant-la-fin-de-lannee",
+      "date": "2026-09-16T15:16:03.000Z",
+      "theme": "Fiscalité",
+      "source": "economie.gouv.fr",
+      "sourceId": "economie-gouv",
+      "editeur": "Ministère de l'Économie et des Finances"
+    },
+    {
+      "titre": "Investissement locatif : comment choisir entre la location de courte et longue durée ?",
+      "resume": "Dans le cadre d’un investissement locatif, vous pouvez mettre votre bien en location pour une courte ou une longue durée. Avant d’opter pour l'une de ces solutions, et selon votre situation personnelle, il est important de…",
+      "lien": "https://www.economie.gouv.fr/particuliers/gerer-mon-argent/investir-dans-limmobilier/investissement-locatif-comment-choisir-entre-la-location-de-courte-et-longue-duree",
+      "date": "2026-09-16T10:02:00.000Z",
+      "theme": "Gestion",
+      "source": "economie.gouv.fr",
+      "sourceId": "economie-gouv",
+      "editeur": "Ministère de l'Économie et des Finances"
+    },
+    {
+      "titre": "Assurance vie et assurance décès : quelles différences ?",
+      "resume": "La confusion est courante entre l’assurance-vie et l’assurance décès, bien qu'il s'agisse de deux types de contrat très différents. Quelles sont les caractéristiques de ces contrats ? Comment et à quelle fin pouvez-vous les…",
+      "lien": "https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/assurance-vie-et-assurance-deces-quelles-differences",
+      "date": "2026-09-15T16:03:03.000Z",
+      "theme": "Patrimoine",
+      "source": "economie.gouv.fr",
+      "sourceId": "economie-gouv",
+      "editeur": "Ministère de l'Économie et des Finances"
+    },
+    {
+      "titre": "Lutte contre les fraudes : la Douane et la DGCCRF renforcent leur coopération",
+      "resume": "La direction générale de la Concurrence, de la Consommation et de la Répression des Fraudes (DGCCRF) et la direction générale des Douanes et Droits Indirects (DGDDI) ont signé le 14 septembre un nouveau protocole de coopération…",
+      "lien": "https://www.economie.gouv.fr/actualites/lutte-contre-les-fraudes-la-douane-et-la-dgccrf-renforcent-leur-cooperation",
+      "date": "2026-09-15T15:02:42.000Z",
+      "theme": "Gestion",
+      "source": "economie.gouv.fr",
+      "sourceId": "economie-gouv",
+      "editeur": "Ministère de l'Économie et des Finances"
+    },
+    {
+      "titre": "Prélèvement à la source des cotisations sociales par les plateformes : quel calendrier ?",
+      "resume": "Vous êtes auto-entrepreneur (micro-entrepreneur) ? Vous exercez votre activité professionnelle par l’intermédiaire d’une plateforme numérique ? À partir de 2027, vos cotisations sociales seront prélevées à la source par les…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18550?xtor=RSS-112",
+      "date": "2026-09-14T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "[Vidéo] Le Gouvernement prend des mesures d’économies de 1,3 milliard d’euros sur le budget 2026",
+      "resume": "Roland Lescure, ministre de l'Économie, des Finances et de la Souveraineté industrielle, énergétique et numérique, a actualisé le scénario macroéconomique du Gouvernement, lors d'une conférence de presse vendredi 11 septembre.…",
+      "lien": "https://www.economie.gouv.fr/actualites/video-le-gouvernement-prend-des-mesures-deconomies-de-13-milliard-deuros-sur-le-budget-2026",
+      "date": "2026-09-14T15:53:34.000Z",
+      "theme": "Gestion",
+      "source": "economie.gouv.fr",
+      "sourceId": "economie-gouv",
+      "editeur": "Ministère de l'Économie et des Finances"
+    },
+    {
+      "titre": "Smishing : comment réagir face aux SMS frauduleux de livraison de colis ?",
+      "resume": "Vous venez de recevoir un SMS vous indiquant qu’un colis sera bientôt livré chez vous : comment savoir qu’il s’agit bien d’une « vraie » livraison et non une tentative d’arnaque ? Comment réagir face à ce type de message ?…",
+      "lien": "https://www.economie.gouv.fr/particuliers/numerique-et-cybersecurite/smishing-comment-reagir-face-aux-sms-frauduleux-de-livraison-de-colis",
+      "date": "2026-09-14T15:07:42.000Z",
+      "theme": "Gestion",
+      "source": "economie.gouv.fr",
+      "sourceId": "economie-gouv",
+      "editeur": "Ministère de l'Économie et des Finances"
+    },
+    {
+      "titre": "Arnaque au CPF : comment protéger son compte formation ?",
+      "resume": "Vous êtes contacté par téléphone, courriel, SMS ou sur les réseaux sociaux par une personne qui prétend représenter Mon Compte Formation ou un autre organisme ? Il peut s’agir d’une tentative d’arnaque au CPF visant à vous…",
+      "lien": "https://www.economie.gouv.fr/particuliers/numerique-et-cybersecurite/arnaque-au-cpf-comment-proteger-son-compte-formation",
+      "date": "2026-09-14T14:44:04.000Z",
+      "theme": "Gestion",
+      "source": "economie.gouv.fr",
+      "sourceId": "economie-gouv",
+      "editeur": "Ministère de l'Économie et des Finances"
+    },
+    {
+      "titre": "L’aide au carburant pour les entreprises du bâtiment et des travaux publics est prolongée",
+      "resume": "Les entreprises du secteur du bâtiment et des travaux publics utilisant du gazole non routier peuvent solliciter une aide exceptionnelle. Cette mesure a été mise en place en mai 2026 suite à la hausse des prix du carburant dans…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18905?xtor=RSS-112",
+      "date": "2026-09-09T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Le projet de loi pour la transparence salariale a été présenté en Conseil des ministres",
+      "resume": "La directive sur la transparence salariale a été adoptée le 10 mai 2023. Le projet de loi de transposition de cette directive en droit français a été présenté en Conseil des ministres le 10 septembre.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A19060?xtor=RSS-112",
+      "date": "2026-09-09T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "LETTRE - TVA - Modèles de mention valant certification pour des travaux de rénovation au sens de l’article 279-0 bis du CGI et de l’article 278-0 bis A du CGI et d’attestation pour les opérateurs gérant un parc important de logements",
+      "resume": "(identifiant juridique BOI-LETTRE-000280; publié le 09/09/2026)",
+      "lien": "https://bofip.impots.gouv.fr/bofip/14834-PGP.html/identifiant=BOI-LETTRE-000280-20260909",
+      "date": "2026-09-09T00:00:00.000Z",
+      "theme": "Fiscalité",
+      "source": "BOFiP-Impôts",
+      "sourceId": "bofip",
+      "editeur": "Direction générale des Finances publiques"
+    },
+    {
+      "titre": "ANNEXE - TVA - Conditions d’application du taux réduit de TVA aux équipements de chauffage",
+      "resume": "(identifiant juridique BOI-ANNX-000203; publié le 09/09/2026)",
+      "lien": "https://bofip.impots.gouv.fr/bofip/1668-PGP.html/identifiant=BOI-ANNX-000203-20260909",
+      "date": "2026-09-09T00:00:00.000Z",
+      "theme": "Fiscalité",
+      "source": "BOFiP-Impôts",
+      "sourceId": "bofip",
+      "editeur": "Direction générale des Finances publiques"
+    },
+    {
+      "titre": "TVA - Régimes d’imposition et obligations déclaratives et comptables - Redevable de la taxe - Livraisons de biens et prestations de services - Détermination du redevable",
+      "resume": "(identifiant juridique BOI-TVA-DECLA-10-10-20; publié le 09/09/2026)",
+      "lien": "https://bofip.impots.gouv.fr/bofip/3218-PGP.html/identifiant=BOI-TVA-DECLA-10-10-20-20260909",
+      "date": "2026-09-09T00:00:00.000Z",
+      "theme": "Fiscalité",
+      "source": "BOFiP-Impôts",
+      "sourceId": "bofip",
+      "editeur": "Direction générale des Finances publiques"
+    },
+    {
+      "titre": "TVA - Liquidation - Taux réduits - Prestations de services imposables aux taux réduits - Travaux (autres que de construction ou de reconstruction) portant sur des locaux à usage d’habitation achevés depuis plus de deux ans - Locaux concernés",
+      "resume": "(identifiant juridique BOI-TVA-LIQ-30-20-90-10; publié le 09/09/2026)",
+      "lien": "https://bofip.impots.gouv.fr/bofip/1642-PGP.html/identifiant=BOI-TVA-LIQ-30-20-90-10-20260909",
+      "date": "2026-09-09T00:00:00.000Z",
+      "theme": "Fiscalité",
+      "source": "BOFiP-Impôts",
+      "sourceId": "bofip",
+      "editeur": "Direction générale des Finances publiques"
+    },
+    {
+      "titre": "TVA - Liquidation - Taux réduits - Prestations de services imposables aux taux réduits - Travaux (autres que de construction ou de reconstruction) portant sur des locaux à usage d’habitation achevés depuis plus de deux ans - Opérations concernées",
+      "resume": "(identifiant juridique BOI-TVA-LIQ-30-20-90-20; publié le 09/09/2026)",
+      "lien": "https://bofip.impots.gouv.fr/bofip/1666-PGP.html/identifiant=BOI-TVA-LIQ-30-20-90-20-20260909",
+      "date": "2026-09-09T00:00:00.000Z",
+      "theme": "Fiscalité",
+      "source": "BOFiP-Impôts",
+      "sourceId": "bofip",
+      "editeur": "Direction générale des Finances publiques"
+    },
+    {
+      "titre": "TVA - Liquidation - Taux réduits - Prestations de services imposables aux taux réduits - Travaux (autres que de construction ou de reconstruction) portant sur des locaux à usage d’habitation achevés depuis plus de deux ans - Modalités d’application",
+      "resume": "(identifiant juridique BOI-TVA-LIQ-30-20-90-40; publié le 09/09/2026)",
+      "lien": "https://bofip.impots.gouv.fr/bofip/1742-PGP.html/identifiant=BOI-TVA-LIQ-30-20-90-40-20260909",
+      "date": "2026-09-09T00:00:00.000Z",
+      "theme": "Fiscalité",
+      "source": "BOFiP-Impôts",
+      "sourceId": "bofip",
+      "editeur": "Direction générale des Finances publiques"
+    },
+    {
+      "titre": "TVA - Liquidation - Taux réduits - Prestations de services imposables aux taux réduits - Travaux d’amélioration de la qualité énergétique",
+      "resume": "(identifiant juridique BOI-TVA-LIQ-30-20-95; publié le 09/09/2026)",
+      "lien": "https://bofip.impots.gouv.fr/bofip/9417-PGP.html/identifiant=BOI-TVA-LIQ-30-20-95-20260909",
+      "date": "2026-09-09T00:00:00.000Z",
+      "theme": "Fiscalité",
+      "source": "BOFiP-Impôts",
+      "sourceId": "bofip",
+      "editeur": "Direction générale des Finances publiques"
+    },
+    {
+      "titre": "RES - Taxe sur la valeur ajoutée - Régimes d’imposition et obligations déclaratives et comptables - Autoliquidation des travaux de construction relatifs à un bien immobilier effectués par une entreprise sous-traitante pour le compte d’un preneur assujetti",
+      "resume": "(identifiant juridique BOI-RES-TVA-000269; publié le 09/09/2026)",
+      "lien": "https://bofip.impots.gouv.fr/bofip/15082-PGP.html/identifiant=BOI-RES-TVA-000269-20260909",
+      "date": "2026-09-09T00:00:00.000Z",
+      "theme": "Fiscalité",
+      "source": "BOFiP-Impôts",
+      "sourceId": "bofip",
+      "editeur": "Direction générale des Finances publiques"
+    },
+    {
+      "titre": "Aide pour les travailleurs « grands rouleurs » : l’ouverture du guichet est à nouveau prolongée",
+      "resume": "Initialement, le guichet de demande de l’aide carburant pour les travailleurs « grands rouleurs » devait fermer le 30 juillet. Après une première prolongation, la date de clôture vient à nouveau d’être repoussée. Ce guichet vous…",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A18903?xtor=RSS-112",
+      "date": "2026-09-07T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "La procédure de l'injonction de payer évolue",
+      "resume": "La réforme de l’injonction de payer est entrée en vigueur le 1 er septembre 2026. Nous vous précisons les principaux changements.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A19062?xtor=RSS-112",
+      "date": "2026-09-03T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Conjoint du chef d’entreprise : pouvez-vous conserver votre statut de conjoint collaborateur ?",
+      "resume": "Vous êtes devenu conjoint collaborateur avant le 1 er janvier 2022 ? Un changement de statut peut être nécessaire. Nous vous expliquons pourquoi.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A19061?xtor=RSS-112",
+      "date": "2026-09-02T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Rupture conventionnelle : ce qui change au 1er septembre 2026",
+      "resume": "Depuis le 1 er septembre 2026, les salariés qui partent dans le cadre d’une rupture conventionnelle individuelle ne bénéficient plus de la même durée maximale d’indemnisation qu’auparavant. On vous explique ce qui change.",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A18945?xtor=RSS-112",
+      "date": "2026-09-01T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "La facturation électronique est effective depuis le 1er septembre 2026 !",
+      "resume": "La réforme de la facturation électronique est entrée en vigueur le 1 er septembre 2026. Service Public Entreprendre vous donne toutes les informations à connaître pour mettre en oeuvre cette réforme.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18953?xtor=RSS-112",
+      "date": "2026-09-01T22:00:00.000Z",
+      "theme": "Juridique",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "La durée des arrêts de travail plafonnée depuis le 1er septembre",
+      "resume": "Un décret du 12 juin 2026 plafonne la durée des arrêts de travail prescrits et prolongés à compter du 1 er septembre 2026. Service Public vous explique.",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A18962?xtor=RSS-112",
+      "date": "2026-08-31T22:00:00.000Z",
+      "theme": "Juridique",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Simplifiez vos démarches avec le tableau de bord de Portailpro.gouv",
+      "resume": "Le tableau de bord Portailpro permet aux entrepreneurs d’avoir une vision claire et globale de l’ensemble de leurs obligations fiscales, sociales et douanières. Service Public Entreprendre vous explique.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A19046?xtor=RSS-112",
+      "date": "2026-08-30T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "CVAE : versement du second acompte avant le 15 septembre 2026",
+      "resume": "Vous devez effectuer le paiement de la CVAE ? Deux acomptes sont prévus : le premier devait être versé au plus tard le 15 juin 2026 et le second acompte au plus tard le 15 septembre 2026.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18439?xtor=RSS-112",
+      "date": "2026-08-19T22:00:00.000Z",
+      "theme": "Fiscalité",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Les critères environnementaux des marchés publics évoluent le 21 août",
+      "resume": "À partir du 21 août, les critères environnementaux de la commande publique évoluent. De nouvelles obligations ont été mises en place par la loi Climat et Résilience et s'imposent aux acheteurs publics. Elle a pour objectif…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A19042?xtor=RSS-112",
+      "date": "2026-08-17T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Indice des prix à la consommation : quelle évolution ?",
+      "resume": "Le 14 août, l'Insee a dévoilé le nouvel indice des prix à la consommation. Service Public vous informe et vous rappelle à quoi sert cet indicateur.",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A15404?xtor=RSS-112",
+      "date": "2026-08-16T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Entreprises touchées par les incendies : une aide exceptionnelle est mise en place",
+      "resume": "Les TPE/PME ayant fait l’objet d’une mesure d’évacuation ou de confinement et ayant subi des conséquences suite aux incendies peuvent bénéficier d’une aide exceptionnelle mise en place un décret du 14 août. Cette aide intervient…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A19041?xtor=RSS-112",
+      "date": "2026-08-16T22:00:00.000Z",
+      "theme": "Juridique",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Impôt sur le revenu : versement de l'acompte trimestriel",
+      "resume": "Vous avez opté pour le versement trimestriel de l’impôt sur le revenu ? Dans ce cas, le paiement de la prochaine échéance est imminent.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18015?xtor=RSS-112",
+      "date": "2026-08-11T22:00:00.000Z",
+      "theme": "Fiscalité",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Démarchage téléphonique interdit : quelles sont les nouvelles règles ?",
+      "resume": "À compter du 11 août 2026, le démarchage téléphonique à des fins commerciales est interdit, sauf dans certains cas. Service Public vous présente les changements.",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A19003?xtor=RSS-112",
+      "date": "2026-08-10T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Incendies : protéger les salariés et assurer la continuité de l'activité",
+      "resume": "Face aux épisodes d'incendies de forêt, les employeurs doivent évaluer les risques liés à l'exposition aux fumées, adapter l'organisation du travail et mettre en place les mesures de prévention nécessaires pour préserver la santé…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A19026?xtor=RSS-112",
+      "date": "2026-08-03T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Les manquements au DUERP sont désormais sanctionnés",
+      "resume": "La loi contre les fraudes sociales et fiscales du 25 juin 2026 renforce les sanctions en cas de manquement au DUERP . Le défaut de mise en place du document unique occasionnera une amende administrative. Cette mesure s’inscrit…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18908?xtor=RSS-112",
+      "date": "2026-08-02T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Comment s’organise l’activité d’un salarié sapeur-pompier volontaire ?",
+      "resume": "Avec les incendies qui touchent plusieurs régions en France, les pompiers volontaires peuvent être amenés à se mobiliser. Lorsqu’un pompier volontaire est salarié, plusieurs questions se posent concernant sa possibilité de…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A19013?xtor=RSS-112",
+      "date": "2026-07-30T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Micro-entrepreneur et auto-entrepreneur : existe-t-il une différence ?",
+      "resume": "Existe-t-il encore une différence entre micro-entrepreneur et auto-entrepreneur en 2026 ? Après les différentes évolutions réglementaires intervenues ces dernières années, cette distinction continue de susciter des…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A19021?xtor=RSS-112",
+      "date": "2026-07-30T22:00:00.000Z",
+      "theme": "Création d’entreprise",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Déclaration trimestrielle du chiffre d’affaires des micro-entreprises : vous avez jusqu'au 31 juillet",
+      "resume": "Dans le cadre du paiement de l'impôt sur le revenu, votre micro-entreprise (micro-BIC et micro-BNC) doit déclarer son chiffre d'affaires. Si vous avez opté pour le versement trimestriel, votre prochaine déclaration de revenus…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A17328?xtor=RSS-112",
+      "date": "2026-07-29T22:00:00.000Z",
+      "theme": "Fiscalité",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Nouveaux tarifs pour les timbres et les colis",
+      "resume": "À partir du 1 er janvier 2027, les prix des courriers et des colis augmenteront de 6,73 % en moyenne. Ces ajustements tarifaires ont été annoncés par La Poste dans un communiqué du 27 juillet 2026. Service Public vous informe.",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A17915?xtor=RSS-112",
+      "date": "2026-07-27T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "DSN : une régularisation possible en cas d’anomalies persistantes",
+      "resume": "Depuis le mois de juillet, l’Urssaf peut émettre une DSN de substitution. Ce nouveau mécanisme intervient lorsqu’une anomalies persiste malgré les relances. Cette nouvelle possibilité apporte plus de sécurité aux salariés en…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A19014?xtor=RSS-112",
+      "date": "2026-07-27T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Incendie en Gironde : un appel à la solidarité des entreprises est lancé",
+      "resume": "Dans le cadre des incendies en Gironde, un appel à la solidarité des entreprises a été lancé ce dimanche 27 juillet. Entreprendre Service Public fait le point avec vous.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A19011?xtor=RSS-112",
+      "date": "2026-07-26T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Vente de fonds de commerce : la procédure de la loi Hamon évolue",
+      "resume": "La loi de simplification de la vie économique assouplit le dispositif de la loi Hamon. Cette dernière a mis en place un mécanisme d’information préalable des salariés dans les entreprises de moins de 250 salariés en cas de vente…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18893?xtor=RSS-112",
+      "date": "2026-07-22T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Micro-entreprise et entreprise individuelle : comprendre la distinction",
+      "resume": "La micro-entreprise et l’entreprise individuelle peuvent souvent être confondues. Elles partagent en effet la même forme juridique puisqu’une micro-entreprise est la version allégée d’une entreprise individuelle : elle bénéficie…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A19000?xtor=RSS-112",
+      "date": "2026-07-22T22:00:00.000Z",
+      "theme": "Création d’entreprise",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Incendies et intempéries : l’Urssaf et le CPSTI se mobilisent pour les entreprises",
+      "resume": "Afin de répondre aux intempéries et aux incendies récents, l’ Urssaf et le CPSTI activent des mesures d’urgence visant à accompagner les entreprises victimes. Ces mesures s’appliquent dans six régions : Rhône-Alpes, le…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A19004?xtor=RSS-112",
+      "date": "2026-07-22T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Ce qui change en juillet 2026",
+      "resume": "Service Public vous informe des principaux changements intervenant au mois de juillet concernant la parentalité, les impôts, les dates clés des démarches étudiantes, les transports...",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A18377?xtor=RSS-112",
+      "date": "2026-07-21T22:00:00.000Z",
+      "theme": "Fiscalité",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Le taux de TVA est réduit à 5,5 % pour les pompes à chaleur air/air",
+      "resume": "Les pompes à chaleur peuvent chauffer ou rafraîchir votre logement. Un arrêté précisant les conditions d’éligibilité des pompes à chaleur air/air vient d’être publié. Il permet d’obtenir un taux de TVA réduit. Cette disposition…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A19002?xtor=RSS-112",
+      "date": "2026-07-21T22:00:00.000Z",
+      "theme": "Fiscalité",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "La loi « anti fast-fashion » impose un nouveau cadre de vente",
+      "resume": "La loi visant à réduire l’impact environnemental de l’industrie du textile a été publiée le 8 juillet 2026. Ce texte prévoit plusieurs dispositions afin de diminuer l’impact de la « fast-fashion » sur l’environnement. L’objectif…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18986?xtor=RSS-112",
+      "date": "2026-07-19T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Entreprises nouvelles : la délivrance de l’attestation de régularité fiscale est assouplie",
+      "resume": "Le 8 juillet 2026, le BOFIP a annoncé un assouplissement des conditions de délivrance de l’attestation de régularité fiscale pour les entreprises nouvellement créées. Cette évolution vise à faciliter leur accès aux marchés…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18999?xtor=RSS-112",
+      "date": "2026-07-19T22:00:00.000Z",
+      "theme": "Fiscalité",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Violation du RGPD : le salarié est-il systématiquement indemnisé ?",
+      "resume": "Dans un arrêt rendu le 24 juin 2026, la Cour de cassation rappelle qu’une violation du RGPD ne conduit pas automatiquement à l’octroi de dommages et intérêts au salarié. Entreprendre Service Public vous explique.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18996?xtor=RSS-112",
+      "date": "2026-07-16T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Recrutement des saisonniers : l’avantage du compte Tese",
+      "resume": "L’Urssaf rappelle aux employeurs la possibilité de recourir au service Tese en période estivale. Ce dispositif permet de simplifier les formalités administratives liées à l’embauche de saisonniers ou d’extras. Entreprendre…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18998?xtor=RSS-112",
+      "date": "2026-07-14T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Télétravail : quelles conditions pour travailler hors de son domicile ?",
+      "resume": "Un employeur peut-il permettre à son salarié d’être en télétravail hors de son domicile, par exemple, un lieu de villégiature ? En principe, avoir recours au télétravail est possible mais sous certaines conditions. Entreprendre…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18995?xtor=RSS-112",
+      "date": "2026-07-08T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Hausse des prix du carburant : l’aide exceptionnelle pour les entreprises de transport est reconduite",
+      "resume": "En raison de la hausse des prix du carburant, une aide exceptionnelle est mise en place pour les entreprises de transport routier depuis le 19 avril 2026. Cette aide vient d’être reconduite par le décret du 3 juillet 2026.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18882?xtor=RSS-112",
+      "date": "2026-07-07T22:00:00.000Z",
+      "theme": "Juridique",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Prolongation exceptionnelle : quelles sont les dates des soldes d’été 2026 ?",
+      "resume": "Les dates des soldes sont déterminées conformément à un arrêté du 27 mai 2019. Des dates spécifiques sont fixées dans certains départements ou certaines collectivités. Retrouvez toutes les informations dans l’infographie de…",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A15000?xtor=RSS-112",
+      "date": "2026-07-05T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "La taxe française sur les petits colis remplacée par un droit de douane européen",
+      "resume": "La taxe française sur les importations dite « taxe sur les petits colis » est suspendue à compter du 1 er juillet. Elle avait été mise en place le 1 er mars 2026. Cette suspension fait suite à l'entrée en vigueur d'un nouveau…",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A18985?xtor=RSS-112",
+      "date": "2026-07-05T22:00:00.000Z",
+      "theme": "Fiscalité",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Hausse des prix du carburant : quelles aides ?",
+      "resume": "En raison du conflit au Moyen-Orient, les coûts du carburant connaissent une forte hausse. Face à cette problématique, découvrez l’ensemble des aides disponibles selon votre situation.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18907?xtor=RSS-112",
+      "date": "2026-06-30T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Quels sont les taux de l'intérêt légal applicables durant le second semestre 2026 ?",
+      "resume": "Les taux de l'intérêt légal sont utilisés pour calculer le montant des pénalités en cas de retard de paiement auprès d’un créancier. Les taux applicables pendant le second semestre 2026 ont été fixés par un arrêté publié au…",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A15398?xtor=RSS-112",
+      "date": "2026-06-29T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Le Passeport de compétences, un nouvel outil pour suivre et valoriser votre parcours professionnel",
+      "resume": "Le ministère du Travail et des Solidarités lance le Passeport de compétences, un service public numérique destiné à faciliter la gestion et la valorisation des parcours professionnels. Gratuit et sécurisé, ce service permet de…",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A18976?xtor=RSS-112",
+      "date": "2026-06-29T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Des nouvelles obligations pour les transporteurs sanitaires",
+      "resume": "La loi relative à la lutte contre les fraudes fiscales et sociales instaure une obligation de géolocalisation pour les véhicules sanitaires, notamment les ambulances et les taxis conventionnés avec l’Assurance maladie. L’objectif…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18978?xtor=RSS-112",
+      "date": "2026-06-29T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Révision des baux commerciaux et professionnels : les indices au premier trimestre 2026",
+      "resume": "Les indices de référence des baux commerciaux et professionnels que sont l'indice des loyers commerciaux (ILC), l'indice du coût de la construction (ICC) et l'indice des loyers des activités tertiaires (ILAT) ont été révisés.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18980?xtor=RSS-112",
+      "date": "2026-06-29T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Les organismes de formations sont soumis à de nouvelles obligations",
+      "resume": "La loi relative à la lutte contre les fraudes sociales et fiscales du 25 juin 2026 introduit diverses mesures concernant les organismes de formation. Elles portent notamment sur la lutte contre les fraude aux CPF .",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18910?xtor=RSS-112",
+      "date": "2026-06-28T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Mise en place d’une procédure de flagrance sociale pour lutter contre le travail dissimulé",
+      "resume": "La loi relative à la lutte contre les fraudes sociales et fiscales du 25 juin 2026 introduit une procédure de flagrance sociale afin de lutter contre le travail dissimulé. Ce nouveau dispositif vise à renforcer la garantie de…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18912?xtor=RSS-112",
+      "date": "2026-06-28T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Le gérant d’une SARL peut-il créer une société concurrente ?",
+      "resume": "Dans un arrêt rendu le 17 juin 2026, la Cour de cassation précise la portée du devoir de loyauté pour le gérant d’une SARL. Entreprendre Service Public vous explique.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18974?xtor=RSS-112",
+      "date": "2026-06-25T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Modification de la durée de conservation des documents fiscaux",
+      "resume": "La loi contre les fraudes sociales et fiscales augmente le délai de conservation des documents dans le cadre d’un contrôle fiscal. Explications.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18906?xtor=RSS-112",
+      "date": "2026-06-25T22:00:00.000Z",
+      "theme": "Fiscalité",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Des heures supplémentaires accomplies malgré l'interdiction de l'employeur doivent-elles être payées ?",
+      "resume": "Dans un arrêt du 20 mai 2026, la Cour de cassation donne des précisions sur le paiement des heures supplémentaires non autorisées dans le cas d’une charge de travail trop importante. Entreprendre Service Public vous explique.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18970?xtor=RSS-112",
+      "date": "2026-06-24T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Tenue vestimentaire au travail : quelles sont les règles ?",
+      "resume": "Puis-je porter un short sur mon lieu de travail durant une canicule ? Mon employeur peut-il m’imposer une tenue ? En principe, la tenue vestimentaire relève de la liberté individuelle du salarié. Mais selon le Code du travail,…",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A18391?xtor=RSS-112",
+      "date": "2026-06-23T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Entrée en vigueur du congé supplémentaire de naissance : quelles sont les modalités pratiques ?",
+      "resume": "Le congé supplémentaire de naissance entre en vigueur le 1 er juillet 2026. Plusieurs décrets parus au Journal officiel le 31 mai viennent préciser les modalités pratiques de ce nouveau dispositif. Service Public vous explique.",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A18939?xtor=RSS-112",
+      "date": "2026-06-22T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Le Passeport de prévention est ouvert aux entreprises",
+      "resume": "Le Passeport de prévention, destiné à améliorer le suivi des formations sur la prévention des risques professionnels, répertorie les acquis des travailleurs en matière de santé et de sécurité au travail. Depuis le 16 mars,…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A15846?xtor=RSS-112",
+      "date": "2026-06-22T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Décarbonation des entreprises industrielles : un guide pratique pour vous accompagner",
+      "resume": "Afin d’accompagner les entreprises dans leur gestion des coûts énergétiques et leur décarbonation, la Direction générale des entreprises (DGE) publie un guide opérationnel. Description.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18958?xtor=RSS-112",
+      "date": "2026-06-21T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Peut-on reporter sur l’année suivante des jours de congés non pris ?",
+      "resume": "Les salariés du secteur privé acquièrent des droits à congés payés au fur et à mesure sur une période de référence. Le nombre de congés acquis est proportionnel aux périodes de travail effectif réalisées durant celle-ci. Ces…",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A15702?xtor=RSS-112",
+      "date": "2026-06-17T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "De nouvelles modalités pour les visites de préreprise et de reprise",
+      "resume": "Le décret relatif aux visites de préreprise et de reprise après un arrêt de travail a été publié le 14 juin dernier. Entreprendre Service Public vous explique.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18964?xtor=RSS-112",
+      "date": "2026-06-17T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "RGDU : quel est le montant du Smic brut retenu pour 2026 ?",
+      "resume": "Le décret du 12 juin 2026 gèle pour l’année 2026 la valeur du Smic à retenir pour l’éligibilité et le calcul de la réduction générale dégressive unique (RGDU) de cotisations patronales. Explications.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18966?xtor=RSS-112",
+      "date": "2026-06-17T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "ProConnect facilite vos accès aux services de l’État",
+      "resume": "ProConnect est un service d’identification destiné aux professionnels. Développé par la Direction interministérielle du numérique (DINUM), il facilite l’accès aux services de l’État grâce à une connexion simple et sécurisée.…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18961?xtor=RSS-112",
+      "date": "2026-06-16T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Vente de services financiers : de nouvelles règles pour protéger les consommateurs dès le 19 juin",
+      "resume": "Il vous arrive de souscrire en ligne ou par téléphone à des offres de services financiers (assurance, prêt, produit d’épargne...) ? Afin de protéger davantage les consommateurs, de nouvelles règles sont mises en place à compter…",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A18754?xtor=RSS-112",
+      "date": "2026-06-15T22:00:00.000Z",
+      "theme": "Patrimoine",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Le leasing social de voitures électriques est reconduit à partir du 16 juillet 2026",
+      "resume": "Le leasing social vous permet de disposer d’une voiture électrique en payant un loyer mensuel, sans être obligé d’en faire l’acquisition in fine .",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A16990?xtor=RSS-112",
+      "date": "2026-06-15T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Que se passe-t-il si une échéance fiscale tombe un week-end ou un jour férié ?",
+      "resume": "Il peut arriver que certaines échéances fiscales tombent pendant le week-end ou un jour férié. Que se passe-t-il dans ce cas ? Entreprendre Service Public vous explique.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18959?xtor=RSS-112",
+      "date": "2026-06-14T22:00:00.000Z",
+      "theme": "Fiscalité",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Qu’est-ce que la Juridiction unifiée du brevet ?",
+      "resume": "La Juridiction unifiée du brevet, mise en place en 2023, est une juridiction ayant pour but d’harmoniser les procédures relatives aux brevets au niveau européen. Elle est la toute première juridiction supranationale en Europe…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A16187?xtor=RSS-112",
+      "date": "2026-06-11T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Moins de formalités pour les ventes au déballage et les ventes en liquidation",
+      "resume": "La loi simplification de la vie économique du 26 mai 2026 a introduit plusieurs mesures afin d’alléger la charge administrative pesant sur les entreprises. Ainsi, des dispositions suppriment des formalités relatives à la vente au…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18948?xtor=RSS-112",
+      "date": "2026-06-09T22:00:00.000Z",
+      "theme": "Juridique",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Peut-on demander l’âge du candidat lors d’un entretien d’embauche ?",
+      "resume": "Lors d’un entretien d’embauche, un recruteur doit respecter le principe de non-discrimination. Les questions liées à l’origine, le genre ou encore sur l’orientation sexuelle sont interdites. Cependant, certaines nuances peuvent…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18949?xtor=RSS-112",
+      "date": "2026-06-08T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Un employeur peut-il licencier une salariée qui ne lui a pas indiqué qu'elle était enceinte ?",
+      "resume": "Dans un arrêt rendu le 3 juin 2026, la Cour de cassation se prononce sur le cas d’une salariée licenciée pour avoir annoncé sa grossesse tardivement à son employeur.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18951?xtor=RSS-112",
+      "date": "2026-06-08T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Affectation du solde de la taxe d’apprentissage sur SOLTéA : ouverture de la campagne 2026",
+      "resume": "Le solde de la taxe d’apprentissage (TA), déclaré et versé par l’employeur dans la DSN d'avril, vise à développer les formations initiales technologiques et professionnelles ainsi que l'insertion professionnelle. La 1 ère…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18267?xtor=RSS-112",
+      "date": "2026-06-07T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Le droit de préférence du locataire est‑il écarté en cas de vente aux enfants du propriétaire ?",
+      "resume": "Dans un arrêt rendu le 5 mars 2026, la Cour de cassation précise les conditions d’exercice du droit de préférence dans le cadre d’une vente d’un local à usage commercial ou artisanal.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18947?xtor=RSS-112",
+      "date": "2026-06-04T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Extrait Kbis et attestation RNE : quelles différences ?",
+      "resume": "Depuis l’effectivité de la loi Pacte en 2023 et la création du RNE , les documents de référence que sont l’ extrait Kbis et l’attestation RNE peuvent être confondus en raison de leurs objectifs similaires. Cependant, ces deux…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18918?xtor=RSS-112",
+      "date": "2026-06-03T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Versement mobilité : les taux évoluent au 1er juillet 2026",
+      "resume": "Au 1 er juillet 2026, les taux de versement mobilité évoluent. Des corrections sont également effectuées. Entreprendre Service Public vous explique ces changements.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18942?xtor=RSS-112",
+      "date": "2026-06-03T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Déclaration de revenus 2026 : comment la corriger ?",
+      "resume": "Vous pensez avoir fait une erreur sur votre déclaration 2026 de revenus, ou bien avoir oublié de déclarer une somme ? Vous avez la possibilité de corriger votre déclaration, que vous l'ayez faite via un formulaire papier ou bien…",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A17433?xtor=RSS-112",
+      "date": "2026-06-02T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Loi Simplification de la vie de l’entreprise : quels changements ?",
+      "resume": "Afin de simplifier les normes et d’alléger les procédures administratives, la loi de simplification de la vie économique du 26 mai 2026 introduit plusieurs changements majeurs pour les entreprises. Description.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18946?xtor=RSS-112",
+      "date": "2026-06-02T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Recrutement d’un apprenti : ce qui change",
+      "resume": "Le montant maximum de l’aide à l’embauche d’un apprenti a été modifié pour les contrats conclus à partir du 8 mars 2026. Entreprendre Service Public vous présente les aides disponibles selon la date de conclusion du contrat…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A17983?xtor=RSS-112",
+      "date": "2026-05-31T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Simplification des formalités relatives à l’apprentissage",
+      "resume": "La loi de simplification de la vie économique du 26 mai 2026 réduit les formalités des employeurs relatives à l’apprentissage et supprime définitivement la déclaration d’apprentissage.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18931?xtor=RSS-112",
+      "date": "2026-05-31T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Bail commercial : ce qui change",
+      "resume": "La loi de simplification de la vie économique du 26 mai 2026 comporte plusieurs mesures relatives au bail commercial. Description.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18929?xtor=RSS-112",
+      "date": "2026-05-28T22:00:00.000Z",
+      "theme": "Juridique",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Chaleur : quelles obligations pour l'employeur ?",
+      "resume": "Afin de protéger les salariés exposés aux risques de la chaleur, l'employeur doit mettre en place de nouvelles mesures de prévention depuis 2025. Explications.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18326?xtor=RSS-112",
+      "date": "2026-05-26T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Les modalités de dépôt du règlement intérieur évoluent",
+      "resume": "La loi de simplification de la vie économique du 26 mai 2026 facilite les formalités administratives pour les entreprises. Ainsi, les modalités de dépôt du règlement intérieur de l’entreprise changent. Explications.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18892?xtor=RSS-112",
+      "date": "2026-05-26T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Se protéger et protéger ses proches face aux fortes chaleurs",
+      "resume": "Les périodes de fortes chaleurs reviennent et peuvent avoir de graves effets sur la santé des personnes vulnérables (fatigue, nausées, maux de tête, vertiges, crampes, déshydratation, coup de chaleur, etc.). Le ministère de la…",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A14978?xtor=RSS-112",
+      "date": "2026-05-25T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Prix du carburant : dispositifs exceptionnels de prêt et de report des cotisations",
+      "resume": "Votre entreprise est impactée par la forte hausse des prix du carburant ? Plusieurs aides sont disponibles dès à présent. Présentation.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18868?xtor=RSS-112",
+      "date": "2026-05-21T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Ce qui change en mai 2026",
+      "resume": "Déclaration des revenus 2025, aides carburant, titres de séjour, échange de permis européen ou étranger… Découvrez toutes les actualités de ce mois de mai.",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A18238?xtor=RSS-112",
+      "date": "2026-05-19T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Nos Gestes Climat : quelle est votre empreinte carbone ?",
+      "resume": "Dans le cadre de la conformité aux normes RSE et à l’approche de la Journée mondiale de l’environnement (5 juin), le site Nos Gestes Climat développé par l’ADEME permet de calculer gratuitement son empreinte carbone individuelle.…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18911?xtor=RSS-112",
+      "date": "2026-05-18T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Une convention de forfait en jours doit-elle faire apparaître le nombre de jours travaillés ?",
+      "resume": "Dans un arrêt rendu le 9 avril 2026, la Cour de cassation précise les modalités de validité d’une convention de forfait en jours.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18917?xtor=RSS-112",
+      "date": "2026-05-18T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Le Smic va augmenter le 1er juin",
+      "resume": "Le Smic (salaire minimum interprofessionnel de croissance) augmente chaque année le 1 er janvier. Il est par ailleurs automatiquement revalorisé en cours d’année, en cas de forte inflation. Le Smic augmentera ainsi de 2,41 % le 1…",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A18916?xtor=RSS-112",
+      "date": "2026-05-17T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Transmission et reprise d’une entreprise : un guide pour vous aider",
+      "resume": "Un guide unique visant à aider les entrepreneurs dans la reprise et la transmission d’une entreprise vient d’être publié par le Ministère des petites et moyennes entreprises. Il s’adresse à deux profils d’entrepreneurs : le…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18913?xtor=RSS-112",
+      "date": "2026-05-17T22:00:00.000Z",
+      "theme": "Patrimoine",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Décret du 30 avril 2026 : quelles sont les évolutions en matière de formalités d’entreprise ?",
+      "resume": "Le décret du 30 avril 2026 apporte différentes modifications notables afin de simplifier les formalités d’entreprise. Description.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18904?xtor=RSS-112",
+      "date": "2026-05-11T22:00:00.000Z",
+      "theme": "Juridique",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Inaptitude du salarié : peut-elle être établie par une visite initiée par le médecin du travail ?",
+      "resume": "Le médecin du travail peut-il, à l’issue d’une visite médicale dont il est à l’initiative, constater l’inaptitude d’un salarié en arrêt de travail ? La Cour de cassation vient de se prononcer sur cette question.",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A18900?xtor=RSS-112",
+      "date": "2026-05-06T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Influenceurs : de nouvelles mentions obligatoires en cas de promotion de formations professionnelles",
+      "resume": "Un décret du 30 mars 2026 indique les informations que les influenceurs doivent obligatoirement mentionner lorsqu’ils font la promotion de formations financées par des fonds publics (comme le CPF par exemple). Ces nouvelles…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18902?xtor=RSS-112",
+      "date": "2026-05-06T22:00:00.000Z",
+      "theme": "Juridique",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Sensibilisez vos salariés avec les Journées de la sécurité routière au travail",
+      "resume": "Afin de prévenir les accidents de la route survenant dans le cadre du travail, la Sécurité routière organise les Journées de la sécurité routière au travail du 18 au 22 mai 2026.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18253?xtor=RSS-112",
+      "date": "2026-05-05T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Dans quels cas une rupture de CDD peut-elle être considérée comme abusive ?",
+      "resume": "Dans un arrêt rendu le 9 avril 2026, la Cour de cassation effectue un rappel sur les conditions de rupture d’un CDD dans le cas d’un arrêt de travail. Elle précise les cas où une rupture abusive du CDD donne droit à un…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18894?xtor=RSS-112",
+      "date": "2026-05-03T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Nouvelles conditions d'accès au Registre des bénéficiaires effectifs",
+      "resume": "Depuis le 31 juillet 2024, l’accès au Registre des bénéficiaires effectifs (RBE) est limité aux personnes justifiant d’un intérêt légitime. La loi du 30 avril 2025, complétée par un décret du 24 avril 2026, intègre cette…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A17554?xtor=RSS-112",
+      "date": "2026-04-28T22:00:00.000Z",
+      "theme": "Juridique",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Solde de la taxe d'apprentissage : quand déclarer et payer ?",
+      "resume": "Le solde de la taxe d'apprentissage (TA) doit être déclaré et payé dans la DSN d’avril exigible le 5 ou le 15 mai 2026 selon la date de versement de la paie.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18179?xtor=RSS-112",
+      "date": "2026-04-28T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "CFE : il est temps de demander une exonération ou de signaler une modification",
+      "resume": "Vous souhaitez bénéficier d'une exonération de cotisation foncière des entreprises (CFE) ou indiquer une modification à l'administration ? Vous avez jusqu'au 5 mai 2026 pour faire votre demande.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18204?xtor=RSS-112",
+      "date": "2026-04-28T22:00:00.000Z",
+      "theme": "Fiscalité",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Plus que quelques jours pour faire votre déclaration OETH",
+      "resume": "La DOETH au titre de l’année 2025 doit être effectuée au sein de la DSN du mois d’avril 2026. Cette déclaration doit être faite le 5 ou le 15 mai 2026.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18121?xtor=RSS-112",
+      "date": "2026-04-27T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Création d’une procédure simplifiée de recouvrement des créances commerciales incontestées",
+      "resume": "La loi du 23 avril 2026 instaure une procédure simplifiée de recouvrement pour les créances commerciales incontestées entre commerçants. Explications.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18889?xtor=RSS-112",
+      "date": "2026-04-26T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Simplification de la procédure contentieuse en matière environnementale",
+      "resume": "Le décret n°2026-302 du 21 avril 2026 modifie et accélère les procédures contentieuses en matière environnementale. Explications.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18886?xtor=RSS-112",
+      "date": "2026-04-23T22:00:00.000Z",
+      "theme": "Juridique",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "L'apprenti peut-il rompre immédiatement son contrat en cas de faute grave de l'employeur ?",
+      "resume": "Dans un avis rendu le 15 avril 2026, la Cour de cassation donne des précisions sur les modalités de rupture du contrat d’un apprenti qui invoque des manquements ou des fautes graves de son employeur.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18884?xtor=RSS-112",
+      "date": "2026-04-22T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Ce qui change en avril 2026",
+      "resume": "Impôts, prime d’activité, aide au permis... Service Public vous présente les changements qui interviennent au mois d’avril.",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A18848?xtor=RSS-112",
+      "date": "2026-04-21T22:00:00.000Z",
+      "theme": "Fiscalité",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "L'employeur peut-il faire travailler ses salariés le 1er mai ?",
+      "resume": "À l'approche du 1 er mai, il est essentiel de connaître les règles applicables en entreprise ce jour-là. Rappel.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18232?xtor=RSS-112",
+      "date": "2026-04-20T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Un guide pour aider les entreprises à mettre en place leur Plan de continuité d’activité (PCA)",
+      "resume": "Face au nombre important d’événements pouvant perturber leur fonctionnement (sinistres, pandémies, cyberattaques, conflits...), les entreprises doivent être capables de réagir de manière adaptée afin de maintenir ou de rétablir…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18429?xtor=RSS-112",
+      "date": "2026-04-19T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Travailleurs indépendants : réforme de l’assiette sociale et du barème des cotisations",
+      "resume": "La campagne de déclaration des revenus 2025 est ouverte depuis le 9 avril (sur le site impots.gouv.fr). Cette déclaration permet de calculer le montant des cotisations et contributions sociales obligatoires. En 2026, l'assiette…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18879?xtor=RSS-112",
+      "date": "2026-04-19T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Carburant : comment savoir quelles sont les stations-service en rupture de stock ?",
+      "resume": "Vous souhaitez vous assurer qu’une station-service ne connaît pas de difficultés d’approvisionnement, en gazole ou en essence ? Une carte interactive officielle vous informe, en temps réel et sur l’ensemble du territoire, des…",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A16018?xtor=RSS-112",
+      "date": "2026-04-14T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Un nouveau simulateur liste vos obligations sociales selon l'effectif de votre entreprise",
+      "resume": "Entreprendre Service Public , en partenariat avec la Direction générale des Entreprises (DGE) , vous propose un nouveau simulateur permettant de lister vos obligations sociales selon l’effectif actuel de votre entreprise et vos…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18877?xtor=RSS-112",
+      "date": "2026-04-14T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Rupture de la période d'essai et grossesse : une jurisprudence change la donne",
+      "resume": "Dans un arrêt rendu le 25 mars 2026, la Cour de cassation donne des précisions sur la validité d’une rupture de contrat durant la période d’essai d’une salariée enceinte. Explications.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18876?xtor=RSS-112",
+      "date": "2026-04-13T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Impôts 2026 : quelles sont les dates limites pour déclarer vos revenus professionnels ?",
+      "resume": "Vous êtes soumis à l'impôt sur le revenu (IR) ? Depuis le 9 avril, vous pouvez remplir votre déclaration des revenus de l’année 2025. Entreprendre Service Public vous indique les dates limites pour déclarer vos revenus…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18254?xtor=RSS-112",
+      "date": "2026-04-12T22:00:00.000Z",
+      "theme": "Fiscalité",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Un employeur viole-t-il le droit à la déconnexion du salarié qui se connecte spontanément ?",
+      "resume": "Dans un arrêt du 25 mars 2026, la Cour de cassation indique qu’il n’y a pas de violation au droit à la déconnexion du salarié dès lors qu’il prend spontanément la décision de se connecter en dehors de ses heures de travail.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18871?xtor=RSS-112",
+      "date": "2026-04-12T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Financement du CPF : évolution du montant de la participation obligatoire",
+      "resume": "Le décret n° 2026-234 du 30 mars 2026 relève la participation obligatoire au compte CPF à 150 € . Cette participation peut être prise en charge par l’employeur.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18873?xtor=RSS-112",
+      "date": "2026-04-09T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Frais professionnels : les barèmes kilométriques 2026 sont disponibles",
+      "resume": "Vous utilisez votre véhicule personnel à des fins professionnelles ? Les frais occasionnés sont déductibles soit forfaitairement, soit en justifiant les frais réels engagés. Ceux-ci dépendent de barèmes établis pour les…",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A14686?xtor=RSS-112",
+      "date": "2026-04-08T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Versement trimestriel de la taxe sur les salaires : prochaine échéance au 15 avril",
+      "resume": "Vous avez payé entre 4 000 € et 10 000 € de taxe sur les salaires en 2025 ? Dans ce cas, vous devez effectuer votre prochain versement trimestriel.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A17480?xtor=RSS-112",
+      "date": "2026-04-07T22:00:00.000Z",
+      "theme": "Fiscalité",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Conflit au Moyen-Orient : possibilité d'avoir recours à l'activité partielle",
+      "resume": "Dans un contexte difficile lié au conflit au Moyen-Orient, le ministère du Travail donne la possibilité aux entreprises impactées d’avoir recours à l’activité partielle. Explications.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18869?xtor=RSS-112",
+      "date": "2026-04-07T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Le véhicule de service peut-il être considéré comme un avantage en nature ?",
+      "resume": "Un avantage en nature est un bien, un produit ou un service qui est fourni par l’employeur à son salarié gratuitement ou à un prix inférieur à sa valeur réelle et qui correspondrait normalement à une dépense personnelle du…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18865?xtor=RSS-112",
+      "date": "2026-04-02T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Un salarié peut-il être licencié pour un motif lié à sa vie privée ?",
+      "resume": "Un employeur découvre qu’un de ses salariés est marié avec une ancienne employée avec laquelle il a un différend judiciaire. Il estime que le salarié aurait dû l’en informer et le licencie « pour cause réelle et sérieuse ». En…",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A18782?xtor=RSS-112",
+      "date": "2026-04-01T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "CPF : la participation forfaitaire obligatoire augmente",
+      "resume": "Vous envisagez de suivre une formation en vue d'une évolution professionnelle et vous souhaitez utiliser votre compte personnel de formation (CPF) ? La participation financière obligatoire des salariés augmente à partir du 2…",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A17364?xtor=RSS-112",
+      "date": "2026-04-01T22:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "SME Funds : les PME peuvent obtenir un remboursement des frais liés à la propriété intellectuelle",
+      "resume": "Votre PME a effectué des démarches relatives à la PI (dépôt de brevets...) ? Le SME Funds peut prendre en charge une partie des frais engagés liés à certains titres de propriété intellectuelle. Il leur permet d’obtenir des…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18861?xtor=RSS-112",
+      "date": "2026-03-31T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Comment intégrer et valoriser les profils neuroatypiques dans votre entreprise ?",
+      "resume": "Afin d’encourager le recrutement des talents neuroatypiques (autisme, troubles Dys , troubles déficit de l'attention avec ou sans hyperactivité), un guide national « La neurodiversité en entreprise : repenser, recruter, déployer,…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18863?xtor=RSS-112",
+      "date": "2026-03-31T22:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Suppression de la CVAE en 2030",
+      "resume": "Afin de soutenir les finances publiques, la loi de finances pour 2025 a reporté la suppression de la cotisation sur la valeur ajoutée des entreprises (CVAE) à 2030.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18078?xtor=RSS-112",
+      "date": "2026-03-29T22:00:00.000Z",
+      "theme": "Fiscalité",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Revalorisation des plafonds d'exonération pour la CVAE 2025 en zones urbaines en difficulté",
+      "resume": "Le Bulletin officiel des finances publiques a publié les plafonds d'exonération ou d'abattement applicables pour la cotisation sur la valeur ajoutée des entreprises (CVAE) due au titre de 2025. Ces exonérations concernent les…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A16441?xtor=RSS-112",
+      "date": "2026-03-29T22:00:00.000Z",
+      "theme": "Fiscalité",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Comment cumuler le statut d'élu local et celui de salarié ?",
+      "resume": "Les salariés candidats ou élus aux élections municipales disposent de droits et de devoirs directement liés à l’exercice de leurs mandats. La loi du 22 décembre 2025 portant création du statut d’élu local a permis de favoriser la…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18855?xtor=RSS-112",
+      "date": "2026-03-26T23:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Déclaration et paiement de la CSA : quelles dates ?",
+      "resume": "Les entreprises de plus de 250 salariés doivent déclarer et payer la contribution supplémentaire à l’apprentissage (CSA) due pour l’année 2025 dans la DSN de mars qui sera exigible le 7 ou le 15 avril 2026 .",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18180?xtor=RSS-112",
+      "date": "2026-03-24T23:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Révision des baux commerciaux et professionnels : les indices au quatrième trimestre 2025",
+      "resume": "Les indices de référence des baux commerciaux et professionnels que sont l'indice des loyers commerciaux (ILC), l'indice du coût de la construction (ICC) et l'indice des loyers des activités tertiaires (ILAT) ont été révisés.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18712?xtor=RSS-112",
+      "date": "2026-03-24T23:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Vérification du permis de conduire des salariés : une nouvelle tarification à compter du 1er avril",
+      "resume": "Vous êtes un employeur du transport public routier de voyageurs ou de marchandises ? Vous pouvez connaître la validité du permis de conduire des personnes que vous employez comme conducteurs grâce au portail Vérif Permis . À…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A17375?xtor=RSS-112",
+      "date": "2026-03-19T23:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Peut-on cumuler un emploi salarié et une micro-entreprise dans la même activité ?",
+      "resume": "Cumuler un emploi salarié et une activité, en tant que micro-entrepreneur, dans le même secteur, est de plus en plus courant. Mais est-ce légal ? Dans un arrêt rendu le 14 janvier 2026, la Cour de cassation rappelle l'obligation…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18850?xtor=RSS-112",
+      "date": "2026-03-19T23:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Un site officiel pour comparer les prix du contrôle technique",
+      "resume": "Le site vous informant sur le prix des contrôles techniques a évolué il y a quelques semaines. Service Public vous explique comment trouver rapidement un centre agréé près de chez vous.",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A18846?xtor=RSS-112",
+      "date": "2026-03-17T23:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Ce qui change en mars 2026",
+      "resume": "Élections municipales, finances, travail, famille, etc. Service Public vous présente les changements qui interviennent au mois de mars.",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A18808?xtor=RSS-112",
+      "date": "2026-03-17T23:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Un guide pour lutter contre le harcèlement sexuel au travail",
+      "resume": "Le ministère du Travail et des Solidarités a mis en ligne un guide pratique et juridique pour mieux lutter contre le harcèlement sexuel et les agissements sexistes au travail. Il s’inscrit dans la continuité de la loi pour…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18845?xtor=RSS-112",
+      "date": "2026-03-17T23:00:00.000Z",
+      "theme": "Juridique",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Déclaration de la C3S : la campagne déclarative est ouverte",
+      "resume": "La contribution sociale de solidarité des sociétés (C3S) doit être déclarée et payée avant le 15 mai 2026. Elle concerne les entreprises (privées ou publiques) réalisant un chiffre d'affaires supérieur à 19 millions d'euros hors…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18132?xtor=RSS-112",
+      "date": "2026-03-12T23:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Pro Rappel Conso : de nouvelles informations à déclarer pour les professionnels",
+      "resume": "Depuis le 11 mars 2026, les professionnels doivent déclarer de nouveaux éléments sur Pro.Rappel.Conso , le site des alertes de produits dangereux. Entreprendre Service Public vous explique.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18842?xtor=RSS-112",
+      "date": "2026-03-12T23:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Impôt sur le revenu 2026 : obtenez une estimation du montant que vous allez payer",
+      "resume": "La campagne 2026 pour déclarer vos revenus de 2025 commencera le 9 avril. Vous pouvez dès à présent utiliser le simulateur des services fiscaux afin d’avoir une indication de votre impôt à payer.",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A18175?xtor=RSS-112",
+      "date": "2026-03-11T23:00:00.000Z",
+      "theme": "Fiscalité",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Quelle évolution pour l’aide à l’embauche des apprentis depuis le 8 mars 2026 ?",
+      "resume": "Un décret indique les modalités de versement de l’aide à l’apprentissage versée aux employeurs d’apprentis. Ces nouveaux montants s’appliquent aux contrats d’apprentissage conclus à partir du 8 mars 2026 et débutant avant le 1 er…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18837?xtor=RSS-112",
+      "date": "2026-03-09T23:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Revalorisation du montant minimal des allocations d'activité partielle",
+      "resume": "Les montants minimaux de l'allocation d'activité partielle, de l'allocation d'activité partielle de longue durée et de l’allocation d’activité partielle de longue durée rebond sont revalorisés. Ces nouveaux montants concernent…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A17907?xtor=RSS-112",
+      "date": "2026-03-08T23:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Quels sont les tarifs 2026-2028 pour les actes réalisés par les professionnels du droit ?",
+      "resume": "Les nouveaux tarifs réglementés pour les prestations des professions du droit viennent d’être publiés. Ces tarifs s’appliqueront jusqu’au 29 février 2028.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18834?xtor=RSS-112",
+      "date": "2026-03-08T23:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "ICPE et IOTA : une nouvelle téléprocédure est disponible",
+      "resume": "Un nouveau service en ligne est mis en place afin de déposer un dossier de modification à la préfecture et auprès du service instructeur. Elle concerne les installations classées pour la protection de l'environnement (ICPE) et…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18835?xtor=RSS-112",
+      "date": "2026-03-08T23:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Quelles évolutions en 2026 pour l’utilisation du CPF ?",
+      "resume": "La loi de finances pour 2026 modifie les conditions d’éligibilité de certaines formations au compte personnel de formation (CPF) et les modalités selon lesquelles vous pouvez mobiliser vos droits. Service Public vous explique.",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A18831?xtor=RSS-112",
+      "date": "2026-03-04T23:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "CSRD : comprendre les nouvelles obligations pour les entreprises françaises",
+      "resume": "Dans une directive publiée au Journal officiel de l’Union européenne, le Parlement européen et le Conseil modifient la directive européenne Corporate Sustainability Reporting Directive (CSRD) qui fixe aux entreprises des normes…",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A18827?xtor=RSS-112",
+      "date": "2026-03-02T23:00:00.000Z",
+      "theme": "Gestion",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Création d’une taxe sur les petits colis",
+      "resume": "La taxe sur les importations dite « taxe sur les petits colis » est entrée en vigueur le 1 er mars et concerne les marchandises de faible valeur en provenance de pays hors Union européenne. Service Public fait le point.",
+      "lien": "https://www.service-public.gouv.fr/particuliers/actualites/A18804?xtor=RSS-112",
+      "date": "2026-03-01T23:00:00.000Z",
+      "theme": "Fiscalité",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    },
+    {
+      "titre": "Bonus-malus d'assurance chômage : nouveaux taux de séparation médians et évolution du dispositif",
+      "resume": "Le dispositif de bonus-malus d’assurance chômage, dont l’objectif est de lutter contre la précarité de l'emploi, évolue. Ainsi, de nouveaux taux de séparation médians s’appliquent.",
+      "lien": "https://entreprendre.service-public.gouv.fr/actualites/A15776?xtor=RSS-112",
+      "date": "2026-03-01T23:00:00.000Z",
+      "theme": "Social",
+      "source": "Service Public Entreprendre",
+      "sourceId": "service-public-pro",
+      "editeur": "DILA — Premier ministre"
+    }
+  ]
+}

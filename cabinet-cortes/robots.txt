@@ -1,0 +1,5 @@
+# Site du Cabinet Corinne Cortes — C3C
+User-agent: *
+Allow: /
+
+Sitemap: https://www.cabinetcortes-c3c.fr/sitemap.xml
